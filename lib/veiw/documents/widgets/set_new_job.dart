@@ -1,3 +1,4 @@
+import 'package:biztalk_panel_admin/model/document/ducoment_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
@@ -12,11 +13,37 @@ import 'package:get/get.dart';
 final DocumentController _documentController =Get.put(DocumentController());
 
 class SetNewJob{
-  static setJob(String mentorID){
+  static setJob(String mentorID,String edit,{Work? work}){
     final TextEditingController _manualTitleOfOrgan = TextEditingController();
     final TextEditingController _positionTitle = TextEditingController();
     final TextEditingController _firstYear = TextEditingController();
     final TextEditingController _lastYear = TextEditingController();
+    if(edit == "edit"){
+      _positionTitle.text = work!.job!;
+      _firstYear.text = work.startYear!;
+      _lastYear.text = work.endYear!;
+      _documentController.isActiveJobSwitch.value = work.currentPosition!;
+
+      for (var element in work.attachments!) {
+        _documentController.listPdfJobId.add({"_id": element.id.toString()});
+      }
+      for (var element in work.attachments!) {
+        _documentController.listPdfJobUrl
+            .add({"fileUrl": element.fileUrl.toString()});
+      }
+
+      if (work.company!.type == "other") {
+        _documentController.activeSetNameOrgan.value = true;
+        _manualTitleOfOrgan.text = work.companyTitle!;
+      } else {
+        _documentController.activeSetNameOrgan.value = false;
+
+        _documentController.companyId.value = work.company!.id!;
+        _documentController.companyIcon.value = work.company!.imageUrl!;
+        _documentController.companyName.value = work.company!.title!;
+      }
+
+    }
     CustomBottomSheet.myBottomSheet(
       // height: 700,
       title: "سوابق شغلی",
@@ -201,25 +228,75 @@ class SetNewJob{
                           body['company'] = _documentController.companyId.value;
                           body['companyTitle'] = _documentController.companyName.value;
                         }
-                        MyAlert.loding();
-                        await _documentController.createJob(body, mentorID);
-                        Get.back();
-                        if(_documentController.failureMessageCreateJob.value !=""){
-                          MyAlert.mySnakbarRed(text: _documentController.failureMessageCreateJob.value);
-                        }else{
-                          _documentController.getDocument(mentorID);
+
+                        if(edit == "edit"){
+                          print(body);
+
+                          MyAlert.loding();
+                          await _documentController.editJob(body, mentorID,work!.id!);
                           Get.back();
+                          if (_documentController.failureMessageEditJob
+                              .value != "") {
+                            MyAlert.mySnakbarRed(text: _documentController
+                                .failureMessageEditJob.value);
+                          } else {
+                            _documentController.getDocument(mentorID);
+                            Get.back();
+                          }
+
+
+                        }else {
+                          MyAlert.loding();
+                          await _documentController.createJob(body, mentorID);
+                          Get.back();
+                          if (_documentController.failureMessageCreateJob
+                              .value != "") {
+                            MyAlert.mySnakbarRed(text: _documentController
+                                .failureMessageCreateJob.value);
+                          } else {
+                            _documentController.getDocument(mentorID);
+                            Get.back();
+                          }
                         }
 
-
                       },
-                      text: "افزودن",
+                      text:edit == "edit" ? "ویرایش": "افزودن",
                       height: 35,
                       fontSize: 14,
                       width: 110,
                       textColor: Colors.white,
                       bgColor: AppColors.darkerGreen,
                     ),
+                    SizedBox(width: 15,),
+                  edit =="edit"?  ButtonText(
+                      onPressed: ()async {
+                        MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+                          Get.back();
+                        },title: "توجه",onConfirm: ()async{
+                          MyAlert.loding();
+                          await _documentController.deleteJob(mentorID,work!.id!);
+                          Get.back();
+                          if(_documentController.failureMessageDeleteJob.value !=""){
+                            MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteJob.value);
+                          }else{
+                            Get.back();
+                            Get.back();
+                            _documentController.getDocument(mentorID);
+
+                          }
+                        });
+
+
+
+                      },
+                      text:"حذف",
+                      height: 35,
+                      fontSize: 14,
+                      width: 110,
+                      textColor: Colors.white,
+                      bgColor: AppColors.red,
+                    )
+                      :SizedBox(height: 0,)
 
                   ],
                 ),

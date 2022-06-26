@@ -138,6 +138,7 @@ class Education {
     this.verificationStatusTitle,
     this.attachments,
     this.currentCourse,
+    this.degree
   });
 
   String? id;
@@ -148,6 +149,7 @@ class Education {
   String? activityYear;
   bool? status;
   String? statusTitle;
+  String? degree;
   String? verificationStatus;
   String? verificationStatusTitle;
   List<Attachment>? attachments;
@@ -155,6 +157,7 @@ class Education {
 
   factory Education.fromJson(Map<String, dynamic> json) => Education(
     id: json["id"],
+    degree: json["degree"],
     school: School.fromJson(json["school"]),
     schoolTitle: json["schoolTitle"],
     startYear: json["startYear"],
@@ -170,6 +173,7 @@ class Education {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "degree": degree,
     "school": school!.toJson(),
     "schoolTitle": schoolTitle,
     "startYear": startYear,

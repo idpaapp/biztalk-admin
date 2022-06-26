@@ -1,3 +1,4 @@
+import 'package:biztalk_panel_admin/model/document/ducoment_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
@@ -12,12 +13,38 @@ import 'package:get/get.dart';
 final DocumentController _documentController =Get.put(DocumentController());
 
 class SetNewEdu{
-  static setEdu(String mentorID){
+  static setEdu(String mentorID,String edit,{Education? education}){
     final TextEditingController _firstYear = TextEditingController();
     final TextEditingController _lastYear = TextEditingController();
     final TextEditingController _fieldOfStudy = TextEditingController();
     final TextEditingController _searchUni = TextEditingController();
     final TextEditingController _manualUniController = TextEditingController();
+
+    if(edit == "edit"){
+      _fieldOfStudy.text = education!.degree!;
+      _firstYear.text = education.startYear!;
+      _lastYear.text = education.endYear!;
+      _documentController.isActiveEducationSwitch.value =
+      education.currentCourse!;
+
+
+
+      if (education.school!.type == "other") {
+        _documentController.isManualTitleUniverCity.value = true;
+        _manualUniController.text = education.schoolTitle!;
+      } else {
+        _documentController.isManualTitleUniverCity.value = false;
+
+        _documentController.selectedEducationId.value = education.school!.id!;
+        _documentController.selectedEducationImage.value =
+        education.school!.imageUrl!;
+        _documentController.selectedEducationTitle.value =
+        education.school!.title!;
+      }
+
+    }
+
+
     CustomBottomSheet.myBottomSheet(
       title: "سوابق تحصیلی و مدارک علمی",
       widget: Padding(
@@ -203,6 +230,24 @@ class SetNewEdu{
                         body['school'] = _documentController.selectedEducationId.value;
                         body['schoolTitle'] = _documentController.selectedEducationTitle.value;
                       }
+                      if(edit == "edit"){
+
+                        print(body);
+
+                        MyAlert.loding();
+                        await _documentController.editEducation(body, mentorID,education!.id!);
+                        Get.back();
+                        if (_documentController.failureMessageEditEducation
+                            .value != "") {
+                          MyAlert.mySnakbarRed(text: _documentController
+                              .failureMessageEditEducation.value);
+                        } else {
+                          _documentController.getDocument(mentorID);
+                          Get.back();
+                        }
+
+
+                      }else{
                       MyAlert.loding();
                       await _documentController.createEducation(body, mentorID);
                       Get.back();
@@ -211,7 +256,7 @@ class SetNewEdu{
                       }else{
                         _documentController.getDocument(mentorID);
                         Get.back();
-                      }
+                      }}
 
                     },
                     text: "افزودن",
@@ -221,6 +266,36 @@ class SetNewEdu{
                     textColor: Colors.white,
                     bgColor: AppColors.darkerGreen,
                   ),
+                  SizedBox(width: 15,),
+                  edit =="edit"?  ButtonText(
+                    onPressed: ()async {
+                      MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+                        Get.back();
+                      },title: "توجه",onConfirm: ()async{
+                        MyAlert.loding();
+                        await _documentController.deleteEducation(mentorID,education!.id!);
+                        Get.back();
+                        if(_documentController.failureMessageDeleteEducation.value !=""){
+                          MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteEducation.value);
+                        }else{
+                          Get.back();
+                          Get.back();
+                          _documentController.getDocument(mentorID);
+
+                        }
+                      });
+
+
+
+                    },
+                    text:"حذف",
+                    height: 35,
+                    fontSize: 14,
+                    width: 110,
+                    textColor: Colors.white,
+                    bgColor: AppColors.red,
+                  )
+                      :SizedBox(height: 0,)
 
                 ],
               ),

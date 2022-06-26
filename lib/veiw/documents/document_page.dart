@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:biztalk_panel_admin/model/mentro/mentor_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:biztalk_panel_admin/veiw/documents/edit/edit_document_dialog.dart';
@@ -98,7 +95,7 @@ class DocumentPage extends StatelessWidget {
       );
 
   JobSection() => Stack(
-    alignment: Alignment.topLeft,
+        alignment: Alignment.topLeft,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,8 +117,7 @@ class DocumentPage extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio:
-                          1 / 0.25),
+                      childAspectRatio: 1 / 0.25),
                   itemBuilder: (context, index) {
                     var job = _documentController
                         .resultGetDocument.value.data!.works![index];
@@ -191,13 +187,18 @@ class DocumentPage extends StatelessWidget {
                       companyTitle: job.companyTitle,
                       job: job.job,
                       status: job.statusTitle,
+                      onEdit: () {
+                        SetNewJob.setJob(
+                            data.data!.profile!.id.toString(), "edit",
+                            work: job);
+                      },
                     );
                   })
             ],
           ),
           ButtonText(
             onPressed: () {
-              SetNewJob.setJob(data.data!.profile!.id.toString());
+              SetNewJob.setJob(data.data!.profile!.id.toString(), "no");
             },
             text: 'افزودن سوابق شغلی',
             height: 40,
@@ -211,9 +212,9 @@ class DocumentPage extends StatelessWidget {
       );
 
   education() => Stack(
-    alignment: Alignment.topLeft,
-    children: [
-      Column(
+        alignment: Alignment.topLeft,
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomText(
@@ -227,8 +228,9 @@ class DocumentPage extends StatelessWidget {
                   itemCount: _documentController
                       .resultGetDocument.value.data!.educations!.length,
                   physics: const ScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
@@ -238,8 +240,8 @@ class DocumentPage extends StatelessWidget {
                         .resultGetDocument.value.data!.educations![index];
                     return ItemJobWidget(
                       onTap: () {
-                        EditDocumentDialog(context, "نام دانشگاه", "مقطع تحصیلی",
-                            "رشته", "تحصیل", "edu",
+                        EditDocumentDialog(context, "نام دانشگاه",
+                            "مقطع تحصیلی", "رشته", "تحصیل", "edu",
                             name: TextEditingController(
                               text: education.schoolTitle,
                             ), onConfirmtitle: () {
@@ -282,13 +284,14 @@ class DocumentPage extends StatelessWidget {
                               body, "ایا برای تایید اطمینان دارید؟");
                         },
                             atachment: education.attachments,
-                            name2:
-                                TextEditingController(text: education.schoolTitle),
-                            name3:
-                                TextEditingController(text: education.schoolTitle),
-                            startDate:
-                                TextEditingController(text: education.startYear),
-                            endDate: TextEditingController(text: education.endYear),
+                            name2: TextEditingController(
+                                text: education.schoolTitle),
+                            name3: TextEditingController(
+                                text: education.schoolTitle),
+                            startDate: TextEditingController(
+                                text: education.startYear),
+                            endDate:
+                                TextEditingController(text: education.endYear),
                             isActiveSwitch: education.currentCourse);
                       },
                       date: education.activityYear ?? "",
@@ -296,31 +299,33 @@ class DocumentPage extends StatelessWidget {
                       companyTitle: education.school!.title ?? "",
                       job: education.schoolTitle ?? "",
                       status: education.statusTitle ?? "",
+                      onEdit: (){
+                        SetNewEdu.setEdu(data.data!.profile!.id.toString(),"edit",education: education);
+
+                      },
                     );
                   })
             ],
           ),
-      ButtonText(
-        onPressed: () {
-          SetNewEdu.setEdu(data.data!.profile!.id.toString());
-        },
-        text: 'افزودن سوابق تحصیلی',
-        height: 40,
-        width: 150,
-        fontSize: 14,
-        borderRadios: 5,
-        bgColor: AppColors.green,
-        textColor: Colors.white,
-      )
-
-    ],
-  );
+          ButtonText(
+            onPressed: () {
+              SetNewEdu.setEdu(data.data!.profile!.id.toString(),"no");
+            },
+            text: 'افزودن سوابق تحصیلی',
+            height: 40,
+            width: 150,
+            fontSize: 14,
+            borderRadios: 5,
+            bgColor: AppColors.green,
+            textColor: Colors.white,
+          )
+        ],
+      );
 
   achievment() => Stack(
-    alignment: Alignment.topLeft,
-
-    children: [
-      Column(
+        alignment: Alignment.topLeft,
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomText(
@@ -334,12 +339,13 @@ class DocumentPage extends StatelessWidget {
                   itemCount: _documentController
                       .resultGetDocument.value.data!.achievements!.length,
                   physics: const ScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio:  1 / 0.25),
+                      childAspectRatio: 1 / 0.25),
                   itemBuilder: (context, index) {
                     var achievment = _documentController
                         .resultGetDocument.value.data!.achievements![index];
@@ -394,7 +400,8 @@ class DocumentPage extends StatelessWidget {
                               text: achievment.title,
                             ),
                             atachment: achievment.attachments,
-                            name2: TextEditingController(text: achievment.place),
+                            name2:
+                                TextEditingController(text: achievment.place),
                             name3: TextEditingController(text: achievment.year),
                             endDate: TextEditingController(text: "55555"),
                             startDate: TextEditingController(text: "222222"));
@@ -404,25 +411,30 @@ class DocumentPage extends StatelessWidget {
                       companyTitle: achievment.title,
                       job: achievment.place,
                       status: achievment.statusTitle,
+                      onEdit: (){
+
+                        SetNewAch.setAch(data.data!.profile!.id.toString(),"edit",achievement: achievment);
+
+
+                      },
                     );
                   })
             ],
           ),
-      ButtonText(
-        onPressed: () {
-          SetNewAch.setAch(data.data!.profile!.id.toString());
-        },
-        text: 'افزودن دست اورد',
-        height: 40,
-        width: 150,
-        fontSize: 14,
-        borderRadios: 5,
-        bgColor: AppColors.green,
-        textColor: Colors.white,
-      )
-
-    ],
-  );
+          ButtonText(
+            onPressed: () {
+              SetNewAch.setAch(data.data!.profile!.id.toString(),"no");
+            },
+            text: 'افزودن دست اورد',
+            height: 40,
+            width: 150,
+            fontSize: 14,
+            borderRadios: 5,
+            bgColor: AppColors.green,
+            textColor: Colors.white,
+          )
+        ],
+      );
 
   onConfirmAdditional(Map<String, dynamic> body, String title) {
     MyAlert.deleteBottomSheet(

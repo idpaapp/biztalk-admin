@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class ItemJobWidget extends StatelessWidget {
   final onTap;
+  final onEdit;
   final String? image;
   final String? companyTitle;
   final String? job;
@@ -17,6 +18,7 @@ class ItemJobWidget extends StatelessWidget {
       this.onTap,
       this.image,
       this.status,
+      this.onEdit,
       this.date,
       this.companyTitle,
       this.job})
@@ -45,7 +47,6 @@ class ItemJobWidget extends StatelessWidget {
                                   width: 45,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-
                                     image: DecorationImage(
                                         image: AssetImage(
                                             "assets/images/avatarwhite.png"),
@@ -145,7 +146,7 @@ class ItemJobWidget extends StatelessWidget {
                 width: 75,
                 fontSize: 10,
                 textColor: AppColors.darkerGreen,
-                onPressed: () {},
+                onPressed: onEdit,
               )
             ],
           ),

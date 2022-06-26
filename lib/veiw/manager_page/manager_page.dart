@@ -142,6 +142,7 @@ class ManagerPage extends StatelessWidget {
 
                       description: carousel.bannerDescription,
                       listTitle: carousel.bannerTitle,
+
                       nameMentor: carousel.mentors!.length.toString(),
                       number: carousel.mentors!.length.toString(),
                       isLink: carousel.bannerType == 'link' ? true : false,

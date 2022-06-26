@@ -105,7 +105,99 @@ class DocumentRepository {
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
-  }  //********************************************* create education
+  }
+
+
+  //********************************************* edit work
+  Future<Either<Failure, EditModel>> editWorkExperience(
+      Map<String, dynamic> body,String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.put, '${GlobalInfo.baseURL}profile/editExperience/$id/$itemId',
+            needAuth: true, body: body);
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+  //********************************************* delete work
+  Future<Either<Failure, EditModel>>deleteWorkExperience(String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.delete, '${GlobalInfo.baseURL}profile/deleteExperience/$id/$itemId',
+            needAuth: true,body: {});
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+  //********************************************* delete education
+  Future<Either<Failure, EditModel>>deleteEducation(String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.delete, '${GlobalInfo.baseURL}profile/deleteEducation/$id/$itemId',
+            needAuth: true,body: {});
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+
+
+  //********************************************* create education
   Future<Either<Failure, EditModel>> createEducation(
       Map<String, dynamic> body,String id) async {
     if (!await DataConnectionChecker.hasConnection) {
@@ -114,6 +206,36 @@ class DocumentRepository {
       try {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/addEducation/$id',
+            needAuth: true, body: body);
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+  //********************************************* edit education
+  Future<Either<Failure, EditModel>> editEducation(
+      Map<String, dynamic> body,String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.put, '${GlobalInfo.baseURL}profile/editEducation/$id/$itemId',
             needAuth: true, body: body);
         print(response);
         print("2222222222222222222");
@@ -144,6 +266,62 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/addAchievements/$id',
             needAuth: true, body: body);
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  } //******************************
+  Future<Either<Failure, EditModel>> editAchive(
+      Map<String, dynamic> body,String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.put, '${GlobalInfo.baseURL}profile/editAchievements/$id/$itemId',
+            needAuth: true, body: body);
+        print(response);
+        print("2222222222222222222");
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+  //********************************************* delete education
+  Future<Either<Failure, EditModel>>deleteAchievement(String id,String itemId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.delete, '${GlobalInfo.baseURL}profile/deleteAchievements/$id/$itemId',
+            needAuth: true,body: {});
         print(response);
         print("2222222222222222222");
         if (response['error'] != null) {

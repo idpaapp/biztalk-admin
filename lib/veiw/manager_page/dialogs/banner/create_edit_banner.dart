@@ -39,6 +39,7 @@ Future<void> createEditBanner(BuildContext context,
       String? bannerGroup,
       onConfirmImage}) async {
   _managerPageController.clearData();
+  _managerPageController.switchActive.value=false;
   _homeController.selectedMentor.clear();
   _homeController.selectedMentorFinaly.clear();
 
@@ -49,6 +50,7 @@ Future<void> createEditBanner(BuildContext context,
 
     _managerPageController.isLink.value=false;
     _titleList.text=banner.bannerTitle??"";
+    _managerPageController.switchActive.value=banner.status!;
     _link.text=banner.bannerDescription??"";
 
     banner.mentors!.forEach((element) {
@@ -182,6 +184,7 @@ Future<void> createEditBanner(BuildContext context,
                       });
                       Map<String, dynamic> body = {
                         "bannerGroup": bannerGroup,
+                        "status":_managerPageController.switchActive.value,
                         "bannerType": "list",
                         "logo": {
                           "fileName": _managerPageController.nameImage.value,
@@ -219,6 +222,8 @@ Future<void> createEditBanner(BuildContext context,
                       if (_managerPageController.isLink.value) {
                         Map<String, dynamic> body = {
                           "bannerGroup": bannerGroup,
+
+                          "status":_managerPageController.switchActive.value,
                           "bannerType": 'link',
                           "logo": {
                             "fileName": _managerPageController.nameImage.value,
@@ -248,6 +253,8 @@ Future<void> createEditBanner(BuildContext context,
                         Map<String, dynamic> body = {
                           "bannerGroup": bannerGroup,
                           "bannerType": "list",
+
+                          "status":_managerPageController.switchActive.value,
                           "logo": {
                             "fileName": _managerPageController.nameImage.value,
                             "base64": _managerPageController.base64File.value},
