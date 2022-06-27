@@ -78,8 +78,12 @@ class LoginPageMobile extends StatelessWidget {
                         MyAlert.loding();
                         await _authController.login(
                             _userName.text, _password.text);
-                        if (_authController.resultLogin.value.ok == true) {
-                          Get.back();
+                        Get.back();
+
+                        if (_authController.failureMessageLogin.value != "") {
+                          MyAlert.mySnakbarRed(text: _authController.failureMessageLogin.value);
+
+                        }else{
 
                           Get.offAllNamed(HomePage.route);
                         }

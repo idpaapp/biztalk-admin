@@ -6,12 +6,14 @@ import 'package:biztalk_panel_admin/service/document_repository.dart';
 import 'package:biztalk_panel_admin/service/home_repository.dart';
 import 'package:biztalk_panel_admin/service/manager_repository.dart';
 import 'package:biztalk_panel_admin/service/mentor_repository.dart';
+import 'package:biztalk_panel_admin/service/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'get_routes.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(Repository());
 
   Get.put(AuthController());
 

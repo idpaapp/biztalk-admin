@@ -21,9 +21,9 @@ class SetNewEdu{
     final TextEditingController _manualUniController = TextEditingController();
 
     if(edit == "edit"){
-      _fieldOfStudy.text = education!.degree!;
-      _firstYear.text = education.startYear!;
-      _lastYear.text = education.endYear!;
+      _fieldOfStudy.text = education!.degree??"";
+      _firstYear.text = education.startYear??"";
+      _lastYear.text = education.endYear??"";
       _documentController.isActiveEducationSwitch.value =
       education.currentCourse!;
 
@@ -31,16 +31,25 @@ class SetNewEdu{
 
       if (education.school!.type == "other") {
         _documentController.isManualTitleUniverCity.value = true;
-        _manualUniController.text = education.schoolTitle!;
+        _manualUniController.text = education.schoolTitle??"";
       } else {
         _documentController.isManualTitleUniverCity.value = false;
 
         _documentController.selectedEducationId.value = education.school!.id!;
         _documentController.selectedEducationImage.value =
-        education.school!.imageUrl!;
+        education.school!.imageUrl??"";
         _documentController.selectedEducationTitle.value =
-        education.school!.title!;
+        education.school!.title??"";
       }
+
+    }else{
+      _fieldOfStudy.text = "";
+      _firstYear.text = "";
+      _lastYear.text = "";
+      _documentController.isActiveEducationSwitch.value =false;
+      _documentController.selectedEducationId.value = "";
+      _documentController.selectedEducationImage.value ="";
+      _documentController.selectedEducationTitle.value ="";
 
     }
 

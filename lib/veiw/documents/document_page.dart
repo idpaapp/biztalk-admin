@@ -183,8 +183,8 @@ class DocumentPage extends StatelessWidget {
                         );
                       },
                       date: job.activityYear ?? "",
-                      image: job.company!.imageUrl,
-                      companyTitle: job.companyTitle,
+                      image:  job.company == null ?"" :job.company!.imageUrl,
+                      companyTitle:job.company == null ?"" : job.companyTitle,
                       job: job.job,
                       status: job.statusTitle,
                       onEdit: () {
@@ -295,8 +295,8 @@ class DocumentPage extends StatelessWidget {
                             isActiveSwitch: education.currentCourse);
                       },
                       date: education.activityYear ?? "",
-                      image: education.school!.imageUrl,
-                      companyTitle: education.school!.title ?? "",
+                      image:education.school==null ? "" : education.school!.imageUrl,
+                      companyTitle: education.school==null ? "" :education.school!.title ?? "",
                       job: education.schoolTitle ?? "",
                       status: education.statusTitle ?? "",
                       onEdit: (){

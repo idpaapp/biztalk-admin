@@ -19,6 +19,11 @@ class SetNewAch {
       _year.text = achievement!.year.toString();
       _location.text = achievement.place.toString();
       _titleAchivment.text = achievement.title.toString();
+    }else{
+      _year.text = "";
+      _location.text = "";
+      _titleAchivment.text = "";
+
     }
     CustomBottomSheet.myBottomSheet(
       title: "دستاوردها و جوایز کسب شده",

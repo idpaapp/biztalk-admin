@@ -24,13 +24,6 @@ class SetNewJob{
       _lastYear.text = work.endYear!;
       _documentController.isActiveJobSwitch.value = work.currentPosition!;
 
-      for (var element in work.attachments!) {
-        _documentController.listPdfJobId.add({"_id": element.id.toString()});
-      }
-      for (var element in work.attachments!) {
-        _documentController.listPdfJobUrl
-            .add({"fileUrl": element.fileUrl.toString()});
-      }
 
       if (work.company!.type == "other") {
         _documentController.activeSetNameOrgan.value = true;
@@ -42,6 +35,17 @@ class SetNewJob{
         _documentController.companyIcon.value = work.company!.imageUrl!;
         _documentController.companyName.value = work.company!.title!;
       }
+
+    }else{
+      _positionTitle.text="";
+      _firstYear.text="";
+      _lastYear.text="";
+      _documentController.isActiveJobSwitch.value=false;
+      _documentController.activeSetNameOrgan.value = false;
+      _manualTitleOfOrgan.text="";
+      _documentController.companyId.value = "";
+      _documentController.companyIcon.value ="";
+      _documentController.companyName.value = "";
 
     }
     CustomBottomSheet.myBottomSheet(
