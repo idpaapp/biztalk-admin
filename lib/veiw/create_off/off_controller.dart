@@ -110,8 +110,4 @@ class OffController extends GetxController {
     );
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }
