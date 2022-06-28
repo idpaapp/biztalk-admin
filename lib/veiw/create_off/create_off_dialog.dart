@@ -23,6 +23,7 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
     context: context,
     barrierDismissible: true, // user must tap button!
     builder: (BuildContext context) {
+      _offController.fetchCategory();
       return AlertDialog(
         titlePadding: EdgeInsets.zero,
         actionsPadding: EdgeInsets.zero,
@@ -193,15 +194,15 @@ Widget rightColumn(TextEditingController _title, List<dynamic> option,
               title: "تاریخ شروع",
               from: 1,
               date: _offController.startDate.value,
-            )),
-        SizedBox(
+            ),),
+        const SizedBox(
           height: 10,
         ),
         Obx(() => DatePikerWidget(
               title: "تاریخ پایان",
               from: 20,
               date: _offController.endDate.value,
-            )),
+            ),),
         const SizedBox(
           width: 10,
         ),

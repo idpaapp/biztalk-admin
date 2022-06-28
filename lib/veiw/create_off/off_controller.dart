@@ -17,7 +17,6 @@ class OffController extends GetxController {
   deleteData(){
     startDate.value="انتخاب کنید";
     endDate.value="انتخاب کنید";
-    selectedCategoryId.value="";
     precent.value.text="";
     amount.value.text="";
     top.value.text="";
