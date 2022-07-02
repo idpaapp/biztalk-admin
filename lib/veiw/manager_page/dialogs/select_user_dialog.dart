@@ -23,7 +23,7 @@ Future<void> selectUserDialog(BuildContext context,
       String? userName,
       String? bannerGroup,
       onConfirmImage}) async {
-  _homeController.fetchUsers(1);
+  _homeController.fetchUsers(1,type: "mentor");
 
   _link.text="";
   _titleList.text="";

@@ -50,12 +50,15 @@ class HomeRepository {
 
   //***************************************************
   Future<Either<Failure, UsersHomeModel>> getUserHome(
-      {int? page, String? mobile,String? status}) async {
+      {int? page, String? mobile,String? status,String ? type}) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
         var url = '${GlobalInfo.baseURL}home/users?page=$page';
+        if(type !=null){
+          url+="&type=$type";
+        }
         if(status != null){
           url+="&status=$status";
         }

@@ -71,10 +71,10 @@ class HomeController extends GetxController {
   var resultHomeUsers = UsersHomeModel().obs;
   RxBool isLoadingHome = false.obs;
 
- fetchUsers(int page, {String? mobile,String? status}) async {
+ fetchUsers(int page, {String? mobile,String? status,String ? type}) async {
     failureMessage.value = "";
     isLoadingHome.value = true;
-    final result = await _homeRepo.getUserHome(page: page, mobile: mobile,status: status);
+    final result = await _homeRepo.getUserHome(page: page, mobile: mobile,status: status,type: type);
     result.fold(
       (left) {
         failureMessage.value = left.message;
