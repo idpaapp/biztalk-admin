@@ -68,9 +68,7 @@ class DatePikerWidget extends StatelessWidget {
           title: TitleWidget(
               size: 4,
               title: "انتخاب تاریخ",
-              onClose: () {
-                Get.back();
-              }),
+             ),
           content: Directionality(
             textDirection: TextDirection.ltr,
             child: LinearDatePicker(

@@ -22,9 +22,7 @@ Future<void> singleTransactionDialog(BuildContext context, String title,AccountD
         title: TitleWidget(
             size: 1,
             title: title,
-            onClose: () {
-              Get.back();
-            }),
+            ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,

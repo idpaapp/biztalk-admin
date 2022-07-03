@@ -41,9 +41,7 @@ Future<void> editUserProfile(BuildContext context,
         title: TitleWidget(
             size: 1,
             title: "ویرایش اطلاعات",
-            onClose: () {
-              Get.back();
-            }),
+            ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,

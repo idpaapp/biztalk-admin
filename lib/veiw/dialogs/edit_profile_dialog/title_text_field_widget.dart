@@ -1,6 +1,7 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/credit_card_formatter.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,23 +14,38 @@ class TitleTextFieldWidget extends StatelessWidget {
   final TextInputType? textInputType;
   final TextEditingController? editingController;
   final bool format;
+  final onConfirm;
+  final onDelete;
+  final bool activeDelete;
 
   const TitleTextFieldWidget(
-      {Key? key, this.title, this.hint, this.editingController,this.maxLines=null,this.pre,this.textInputType,this.format=false,})
+      {Key? key, this.title, this.hint, this.editingController,this.maxLines=null,this.pre,this.textInputType,this.format=false,this.onDelete,this.onConfirm,this.activeDelete =false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: CustomText(
-              color: AppColors.lighterBlack,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              title: title,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: CustomText(
+                  color: AppColors.lighterBlack,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  title: title,
+                ),
+              ),
+            !activeDelete ? SizedBox():  DeleteAcceptWidget(
+                onConfirm:onConfirm,onDelete: onDelete,
+
+
+              ),
+            ],
           ),
           SizedBox(
             height: 10,

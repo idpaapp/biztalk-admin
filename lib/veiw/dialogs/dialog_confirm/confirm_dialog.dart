@@ -23,9 +23,7 @@ Future<void> confirmDialog(BuildContext context,
         title: TitleWidget(
             size: 4,
             title: "توجه",
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: SizedBox(
           height: Get.height * 0.2,
           width: Get.width * 0.3,

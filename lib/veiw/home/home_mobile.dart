@@ -134,6 +134,8 @@ class HomeDesctopPage extends StatelessWidget {
                             onTap: () {
                               print(user.id);
                               if (user.userType == "عادی") {
+
+
                                 Get.toNamed(SingleUserPage.route, arguments: {
                                   "id": user.id.toString(),
                                   "userType": user.userType

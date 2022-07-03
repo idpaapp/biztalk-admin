@@ -2,6 +2,7 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,30 +20,32 @@ class ProfileSectionWidget extends StatelessWidget {
   final String? statustitle;
   final String? userType;
   final onSwitchChange;
+  final onChangeTab;
+  final Widget? tab;
   final bool? switchValue;
 
-  const ProfileSectionWidget(
+  ProfileSectionWidget(
       {Key? key,
       this.image,
+      this.onChangeTab,
       this.onSwitchBtn,
       this.fullName,
+      this.tab,
       this.jobTitle,
       this.onEdit,
-        this.userType,
-        this.showSwitch =false,
+      this.userType,
+      this.showSwitch = false,
       this.widget,
       this.status,
       this.statustitle,
-        this.onSwitchChange,
-        this.switchValue,
+      this.onSwitchChange,
+      this.switchValue,
       this.isUser = false,
       this.isTransaction = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
-        height: Get.height*0.25,
-        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -57,78 +60,69 @@ class ProfileSectionWidget extends StatelessWidget {
               ),
             ]),
         child: Center(
-          child:
+          child: Column(
+            children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Row(
-              children: [
-                image == ""
-                    ? const CircleAvatar(
-                        radius: 50,
-                        backgroundImage:
-                            AssetImage("assets/images/avatar_placeholder.png"),
-                      )
-                    : CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(
-                            GlobalInfo.serverAddress + "/" + image.toString()),
-                      ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
                   children: [
-                    Row(
+                    image == ""
+                        ? const CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage(
+                                "assets/images/avatar_placeholder.png"),
+                          )
+                        : CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(
+                                GlobalInfo.serverAddress +
+                                    "/" +
+                                    image.toString()),
+                          ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomText(
-                          color: AppColors.blackText,
-                          title: fullName,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 22,
+                        Row(
+                          children: [
+                            CustomText(
+                              color: AppColors.blackText,
+                              title: fullName,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 22,
+                            ),
+                            const SizedBox(
+                              width: 40,
+                            ),
+                          ],
                         ),
                         const SizedBox(
-                          width: 40,
+                          height: 20,
                         ),
-                      userType == "عادی" ? SizedBox(height: 0,): ButtonText(
-                          borderColor: 2,
-                          onPressed: onSwitchBtn,
-                          text: isUser
-                              ? "سوییچ به اکانت مشاور"
-                              : "سوییچ به اکانت کاربر عادی",
-                          borderRadios: 5,
-                          bgColor: Colors.white,
-                          textColor: AppColors.tosi,
-                          activeBorder: 1,
-                          height: Get.height * 0.03,
-                        )
+                        CustomText(
+                          color: AppColors.blackText,
+                          title: jobTitle ?? "",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    CustomText(
-                      color: AppColors.blackText,
-                      title: jobTitle??"",
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14,
-                    ),
+                    showSwitch ? statuseSection() : SizedBox()
                   ],
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
-                showSwitch? statuseSection() :SizedBox()
-              ],
-            ),
-            endSection(),
-          ]),
+                endSection(),
+              ]),
+              tab!,
+            ],
+          ),
         ),
       );
 
   Widget statuseSection() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -140,7 +134,7 @@ class ProfileSectionWidget extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w700),
               CustomText(
-                title: statustitle??"",
+                title: statustitle ?? "",
                 color: AppColors.green,
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
@@ -150,23 +144,20 @@ class ProfileSectionWidget extends StatelessWidget {
           Row(
             children: [
               Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: Switch(
-                    value:switchValue!,
-                    onChanged: onSwitchChange,
-                    activeColor: AppColors.darkerGreen,
-                  ),
+                textDirection: TextDirection.ltr,
+                child: Switch(
+                  value: switchValue!,
+                  onChanged: onSwitchChange,
+                  activeColor: AppColors.darkerGreen,
                 ),
-
+              ),
               CustomText(
-                title: switchValue! ? "غیرفعال":"فعال",
+                title: switchValue! ? "غیرفعال" : "فعال",
                 color: AppColors.black,
                 fontSize: 12,
               ),
             ],
           ),
-
-
         ],
       ),
     );

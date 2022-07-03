@@ -25,9 +25,7 @@ Future<void> showOffer(BuildContext context, {SingleOff? singleOff}) async {
         title: TitleWidget(
             size: 4,
             title: "کد تخفیف",
-            onClose: () {
-              Get.back();
-            }),
+            ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,

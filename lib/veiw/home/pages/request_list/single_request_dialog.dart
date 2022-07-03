@@ -27,9 +27,7 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
         title: TitleWidget(
             size: 3,
             title: title,
-            onClose: () {
-              Get.back();
-            }),
+            ),
         content: SizedBox(
           height: Get.height * 0.7,
           width: Get.width * 0.6,

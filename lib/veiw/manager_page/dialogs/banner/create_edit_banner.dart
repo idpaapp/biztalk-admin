@@ -75,9 +75,7 @@ Future<void> createEditBanner(BuildContext context,
         title: TitleWidget(
             size: 3,
             title: "ویرایش / افزودن",
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: Obx(
               () =>
               Container(

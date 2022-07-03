@@ -1,6 +1,7 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/edit_profile_controller.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/select_dialog/select_dialog_section.dart';
@@ -94,7 +95,8 @@ class RightColumnWidget extends StatelessWidget {
                         );
                       }).toList(),
                       onChanged: (val) {
-                        _editProfileController.gradeTitle.value = val.toString();
+                        _editProfileController.gradeTitle.value =
+                            val.toString();
                       },
                     )),
               ),
@@ -161,55 +163,28 @@ class RightColumnWidget extends StatelessWidget {
       );
 
   Widget imageSection(BuildContext context) => Row(
-    children: [
-      Expanded(
-        child: InkWell(
-          onTap: () {
-            showImage(context, "نمایش تصویر", image!);
-          },
-          child: Obx(()=>Center(
-            child: _editProfileController.removeImage.value || image == null
-                ? const CircleAvatar(
-                radius: 45,
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage("assets/images/avatar_placeholder.png"))
-                : CircleAvatar(
-                radius: 45,
-                backgroundImage: NetworkImage(
-                    GlobalInfo.serverAddress + "/" + image!)),
-          )),
-        ),
-      ),
-      Expanded(
-        flex: 2,
-        child: Row(
-          children: [
-            Expanded(
-              child: ButtonText(
-                onPressed: onDeleteImage,
-                text: "حذف تصویر",
-                height: 30,
-                fontSize: 14,
-                textColor: Colors.white,
-                bgColor: AppColors.red,
-              ),
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: InkWell(
+              onTap: () {
+                showImage(context, "نمایش تصویر", image!);
+              },
+              child: Obx(() => _editProfileController.removeImage.value ||
+                      image == null
+                  ? const CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.white,
+                      backgroundImage:
+                          AssetImage("assets/images/avatar_placeholder.png"))
+                  : CircleAvatar(
+                      radius: 45,
+                      backgroundImage: NetworkImage(
+                          GlobalInfo.serverAddress + "/" + image!))),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: ButtonText(
-                onPressed: onConfirmImage,
-                text: "تایید",
-                height: 30,
-                fontSize: 14,
-                textColor: Colors.white,
-                bgColor: AppColors.darkerGreen,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
+          ),
+          SizedBox(width: 12,),
+          DeleteAcceptWidget(onConfirm: onConfirmImage,onDelete:onDeleteImage ,)
+        ],
+      );
 }

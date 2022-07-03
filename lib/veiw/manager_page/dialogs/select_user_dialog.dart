@@ -45,10 +45,7 @@ Future<void> selectUserDialog(BuildContext context,
         title: TitleWidget(
             size: 3,
             title: "ویرایش / افزودن",
-            onClose: () {
-              _homeController.selectedMentor.clear();
-              Get.back();
-            }),
+            ),
         content: Container(
             height:Get.height * 0.8,
             width: Get.width * 0.6,

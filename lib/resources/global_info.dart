@@ -11,6 +11,6 @@ class GlobalInfo {
   //home
   //static const String serverAddress = 'http://217.170.254.172:1857';
 
-
+static double pagePadding = 250;
   static  String baseURL = serverAddress + '/admin/api/';
 }

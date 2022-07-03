@@ -1,6 +1,7 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/edit_profile_controller.dart';
@@ -36,69 +37,74 @@ class LeftColumnWidget extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TitleTextFieldWidget(
-                title: "درباره من",
-                maxLines: 3,
-                editingController: aboutMe,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
+              Stack(
+                alignment: Alignment.topLeft,
                 children: [
-                  Expanded(child: Container()),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ButtonText(
-                      onPressed: () {
-                        changeStatuseMethod(
-                            context: context,
-                            title: "آیا برای تایید توضیحات اطمینان دارید؟",
-                            type: "description",
-                            confirm: true);
-                      },
-                      text: "تایید",
-                      height: 30,
-                      fontSize: 14,
-                      textColor: Colors.white,
-                      bgColor: AppColors.darkerGreen,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: ButtonText(
-                      onPressed: () {
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TitleTextFieldWidget(
+                      title: "درباره من",
+                      activeDelete: true,
+                      maxLines: 3,
+                        onConfirm: () {
+                          changeStatuseMethod(
+                              context: context,
+                              title: "آیا برای تایید توضیحات اطمینان دارید؟",
+                              type: "description",
+                              confirm: true);
+                        },
+                      onDelete: () {
                         changeStatuseMethod(
                             context: context,
                             title: "آیا برای حذف توضیحات اطمینان دارید؟",
                             type: "description",
                             confirm: false);
-                      },
-                      text: "حذف ",
-                      height: 30,
-                      fontSize: 14,
-                      textColor: Colors.white,
-                      bgColor: AppColors.red,
+                      } ,
+                      editingController: aboutMe,
                     ),
                   ),
+
                 ],
               ),
               const SizedBox(
                 height: 5,
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: CustomText(
-                  color: AppColors.lighterBlack,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  title: "ویدیوی معرفی",
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: CustomText(
+                      color: AppColors.lighterBlack,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      title: "ویدیوی معرفی",
+                    ),
+                  ),
+                  DeleteAcceptWidget(
+
+                    onConfirm: () {
+                      changeStatuseMethod(
+                          context: context,
+                          title: "آیا برای تایید ویدیو اطمینان دارید؟",
+                          type: "video",
+                          confirm: true);
+                    },
+
+                    onDelete: () {
+                      changeStatuseMethod(
+                          context: context,
+                          title: "آیا برای حذف ویدیو اطمینان دارید؟",
+                          type: "video",
+                          confirm: false);
+                    },
+                  ),
+                ],
               ),
+              const SizedBox(
+                height: 10,
+              ),
+
               const SizedBox(
                 height: 10,
               ),
@@ -113,9 +119,10 @@ class LeftColumnWidget extends StatelessWidget {
                           color: AppColors.dividerDark,
                         ),
                         color: AppColors.veryLightGrey),
-                    child: _editProfileController.activeVideo.value == false 
+                    child: _editProfileController.activeVideo.value == false
                         ? const Center(
-                            child: CustomText(title: "ویدیو موجود نمی باشد",fontSize: 11),
+                            child: CustomText(
+                                title: "ویدیو موجود نمی باشد", fontSize: 11),
                           )
                         : _editProfileController.isLoadingGetVideo.value == true
                             ? const Center(
@@ -131,52 +138,6 @@ class LeftColumnWidget extends StatelessWidget {
                               ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Expanded(child: Container()),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ButtonText(
-                      onPressed: () {
-                        changeStatuseMethod(
-                            context: context,
-                            title: "آیا برای تایید ویدیو اطمینان دارید؟",
-                            type: "video",
-                            confirm: true);
-                      },
-                      text: "تایید",
-                      height: 30,
-                      fontSize: 14,
-                      textColor: Colors.white,
-                      bgColor: AppColors.darkerGreen,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: ButtonText(
-                      onPressed: () {
-                        changeStatuseMethod(
-                            context: context,
-                            title: "آیا برای حذف ویدیو اطمینان دارید؟",
-                            type: "video",
-                            confirm: false);
-                      },
-                      text: "حذف ",
-                      height: 30,
-                      fontSize: 14,
-                      textColor: Colors.white,
-                      bgColor: AppColors.red,
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

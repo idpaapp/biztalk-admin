@@ -18,16 +18,9 @@ class TopSectionPanelAdmin extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.image, color: Colors.white),
-                      SizedBox(
-                        width: Get.width * 0.004,
-                      ),
-                      const CustomText(
-                          title: "پنل مدیریت بیزتاک", color: Colors.white)
-                    ],
-                  ),
+
+                  const CustomText(
+                      title: "پنل مدیریت بیزتاک", color: Colors.white),
                   Row(
                     children: [
                       const Icon(Icons.person, color: Colors.white),

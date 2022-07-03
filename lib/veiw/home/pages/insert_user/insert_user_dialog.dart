@@ -30,9 +30,7 @@ Future<void> insertUser(
         title: TitleWidget(
             size: 3,
             title: title,
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.4,

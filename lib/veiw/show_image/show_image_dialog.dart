@@ -19,9 +19,7 @@ Future<void> showImage(BuildContext context, String title,String image) async {
         title: TitleWidget(
             size: 3,
             title: title,
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: SizedBox(
           height: Get.height * 0.7,
           width: Get.width * 0.6,

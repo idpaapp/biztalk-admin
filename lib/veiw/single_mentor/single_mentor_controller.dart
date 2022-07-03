@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class SingleMentorController extends GetxController{
   final HomeRepository _homeRepo = Get.find<HomeRepository>();
-
+RxInt selectedChangeUser=0.obs;
   RxInt selectedPage =0.obs;
   RxBool switchValue=false.obs;
 

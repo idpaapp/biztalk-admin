@@ -22,9 +22,7 @@ Future<void> selectionDialog(BuildContext context) async {
         title: TitleWidget(
             size: 1,
             title: "انتخاب زمینه ها",
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: Container(
           height: Get.height * 0.5,
           width: Get.width * 0.5,

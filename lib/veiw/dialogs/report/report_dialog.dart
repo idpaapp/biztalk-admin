@@ -32,9 +32,7 @@ Future<void> reportDialog(
         title: TitleWidget(
             size: 3,
             title: title,
-            onClose: () {
-              Get.back();
-            }),
+          ),
         content: Container(
           height: Get.height * 0.7,
           width: Get.width * 0.6,

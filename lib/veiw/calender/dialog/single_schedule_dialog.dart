@@ -52,9 +52,7 @@ Future<void> singleScheduleDialog(
         title: TitleWidget(
             size: 4,
             title: title!,
-            onClose: () {
-              Get.back();
-            }),
+          ),
         content: SizedBox(
           height: Get.height * 0.3,
           width: Get.width * 0.35,

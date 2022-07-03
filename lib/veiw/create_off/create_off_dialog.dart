@@ -33,9 +33,7 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
         title: TitleWidget(
             size: 4,
             title: title!,
-            onClose: () {
-              Get.back();
-            }),
+            ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,

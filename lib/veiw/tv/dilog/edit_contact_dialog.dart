@@ -56,9 +56,7 @@ Future<void> editContactDialog(BuildContext context,
         title: TitleWidget(
             size: 4,
             title: title!,
-            onClose: () {
-              Get.back();
-            }),
+          ),
         content: SizedBox(
           height: Get.height * 0.5,
           width: Get.width * 0.35,

@@ -38,9 +38,7 @@ Future<void> EditDocumentDialog(
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
             title: "ویرایش اطلاعات",
-            onClose: () {
-              Get.back();
-            }),
+           ),
         content: SizedBox(
           height: fromPage == "edu" ? Get.height * 0.6 : Get.height * 0.5,
           width: Get.width * 0.6,

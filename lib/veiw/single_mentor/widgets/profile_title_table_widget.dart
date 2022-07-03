@@ -1,4 +1,5 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
+import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,40 +11,41 @@ class ProfileTitleTableWidget extends StatelessWidget {
   final String? stateTitle;
   final String? state;
   final String? sessionDate;
-  final bool? isTitle;
+  final bool isTitle;
   final onTap;
 
-  const ProfileTitleTableWidget({Key? key,
-    this.onTap,
-    this.userName,
-    this.createDate,
-    this.subject,
-    this.stateTitle, this.state,
-    this.isTitle, this.sessionDate})
+  const ProfileTitleTableWidget(
+      {Key? key,
+      this.onTap,
+      this.userName,
+      this.createDate,
+      this.subject,
+      this.stateTitle,
+      this.state,
+      this.isTitle = false,
+      this.sessionDate})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      Container(
-        padding: const EdgeInsets.only(bottom: 10, top: 10),
+  Widget build(BuildContext context) => Container(
+        padding:
+            const EdgeInsets.only(bottom: 20, top: 20, left: 20, right: 40),
         decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-                color: isTitle == true
-                    ? AppColors.dividerDark
-                    : AppColors.dividerLight),
-          ),
+          color: isTitle == true ? AppColors.blueSession : Colors.white,
+          borderRadius: isTitle
+              ? BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10))
+              : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Expanded(
               flex: 2,
               child: CustomText(
                   fontSize: isTitle == true ? 16 : 14,
-                  color: AppColors.black,
+                  color: isTitle == true ? Colors.white : AppColors.columnText,
                   fontWeight: FontWeight.w500,
                   title: subject),
             ),
@@ -51,7 +53,7 @@ class ProfileTitleTableWidget extends StatelessWidget {
               flex: 2,
               child: CustomText(
                   fontSize: isTitle == true ? 16 : 14,
-                  color: AppColors.black,
+                  color: isTitle == true ? Colors.white : AppColors.columnText,
                   fontWeight: FontWeight.w500,
                   title: createDate),
             ),
@@ -59,34 +61,41 @@ class ProfileTitleTableWidget extends StatelessWidget {
               flex: 2,
               child: CustomText(
                   fontSize: isTitle == true ? 16 : 14,
-                  color: AppColors.black,
+                  color: isTitle == true ? Colors.white : AppColors.columnText,
                   fontWeight: FontWeight.w500,
                   title: userName),
             ),
             Expanded(
               flex: 2,
-              child: Row(
+              child: isTitle ? CustomText(
+                  fontSize:16 ,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  title: stateTitle):
+                              Row(
                 children: [
-                  Container(decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: state == 'pink' ? AppColors.pink : state == 'red'
-                          ? AppColors.red
-                          : state == 'confirmed'?AppColors.tosi:Colors.white),
-                    padding: EdgeInsets.symmetric(horizontal: Get.width*0.01,vertical: Get.height*0.003),
-                    child: CustomText(
-                        fontSize: isTitle == true ? 16 : 12,
-                        color: state == null? AppColors.black:Colors.white,
-                        fontWeight: FontWeight.w500,
-                        title: stateTitle),
-                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color:AppColors.bgBlue
+                              ),
+
+                      child: CustomText(
+                          fontSize:  12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          title: stateTitle)
+                         ),
                 ],
               ),
+
             ),
             Expanded(
               flex: 1,
               child: CustomText(
                   fontSize: isTitle == true ? 16 : 14,
-                  color: AppColors.black,
+                  color: isTitle == true ? Colors.white : AppColors.black,
                   fontWeight: FontWeight.w500,
                   title: sessionDate),
             ),
