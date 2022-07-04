@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-
+import 'package:get/get.dart';
 class GlobalInfo {
   //farzad
   static  String serverAddress = kDebugMode ?  "http://192.168.2.248:3010":"https://bizztalk.ir:3443";
@@ -11,6 +11,6 @@ class GlobalInfo {
   //home
   //static const String serverAddress = 'http://217.170.254.172:1857';
 
-static double pagePadding = 250;
+static double pagePadding =Get.width >1850? 250: Get.width <1377 ? 80 :100;
   static  String baseURL = serverAddress + '/admin/api/';
 }

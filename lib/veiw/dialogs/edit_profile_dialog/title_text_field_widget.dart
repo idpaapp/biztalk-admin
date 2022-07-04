@@ -19,7 +19,17 @@ class TitleTextFieldWidget extends StatelessWidget {
   final bool activeDelete;
 
   const TitleTextFieldWidget(
-      {Key? key, this.title, this.hint, this.editingController,this.maxLines=null,this.pre,this.textInputType,this.format=false,this.onDelete,this.onConfirm,this.activeDelete =false})
+      {Key? key,
+      this.title,
+      this.hint,
+      this.editingController,
+      this.maxLines = null,
+      this.pre,
+      this.textInputType,
+      this.format = false,
+      this.onDelete,
+      this.onConfirm,
+      this.activeDelete = false})
       : super(key: key);
 
   @override
@@ -29,22 +39,18 @@ class TitleTextFieldWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: CustomText(
-                  color: AppColors.lighterBlack,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  title: title,
-                ),
+              CustomText(
+                color: AppColors.greyMiddle,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                title: title,
               ),
-            !activeDelete ? SizedBox():  DeleteAcceptWidget(
-                onConfirm:onConfirm,onDelete: onDelete,
-
-
-              ),
+              !activeDelete
+                  ? SizedBox()
+                  : DeleteAcceptWidget(
+                      onConfirm: onConfirm,
+                      onDelete: onDelete,
+                    ),
             ],
           ),
           SizedBox(
@@ -53,36 +59,44 @@ class TitleTextFieldWidget extends StatelessWidget {
           Container(
             //height: Get.height*0.05,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(5),
                 border: Border.all(
-                  color: AppColors.dividerDark,
+                  color: AppColors.borderColor,
                 ),
-                color: AppColors.veryLightGrey),
+                color: Colors.white),
             child: Center(
               child: TextField(
                 keyboardType: textInputType,
-                maxLines: maxLines !=null ?maxLines:null,
-                inputFormatters:format ? [
-                  FilteringTextInputFormatter.digitsOnly,
-                  CurrencyPtBrInputFormatter()
-                ]:null,
-
+                maxLines: maxLines != null ? maxLines : null,
+                inputFormatters: format
+                    ? [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CurrencyPtBrInputFormatter()
+                      ]
+                    : null,
                 controller: editingController,
-                decoration:
-                    InputDecoration(border: InputBorder.none, hintText: hint,prefixIcon: pre,),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: hint,
+                    prefixIcon: pre,
+                    hintStyle: TextStyle(color: AppColors.borderColor),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 8)),
               ),
             ),
           )
         ],
       );
 }
+
 class TitleTextWidget extends StatelessWidget {
   final String? title;
   final String? hint;
 
-  const TitleTextWidget(
-      {Key? key, this.title, this.hint,})
-      : super(key: key);
+  const TitleTextWidget({
+    Key? key,
+    this.title,
+    this.hint,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -101,16 +115,17 @@ class TitleTextWidget extends StatelessWidget {
             height: 10,
           ),
           Container(
-            height: Get.height*0.06,
+            height: Get.height * 0.06,
             margin: EdgeInsets.only(right: 8),
             width: Get.width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(5),
                 border: Border.all(
                   color: AppColors.dividerDark,
                 ),
                 color: AppColors.veryLightGrey),
-            child: CustomText(title: hint,fontSize: 14,fontWeight: FontWeight.w700),
+            child: CustomText(
+                title: hint, fontSize: 14, fontWeight: FontWeight.w700),
           )
         ],
       );

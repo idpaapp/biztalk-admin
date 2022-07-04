@@ -14,11 +14,16 @@ class AppColors {
   static const darkerGrey = Color(0xff5b5b5b);
   static const dividerLight = Color(0xffebedef);
   static const dividerDark = Color(0xff797979);
+  static const borderColor = Color(0xffDDDDDD);
   static const greyBorder = Color(0xffE1DDDD);
   static const greyMiddle = Color(0xff707070);
   static const darkGrey = Color(0xff707070);
   static const veryLightGrey = Color(0xfff6f6f6);
   static const disabledGrey = Color(0xffE8E8E8);
+  static const titleColor = Color(0xff444444);
+  static const titleColorTran = Color(0x74444444);
+  static const greyBg = Color(0xffD9D9D9);
+  static const greyBtBorder = Color(0xffDCDCDC);
 
 
 
@@ -40,6 +45,7 @@ class AppColors {
 
   static const blueBgContainer = Color(0xff2e8de5);
   static const tosi = Color(0xff507899);
+  static const bgChip = Color(0xff999999);
   static const pinkDucument = Color(0xff699BF7);
   static const blueSession = Color(0xff3F51B5);
 
@@ -66,6 +72,7 @@ class AppColors {
 
   /// green
   static const  green = Color(0xff4ED69A);
+  static const  greenAdd = Color(0xff00DB8C);
   static const  greenBank = Color(0xff0FA958);
   static const  greenBg = Color(0xff4dbd74);
   static const darkerGreen = Color(0xff24AC70);

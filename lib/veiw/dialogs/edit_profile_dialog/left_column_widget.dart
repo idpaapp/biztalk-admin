@@ -1,5 +1,4 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
@@ -23,124 +22,132 @@ class LeftColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: Get.height * 0.12,
-              ),
-              TitleTextFieldWidget(
-                title: "عنوان شغلی یا مهارت اصلی شما",
-                editingController: jobTitle,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Stack(
-                alignment: Alignment.topLeft,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TitleTextFieldWidget(
-                      title: "درباره من",
-                      activeDelete: true,
-                      maxLines: 3,
-                        onConfirm: () {
-                          changeStatuseMethod(
-                              context: context,
-                              title: "آیا برای تایید توضیحات اطمینان دارید؟",
-                              type: "description",
-                              confirm: true);
-                        },
-                      onDelete: () {
-                        changeStatuseMethod(
-                            context: context,
-                            title: "آیا برای حذف توضیحات اطمینان دارید؟",
-                            type: "description",
-                            confirm: false);
-                      } ,
-                      editingController: aboutMe,
-                    ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: () {
+                    },
+                    child:   CircleAvatar(
+                        radius: 45,
+                        backgroundColor: Colors.white,)
+                        ),
                   ),
 
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: CustomText(
-                      color: AppColors.lighterBlack,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      title: "ویدیوی معرفی",
-                    ),
-                  ),
-                  DeleteAcceptWidget(
-
+                SizedBox(width: 12,),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            TitleTextFieldWidget(
+              title: "عنوان شغلی یا مهارت اصلی شما",
+              hint: "عنوان شغلی ",
+              editingController: jobTitle,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                TitleTextFieldWidget(
+                  title: "درباره من",
+                  activeDelete: true,
+                  hint: "درباره من",
+                  maxLines: 6,
                     onConfirm: () {
                       changeStatuseMethod(
                           context: context,
-                          title: "آیا برای تایید ویدیو اطمینان دارید؟",
-                          type: "video",
+                          title: "آیا برای تایید توضیحات اطمینان دارید؟",
+                          type: "description",
                           confirm: true);
                     },
+                  onDelete: () {
+                    changeStatuseMethod(
+                        context: context,
+                        title: "آیا برای حذف توضیحات اطمینان دارید؟",
+                        type: "description",
+                        confirm: false);
+                  } ,
+                  editingController: aboutMe,
+                ),
 
-                    onDelete: () {
-                      changeStatuseMethod(
-                          context: context,
-                          title: "آیا برای حذف ویدیو اطمینان دارید؟",
-                          type: "video",
-                          confirm: false);
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+              ],
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(
+                  color: AppColors.greyMiddle,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  title: "ویدیوی معرفی",
+                ),
+                DeleteAcceptWidget(
 
-              const SizedBox(
-                height: 10,
-              ),
-              Obx(
-                () => ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    height: Get.height * 0.2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          color: AppColors.dividerDark,
-                        ),
-                        color: AppColors.veryLightGrey),
-                    child: _editProfileController.activeVideo.value == false
-                        ? const Center(
-                            child: CustomText(
-                                title: "ویدیو موجود نمی باشد", fontSize: 11),
-                          )
-                        : _editProfileController.isLoadingGetVideo.value == true
-                            ? const Center(
-                                child: CircularProgressIndicator(
-                                    color: Colors.white),
-                              )
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Chewie(
-                                  controller:
-                                      _editProfileController.chewieController!,
-                                ),
+                  onConfirm: () {
+                    changeStatuseMethod(
+                        context: context,
+                        title: "آیا برای تایید ویدیو اطمینان دارید؟",
+                        type: "video",
+                        confirm: true);
+                  },
+
+                  onDelete: () {
+                    changeStatuseMethod(
+                        context: context,
+                        title: "آیا برای حذف ویدیو اطمینان دارید؟",
+                        type: "video",
+                        confirm: false);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+
+
+            Obx(
+              () => ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: Get.height * 0.2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: AppColors.borderColor,
+                      ),
+                      color: Colors.white),
+                  child: _editProfileController.activeVideo.value == false
+                      ? const Center(
+                          child: CustomText(
+                              title: "ویدیو موجود نمی باشد", fontSize: 11),
+                        )
+                      : _editProfileController.isLoadingGetVideo.value == true
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Chewie(
+                                controller:
+                                    _editProfileController.chewieController!,
                               ),
-                  ),
+                            ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
 

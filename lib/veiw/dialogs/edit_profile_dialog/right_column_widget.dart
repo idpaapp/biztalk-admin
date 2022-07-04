@@ -33,132 +33,142 @@ class RightColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              imageSection(context),
-              const SizedBox(
-                height: 10,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            imageSection(context),
+            const SizedBox(
+              height: 30,
+            ),
+            TitleTextFieldWidget(
+              title: "نام و نام خانوادگی",
+              editingController: fullName,
+              hint: "نام و نام خانوادگی",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TitleTextFieldWidget(
+              title: "نام کاربری",
+              editingController: userName,
+              hint: "نام کاربری",
+
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TitleTextFieldWidget(
+              title: "تلفن همراه",
+              hint: "تلفن همراه",
+              editingController: phone,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomText(
+              color: AppColors.greyMiddle,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              title: "میزان تسلط یا مهارت اصلی شما",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: Get.width,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: AppColors.borderColor,
+                  ),
+                  color: Colors.white),
+              child: Obx(() => DropdownButton<String>(
+                    isExpanded: true,
+                    underline: const SizedBox(height: 0),
+                    value: _editProfileController.gradeTitle.value,
+                    items: <String>['مبتدی', 'حرفه ای', 'متخصص']
+                        .map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: CustomText(title: value),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      _editProfileController.gradeTitle.value =
+                          val.toString();
+                    },
+                  )),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CustomText(
+                    color: AppColors.greyMiddle,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    title: "زمینه های مشاوره",
+                  ),
+                  ButtonText(
+                    activeBorder: 1,
+                    borderColor: AppColors.blueSession,
+                    isIcon: true,
+                    iconColor: AppColors.blueSession,
+                    iconData: Icons.edit,
+                    onPressed: () {
+                      _editProfileController.selectedChoicesId.clear();
+                      _editProfileController.selectedChoicesTitle.clear();
+                      _editProfileController.selectedChoicesId
+                          .addAll(_editProfileController.finallySelectId);
+                      _editProfileController.selectedChoicesTitle
+                          .addAll(_editProfileController.finallySelectTitle);
+                      selectionDialog(context);
+                    },
+                    text: "حذف تصویر",
+
+                    width: 35,
+                    height: 25,
+                    fontSize: 14,
+                    borderRadios: 5,
+                    textColor: Colors.white,
+                    bgColor: Colors.white,
+                  ),
+                ],
               ),
-              TitleTextFieldWidget(
-                title: "نام و نام خانوادگی",
-                editingController: fullName,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TitleTextFieldWidget(
-                title: "نام کاربری",
-                editingController: userName,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TitleTextFieldWidget(
-                title: "تلفن همراه",
-                editingController: phone,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: CustomText(
-                  color: AppColors.lighterBlack,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  title: "میزان تسلط یا مهارت اصلی شما",
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: Get.width,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: AppColors.dividerDark,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Obx(() => Container(
+                  height: Get.height * 0.1,
+                  width: Get.width,
+                  padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                  decoration: BoxDecoration(border: Border.all(color: AppColors.borderColor,),borderRadius: BorderRadius.circular(5)),
+                  child: SingleChildScrollView(
+                    child: Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: _editProfileController.finallySelectTitle
+                          .map((element) => Chip(
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      color: AppColors.bgChip,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10)),
+                                label: CustomText(
+                                    title: element, color: Colors.white),
+                                backgroundColor: AppColors.bgChip,
+                              ))
+                          .toList(),
                     ),
-                    color: AppColors.veryLightGrey),
-                child: Obx(() => DropdownButton<String>(
-                      isExpanded: true,
-                      underline: const SizedBox(height: 0),
-                      value: _editProfileController.gradeTitle.value,
-                      items: <String>['مبتدی', 'حرفه ای', 'متخصص']
-                          .map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: CustomText(title: value),
-                        );
-                      }).toList(),
-                      onChanged: (val) {
-                        _editProfileController.gradeTitle.value =
-                            val.toString();
-                      },
-                    )),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const CustomText(
-                      color: AppColors.lighterBlack,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      title: "زمینه های مشاوره",
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _editProfileController.selectedChoicesId.clear();
-                        _editProfileController.selectedChoicesTitle.clear();
-                        _editProfileController.selectedChoicesId
-                            .addAll(_editProfileController.finallySelectId);
-                        _editProfileController.selectedChoicesTitle
-                            .addAll(_editProfileController.finallySelectTitle);
-                        selectionDialog(context);
-                      },
-                      child: const CustomText(
-                          title: "ویرایش",
-                          color: AppColors.blueIndigo,
-                          fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Obx(() => Container(
-                    height: Get.height * 0.06,
-                    width: Get.width,
-                    child: SingleChildScrollView(
-                      child: Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
-                        children: _editProfileController.finallySelectTitle
-                            .map((element) => Chip(
-                                  shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        color: AppColors.tosi,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  label: CustomText(
-                                      title: element, color: Colors.white),
-                                  backgroundColor: AppColors.tosi,
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                  ))
-            ],
-          ),
+                  ),
+                ))
+          ],
         ),
       );
 

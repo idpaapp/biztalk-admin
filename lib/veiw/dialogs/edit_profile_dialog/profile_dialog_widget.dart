@@ -71,44 +71,46 @@ Future<void> showMyDialog(BuildContext context,
           title: "ویرایش اطلاعات",
         ),
         content: SizedBox(
-          height: Get.height * 0.8,
+          height: Get.height * 0.72,
           width: Get.width * 0.7,
           child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Get.width * 0.02, vertical: Get.height * 0.005),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RightColumnWidget(
-                      fullName: _fullName,
-                      onDeleteImage: () {
-                        confirmDialog(context,
-                            title: "آیا برای حذف تصویر اطمینان دارید؟",
-                            onConfirm: () {
-                          _editProfileController.removeImage.value = true;
-                          Get.back();
-                        });
-                      },
-                      image: image,
-                      userName: _userName,
-                      phone: _phone),
-                  SizedBox(
-                    width: Get.width * 0.04,
-                  ),
-                  LeftColumnWidget(
-                      aboutMe: _aboutMe, jobTitle: _jobTitle, id: id),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RightColumnWidget(
+                            fullName: _fullName,
+                            onDeleteImage: () {
+                              confirmDialog(context,
+                                  title: "آیا برای حذف تصویر اطمینان دارید؟",
+                                  onConfirm: () {
+                                _editProfileController.removeImage.value = true;
+                                Get.back();
+                              });
+                            },
+                            image: image,
+                            userName: _userName,
+                            phone: _phone),
+                        SizedBox(
+                          width: Get.width * 0.04,
+                        ),
+                        LeftColumnWidget(
+                            aboutMe: _aboutMe, jobTitle: _jobTitle, id: id),
+                      ],
+                    ),
+                  ],
+                ),
               )),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
+
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -150,29 +152,32 @@ Future<void> showMyDialog(BuildContext context,
                     }
                   },
                   text: "ذخیره",
-                  borderRadios: 3,
+                  borderRadios: 10,
                   fontWeight: FontWeight.w500,
                   height: 40,
-                  width: Get.width * 0.1,
+                  width: Get.width*0.1,
                   fontSize: 14,
+
                   textColor: Colors.white,
-                  bgColor: AppColors.blueBg,
+                  bgColor: AppColors.blueSession,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 ButtonText(
-                  borderRadios: 3,
+                  borderRadios: 10,
                   onPressed: () {
                     Get.back();
                   },
                   text: "انصراف",
                   height: 40,
-                  width: Get.width * 0.1,
                   fontSize: 14,
+                  width: 70,
                   fontWeight: FontWeight.w500,
-                  textColor: Colors.black,
-                  bgColor: AppColors.disabledGrey,
+                  textColor: AppColors.blueSession,
+                  bgColor: Colors.white,
+                  borderColor: AppColors.blueSession,
+                  activeBorder: 1,
                 ),
               ],
             ),
