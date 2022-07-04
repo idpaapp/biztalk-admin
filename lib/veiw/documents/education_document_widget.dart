@@ -52,7 +52,27 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                     "مقطع تحصیلی", "رشته", "تحصیل", "edu",
                     name: TextEditingController(
                       text: education.schoolTitle,
-                    ), onConfirmtitle: () {
+                    ),onDelete: (){
+
+                      MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+                        Get.back();
+                      },title: "توجه",onConfirm: ()async{
+                        MyAlert.loding();
+                        await _documentController.deleteEducation(data!.data!.profile!.id!,education.id!);
+                        Get.back();
+                        if(_documentController.failureMessageDeleteEducation.value !=""){
+                          MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteEducation.value);
+                        }else{
+                          Get.back();
+                          Get.back();
+                          _documentController.getDocument(data!.data!.profile!.id!);
+
+                        }
+                      });
+
+
+
+                    }, onConfirmtitle: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
                         "type": "education",
@@ -61,6 +81,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                             ? "CONFIRM"
                             : "DOC_CHECKING"
                       };
+
                       onConfirmAdditional(
                           body, "ایا برای تایید اطمینان دارید؟");
                     }, onCancelTitle: () {

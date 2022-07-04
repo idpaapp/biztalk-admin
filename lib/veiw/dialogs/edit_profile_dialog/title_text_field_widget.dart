@@ -80,7 +80,7 @@ class TitleTextFieldWidget extends StatelessWidget {
                     hintText: hint,
                     prefixIcon: pre,
                     hintStyle: TextStyle(color: AppColors.borderColor),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 8)),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 8,vertical: 10)),
               ),
             ),
           )

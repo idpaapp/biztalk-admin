@@ -17,6 +17,7 @@ Future<void> EditDocumentDialog(
   final onConfirm,
   final onConfirmtitle,
   final onCancel,
+  final onDelete,
   final onCancelTitle,
   TextEditingController? name,
   TextEditingController? name2,
@@ -38,81 +39,109 @@ Future<void> EditDocumentDialog(
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
             title: "ویرایش اطلاعات",
+          size: 4,
            ),
         content: SizedBox(
-          height: fromPage == "edu" ? Get.height * 0.6 : Get.height * 0.5,
-          width: Get.width * 0.6,
+          height: fromPage == "edu" ? Get.height * 0.63 : Get.height * 0.53,
+          width: Get.width * 0.3,
           child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Get.width * 0.02, vertical: Get.height * 0.005),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RightColumnEditDocument(
-                    nameTitleController: name,
-                    nameTitle2Controller: name2,
-                    nameTitle3Controller: name3,
-                    nameTitle: title,
-                    nameTitle2: subTitle,
-                    nameTitle3: sub2Title,
-                    titleDialog: titleDialog,
-                    fromPage: fromPage,
-                    endYear: endDate,
-                    startYear: startDate,
-                    isActiveSwitch: isActiveSwitch,
-                    onConfirmTitle: onConfirmtitle,
-                    onDeleteTitle: onCancelTitle,
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.04,
-                  ),
-                  LeftSectionWidget(
-                    attachment: atachment,
-                    onConfeirm: onConfirm,
-                    onDelete: onCancel,
-                  )
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RightColumnEditDocument(
+                      nameTitleController: name,
+                      nameTitle2Controller: name2,
+                      nameTitle3Controller: name3,
+                      nameTitle: title,
+                      nameTitle2: subTitle,
+                      nameTitle3: sub2Title,
+                      titleDialog: titleDialog,
+                      fromPage: fromPage,
+                      endYear: endDate,
+                      startYear: startDate,
+                      isActiveSwitch: isActiveSwitch,
+                      onConfirmTitle: onConfirmtitle,
+                      onDeleteTitle: onCancelTitle,
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.04,
+                    ),
+                    LeftSectionWidget(
+                      attachment: atachment,
+                      onConfeirm: onConfirm,
+                      onDelete: onCancel,
+                    )
+                  ],
+                ),
               )),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
+
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
               children: [
                 ButtonText(
-                  onPressed: () {},
-                  text: "ذخیره",
-                  borderRadios: 3,
-                  fontWeight: FontWeight.w500,
-                  height: 40,
-                  width: Get.width * 0.1,
-                  fontSize: 14,
-                  textColor: Colors.white,
-                  bgColor: AppColors.blueBg,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonText(
-                  borderRadios: 3,
-                  onPressed: () {
-                    Get.back();
+                  onPressed: () async {
+
                   },
-                  text: "انصراف",
-                  height: 40,
-                  width: Get.width * 0.1,
-                  fontSize: 14,
+                  text: "ذخیره",
+                  borderRadios: 10,
                   fontWeight: FontWeight.w500,
-                  textColor: Colors.black,
-                  bgColor: AppColors.disabledGrey,
+                  height: 40,
+                  width: Get.width*0.1,
+                  fontSize: 14,
+
+                  textColor: Colors.white,
+                  bgColor: AppColors.blueSession,
                 ),
+
+
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+
+                  children: [
+                    ButtonText(
+                      borderRadios: 10,
+                      onPressed:onDelete,
+                      text: "حذف",
+                      height: 40,
+                      fontSize: 14,
+                      width: 70,
+                      fontWeight: FontWeight.w500,
+                      textColor: AppColors.red,
+                      bgColor: Colors.white,
+                      borderColor: AppColors.red,
+                      activeBorder: 1,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ButtonText(
+                      borderRadios: 10,
+                      onPressed: () {
+                        Get.back();
+                      },
+                      text: "انصراف",
+                      height: 40,
+                      fontSize: 14,
+                      width: 70,
+                      fontWeight: FontWeight.w500,
+                      textColor: AppColors.blueSession,
+                      bgColor: Colors.white,
+                      borderColor: AppColors.blueSession,
+                      activeBorder: 1,
+                    ),
+                  ],
+                ),
+
               ],
             ),
           )

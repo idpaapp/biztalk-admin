@@ -13,11 +13,13 @@ class JobDocumentSectionWidget extends StatelessWidget {
   final String? title;
   final List<Work>? works;
   final MentorModel? data;
+  final String? mentorId;
 
   JobDocumentSectionWidget({
     Key? key,
     this.title,
     this.works,
+    this.mentorId,
     this.data,
   }) : super(key: key);
   final DocumentController _documentController = Get.put(DocumentController());
@@ -85,6 +87,28 @@ class JobDocumentSectionWidget extends StatelessWidget {
                         onConfirmAdditional(
                             body, "ایا برای تایید اطمینان دارید؟");
                       },
+                      onDelete: (){
+
+
+  MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+                        Get.back();
+                      },title: "توجه",onConfirm: ()async{
+                        MyAlert.loding();
+                        await _documentController.deleteJob(mentorId!,job.id!);
+                        Get.back();
+                        if(_documentController.failureMessageDeleteJob.value !=""){
+                          MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteJob.value);
+                        }else{
+                          Get.back();
+                          Get.back();
+                          _documentController.getDocument(mentorId!);
+
+                        }
+                      });
+
+
+                      },
+
                       onConfirm: () {
                         Map<String, dynamic> body = {
                           "_id": job.id,

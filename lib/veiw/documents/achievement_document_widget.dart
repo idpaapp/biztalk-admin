@@ -62,7 +62,27 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                   };
                   onConfirmAdditional(
                       body, "ایا برای عدم تایید اطمینان دارید؟");
-                }, onConfirmtitle: () {
+                }, onDelete: (){
+
+
+                  MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+                    Get.back();
+                  },title: "توجه",onConfirm: ()async{
+                    MyAlert.loding();
+                    await _documentController.deleteAchievement(data!.data!.profile!.id!,achievment.id!);
+                    Get.back();
+                    if(_documentController.failureMessageDeleteAchievement.value !=""){
+                      MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteAchievement.value);
+                    }else{
+                      Get.back();
+                      Get.back();
+                      _documentController.getDocument(data!.data!.profile!.id!);
+
+                    }
+                  });
+
+
+                },onConfirmtitle: () {
                   Map<String, dynamic> body = {
                     "_id": achievment.id,
                     "type": "achievement",

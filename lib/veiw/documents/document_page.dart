@@ -112,6 +112,7 @@ class DocumentPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 JobDocumentSectionWidget(
+                  mentorId: data.data!.profile!.id!,
                   title: "سوابق شغلی",
                   data: data,
                   works:
@@ -134,7 +135,8 @@ class DocumentPage extends StatelessWidget {
                   title: "دستاوردها",
                   achievements: _documentController
                       .resultGetDocument.value.data!.achievements,
-                )
+                ),
+                SizedBox(height: 20,)
               ],
             ),
           ),
@@ -167,7 +169,7 @@ class DocumentPage extends StatelessWidget {
                         }
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 30),
+                        padding: EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
