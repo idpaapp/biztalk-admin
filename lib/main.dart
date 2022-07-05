@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'get_routes.dart';
 void main() async{
-  print(Get.width);
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(Repository());
 

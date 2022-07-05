@@ -27,7 +27,6 @@ class MentorRepository {
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -48,7 +47,6 @@ class MentorRepository {
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -70,7 +68,6 @@ class MentorRepository {
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -86,14 +83,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}profile/contact/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -109,14 +104,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/tv/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -131,14 +124,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/contact/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -153,14 +144,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}profile/contact/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -176,14 +165,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}profile/tv/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -198,14 +185,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.patch, '${GlobalInfo.baseURL}profile/confirmTvContact/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }

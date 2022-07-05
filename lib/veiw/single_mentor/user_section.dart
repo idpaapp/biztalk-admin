@@ -29,15 +29,7 @@ class UserSectionWidget extends StatelessWidget {
               child: MiddleContainerWidget(
                 colors: AppColors.greenBank,
                 onTap: () {
-                  print(
-                    {
-                      "image": value.data!.profile!.profile!,
-                      "fullName": value.data!.profile!.fullName,
-                      "jobTitle": value.data!.profile!.userName,
-                      "typeUser": "mentor",
-                      "id": value.data!.profile!.id
-                    },
-                  );
+
                   // Get.toNamed(TransactionPage.route, arguments: {
                   //   "image": value.data!.profile!.profile!,
                   //   "fullName": value.data!.profile!.fullName,

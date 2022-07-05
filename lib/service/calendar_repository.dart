@@ -21,14 +21,12 @@ class CalendarRepository{
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}calendar/$mentorId/$date',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = mentorCalendarModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -43,14 +41,12 @@ class CalendarRepository{
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}calendar/$userId',
             needAuth: true,body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = addNewCalendarModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -65,14 +61,12 @@ class CalendarRepository{
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}calendar/$userId/$calendarId',
             needAuth: true,body: {});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -88,14 +82,12 @@ class CalendarRepository{
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}calendar/$userId/$calendarId',
             needAuth: true,body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }

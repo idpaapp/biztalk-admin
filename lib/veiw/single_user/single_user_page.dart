@@ -24,9 +24,7 @@ class SingleUserPage extends StatelessWidget {
   }) : super(key: key) {
     id = Get.arguments['id'];
     userType = Get.arguments['userType'];
-    print(id);
-    print(userType);
-    print("454544545454554");
+
     _singleUserController.fetchUser(id);
   }
 

@@ -27,7 +27,6 @@ class ManagerRepository{
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -46,7 +45,6 @@ class ManagerRepository{
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -66,7 +64,6 @@ class ManagerRepository{
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -85,7 +82,6 @@ class ManagerRepository{
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }

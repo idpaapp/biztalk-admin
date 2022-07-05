@@ -445,6 +445,4 @@ Widget pageSection(int value) {
 }
 
 void onSave() {
-  print(_fullName.text);
-  print(_titleList.text);
 }

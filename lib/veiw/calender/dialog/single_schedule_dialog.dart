@@ -217,9 +217,7 @@ Future<void> singleScheduleDialog(
                       };
 
                       if(isEdit == true){
-                        print(body);
-                        print(userId);
-                        print(editId);
+
                         await _calendarController.updateCalendar(userId!, editId!, body);
                         if (_calendarController.resultUpdateCalendar.value.ok ==
                             true) {

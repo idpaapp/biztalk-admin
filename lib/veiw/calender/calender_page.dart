@@ -49,7 +49,7 @@ class CalenderPage extends StatelessWidget {
                           _calendarController.failureMessageGetCalendar.value),
                 );
               } else if (_calendarController.isLoadingGetCalendar.value) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else {
@@ -73,7 +73,7 @@ class CalenderPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             ButtonRow(
@@ -190,8 +190,8 @@ class CalenderPage extends StatelessWidget {
           gregorianDateStringFormat: "yyyy-mm-dd",
           onMonthChange: (shamsi, gregorian) {},
           onDateSelect: (shamsi, gregorian) async {
-            print(shamsi);
-            print(gregorian);
+
+
             _calendarController.selectedDate.value = gregorian;
             _calendarController.fetchCalendar(mentorId, gregorian);
           }));

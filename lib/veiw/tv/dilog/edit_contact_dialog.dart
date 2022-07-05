@@ -71,7 +71,6 @@ Future<void> editContactDialog(BuildContext context,
                     contact: _homeController.resultAllContact.value.data!,
                     onChangeDropDown: (value) {
                       _tvController.contactId.value = "";
-                      print(value);
                       _tvController.contactTitle.value = value;
                       var data = _homeController.resultAllContact.value.data!
                           .where((element) => element.title == value);

@@ -19,14 +19,12 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}profile/getAdditionalData/$id',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = documentsModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -40,14 +38,12 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.patch, '${GlobalInfo.baseURL}profile/confirmAdditionalData/$id',
             needAuth: true,body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -87,8 +83,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/addExperience/$id',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -101,7 +96,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -118,8 +112,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}profile/editExperience/$id/$itemId',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -132,7 +125,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -146,8 +138,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}profile/deleteExperience/$id/$itemId',
             needAuth: true,body: {});
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -160,7 +151,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -175,8 +165,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}profile/deleteEducation/$id/$itemId',
             needAuth: true,body: {});
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -189,7 +178,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -207,8 +195,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/addEducation/$id',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -221,7 +208,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -237,8 +223,8 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}profile/editEducation/$id/$itemId',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -251,7 +237,7 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
+
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -266,8 +252,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}profile/addAchievements/$id',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -280,7 +265,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -294,8 +278,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}profile/editAchievements/$id/$itemId',
             needAuth: true, body: body);
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -308,7 +291,7 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
+
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -322,8 +305,7 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.delete, '${GlobalInfo.baseURL}profile/deleteAchievements/$id/$itemId',
             needAuth: true,body: {});
-        print(response);
-        print("2222222222222222222");
+
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
@@ -336,7 +318,6 @@ class DocumentRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }

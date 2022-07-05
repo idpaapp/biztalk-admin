@@ -80,7 +80,6 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                       "startDate": _offController.startDate.value,
                       "code":_offController.code.value.text
                     };
-                    print(body);
                     MyAlert.loding();
                     await _offController.createOff(body);
                     Get.back();
@@ -350,7 +349,7 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
               ],
             )),
 
-      Container(
+      SizedBox(
         width: Get.width * 0.2,
         child: TitleTextFieldWidget(
           title: "کد",

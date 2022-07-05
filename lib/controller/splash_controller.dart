@@ -12,8 +12,6 @@ class SplashController extends GetxController {
     Future.delayed(Duration(seconds: 1), () async {
       await GetStorage.init();
        _authController.fetchToken();
-      print("*******************************");
-      print(_authController.fetchToken());
 
       if (_authController.fetchToken() == "") {
         Get.offAllNamed(LoginPage.route, predicate: (route) => false);

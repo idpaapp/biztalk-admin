@@ -42,7 +42,6 @@ class HomeRepository {
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getInfoHome error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -65,19 +64,15 @@ class HomeRepository {
         if (mobile != null) {
           url += "&search=$mobile";
         }
-        print(url);
-        print("sdsfdfdfdf");
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = usersHomeModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getUserHome error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -91,14 +86,12 @@ class HomeRepository {
         var response = await HttpServices.request(RequestType.get,
             '${GlobalInfo.baseURL}profile/getMentorProfile/$id',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = mentorModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getMentor error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -112,14 +105,12 @@ class HomeRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}profile/getUserProfile/$id',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = userModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getUser error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -134,14 +125,12 @@ class HomeRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}getCategories',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = categoryModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getCategory error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -156,14 +145,13 @@ class HomeRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}getTvs',
             needAuth: true);
-        print(response);
+
         var encode = jsonEncode(response);
 
         var data = allTvsModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getAllTvs error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -177,14 +165,12 @@ class HomeRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}getContacts',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = allContactModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getAllContact error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -200,14 +186,12 @@ class HomeRepository {
         var response = await HttpServices.request(
             RequestType.put, '${GlobalInfo.baseURL}profile/$id',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -223,14 +207,12 @@ class HomeRepository {
         var response = await HttpServices.request(RequestType.patch,
             '${GlobalInfo.baseURL}profile/aboutMeStatus?userId=$id&type=$type',
             needAuth: true, body: {"confirm": confirm});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -247,14 +229,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = transactionModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -271,14 +251,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = notVerifyAccountModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -295,14 +273,12 @@ class HomeRepository {
 
         var response = await HttpServices.request(RequestType.patch, url,
             needAuth: true, body: {"confirm": confirm});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -318,14 +294,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = checkListModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -341,14 +315,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = requestListModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -364,14 +336,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = sessionListModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -386,14 +356,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = reportListModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -409,14 +377,12 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = singleReportModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -431,14 +397,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}home/getSession/$id';
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = singleReportModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -451,7 +415,6 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}home/getRequest/$id';
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = singleReportModelFromJson(encode);
@@ -472,14 +435,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}home/getTvs/$page';
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = tvListModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -495,14 +456,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}profile/confirmTvContact/$userId';
         var response = await HttpServices.request(RequestType.patch, url,
             needAuth: true, body: {"_id": tvId, "type": type});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -547,14 +506,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}discount';
         var response =
             await HttpServices.request(RequestType.post, url, needAuth: true,body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = createOffCodeModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -569,14 +526,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}discount';
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = getOffModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -590,14 +545,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}discount/$id';
         var response =
             await HttpServices.request(RequestType.delete, url, needAuth: true,body: {});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -612,14 +565,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}profile/changeUserStatus?userId=$id';
         var response =
         await HttpServices.request(RequestType.patch, url, needAuth: true,body: {"status":status});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -633,14 +584,12 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}profile/addUser';
         var response =
         await HttpServices.request(RequestType.post, url, needAuth: true,body:body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
-        print("getProfile error: $e \n");
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }

@@ -55,8 +55,7 @@ class AuthController extends GetxController {
 
   String fetchToken() {
     return getStorage.read(_tokenKEY) ?? "";
-    print('Feeeeeeeeeeeeeeeeeeeeeeeeeeeetch Tokeeeeeeb');
-    print(token.value);
+
   }
 
   removeToken() async {
