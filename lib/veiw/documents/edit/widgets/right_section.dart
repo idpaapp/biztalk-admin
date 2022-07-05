@@ -154,7 +154,7 @@ class RightColumnEditDocument extends StatelessWidget {
                 // width: Get.width * 0.3,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: AppColors.veryLightGrey),
+                    color: Colors.white,border: Border.all(color: AppColors.borderColor)),
                 child: TextField(
                   controller: _firstYear,
                   textAlign: TextAlign.center,
@@ -180,14 +180,14 @@ class RightColumnEditDocument extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Center(
-              child: Container(
+              child: Obx(
+                    () =>Container(
                 // height: 50,
                 // width: Get.width * 0.3,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: AppColors.veryLightGrey),
-                child: Obx(
-                  () => TextField(
+                    color:_documentController.isActiveJobSwitch.value? AppColors.veryLightGrey:Colors.white,border: Border.all(color: AppColors.borderColor)),
+                child:  TextField(
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: _documentController.isActiveJobSwitch.value

@@ -55,7 +55,7 @@ class LeftSectionWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
-                color: AppColors.veryLightBlue),
+                color: AppColors.veryLightGrey),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: attachment!.length,

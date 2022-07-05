@@ -46,7 +46,7 @@ class ProfileSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.02,vertical: 20),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),

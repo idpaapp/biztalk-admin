@@ -58,7 +58,8 @@ class DocumentPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
-                tab: SizedBox(),
+                tab: const SizedBox(height: 20),
+
                 isTransaction: true,
                 isUser: false,
                 image: "ss",
@@ -69,19 +70,24 @@ class DocumentPage extends StatelessWidget {
                   children: [
                     const ContainerDocumentWidget(
                       title: "مدرک شغلی ارسال نشده",
-                      bgColor: AppColors.orange,
+                      bgColor: Colors.white,
                       number: "1",
+
+                      borderColor: AppColors.orange,
+
                     ),
                     SizedBox(
                       width: Get.width * 0.01,
                     ),
                     const ContainerDocumentWidget(
                       title: "مدرک شغلی تایید نشده",
-                      bgColor: AppColors.tosi,
+                      bgColor: Colors.white,
                       number: "1",
+                      borderColor: AppColors.tosi,
                     ),
                   ],
                 ),
+
               ),
             ),
             SizedBox(
@@ -103,7 +109,7 @@ class DocumentPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           insetDocument(),
-          SizedBox(
+          const SizedBox(
             width: 24,
           ),
           Expanded(
@@ -118,7 +124,7 @@ class DocumentPage extends StatelessWidget {
                   works:
                       _documentController.resultGetDocument.value.data!.works!,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 EducationDocumentSectionWidget(
@@ -127,7 +133,7 @@ class DocumentPage extends StatelessWidget {
                   educations: _documentController
                       .resultGetDocument.value.data!.educations,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 AchievementDocumentSectionWidget(
@@ -136,7 +142,7 @@ class DocumentPage extends StatelessWidget {
                   achievements: _documentController
                       .resultGetDocument.value.data!.achievements,
                 ),
-                SizedBox(height: 20,)
+                const SizedBox(height: 20,)
               ],
             ),
           ),
@@ -151,7 +157,7 @@ class DocumentPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: ListView.builder(
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   itemCount: dataList.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -169,7 +175,7 @@ class DocumentPage extends StatelessWidget {
                         }
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
@@ -181,7 +187,7 @@ class DocumentPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Expanded(
+                              const Expanded(
                                   child: Icon(
                                 Icons.add,
                                 color: AppColors.greenAdd,

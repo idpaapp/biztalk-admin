@@ -32,7 +32,7 @@ Future<void> DocumentDialog(BuildContext context,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                activeBTN! ? SizedBox(height: 0,):  ButtonText(
+                activeBTN ? SizedBox(height: 0,):  ButtonText(
                   onPressed: onSave,
                   text: "ذخیره",
                   borderRadios: 10,
