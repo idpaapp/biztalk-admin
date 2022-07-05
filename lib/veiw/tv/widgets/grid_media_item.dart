@@ -30,7 +30,7 @@ class GridMediaItem extends StatelessWidget {
       this.addressMedia,
       this.icon,
       this.typeMedia})
-      : super(key: key) {}
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(

@@ -92,7 +92,7 @@ class TvRowWidget extends StatelessWidget {
                       title: address),
                 )),
             isContact == true
-                ? SizedBox(
+                ? const SizedBox(
                     height: 0,
                   )
                 : Expanded(
@@ -126,7 +126,7 @@ class TvRowWidget extends StatelessWidget {
                         children: [
                           status != true
                               ? ButtonText(
-                                  padding: EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(left: 10),
                                   onPressed: onConfirm,
                                   width: Get.width * 0.06,
                                   height: Get.height * 0.038,
@@ -139,7 +139,7 @@ class TvRowWidget extends StatelessWidget {
                                   margin:
                                       EdgeInsets.only(left: Get.width * 0.02),
                                 )
-                              : SizedBox(
+                              : const SizedBox(
                                   height: 0,
                                 ),
                           ButtonText(

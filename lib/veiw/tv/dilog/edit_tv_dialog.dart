@@ -111,7 +111,6 @@ Future<void> editTvDialog(BuildContext context,
                         "userName": _tvController.tvAddress.value.text,
                         "rePublish": _tvController.isActiveTvSwitch.value
                       };
-                      print(body);
                       MyAlert.loding();
                       await _tvController.createTv(body, userId!);
                       if (_tvController.failureMessageCreateTv.value == "" &&

@@ -1,8 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProfileTitleTableWidget extends StatelessWidget {
   final String? subject;
@@ -33,7 +31,7 @@ class ProfileTitleTableWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: isTitle == true ? AppColors.blueSession : Colors.white,
           borderRadius: isTitle
-              ? BorderRadius.only(
+              ? const BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10))
               : null,
         ),

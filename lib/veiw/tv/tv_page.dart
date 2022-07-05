@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:biztalk_panel_admin/model/contact/mentor_contact_model.dart';
 import 'package:biztalk_panel_admin/model/tv/mentor_tv_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
@@ -7,7 +5,6 @@ import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/transactin/widgets/transaction_table_widget.dart';
 import 'package:biztalk_panel_admin/veiw/tv/dilog/edit_contact_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/tv/dilog/edit_tv_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/tv/tv_controller.dart';
@@ -150,7 +147,6 @@ class TvPage extends StatelessWidget {
                                 "_id": tv.id,
                                 "type": "tv"
                               };
-                              print(body);
                               MyAlert.loding();
                               await _controller.confirmTvOrContact(body, id);
                               if (_controller.failureMessageConfirm.value ==
@@ -261,7 +257,7 @@ class TvPage extends StatelessWidget {
                 publishStatusTitle: "وضعیت انتشار",
                 statusTitle: "وضعیت",
               ),
-              value.data!.isEmpty?Padding(padding: EdgeInsets.only(top: 20),
+              value.data!.isEmpty?const Padding(padding: EdgeInsets.only(top: 20),
                 child: Center(child: CustomText(title:"اطلاعاتی یافت نشد",)),):ListView.builder(
                   shrinkWrap: true,
                   itemCount: value.data!.length,
@@ -277,7 +273,6 @@ class TvPage extends StatelessWidget {
                                 "_id": contact.id,
                                 "type": "contact"
                               };
-                              print(body);
                               MyAlert.loding();
                               await _controller.confirmTvOrContact(body, id);
                               if (_controller.failureMessageConfirm.value ==

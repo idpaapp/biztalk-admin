@@ -93,11 +93,11 @@ class MiddleContainerWidget extends StatelessWidget {
                 Expanded(
                   child: Container(
 
-                    decoration: BoxDecoration(color: colors,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10) )),
-                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    decoration: BoxDecoration(color: colors,borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10) )),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         CustomText(
                           color: Colors.white,
                           fontSize: 14,

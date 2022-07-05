@@ -20,7 +20,7 @@ class MyAlert {
           buttonPadding: EdgeInsets.zero,
           insetPadding: EdgeInsets.zero,
           contentPadding: EdgeInsets.zero,
-          title: TitleWidget(
+          title: const TitleWidget(
             title: "توجه",
             size:5 ,
           ),
