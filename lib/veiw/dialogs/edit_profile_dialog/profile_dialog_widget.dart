@@ -52,10 +52,10 @@ Future<void> showMyDialog(BuildContext context,
   _editProfileController.selectedChoicesId.clear();
   _editProfileController.selectedChoicesTitle.clear();
   if (kils!.isNotEmpty) {
-    kils.forEach((element) {
+    for (var element in kils) {
       _editProfileController.finallySelectId.add(element.id);
       _editProfileController.finallySelectTitle.add(element.title);
-    });
+    }
   }
   return showDialog<void>(
     context: context,

@@ -42,11 +42,11 @@ Future<void> selectUserDialog(BuildContext context,
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
             size: 3,
             title: "ویرایش / افزودن",
             ),
-        content: Container(
+        content: SizedBox(
             height:Get.height * 0.8,
             width: Get.width * 0.6,
             child: Padding(
@@ -177,9 +177,7 @@ Widget userListSection() => Container(
                           _homeController.selectedMentor.add(user);
 
                         }
-                        print(_homeController.selectedMentor.where((item) => item.id == user.id).toList().length);
-                        print("*********************************");
-                        print(user.id);
+
 
                       },
                       btnColor: _homeController.selectedMentor.where((item) => item.id == user.id).toList().length >= 1 ? AppColors.red:AppColors.green,

@@ -98,8 +98,7 @@ Future<void> editContactDialog(BuildContext context,
                       "contact": _tvController.contactId.value,
                       "userName": _tvController.contactAddress.value.text,
                     };
-                    print(body);
-                    print(userId);
+
 
                     MyAlert.loding();
                     await _tvController.createContact(body, userId!);
@@ -128,8 +127,7 @@ Future<void> editContactDialog(BuildContext context,
                       "contact": _tvController.contactId.value,
                       "userName": _tvController.contactAddress.value.text,
                     };
-                    print(body);
-                    print(userId);
+
 
                     MyAlert.loding();
                     await _tvController.updateContact(body, userId!);
@@ -171,8 +169,7 @@ Future<void> editContactDialog(BuildContext context,
                     confirmDialog(context,title: "آیا برای حذف راه ارتباطی اطمینان دارید؟",onConfirm: ()async{ Map<String, dynamic> body = {
                       "_id": mainId,
                     };
-                    print(body);
-                    print(userId);
+
 
                     MyAlert.loding();
                     await _tvController.deleteContact(body, userId!);

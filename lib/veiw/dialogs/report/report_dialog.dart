@@ -33,7 +33,7 @@ Future<void> reportDialog(
             size: 3,
             title: title,
           ),
-        content: Container(
+        content: SizedBox(
           height: Get.height * 0.7,
           width: Get.width * 0.6,
           child: Padding(
@@ -42,25 +42,25 @@ Future<void> reportDialog(
               child: Row(
                 children: [
                   right(data),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
+                      const CustomText(
                         title: "تاریخچه گفتوگوها",
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
                         color: AppColors.lighterBlack,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                         height: Get.height * 0.6,
                         width: Get.width,
                         decoration: BoxDecoration(
@@ -154,7 +154,7 @@ Widget right(Report data) => Expanded(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         data.plaintiff!.profileImageUrl == null
-            ? CircleAvatar(
+            ? const CircleAvatar(
                 radius: 50,
                 backgroundImage:
                     AssetImage("assets/images/avatar_placeholder.png"),
@@ -165,7 +165,7 @@ Widget right(Report data) => Expanded(
                     "/" +
                     data.plaintiff!.profileImageUrl!),
               ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         RowTextWidget(
@@ -173,7 +173,7 @@ Widget right(Report data) => Expanded(
           subTitle:
               data.plaintiff == null ? "" : data.plaintiff!.fullName ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         RowTextWidget(
@@ -181,7 +181,7 @@ Widget right(Report data) => Expanded(
           subTitle:
               data.plaintiff == null ? "" : data.plaintiff!.userName ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         RowTextWidget(
@@ -189,28 +189,28 @@ Widget right(Report data) => Expanded(
           subTitle:
               data.plaintiff == null ? "" : data.plaintiff!.userType ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         RowTextWidget(
           title: "نام کاربر متخلف :",
           subTitle: data.accused == null ? "" : data.accused!.fullName ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         RowTextWidget(
           title: "نوع تخلف :",
           subTitle: data.subject == null ? "" : data.subject!.title ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         RowTextWidget(
           title: "متن گزارش :",
           subTitle: data.text ?? "",
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
       ],
@@ -223,10 +223,10 @@ Widget listOfMessage(Report data) => Obx(() {
               title: _homeController.failureMessageSingleReport.value),
         );
       } else if (_homeController.isLoadingSingleReport.value) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else {
         return _homeController.resultSingleReport.value.data!.isEmpty
-            ? Center(
+            ? const Center(
                 child: CustomText(title: "گفتگویی یافت نشد"),
               )
             : ListView.builder(

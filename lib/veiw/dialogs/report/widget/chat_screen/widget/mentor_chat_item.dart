@@ -23,7 +23,7 @@ class MentorChat extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 5),
               child: image == null
-                  ? CircleAvatar(
+                  ? const CircleAvatar(
                       radius: 20,
                       backgroundImage:
                           AssetImage("assets/images/avatar_placeholder.png"))

@@ -142,7 +142,7 @@ class HomeMobilePage extends StatelessWidget {
               homeController.fetchUsers(1);
               return userListSection();
             }else{
-            return SizedBox();
+            return const SizedBox();
             }
           }),
           const SizedBox(
@@ -316,7 +316,7 @@ class HomeMobilePage extends StatelessWidget {
   Widget containerSection(BuildContext context) => SizedBox(
         height: Get.height * 0.3,
         child: ListView.builder(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             shrinkWrap: true,
             itemCount: data.length,
             scrollDirection: Axis.horizontal,

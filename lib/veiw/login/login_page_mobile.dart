@@ -41,7 +41,7 @@ class LoginPageMobile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 400),
+                    constraints: const BoxConstraints(maxWidth: 400),
 
                     child: LoginTextFieldWidget(
                       maxLen: 11,
@@ -57,7 +57,7 @@ class LoginPageMobile extends StatelessWidget {
                     height: 20,
                   ),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 600),
+                    constraints: const BoxConstraints(maxWidth: 600),
 
                     child: LoginTextFieldWidget(
                       maxLen: null,

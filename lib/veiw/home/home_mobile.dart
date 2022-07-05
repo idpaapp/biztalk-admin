@@ -70,7 +70,7 @@ class HomeDesctopPage extends StatelessWidget {
               homeController.fetchUsers(1);
               return userListSection();
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           }),
           const SizedBox(
@@ -132,7 +132,6 @@ class HomeDesctopPage extends StatelessWidget {
                               .resultHomeUsers.value.data!.users![index];
                           return TitleRowInTableWidget(
                             onTap: () {
-                              print(user.id);
                               if (user.userType == "عادی") {
 
 
@@ -141,8 +140,7 @@ class HomeDesctopPage extends StatelessWidget {
                                   "userType": user.userType
                                 });
                               } else {
-                                print(user.id.toString());
-                                print(user.userType);
+
                                 Get.toNamed(SingleMentorPage.route, arguments: {
                                   "id": user.id.toString(),
                                   "userType": user.userType

@@ -18,7 +18,6 @@ class SessionListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),

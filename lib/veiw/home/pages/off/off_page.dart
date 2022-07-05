@@ -6,10 +6,7 @@ import 'package:biztalk_panel_admin/veiw/create_off/create_off_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/show_off_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/other_dialog/single_transaction_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/off/off_widget.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/row_bank_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,7 +20,6 @@ class OffPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),

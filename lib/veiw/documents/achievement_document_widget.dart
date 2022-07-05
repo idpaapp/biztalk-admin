@@ -24,7 +24,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: EdgeInsets.symmetric(horizontal: 50,vertical: 30),
+    padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 30),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5), color: Colors.white),
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -36,15 +36,15 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
       ),
       ListView.builder(
           shrinkWrap: true,
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           itemCount: achievements!.length,
           itemBuilder: (context, index) {
-            var achievment = achievements![index];
+            var achievement = achievements![index];
             return NewItemDocumentWidget(
-              title: achievment.title??"",
-              subTitle: achievment.place ?? "",
-              yers:   achievment.year ?? "",
-              statusTitle: achievment.statusTitle,
+              title: achievement.title??"",
+              subTitle: achievement.place ?? "",
+              yers:   achievement.year ?? "",
+              statusTitle: achievement.statusTitle,
 
               onShow: () {
                 EditDocumentDialog(
@@ -55,7 +55,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                     "",
                     "ach", onCancelTitle: () {
                   Map<String, dynamic> body = {
-                    "_id": achievment.id,
+                    "_id": achievement.id,
                     "type": "achievement",
                     "status": false,
                     "docStatus": "DOC_NOT_CONFIRM"
@@ -67,7 +67,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
 
                   MyAlert.deleteAlertDialog(context,text: "آیا برای حذف اطمینان دارید؟",onConfirm: ()async{
                     MyAlert.loding();
-                    await _documentController.deleteAchievement(data!.data!.profile!.id!,achievment.id!);
+                    await _documentController.deleteAchievement(data!.data!.profile!.id!,achievement.id!);
                     Get.back();
                     if(_documentController.failureMessageDeleteAchievement.value !=""){
                       MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteAchievement.value);
@@ -82,10 +82,10 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
 
                 },onConfirmtitle: () {
                   Map<String, dynamic> body = {
-                    "_id": achievment.id,
+                    "_id": achievement.id,
                     "type": "achievement",
                     "status": true,
-                    "docStatus": achievment.attachments!.isEmpty
+                    "docStatus": achievement.attachments!.isEmpty
                         ? "CONFIRM"
                         : "DOC_CHECKING"
                   };
@@ -93,7 +93,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                       body, "ایا برای  تایید اطمینان دارید؟");
                 }, onConfirm: () {
                   Map<String, dynamic> body = {
-                    "_id": achievment.id,
+                    "_id": achievement.id,
                     "type": "achievement",
                     "status": true,
                     "docStatus": "DOC_CONFIRM"
@@ -102,7 +102,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                       body, "ایا برای تایید اطمینان دارید؟");
                 }, onCancel: () {
                   Map<String, dynamic> body = {
-                    "_id": achievment.id,
+                    "_id": achievement.id,
                     "type": "achievement",
                     "status": true,
                     "docStatus": "DOC_NOT_CONFIRM"
@@ -111,12 +111,12 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                       body, "ایا برای تایید اطمینان دارید؟");
                 },
                     name: TextEditingController(
-                      text: achievment.title,
+                      text: achievement.title,
                     ),
-                    atachment: achievment.attachments,
+                    atachment: achievement.attachments,
                     name2:
-                    TextEditingController(text: achievment.place),
-                    name3: TextEditingController(text: achievment.year),
+                    TextEditingController(text: achievement.place),
+                    name3: TextEditingController(text: achievement.year),
                     endDate: TextEditingController(text: "55555"),
                     startDate: TextEditingController(text: "222222"));
 

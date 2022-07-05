@@ -1,8 +1,5 @@
 import 'package:biztalk_panel_admin/model/document/ducoment_model.dart';
-import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
-import 'package:biztalk_panel_admin/resources/my_bottomsheet.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/documents/widgets/textfield_title_widget.dart';
@@ -27,7 +24,7 @@ class SetNewAch {
 
     }
 
-    DocumentDialog(context,title:"دستاوردها و جوایز کسب شده",content:Padding(
+    documentDialog(context,title:"دستاوردها و جوایز کسب شده",content:Padding(
       padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 7),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

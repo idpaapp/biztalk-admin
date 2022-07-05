@@ -46,14 +46,14 @@ class TitleTextFieldWidget extends StatelessWidget {
                 title: title,
               ),
               !activeDelete
-                  ? SizedBox()
+                  ? const SizedBox()
                   : DeleteAcceptWidget(
                       onConfirm: onConfirm,
                       onDelete: onDelete,
                     ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -79,8 +79,8 @@ class TitleTextFieldWidget extends StatelessWidget {
                     border: InputBorder.none,
                     hintText: hint,
                     prefixIcon: pre,
-                    hintStyle: TextStyle(color: AppColors.borderColor),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 8,vertical: 10)),
+                    hintStyle: const TextStyle(color: AppColors.borderColor),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10)),
               ),
             ),
           )
@@ -111,12 +111,12 @@ class TitleTextWidget extends StatelessWidget {
               title: title,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
             height: Get.height * 0.06,
-            margin: EdgeInsets.only(right: 8),
+            margin: const EdgeInsets.only(right: 8),
             width: Get.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),

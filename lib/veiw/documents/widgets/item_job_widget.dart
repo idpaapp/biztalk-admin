@@ -47,7 +47,7 @@ class ItemJobWidget extends StatelessWidget {
                                   width: 45,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    image: DecorationImage(
+                                    image: const DecorationImage(
                                         image: AssetImage(
                                             "assets/images/avatarwhite.png"),
                                         fit: BoxFit.cover),

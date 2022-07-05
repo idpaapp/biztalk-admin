@@ -134,7 +134,7 @@ class GridMediaItem extends StatelessWidget {
             height: 20,
           ),
           isContact
-              ? SizedBox(
+              ? const SizedBox(
                   height: 0,
                 )
               : Row(

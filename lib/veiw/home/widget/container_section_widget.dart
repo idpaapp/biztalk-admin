@@ -30,7 +30,7 @@ class ContainerSectionWidget extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-         number == 1371 ? CustomText(
+         number == 1371 ? const CustomText(
           title:" ",
           color: Colors.white,
           fontSize: 20,

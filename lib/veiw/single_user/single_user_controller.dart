@@ -1,7 +1,6 @@
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/mentro/user_model.dart';
 import 'package:biztalk_panel_admin/service/home_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class SingleUserController extends GetxController{
   final HomeRepository _homeRepo = Get.find<HomeRepository>();

@@ -43,47 +43,45 @@ Future<void> confirmDialog(BuildContext context,
               )),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Padding(            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
+          child: Row(mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ButtonText(
-                  onPressed: onConfirm,
-                  text: "تایید",
-                  borderRadios: 3,
-                  fontWeight: FontWeight.w500,
-                  height: 40,
-                  width: Get.width * 0.1,
-                  fontSize: 14,
-                  textColor: Colors.white,
-                  bgColor: AppColors.blueBg,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonText(
-                  borderRadios: 3,
-                  onPressed: () {
-                    Get.back();
-                  },
-                  text: "انصراف",
-                  height: 40,
-                  width: Get.width * 0.1,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  textColor: Colors.white,
-                  bgColor: AppColors.red,
-                ),
-              ],
+            ButtonText(
+              onPressed: onConfirm,
+              text: "تایید",
+              borderRadios: 10,
+              fontWeight: FontWeight.w500,
+              height: 40,
+              width: Get.width*0.1,
+              fontSize: 14,
+
+              textColor: Colors.white,
+              bgColor: AppColors.blueSession,
             ),
-          )
+            const SizedBox(
+              width: 10,
+            ),
+            ButtonText(
+              borderRadios: 10,
+              onPressed: () {
+                Get.back();
+              },
+              text: "انصراف",
+              height: 40,
+              fontSize: 14,
+              width: 70,
+              fontWeight: FontWeight.w500,
+              textColor: AppColors.blueSession,
+              bgColor: Colors.white,
+              borderColor: AppColors.blueSession,
+              activeBorder: 1,
+            ),
+          ]),
+          ),
+
+
+
+
         ],
       );
     },

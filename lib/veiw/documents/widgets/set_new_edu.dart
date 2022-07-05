@@ -4,7 +4,6 @@ import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
-import 'package:biztalk_panel_admin/resources/my_bottomsheet.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/documents/widgets/row_containear_click_widget.dart';
@@ -54,7 +53,7 @@ class SetNewEdu{
 
     }
 
-    DocumentDialog(context,title: "سوابق تحصیلی و مدارک علمی",content:Padding(
+    documentDialog(context,title: "سوابق تحصیلی و مدارک علمی",content:Padding(
       padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 7),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,12 +179,12 @@ class SetNewEdu{
                   ),
                 ),
               ),
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               const CustomText(
                 title: "تا",
               ),
 
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
 
               Expanded(
                 child: Container(
@@ -293,7 +292,6 @@ class SetNewEdu{
       }
       if(edit == "edit"){
 
-        print(body);
 
         MyAlert.loding();
         await _documentController.editEducation(body, mentorID,education!.id!);
@@ -587,7 +585,7 @@ class SetNewEdu{
     _documentController.isSearch.value = false;
     _documentController.filterSearch.clear();
 
-    DocumentDialog(context,title: "لیست دانشگاه ها",activeBTN: true,content: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+    documentDialog(context,title: "لیست دانشگاه ها",activeBTN: true,content: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         child: Column(
@@ -605,7 +603,7 @@ class SetNewEdu{
                     child: TextField(
                       controller: _searchUni,
                       onChanged: (val) {
-                        if (val.length > 0) {
+                        if (val.isNotEmpty) {
                           _documentController.isSearch.value = true;
                           _documentController.filterSearch.clear();
                         } else {
@@ -659,7 +657,7 @@ class SetNewEdu{
         ),
       )
           : ListView.builder(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           itemCount: _documentController.isSearch.value
               ? _documentController.filterSearch.length
               : _documentController
@@ -697,7 +695,7 @@ class SetNewEdu{
                   decoration: BoxDecoration(
                     color: AppColors.lighterGrey,
                     borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage(
                             "assets/images/avatar_placeholder.png"),
                         fit: BoxFit.fill),

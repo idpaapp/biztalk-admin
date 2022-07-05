@@ -37,22 +37,23 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            children: [
-              rightColumn(_title, option, _offController,name:name ),
-              leftColumn(type, _offController),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    rightColumn(_title, option, _offController,name:name ),
+                    leftColumn(type, _offController),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -82,45 +83,49 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                     print(body);
                     MyAlert.loding();
                     await _offController.createOff(body);
-                  Get.back();
-                  if(_offController.failureMessageCreateOff.value !=""){
-                    MyAlert.mySnakbarRed(text: _offController.failureMessageCreateOff.value);
-                  }else{
                     Get.back();
-                    MyAlert.mySnakbar(text: "کد تخفیف با موفقیت ایجاد شد");
-                    if(userType == null){
-                      _offController.allOffCode();
+                    if(_offController.failureMessageCreateOff.value !=""){
+                      MyAlert.mySnakbarRed(text: _offController.failureMessageCreateOff.value);
+                    }else{
+                      Get.back();
+                      MyAlert.mySnakbar(text: "کد تخفیف با موفقیت ایجاد شد");
+                      if(userType == null){
+                        _offController.allOffCode();
+                      }
                     }
-                  }
-                    },
+                  },
                   text: "ایجاد",
-                  height: 40,
-                  fontSize: 14,
-                  textColor: Colors.white,
-                  bgColor: AppColors.darkerGreen,
-                  borderRadios: 3,
+                  borderRadios: 10,
                   fontWeight: FontWeight.w500,
-                  width: Get.width * 0.1,
+                  height: 40,
+                  width: Get.width*0.1,
+                  fontSize: 14,
+
+                  textColor: Colors.white,
+                  bgColor: AppColors.blueSession,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 ButtonText(
-                  onPressed: () async {
+                  borderRadios: 10,
+                  onPressed: () {
                     Get.back();
                   },
-                  text: "انصراف ",
+                  text: "انصراف",
                   height: 40,
                   fontSize: 14,
-                  borderRadios: 3,
+                  width: 70,
                   fontWeight: FontWeight.w500,
-                  width: Get.width * 0.1,
-                  textColor: Colors.white,
-                  bgColor: AppColors.red,
+                  textColor: AppColors.blueSession,
+                  bgColor: Colors.white,
+                  borderColor: AppColors.blueSession,
+                  activeBorder: 1,
                 ),
               ],
             ),
           )
+,
         ],
       );
     },
@@ -129,83 +134,80 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
 
 Widget leftColumn(List<dynamic> type, OffController _offController) {
   return Expanded(
-    child: SingleChildScrollView(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        selectedTypeOff(type, _offController),
-      ]),
-    ),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      selectedTypeOff(type, _offController),
+    ]),
   );
 }
 
 Widget rightColumn(TextEditingController _title, List<dynamic> option,
     OffController _offController,{String? name}) {
   return Expanded(
-    child: SingleChildScrollView(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SizedBox(
-          height: 20,
+
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const SizedBox(
+        height: 20,
+      ),
+      SizedBox(
+        width: Get.width * 0.2,
+        child: TitleTextFieldWidget(
+          title: "عنوان تخفیف",
+          editingController: _title,
         ),
-        Container(
-          width: Get.width * 0.2,
-          child: TitleTextFieldWidget(
-            title: "عنوان تخفیف",
-            editingController: _title,
-          ),
+      ),
+      name !=null ?  SizedBox(
+        width: Get.width * 0.2,
+        child: TitleTextWidget(
+          title: "نام و نام خانوادگی",
+          hint: name,
         ),
-        name !=null ?  Container(
-          width: Get.width * 0.2,
-          child: TitleTextWidget(
-            title: "نام و نام خانوادگی",
-            hint: name,
-          ),
-        ):selectedCategory(option, _offController),
-        name !=null ?  SizedBox(height: 0,): Obx(
-          () => _offController.selectedCategory.value == 0
-              ? const SizedBox(
-                  height: 10,
-                )
-              : Container(
-                  width: Get.width * 0.2,
-                  decoration: BoxDecoration(
-                      color: AppColors.greyBorder,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: DropdownButton(
-                    dropdownColor: AppColors.greyBorder,
-                    isExpanded: true,
-                    underline: const SizedBox(height: 0),
-                    value: _offController.selectedCategoryId.value,
-                    items: _offController.resultCategory.value.data!.map((value) {
-                      return DropdownMenuItem(
-                        value: value.id,
-                        child: ListTile(
-                          title: CustomText(title: value.title),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (val) {
-                      _offController.selectedCategoryId.value = val.toString();
-                    },
-                  ),
+      ):selectedCategory(option, _offController),
+      name !=null ?  const SizedBox(height: 0,): Obx(
+        () => _offController.selectedCategory.value == 0
+            ? const SizedBox(
+                height: 10,
+              )
+            : Container(
+                width: Get.width * 0.2,
+                decoration: BoxDecoration(
+                    color: AppColors.greyBorder,
+                    borderRadius: BorderRadius.circular(5)),
+                child: DropdownButton(
+                  dropdownColor: AppColors.greyBorder,
+                  isExpanded: true,
+                  underline: const SizedBox(height: 0),
+                  value: _offController.selectedCategoryId.value,
+                  items: _offController.resultCategory.value.data!.map((value) {
+                    return DropdownMenuItem(
+                      value: value.id,
+                      child: ListTile(
+                        title: CustomText(title: value.title),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    _offController.selectedCategoryId.value = val.toString();
+                  },
                 ),
-        ),
-        Obx(() => DatePikerWidget(
-              title: "تاریخ شروع",
-              from: 1,
-              date: _offController.startDate.value,
-            ),),
-        const SizedBox(
-          height: 10,
-        ),
-        Obx(() => DatePikerWidget(
-              title: "تاریخ پایان",
-              from: 20,
-              date: _offController.endDate.value,
-            ),),
-        const SizedBox(
-          width: 10,
-        ),
-      ]),
-    ),
+              ),
+      ),
+      Obx(() => DatePikerWidget(
+            title: "تاریخ شروع",
+            from: 1,
+            date: _offController.startDate.value,
+          ),),
+      const SizedBox(
+        height: 10,
+      ),
+      Obx(() => DatePikerWidget(
+            title: "تاریخ پایان",
+            from: 20,
+            date: _offController.endDate.value,
+          ),),
+      const SizedBox(
+        width: 10,
+      ),
+    ]),
   );
 }
 
@@ -214,8 +216,8 @@ Widget selectedCategory(List<dynamic> option, OffController _offController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+      const Padding(
+        padding: EdgeInsets.symmetric(vertical: 15),
         child: CustomText(
           title: "انتخاب دسته بندی",
           fontSize: 14,
@@ -225,7 +227,7 @@ Widget selectedCategory(List<dynamic> option, OffController _offController) {
       ListView.builder(
           itemCount: option.length,
           shrinkWrap: true,
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           itemBuilder: (context, index) {
             return Obx(() => Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -265,8 +267,8 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+      const Padding(
+        padding: EdgeInsets.symmetric(vertical: 15),
         child: CustomText(
           title: "انتخاب نوع تخفیف",
           fontSize: 14,
@@ -306,13 +308,13 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
                   ),
                 ));
           }),
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       Obx(() => _offController.selectedType.value == 0
           ? Column(
               children: [
-                Container(
+                SizedBox(
                   width: Get.width * 0.2,
                   child: TitleTextFieldWidget(
                     title: "در صد تخفیف",
@@ -320,10 +322,10 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
                     editingController: _offController.precent.value,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   width: Get.width * 0.2,
                   child: TitleTextFieldWidget(
                     title: "سقف تخفیف",
@@ -336,7 +338,7 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
             )
           : Column(
               children: [
-                Container(
+                SizedBox(
                   width: Get.width * 0.2,
                   child: TitleTextFieldWidget(
                     title: "مبلغ",
@@ -355,14 +357,13 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
           editingController: _offController.code.value,
         ),
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       ButtonText(
         onPressed: (){
 
             var r = Random();
             const _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
             _offController.code.value.text= List.generate(10, (index) => _chars[r.nextInt(_chars.length)]).join();
-            print( _offController.code.value.text);
 
 
         },

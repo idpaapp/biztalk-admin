@@ -1,11 +1,9 @@
 import 'package:biztalk_panel_admin/model/document/ducoment_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_bottomsheet.dart';
-import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,3 @@
-import 'package:biztalk_panel_admin/model/home/all_banner_model.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
@@ -34,11 +33,11 @@ class IstaticBannerWidget extends StatelessWidget {
               child: Row(
                 children: [
                   middle1(context),
-                  SizedBox(
+                  const SizedBox(
                     width: 12,
                   ),
                   middle2(context),
-                  SizedBox(
+                  const SizedBox(
                     width: 12,
                   ),
                   middle3(context),

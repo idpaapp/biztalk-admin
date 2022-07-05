@@ -7,7 +7,6 @@ import 'package:biztalk_panel_admin/veiw/home/home_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/login/widget/login_textfield_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class LoginPageDesctop extends StatelessWidget {
@@ -43,7 +42,7 @@ class LoginPageDesctop extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 700),
+                      constraints: const BoxConstraints(maxWidth: 700),
 
                       child: LoginTextFieldWidget(
                         maxLen: 11,
@@ -59,7 +58,7 @@ class LoginPageDesctop extends StatelessWidget {
                       height: 20,
                     ),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 700),
+                      constraints: const BoxConstraints(maxWidth: 700),
 
                       child: LoginTextFieldWidget(
                         maxLen: null,

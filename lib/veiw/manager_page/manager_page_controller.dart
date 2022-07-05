@@ -34,7 +34,6 @@ class ManagerPageController extends GetxController {
       var byteData = await pickedFile.readAsBytes();
       var buffer = byteData.buffer.asUint8List();
       base64File.value = base64Encode(buffer);
-      print(base64File.value);
     }
   }
 

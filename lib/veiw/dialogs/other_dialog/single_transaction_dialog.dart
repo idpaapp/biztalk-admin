@@ -23,7 +23,7 @@ Future<void> singleTransactionDialog(BuildContext context, String title,AccountD
             size: 1,
             title: title,
             ),
-        content: Container(
+        content: SizedBox(
           height: Get.height * 0.6,
           width: Get.width * 0.5,
           child: Padding(
@@ -32,22 +32,22 @@ Future<void> singleTransactionDialog(BuildContext context, String title,AccountD
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  single.profileImageUrl == null ? CircleAvatar(
+                  single.profileImageUrl == null ? const CircleAvatar(
               radius: 50,
                 backgroundImage: AssetImage("assets/images/avatar_placeholder.png"),
               ):CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(GlobalInfo.serverAddress + "/"+ single.profileImageUrl!),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  RowTextWidget(title: "نام و نام خانوادگی :",subTitle:single.fullName??"",),SizedBox(height: 15,),
-                  RowTextWidget(title: "نام کاربری :",subTitle: single.userName??"",),SizedBox(height: 15,),
-                  RowTextWidget(title: "نوع کاربری :",subTitle: single.userType??"",),SizedBox(height: 15,),
-                  RowTextWidget(title: "شبا :",subTitle: single.iban??"",),SizedBox(height: 15,),
-                  RowTextWidget(title: "نام صاحب شبا :",subTitle: single.nameInBank??"",),SizedBox(height: 15,),
-                  RowTextWidget(title: "بانک :",subTitle: single.bank!.name??"",),SizedBox(height: 15,),
+                  RowTextWidget(title: "نام و نام خانوادگی :",subTitle:single.fullName??"",),const SizedBox(height: 15,),
+                  RowTextWidget(title: "نام کاربری :",subTitle: single.userName??"",),const SizedBox(height: 15,),
+                  RowTextWidget(title: "نوع کاربری :",subTitle: single.userType??"",),const SizedBox(height: 15,),
+                  RowTextWidget(title: "شبا :",subTitle: single.iban??"",),const SizedBox(height: 15,),
+                  RowTextWidget(title: "نام صاحب شبا :",subTitle: single.nameInBank??"",),const SizedBox(height: 15,),
+                  RowTextWidget(title: "بانک :",subTitle: single.bank!.name??"",),const SizedBox(height: 15,),
                 ],
               )),
         ),
@@ -88,7 +88,7 @@ Future<void> singleTransactionDialog(BuildContext context, String title,AccountD
                       textColor: Colors.white,
                       bgColor: AppColors.blueBg,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     ButtonText(

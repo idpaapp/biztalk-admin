@@ -31,7 +31,7 @@ class RequestAndSessionPage extends StatelessWidget {
               height: Get.height * 0.07,
             ),
             ProfileSectionWidget(
-              tab: SizedBox(height: 0),
+              tab: const SizedBox(height: 0),
               isUser: userType == "user" ? true : false,
               image:
                   "https://news.varzeshe3.com/pictures/2022/02/14/D/upo3ogpd.jpg",

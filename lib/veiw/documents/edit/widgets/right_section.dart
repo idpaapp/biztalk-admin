@@ -1,6 +1,4 @@
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
-import 'package:biztalk_panel_admin/resources/delete_accept_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_text_field_widget.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:get/get.dart';
@@ -71,7 +69,7 @@ class RightColumnEditDocument extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(height: 12,),
+      const SizedBox(height: 12,),
 
 
 

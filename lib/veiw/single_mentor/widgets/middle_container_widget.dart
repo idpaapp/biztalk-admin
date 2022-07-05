@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 
 class MiddleContainerWidget extends StatelessWidget {
   final String? title;
-  final String? topIcon;
   final Color colors;
   final bool isBullet;
+  final IconData? iconData;
   final onTap;
 
   const MiddleContainerWidget(
       {Key? key,
       this.title,
-      this.topIcon,
+        this.iconData,
       this.colors = Colors.yellow,
       this.onTap,
       this.isBullet = true})
@@ -38,9 +38,9 @@ class MiddleContainerWidget extends StatelessWidget {
                     children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Icon(
-                          Icons.calendar_today_outlined,
+                          iconData,
                           color: colors,
                         ),
                       ),
@@ -49,7 +49,7 @@ class MiddleContainerWidget extends StatelessWidget {
                     Expanded(
 
                       child:isBullet ?  Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
                           children: [
                             CustomText(
@@ -58,7 +58,7 @@ class MiddleContainerWidget extends StatelessWidget {
                               color: AppColors.lighterBlack,
                               fontWeight: FontWeight.w600,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             Container(
@@ -73,7 +73,7 @@ class MiddleContainerWidget extends StatelessWidget {
                           ],
                         ),
                       ): Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
                           children: [
                             CustomText(

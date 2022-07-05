@@ -40,8 +40,6 @@ Future<void> editTvDialog(BuildContext context,
    _tvController.tvTitle.value = type!;
    _tvController.tvImage.value =imageType!;
    _tvController.tvAddress.value.text = link!;
-   print(switchBtn);
-   print(_tvController.isActiveTvSwitch.value );
  }else{
    var data = _homeController.resultAllTvs.value.data!.first;
    _tvController.tvId.value=data.id!;
@@ -80,7 +78,6 @@ Future<void> editTvDialog(BuildContext context,
                 },
                 onChangeDropDown: (value){
                   _tvController.tvId.value="";
-                  print(value);
                   _tvController.tvTitle.value=value;
                   var data = _homeController.resultAllTvs.value.data!.where((element) => element.title == value);
 
@@ -134,7 +131,6 @@ Future<void> editTvDialog(BuildContext context,
                         "userName": _tvController.tvAddress.value.text,
                         "rePublish": _tvController.isActiveTvSwitch.value
                       };
-                      print(body);
                       MyAlert.loding();
                       await _tvController.updateTv(body, userId!);
                       if (_tvController.failureMessageUpdateTv.value == "" &&
@@ -171,7 +167,6 @@ Future<void> editTvDialog(BuildContext context,
                     Map<String, dynamic> body = {
                       "_id": mainId,
                     };
-                    print(body);
                     MyAlert.loding();
                     await _tvController.deleteTv(body, userId!);
                     if (_tvController.failureMessageDeleteTv.value == "" &&

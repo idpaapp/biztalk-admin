@@ -1,7 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,127 +22,154 @@ class RowBankWidget extends StatelessWidget {
 
   const RowBankWidget(
       {Key? key,
-        this.fiveColumn,
-        this.isCheckList =false,
-        this.isReportList =false,
-        this.fourColumn,
-        this.sixColumn,
-        this.status,
-        this.twoColumn,
-        this.oneColumn,
-        this.isRequestList = false,
-        this.threeColumn,
-        this.onTap,
-        this.shebaNumber,
-        this.isSessionList =false,
-        this.isTitle})
+      this.fiveColumn,
+      this.isCheckList = false,
+      this.isReportList = false,
+      this.fourColumn,
+      this.sixColumn,
+      this.status,
+      this.twoColumn,
+      this.oneColumn,
+      this.isRequestList = false,
+      this.threeColumn,
+      this.onTap,
+      this.shebaNumber,
+      this.isSessionList = false,
+      this.isTitle})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.only(bottom: 10, top: 10),
-    decoration: BoxDecoration(
-      border: Border(
-        bottom: BorderSide(
-            color: isTitle == true
-                ? AppColors.dividerDark
-                : AppColors.dividerLight),
-      ),
-    ),
-    child: InkWell(
-      onTap: onTap,
-      child: Container(
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 2,
-              child: CustomText(
-                  fontSize: isTitle == true ? 16 : 14,
-                  color: AppColors.black,
-                  fontWeight: FontWeight.w500,
-                  title: oneColumn),
-            ),
-            Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: isTitle == true ? 16 : 14,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-                        : AppColors.blueIndigo,
-                    fontWeight: FontWeight.w500,
-                    title: twoColumn)),
-            Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: isTitle == true ? 16 : 14,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
+        padding:
+            const EdgeInsets.only(bottom: 20, top: 15, left: 20, right: 40),
+        decoration: BoxDecoration(
+          color: isTitle == true ? AppColors.blueSession : Colors.white,
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(10),topLeft: Radius.circular(10)),
 
-                        : AppColors.dividerDark,
-                    fontWeight: FontWeight.w500,
-                    title: threeColumn??"")),
-            isSessionList == true? SizedBox(height: 0,):  isReportList == true? SizedBox(height: 0,):    isRequestList == true? SizedBox(height: 0,):  isCheckList == true ? SizedBox(height: 0,): Expanded(
-                flex: 3,
-                child: CustomText(
-                    fontSize: 16,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-                        : AppColors.black,
-
-                    fontWeight: FontWeight.w500,
-                    title: shebaNumber??"")),
-           Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: 16,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-                        : AppColors.black,
-
-                    fontWeight: FontWeight.w500,
-                    title: fourColumn)),
-            isReportList == true? SizedBox(height: 0,):Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: 16,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-                        : AppColors.black,
-
-                    fontWeight: FontWeight.w500,
-                    title: fiveColumn??"")),
-            isReportList == true? SizedBox(height: 0,):  isRequestList == true? SizedBox(height: 0,):  isCheckList != true ? SizedBox(height: 0,):  Expanded(
-                flex: 2,
-                child: isTitle ==true ? Container():Align(alignment: Alignment.centerRight,child: ButtonText(
-                  onPressed: () {
-
-                  },
-                  text: "تایید",
-                  height: 30,
-                  fontSize: 14,
-                  width: Get.width*0.05,
-                  textColor: Colors.white,
-                  bgColor: AppColors.darkerGreen,
-                ),)),
-
-
-
-            isReportList == true? SizedBox(height: 0,):  isSessionList !=true? SizedBox(height: 0,): Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: isTitle == true ? 16 : 14,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-
-                        : AppColors.dividerDark,
-                    fontWeight: FontWeight.w500,
-                    title: sixColumn??"")),
-
-          ],
         ),
-      ),
-    ),
-  );
+        child: InkWell(
+          onTap: onTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 2,
+                child: CustomText(
+                    fontSize: isTitle == true ? 16 : 14,
+                    color:
+                        isTitle == true ? Colors.white : AppColors.columnText,
+                    fontWeight: FontWeight.w500,
+                    title: oneColumn),
+              ),
+              Expanded(
+                  flex: 2,
+                  child: CustomText(
+                      fontSize: isTitle == true ? 16 : 14,
+                      color:
+                          isTitle == true ? Colors.white : AppColors.blueIndigo,
+                      fontWeight: FontWeight.w500,
+                      title: twoColumn)),
+              Expanded(
+                  flex: 2,
+                  child: CustomText(
+                      fontSize: isTitle == true ? 16 : 14,
+                      color:
+                          isTitle == true ? Colors.white : AppColors.columnText,
+                      fontWeight: FontWeight.w500,
+                      title: threeColumn ?? "")),
+              isSessionList == true
+                  ? const SizedBox(
+                      height: 0,
+                    )
+                  : isReportList == true
+                      ? const SizedBox(
+                          height: 0,
+                        )
+                      : isRequestList == true
+                          ? const SizedBox(
+                              height: 0,
+                            )
+                          : isCheckList == true
+                              ? const SizedBox(
+                                  height: 0,
+                                )
+                              : Expanded(
+                                  flex: 3,
+                                  child: CustomText(
+                                      fontSize: 16,
+                                      color: isTitle == true
+                                          ? Colors.white
+                                          : AppColors.columnText,
+                                      fontWeight: FontWeight.w500,
+                                      title: shebaNumber ?? "")),
+              Expanded(
+                  flex: 2,
+                  child: CustomText(
+                      fontSize: 16,
+                      color:
+                          isTitle == true ? Colors.white : AppColors.columnText,
+                      fontWeight: FontWeight.w500,
+                      title: fourColumn)),
+              isReportList == true
+                  ? const SizedBox(
+                      height: 0,
+                    )
+                  : Expanded(
+                      flex: 2,
+                      child: CustomText(
+                          fontSize: 16,
+                          color: isTitle == true
+                              ? Colors.white
+                              : AppColors.columnText,
+                          fontWeight: FontWeight.w500,
+                          title: fiveColumn ?? "")),
+              isReportList == true
+                  ? const SizedBox(
+                      height: 0,
+                    )
+                  : isRequestList == true
+                      ? const SizedBox(
+                          height: 0,
+                        )
+                      : isCheckList != true
+                          ? const SizedBox(
+                              height: 0,
+                            )
+                          : Expanded(
+                              flex: 2,
+                              child: isTitle == true
+                                  ? Container()
+                                  : Align(
+                                      alignment: Alignment.centerRight,
+                                      child: ButtonText(
+                                        onPressed: () {},
+                                        text: "تایید",
+                                        height: 30,
+                                        fontSize: 14,
+                                        width: Get.width * 0.05,
+                                        textColor: Colors.white,
+                                        bgColor: AppColors.darkerGreen,
+                                      ),
+                                    )),
+              isReportList == true
+                  ? const SizedBox(
+                      height: 0,
+                    )
+                  : isSessionList != true
+                      ? const SizedBox(
+                          height: 0,
+                        )
+                      : Expanded(
+                          flex: 2,
+                          child: CustomText(
+                              fontSize: isTitle == true ? 16 : 14,
+                              color: isTitle == true
+                                  ? Colors.white
+                                  : AppColors.columnText,
+                              fontWeight: FontWeight.w500,
+                              title: sixColumn ?? "")),
+            ],
+          ),
+        ),
+      );
 }

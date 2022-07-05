@@ -1,6 +1,5 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
-import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_text_field_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widget.dart';
@@ -28,51 +27,48 @@ Future<void> insertUser(
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
-            size: 3,
+            size: 4,
             title: title,
            ),
-        content: Container(
-          height: Get.height * 0.6,
-          width: Get.width * 0.4,
+        content: SizedBox(
+          height: Get.height * 0.45,
+          width: Get.width * 0.3,
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: Get.width * 0.02, vertical: Get.height * 0.005),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TitleTextFieldWidget(
-                  title: "شماره همراه",
-                  editingController: phone,
-                  hint: "شماره همراه",
-                  textInputType: TextInputType.number,
-                ),
-                SizedBox(height: 24),
-                TitleTextFieldWidget(
-                  title: "نام و نام خانوادگی",
-                  editingController: fullName,
-                  hint: "نام و نام خانوادگی",
-                ),
-                SizedBox(height: 24),
-                TitleTextFieldWidget(
-                  title: "نام کاربری",
-                  editingController: userName,
-                  hint: "نام کاربری",
-                ),
-                SizedBox(height: 24),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleTextFieldWidget(
+                    title: "شماره همراه",
+                    editingController: phone,
+                    hint: "شماره همراه",
+                    textInputType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 24),
+                  TitleTextFieldWidget(
+                    title: "نام و نام خانوادگی",
+                    editingController: fullName,
+                    hint: "نام و نام خانوادگی",
+                  ),
+                  const SizedBox(height: 24),
+                  TitleTextFieldWidget(
+                    title: "نام کاربری",
+                    editingController: userName,
+                    hint: "نام کاربری",
+                  ),
+                  const SizedBox(height: 24),
 
 
-              ],
+                ],
+              ),
             ),
           ),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -81,7 +77,7 @@ Future<void> insertUser(
                     if (phone.text.trim() == "" ||
                         userName.text.trim() == "" ||
                         fullName.text.trim() == ""
-                  ) {
+                    ) {
                       MyAlert.mySnakbarRed(
                           text: "وارد کردن تمامی فیلد ها اجباذی است");
 
@@ -103,33 +99,42 @@ Future<void> insertUser(
                     }
                   },
                   text: "ذخیره",
-                  borderRadios: 3,
+                  borderRadios: 10,
                   fontWeight: FontWeight.w500,
                   height: 40,
-                  width: Get.width * 0.1,
+                  width: Get.width*0.1,
                   fontSize: 14,
+
                   textColor: Colors.white,
-                  bgColor: AppColors.blueBg,
+                  bgColor: AppColors.blueSession,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 ButtonText(
-                  borderRadios: 3,
+                  borderRadios: 10,
                   onPressed: () {
                     Get.back();
                   },
                   text: "انصراف",
                   height: 40,
-                  width: Get.width * 0.1,
                   fontSize: 14,
+                  width: 70,
                   fontWeight: FontWeight.w500,
-                  textColor: Colors.black,
-                  bgColor: AppColors.disabledGrey,
+                  textColor: AppColors.blueSession,
+                  bgColor: Colors.white,
+                  borderColor: AppColors.blueSession,
+                  activeBorder: 1,
                 ),
               ],
             ),
           )
+
+
+
+
+
+
         ],
       );
     },

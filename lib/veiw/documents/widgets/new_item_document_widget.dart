@@ -1,4 +1,3 @@
-import 'package:biztalk_panel_admin/model/mentro/mentor_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
@@ -39,7 +38,7 @@ class NewItemDocumentWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       shape: BoxShape.rectangle),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -64,12 +63,12 @@ class NewItemDocumentWidget extends StatelessWidget {
                                 title: title,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
-                            SizedBox(width: 15,),
+                            const SizedBox(width: 15,),
 
                             ButtonText(
                               onPressed: null,
-                              padding: EdgeInsets.symmetric(horizontal: 4),
-                              margin: EdgeInsets.symmetric(horizontal: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
                               text: statusTitle,
                               borderRadios: 10,
                               fontWeight: FontWeight.normal,
@@ -94,14 +93,14 @@ class NewItemDocumentWidget extends StatelessWidget {
 
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     CustomText(
                         color: AppColors.titleColor,
                         title: subTitle,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
 
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     CustomText(
                         color: AppColors.titleColorTran,
                         title: yers,

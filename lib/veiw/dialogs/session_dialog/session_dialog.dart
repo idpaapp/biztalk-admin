@@ -156,56 +156,56 @@ Widget right(Session session) => Expanded(
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "مشاور :",
           subTitle: session.mentor!.fullName,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "شماره مشاور :",
           subTitle: session.mentor!.phoneNumber,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "مراجع :",
           subTitle: session.user!.fullName,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "شماره مراجع :",
           subTitle: session.user!.phoneNumber,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "تاریخ و زمان :",
           subTitle: session.date,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "مبلغ(تومان) :",
           subTitle: session.formattedPrice,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(
           title: "دسته بندی :",
           subTitle: session.subject!.title,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         RowTextWidget(

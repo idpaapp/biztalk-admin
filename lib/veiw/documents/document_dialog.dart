@@ -4,7 +4,7 @@ import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widge
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<void> DocumentDialog(BuildContext context,
+Future<void> documentDialog(BuildContext context,
     {Widget? content, onSave, String? title,bool activeBTN=false}) async {
   return showDialog<void>(
     context: context,
@@ -32,7 +32,7 @@ Future<void> DocumentDialog(BuildContext context,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                activeBTN ? SizedBox(height: 0,):  ButtonText(
+                activeBTN ? const SizedBox(height: 0,):  ButtonText(
                   onPressed: onSave,
                   text: "ذخیره",
                   borderRadios: 10,

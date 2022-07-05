@@ -32,7 +32,7 @@ class BannerListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: EdgeInsets.symmetric(horizontal: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 12),
         width: Get.width * 0.17,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -50,7 +50,7 @@ class BannerListWidget extends StatelessWidget {
                       image: DecorationImage(image: NetworkImage(imgAddress!),fit: BoxFit.cover)),
                 ),
               ),
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               isLink
                   ? Expanded(
                       flex: 2,
@@ -86,7 +86,7 @@ class BannerListWidget extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                isLink ? SizedBox(height: 0,):  ButtonText(
+                                isLink ? const SizedBox(height: 0,):  ButtonText(
                                   onPressed: onEdit,
                                   text: "ویرایش",
                                   fontSize: 14,
@@ -130,13 +130,13 @@ class BannerListWidget extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
-                                CustomText(
+                                const CustomText(
                                   title: "عنوان لیست",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: AppColors.black,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 12,
                                 ),
                                 CustomText(
@@ -152,13 +152,13 @@ class BannerListWidget extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
-                                CustomText(
+                                const CustomText(
                                   title: "شرح لیست",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                   color: AppColors.black,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 12,
                                 ),
                                 CustomText(
@@ -176,13 +176,13 @@ class BannerListWidget extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    CustomText(
+                                    const CustomText(
                                       title: "تعداد مشاور",
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
                                       color: AppColors.black,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 12,
                                     ),
                                     CustomText(
@@ -196,7 +196,7 @@ class BannerListWidget extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    isLink ? SizedBox(height: 0,):ButtonText(
+                                    isLink ? const SizedBox(height: 0,):ButtonText(
                                       onPressed: onEdit,
                                       text: "ویرایش",
                                       fontSize: 14,
@@ -227,7 +227,7 @@ class BannerListWidget extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                               isLink ? SizedBox(height: 0,): ButtonText(
+                               isLink ? const SizedBox(height: 0,): ButtonText(
                                   onPressed: onEdit,
                                   text: "ویرایش",
                                   fontSize: 14,
@@ -250,7 +250,7 @@ class BannerListWidget extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ):SizedBox()
+                          ):const SizedBox()
                         ],
                       ),
                     )

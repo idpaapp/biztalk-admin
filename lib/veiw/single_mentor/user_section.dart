@@ -75,7 +75,7 @@ class UserSectionWidget extends StatelessWidget {
                 title: "درخواست ها و جلسات",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
 
@@ -93,7 +93,7 @@ class UserSectionWidget extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             Expanded(child: Container())
@@ -125,7 +125,7 @@ class UserSectionWidget extends StatelessWidget {
         subject: "موضوع",
         state: null,
       ),
-      value.data!.requests!.isEmpty ? Padding(padding: EdgeInsets.only(top: 100,bottom: 100),child: Center(child: CustomText(title: "جلسه ای برای نمایش وجود ندارد",))): ListView.builder(
+      value.data!.requests!.isEmpty ? const Padding(padding: EdgeInsets.only(top: 100,bottom: 100),child: Center(child: CustomText(title: "جلسه ای برای نمایش وجود ندارد",))): ListView.builder(
           shrinkWrap: true,
           itemCount: value.data!.requests!.length,
           physics: const ScrollPhysics(),

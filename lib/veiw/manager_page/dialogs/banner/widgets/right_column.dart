@@ -17,7 +17,7 @@ class RightColumnBanner extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(bottom: 12),
             child: CustomText(
               title: "تصویر برند",
@@ -57,7 +57,7 @@ class RightColumnBanner extends StatelessWidget {
                       bgColor: AppColors.green,
                       textColor: Colors.white,
                     )),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   flex: 1,
                   child: GestureDetector(
@@ -67,7 +67,7 @@ class RightColumnBanner extends StatelessWidget {
                         color: AppColors.red,
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Center(child: Icon(Icons.delete,color: Colors.white,)),
+                      child: const Center(child: Icon(Icons.delete,color: Colors.white,)),
                     ),
                     onTap: () {},
                   ),
@@ -75,7 +75,7 @@ class RightColumnBanner extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 8,)
+          const SizedBox(height: 8,)
         ],
       );
 

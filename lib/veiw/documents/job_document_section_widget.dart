@@ -26,7 +26,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -38,7 +38,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
           ),
           ListView.builder(
               shrinkWrap: true,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               itemCount: works!.length,
               itemBuilder: (context, index) {
                 var job = works![index];

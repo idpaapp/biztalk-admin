@@ -30,14 +30,14 @@ class LeftColumnBanner extends StatelessWidget {
               }
             },
           ),),
-          SizedBox(height: 15,),
+          const SizedBox(height: 15,),
          Obx(()=> !_managerPageController.isLink.value?TitleTextFieldWidget(
            title: "عنوان لیست",
            editingController: titleList,
            hint: "عنوان لیست",
-         ):SizedBox(),),
+         ):const SizedBox(),),
 
-          SizedBox(height: 15,),
+          const SizedBox(height: 15,),
           Obx(()=>_managerPageController.isLink.value?TitleTextFieldWidget(
             title: "لینک بنر",
             editingController: link,

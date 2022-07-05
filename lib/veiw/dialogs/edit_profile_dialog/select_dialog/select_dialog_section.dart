@@ -18,12 +18,12 @@ Future<void> selectionDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         titlePadding: EdgeInsets.zero,
-        contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-        title: TitleWidget(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+        title: const TitleWidget(
             size: 1,
             title: "انتخاب زمینه ها",
            ),
-        content: Container(
+        content: SizedBox(
           height: Get.height * 0.5,
           width: Get.width * 0.5,
           child: Padding(
@@ -41,7 +41,7 @@ Future<void> selectionDialog(BuildContext context) async {
                     ),
                     child: TextField(
                         controller: _search,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 10),
                             border: InputBorder.none,
@@ -51,7 +51,7 @@ Future<void> selectionDialog(BuildContext context) async {
                               color: AppColors.black,
                             ))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Obx(() => Wrap(
@@ -60,7 +60,7 @@ Future<void> selectionDialog(BuildContext context) async {
                         children: _homeController.resultCategory.value.data!
                             .map((element) => ChoiceChip(
                                 shape: RoundedRectangleBorder(
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                       color: AppColors.tosi,
                                     ),
                                     borderRadius: BorderRadius.circular(5)),

@@ -73,7 +73,7 @@ class ProfileTitleTableWidget extends StatelessWidget {
                               Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color:AppColors.bgBlue

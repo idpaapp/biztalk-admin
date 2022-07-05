@@ -1,8 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/other_dialog/single_transaction_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/request_list/single_request_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/row_bank_widget.dart';
@@ -18,7 +16,6 @@ class RequestListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>Container(
-    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
     margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5), color: Colors.white),

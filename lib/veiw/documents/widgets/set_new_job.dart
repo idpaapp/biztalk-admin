@@ -4,7 +4,6 @@ import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
-import 'package:biztalk_panel_admin/resources/my_bottomsheet.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/documents/widgets/row_containear_click_widget.dart';
@@ -52,7 +51,7 @@ class SetNewJob{
 
 
 
-    DocumentDialog(context,title: "سوابق شغلی",onSave: () async{
+    documentDialog(context,title: "سوابق شغلی",onSave: () async{
 
       Map<String, dynamic> body = {
         "job": _positionTitle.text,
@@ -69,7 +68,6 @@ class SetNewJob{
       }
 
       if(edit == "edit"){
-        print(body);
 
         MyAlert.loding();
         await _documentController.editJob(body, mentorID,work!.id!);
@@ -101,7 +99,7 @@ class SetNewJob{
 
 
     },content: ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 1000.0),
+      constraints: const BoxConstraints(maxWidth: 1000.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 7),
         child: Column(
@@ -221,12 +219,12 @@ class SetNewJob{
                     ),
                   ),
                 ),
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
                 const CustomText(
                   title: "تا",
                 ),
 
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
                 Expanded(
                   child: Container(
                     height: 50,
@@ -545,7 +543,7 @@ class SetNewJob{
     _documentController.isSearch.value = false;
     _documentController.filterSearch.clear();
 
-     DocumentDialog(context,title: "لیست سازمان ها",activeBTN: true,content: SingleChildScrollView(
+     documentDialog(context,title: "لیست سازمان ها",activeBTN: true,content: SingleChildScrollView(
        child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
 
          Padding(
@@ -565,7 +563,7 @@ class SetNewJob{
                        child: TextField(
                          controller: _jobSearch,
                          onChanged: (val) {
-                           if (val.length > 0) {
+                           if (val.isNotEmpty) {
                              _documentController.isSearch.value = true;
                              _documentController.filterSearch.clear();
                            } else {
@@ -609,7 +607,7 @@ class SetNewJob{
              ],
            ),
          ),
-         SizedBox(height: 25,),
+         const SizedBox(height: 25,),
          Obx(
                () => _documentController.isSearch.value == true &&
                _documentController.filterSearch.isEmpty
@@ -627,7 +625,7 @@ class SetNewJob{
                  children: [
                    ListView.builder(
 
-                   physics: ScrollPhysics(),
+                   physics: const ScrollPhysics(),
                    itemCount: _documentController.isSearch.value
                        ? _documentController.filterSearch.length
                        : _documentController.resultGetOption.value.data!.length,

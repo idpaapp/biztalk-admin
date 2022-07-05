@@ -32,7 +32,7 @@ class LeftColumnWidget extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                     },
-                    child:   CircleAvatar(
+                    child:   const CircleAvatar(
                         radius: 45,
                         backgroundColor: Colors.white,)
                         ),

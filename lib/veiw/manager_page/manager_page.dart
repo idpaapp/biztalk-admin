@@ -39,30 +39,30 @@ class ManagerPage extends StatelessWidget {
                           _managerPageController.failureMessageGetBanner.value),
                 );
               } else if (_managerPageController.isLoadingGetBanner.value) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else {
                 return Column(
                   children: [
                     carouselBanner(),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     IstaticBannerWidget(),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     listNumber1(),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     listNumber2(),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     listNumber3(),
-                    SizedBox(
+                    const SizedBox(
                       height: 26,
                     ),
                   ],
@@ -92,7 +92,7 @@ class ManagerPage extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: _managerPageController
                         .resultGetBanner.value.data!.carousel!.length +
                     1,
@@ -200,7 +200,7 @@ class ManagerPage extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: _managerPageController
                         .resultGetBanner.value.data!.list1!.length +
                     1,
@@ -306,7 +306,7 @@ class ManagerPage extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: _managerPageController
                         .resultGetBanner.value.data!.list2!.length +
                     1,
@@ -413,7 +413,7 @@ class ManagerPage extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: _managerPageController
                         .resultGetBanner.value.data!.list3!.length +
                     1,

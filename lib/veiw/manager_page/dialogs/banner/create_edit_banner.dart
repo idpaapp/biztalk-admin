@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:biztalk_panel_admin/model/home/all_banner_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
@@ -53,9 +51,9 @@ Future<void> createEditBanner(BuildContext context,
     _managerPageController.switchActive.value=banner.status!;
     _link.text=banner.bannerDescription??"";
 
-    banner.mentors!.forEach((element) {
+    for (var element in banner.mentors!) {
       _homeController.selectedMentorFinaly.add(User(fullName: element.fullName,id: element.id,phoneNumber: element.phoneNumber,userName: element.userName));
-    });
+    }
 
      }
   // _userName.text = userName!;
@@ -72,13 +70,13 @@ Future<void> createEditBanner(BuildContext context,
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
             size: 3,
             title: "ویرایش / افزودن",
            ),
         content: Obx(
               () =>
-              Container(
+              SizedBox(
                 height: _managerPageController.isLink.value
                     ? Get.height * 0.5
                     : Get.height * 0.8,
@@ -104,7 +102,7 @@ Future<void> createEditBanner(BuildContext context,
                                       color: Colors.white),
                                   child: Container(
                                     margin:
-                                    EdgeInsets.symmetric(
+                                    const EdgeInsets.symmetric(
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
@@ -132,14 +130,14 @@ Future<void> createEditBanner(BuildContext context,
                                   ),
                                 ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 24,
                           ),
                           Row(
                             children: [
                               Expanded(child: SingleChildScrollView(
                                   child: RightColumnBanner())),
-                              SizedBox(
+                              const SizedBox(
                                 width: 24,
                               ),
                               Expanded(
@@ -155,7 +153,7 @@ Future<void> createEditBanner(BuildContext context,
                           ),
                           Obx(() =>
                           _managerPageController.isLink.value
-                              ? SizedBox()
+                              ? const SizedBox()
                               : listViewSection(context))
                         ],
                       ),
@@ -177,9 +175,9 @@ Future<void> createEditBanner(BuildContext context,
                   onPressed: () async {
                     if (edit == "edit") {
                       List mentors = [];
-                      _homeController.selectedMentorFinaly.forEach((element) {
+                      for (var element in _homeController.selectedMentorFinaly) {
                         mentors.add(element.id);
-                      });
+                      }
                       Map<String, dynamic> body = {
                         "bannerGroup": bannerGroup,
                         "status":_managerPageController.switchActive.value,
@@ -195,7 +193,6 @@ Future<void> createEditBanner(BuildContext context,
                       if( _managerPageController.base64File.value == ""){
                         body.remove("logo");
                       }
-                      print(body);
                       MyAlert.loding();
                       await _managerPageController.editBanner(
                           banner!.id!, body);
@@ -216,7 +213,7 @@ Future<void> createEditBanner(BuildContext context,
 
 
                     }else {
-                      print(_managerPageController.isLink.value);
+
                       if (_managerPageController.isLink.value) {
                         Map<String, dynamic> body = {
                           "bannerGroup": bannerGroup,
@@ -231,7 +228,6 @@ Future<void> createEditBanner(BuildContext context,
                           "link": _link.text,
                           "mentors": []
                         };
-                        print(body);
                         MyAlert.loding();
                         await _managerPageController.createBanner(body);
                         Get.back();
@@ -245,9 +241,9 @@ Future<void> createEditBanner(BuildContext context,
                         }
                       } else {
                         List mentors = [];
-                        _homeController.selectedMentorFinaly.forEach((element) {
+                        for (var element in _homeController.selectedMentorFinaly) {
                           mentors.add(element.id);
-                        });
+                        }
                         Map<String, dynamic> body = {
                           "bannerGroup": bannerGroup,
                           "bannerType": "list",
@@ -261,7 +257,7 @@ Future<void> createEditBanner(BuildContext context,
                           "link": _link.text,
                           "mentors": mentors
                         };
-                        print(body);
+
                         MyAlert.loding();
                         await _managerPageController.createBanner( body);
                         Get.back();
@@ -314,7 +310,7 @@ Widget listViewSection(BuildContext context) =>
     SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
 
@@ -341,7 +337,7 @@ Widget listViewSection(BuildContext context) =>
           ListView.builder(
               shrinkWrap: true,
               itemCount: _homeController.selectedMentorFinaly.length,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
                 var mentor = _homeController.selectedMentorFinaly[index];
                 return MentorListWidget(

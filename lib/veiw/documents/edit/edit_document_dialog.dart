@@ -37,7 +37,7 @@ Future<void> EditDocumentDialog(
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
             title: "ویرایش اطلاعات",
           size: 4,
            ),

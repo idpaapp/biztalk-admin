@@ -2,7 +2,6 @@ import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/mentro/mentor_model.dart';
 import 'package:biztalk_panel_admin/service/home_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SingleMentorController extends GetxController{
