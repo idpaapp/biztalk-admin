@@ -54,9 +54,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                       text: education.schoolTitle,
                     ),onDelete: (){
 
-                      MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
-                        Get.back();
-                      },title: "توجه",onConfirm: ()async{
+                      MyAlert.deleteAlertDialog(context,text: "آیا برای حذف اطمینان دارید؟",onConfirm: ()async{
                         MyAlert.loding();
                         await _documentController.deleteEducation(data!.data!.profile!.id!,education.id!);
                         Get.back();
@@ -82,7 +80,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                             : "DOC_CHECKING"
                       };
 
-                      onConfirmAdditional(
+                      onConfirmAdditional(context,
                           body, "ایا برای تایید اطمینان دارید؟");
                     }, onCancelTitle: () {
                       Map<String, dynamic> body = {
@@ -91,7 +89,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": false,
                         "docStatus": "DOC_NOT_CONFIRM"
                       };
-                      onConfirmAdditional(
+                      onConfirmAdditional(context,
                           body, "ایا برای عدم تایید اطمینان دارید؟");
                     }, onConfirm: () {
                       Map<String, dynamic> body = {
@@ -100,7 +98,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": true,
                         "docStatus": "DOC_CONFIRM"
                       };
-                      onConfirmAdditional(
+                      onConfirmAdditional(context,
                           body, "ایا برای تایید اطمینان دارید؟");
                     }, onCancel: () {
                       Map<String, dynamic> body = {
@@ -109,7 +107,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": true,
                         "docStatus": "DOC_NOT_CONFIRM"
                       };
-                      onConfirmAdditional(
+                      onConfirmAdditional(context,
                           body, "ایا برای تایید اطمینان دارید؟");
                     },
                     atachment: education.attachments,
@@ -129,13 +127,9 @@ class EducationDocumentSectionWidget extends StatelessWidget {
     ]),
   );
 
-  onConfirmAdditional(Map<String, dynamic> body, String title) {
-    MyAlert.deleteBottomSheet(
+  onConfirmAdditional(BuildContext context,Map<String, dynamic> body, String title) {
+    MyAlert.deleteAlertDialog(context,
         text: title,
-        title: "توجه",
-        onCancel: () {
-          Get.back();
-        },
         onConfirm: () async {
           MyAlert.loding();
           await _documentController.confirmAdditional(

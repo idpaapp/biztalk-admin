@@ -26,7 +26,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: EdgeInsets.symmetric(horizontal: 50,vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -45,7 +45,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                 return NewItemDocumentWidget(
                   title: job.company == null ? "" : job.companyTitle,
                   subTitle: job.job,
-                  yers:   job.activityYear ?? "",
+                  yers: job.activityYear ?? "",
                   statusTitle: job.statusTitle,
                   onShow: () {
                     EditDocumentDialog(
@@ -63,7 +63,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "docStatus": "DOC_NOT_CONFIRM"
                         };
                         onConfirmAdditional(
-                            body, "ایا برای عدم تایید اطمینان دارید؟");
+                            context, body, "ایا برای عدم تایید اطمینان دارید؟");
                       },
                       onConfirmtitle: () {
                         Map<String, dynamic> body = {
@@ -75,7 +75,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                               : "DOC_CHECKING"
                         };
                         onConfirmAdditional(
-                            body, "ایا برای تایید اطمینان دارید؟");
+                            context, body, "ایا برای تایید اطمینان دارید؟");
                       },
                       onCancel: () {
                         Map<String, dynamic> body = {
@@ -85,30 +85,29 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "docStatus": "DOC_NOT_CONFIRM"
                         };
                         onConfirmAdditional(
-                            body, "ایا برای تایید اطمینان دارید؟");
+                            context, body, "ایا برای تایید اطمینان دارید؟");
                       },
-                      onDelete: (){
-
-
-  MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
-                        Get.back();
-                      },title: "توجه",onConfirm: ()async{
-                        MyAlert.loding();
-                        await _documentController.deleteJob(mentorId!,job.id!);
-                        Get.back();
-                        if(_documentController.failureMessageDeleteJob.value !=""){
-                          MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteJob.value);
-                        }else{
+                      onDelete: () {
+                        MyAlert.deleteAlertDialog(context,
+                            text: "آیا برای حذف اطمینان دارید؟",
+                            onConfirm: () async {
+                          MyAlert.loding();
+                          await _documentController.deleteJob(
+                              mentorId!, job.id!);
                           Get.back();
-                          Get.back();
-                          _documentController.getDocument(mentorId!);
-
-                        }
-                      });
-
-
+                          if (_documentController
+                                  .failureMessageDeleteJob.value !=
+                              "") {
+                            MyAlert.mySnakbarRed(
+                                text: _documentController
+                                    .failureMessageDeleteJob.value);
+                          } else {
+                            Get.back();
+                            Get.back();
+                            _documentController.getDocument(mentorId!);
+                          }
+                        });
                       },
-
                       onConfirm: () {
                         Map<String, dynamic> body = {
                           "_id": job.id,
@@ -117,7 +116,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "docStatus": "DOC_CONFIRM"
                         };
                         onConfirmAdditional(
-                            body, "ایا برای تایید اطمینان دارید؟");
+                            context, body, "ایا برای تایید اطمینان دارید؟");
                       },
                       name: TextEditingController(
                         text: job.companyTitle,
@@ -134,28 +133,22 @@ class JobDocumentSectionWidget extends StatelessWidget {
         ]),
       );
 
-  onConfirmAdditional(Map<String, dynamic> body, String title) {
-    MyAlert.deleteBottomSheet(
-        text: title,
-        title: "توجه",
-        onCancel: () {
-          Get.back();
-        },
-        onConfirm: () async {
-          MyAlert.loding();
-          await _documentController.confirmAdditional(
-              data!.data!.profile!.id!, body);
-          if (_documentController.failureMessageConfirmAdditional.value != "") {
-            Get.back();
-            MyAlert.mySnakbarRed(
-                text:
-                    _documentController.failureMessageConfirmAdditional.value);
-          } else {
-            Get.back();
-            Get.back();
-            Get.back();
-            _documentController.getDocument(data!.data!.profile!.id!);
-          }
-        });
+  onConfirmAdditional(
+      BuildContext context, Map<String, dynamic> body, String title) {
+    MyAlert.deleteAlertDialog(context, text: title, onConfirm: () async {
+      MyAlert.loding();
+      await _documentController.confirmAdditional(
+          data!.data!.profile!.id!, body);
+      if (_documentController.failureMessageConfirmAdditional.value != "") {
+        Get.back();
+        MyAlert.mySnakbarRed(
+            text: _documentController.failureMessageConfirmAdditional.value);
+      } else {
+        Get.back();
+        Get.back();
+        Get.back();
+        _documentController.getDocument(data!.data!.profile!.id!);
+      }
+    });
   }
 }

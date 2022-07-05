@@ -60,14 +60,12 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                     "status": false,
                     "docStatus": "DOC_NOT_CONFIRM"
                   };
-                  onConfirmAdditional(
+                  onConfirmAdditional(context,
                       body, "ایا برای عدم تایید اطمینان دارید؟");
                 }, onDelete: (){
 
 
-                  MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
-                    Get.back();
-                  },title: "توجه",onConfirm: ()async{
+                  MyAlert.deleteAlertDialog(context,text: "آیا برای حذف اطمینان دارید؟",onConfirm: ()async{
                     MyAlert.loding();
                     await _documentController.deleteAchievement(data!.data!.profile!.id!,achievment.id!);
                     Get.back();
@@ -91,7 +89,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                         ? "CONFIRM"
                         : "DOC_CHECKING"
                   };
-                  onConfirmAdditional(
+                  onConfirmAdditional(context,
                       body, "ایا برای  تایید اطمینان دارید؟");
                 }, onConfirm: () {
                   Map<String, dynamic> body = {
@@ -100,7 +98,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                     "status": true,
                     "docStatus": "DOC_CONFIRM"
                   };
-                  onConfirmAdditional(
+                  onConfirmAdditional(context,
                       body, "ایا برای تایید اطمینان دارید؟");
                 }, onCancel: () {
                   Map<String, dynamic> body = {
@@ -109,7 +107,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                     "status": true,
                     "docStatus": "DOC_NOT_CONFIRM"
                   };
-                  onConfirmAdditional(
+                  onConfirmAdditional(context,
                       body, "ایا برای تایید اطمینان دارید؟");
                 },
                     name: TextEditingController(
@@ -128,13 +126,11 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
     ]),
   );
 
-  onConfirmAdditional(Map<String, dynamic> body, String title) {
-    MyAlert.deleteBottomSheet(
+  onConfirmAdditional(BuildContext context,Map<String, dynamic> body, String title) {
+    MyAlert.deleteAlertDialog(
+      context,
         text: title,
-        title: "توجه",
-        onCancel: () {
-          Get.back();
-        },
+
         onConfirm: () async {
           MyAlert.loding();
           await _documentController.confirmAdditional(
