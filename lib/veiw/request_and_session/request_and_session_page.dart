@@ -1,5 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
@@ -26,20 +27,23 @@ class RequestAndSessionPage extends StatelessWidget {
   body(BuildContext context) => SingleChildScrollView(
     child: Column(
           children: [
-            const TopSectionPanelAdmin(title: "کاربران" + " /" + "مشاور"),
-            SizedBox(
-              height: Get.height * 0.07,
-            ),
-            ProfileSectionWidget(
-              tab: const SizedBox(height: 0),
-              isUser: userType == "user" ? true : false,
-              image:
-                  "https://news.varzeshe3.com/pictures/2022/02/14/D/upo3ogpd.jpg",
-              onEdit: () {
-                showMyDialog(context);
-              },
-              fullName: "سینا جمشیدی",
-              jobTitle: "متخصص مغز و اعصاب",
+            const TopSectionPanelAdmin(title: "کاربران" " /" "مشاور"),
+            SizedBox(height: 12,),
+
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+              child: ProfileSectionWidget(
+                paddingBottom: 20,
+                tab: const SizedBox(height: 0),
+                isUser: userType == "user" ? true : false,
+                image:
+                    "https://news.varzeshe3.com/pictures/2022/02/14/D/upo3ogpd.jpg",
+                onEdit: () {
+                  showMyDialog(context);
+                },
+                fullName: "سینا جمشیدی",
+                jobTitle: "متخصص مغز و اعصاب",
+              ),
             ),
             SizedBox(
               height: Get.height * 0.03,
@@ -50,8 +54,9 @@ class RequestAndSessionPage extends StatelessWidget {
   );
 
   mainSection() => Padding(
-        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-        child: Row(
+    padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+
+    child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             filterSection(),
@@ -85,9 +90,7 @@ class RequestAndSessionPage extends StatelessWidget {
   Widget leftSectin() =>Expanded(
       flex: 4,
       child: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: Get.width * 0.02,
-            vertical: Get.height * 0.02),
+
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.dividerLight),
             borderRadius: BorderRadius.circular(5),
@@ -95,15 +98,7 @@ class RequestAndSessionPage extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText(
-                title: "چیزها",
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: AppColors.lighterBlack,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+
               ProfileTitleTableWidget(
                 isTitle: true,
                 userName: userType == "user"

@@ -391,9 +391,9 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchInfoHome();
-
-    timer = Timer.periodic(
-        const Duration(minutes: 5), (Timer t) => fetchInfoHome());
+    //
+    // timer = Timer.periodic(
+    //     const Duration(minutes: 5), (Timer t) => fetchInfoHome());
 
     tab.value = 0;
     fetchUsers(1);

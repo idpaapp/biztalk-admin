@@ -27,7 +27,7 @@ class ProfileTitleTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding:
-            const EdgeInsets.only(bottom: 20, top: 20, left: 20, right: 40),
+            const EdgeInsets.only(bottom: 20, top: 20, left: 15, right: 15),
         decoration: BoxDecoration(
           color: isTitle == true ? AppColors.blueSession : Colors.white,
           borderRadius: isTitle
