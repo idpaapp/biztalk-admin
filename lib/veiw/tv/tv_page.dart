@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/model/tv/mentor_tv_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/tv/dilog/edit_contact_dialog.dart';
@@ -45,14 +46,18 @@ class TvPage extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.07,
             ),
-            ProfileSectionWidget(
-              isTransaction: false,
-              isUser: false,
-              image: image,
-              onEdit: () {},
-              fullName: fullName,
-              jobTitle: jobTitle,
-              widget: Container(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+              child: ProfileSectionWidget(
+                tab: SizedBox(height: 0),
+                isTransaction: false,
+                isUser: false,
+                image: image,
+                onEdit: () {},
+                fullName: fullName,
+                jobTitle: jobTitle,
+                widget: Container(),
+              ),
             ),
             SizedBox(
               height: Get.height * 0.07,
@@ -103,9 +108,9 @@ class TvPage extends StatelessWidget {
 
   tvSection(MentorTvsModel value, BuildContext context) =>
       Container(
-        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+        margin: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
         padding: EdgeInsets.symmetric(
-            horizontal: Get.width * 0.02, vertical: Get.height * 0.02),
+            horizontal: Get.width * 0.02, vertical: Get.height * 0.01),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),
         child: Stack(
@@ -230,9 +235,10 @@ class TvPage extends StatelessWidget {
 
   contactSection(MentorContactModel value, BuildContext context) =>
       Container(
-        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+        margin: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+
         padding: EdgeInsets.symmetric(
-            horizontal: Get.width * 0.02, vertical: Get.height * 0.02),
+            horizontal: Get.width * 0.02, vertical: Get.height * 0.01),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5), color: Colors.white),
         child: Stack(

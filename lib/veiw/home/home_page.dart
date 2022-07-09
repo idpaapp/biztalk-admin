@@ -3,8 +3,8 @@ import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/responsive/screen_type_layout.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
+import 'package:biztalk_panel_admin/veiw/home/home_desctop.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_mobile.dart';
-import 'package:biztalk_panel_admin/veiw/home/widget/home_desctop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

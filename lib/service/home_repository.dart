@@ -229,6 +229,7 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
+        print(response);
         var encode = jsonEncode(response);
 
         var data = transactionModelFromJson(encode);

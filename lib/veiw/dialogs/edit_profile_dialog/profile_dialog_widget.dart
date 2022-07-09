@@ -145,8 +145,8 @@ Future<void> showMyDialog(BuildContext context,
                         true) {
                       Get.lazyReplace(() => SingleMentorController());
 
-                      Get.offAndToNamed(SingleMentorPage.route,
-                          arguments: {"id": id, "userType": userType});
+                      // Get.offAndToNamed(SingleMentorPage.route,
+                      //     arguments: {"id": id, "userType": userType});
                     } else {
                       MyAlert.mySnakbarRed(text: "خطا");
                     }

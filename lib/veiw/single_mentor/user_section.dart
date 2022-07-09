@@ -1,12 +1,12 @@
 import 'package:biztalk_panel_admin/model/mentro/user_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/create_off_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_and_session_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/widgets/middle_container_widget.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/widgets/profile_title_table_widget.dart';
 import 'package:biztalk_panel_admin/veiw/single_user/single_user_controller.dart';
+import 'package:biztalk_panel_admin/veiw/transactin/transaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class UserSectionWidget extends StatelessWidget {
@@ -16,90 +16,89 @@ class UserSectionWidget extends StatelessWidget {
   final SingleUserController _singleUserController = Get.find();
 
   @override
-  Widget build(BuildContext context) =>Padding(
-    padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-    child: Column(
-      children: [
-        SizedBox(
-          height: Get.height * 0.03,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: MiddleContainerWidget(
-                colors: AppColors.greenBank,
-                onTap: () {
+  Widget build(BuildContext context) =>Column(
+    children: [
+      SizedBox(
+        height: Get.height * 0.03,
+      ),
+      Row(
+        children: [
+          Expanded(
+            child: MiddleContainerWidget(
+              colors: AppColors.greenBank,
+              onTap: () {
 
-                  // Get.toNamed(TransactionPage.route, arguments: {
-                  //   "image": value.data!.profile!.profile!,
-                  //   "fullName": value.data!.profile!.fullName,
-                  //   "jobTitle": value.data!.profile!.userName,
-                  //   "typeUser": "mentor",
-                  //   "id": value.data!.profile!.id,
-                  // });
-                },
-                title: "گردش حساب",
-                isBullet: value.data!.profile!.isConfirmDocs! ? true : false,
-              ),
-            ),
-            SizedBox(
-              width: 16,
-            ),
 
-            Expanded(
-              child: const MiddleContainerWidget(
-                title: "نقد و نظرات کاربران",
-                colors: AppColors.orangHome,
-              ),
-            ),
-            SizedBox(
-              width: 16,
-            ),
 
-            Expanded(
-              child: MiddleContainerWidget(
-                colors: AppColors.blueSession,
-                onTap: () {
-                  Get.to(() => RequestAndSessionPage(
-                    userType: "user",
-                  ));
-                },
-                title: "درخواست ها و جلسات",
-              ),
+                Get.toNamed(TransactionPage.route, arguments: {
+                  "image": value.data!.profile!.profile ??"",
+                  "fullName": value.data!.profile!.fullName,
+                  "jobTitle": value.data!.profile!.userName,
+                  "typeUser": "mentor",
+                  "id": value.data!.profile!.id,
+                });
+              },
+              title: "گردش حساب",
+              isBullet: value.data!.profile!.isConfirmDocs! ? true : false,
             ),
-            const SizedBox(
-              width: 16,
-            ),
+          ),
+          SizedBox(
+            width: 16,
+          ),
 
-            Expanded(
-              child: MiddleContainerWidget(
-                colors: AppColors.blueSession,
-                title: "تعریف کد تخفیف",
-                onTap: () {
-                  createOffer(context,
-                      title: "تعریف کد تخفیف",
-                      id: id,
-                      name: _singleUserController
-                          .resultFetchUser.value.data!.profile!.fullName,
-                      userType: 'user');
-                },
-              ),
+          Expanded(
+            child: const MiddleContainerWidget(
+              title: "نقد و نظرات کاربران",
+              colors: AppColors.orangHome,
             ),
-            const SizedBox(
-              width: 16,
+          ),
+          SizedBox(
+            width: 16,
+          ),
+
+          Expanded(
+            child: MiddleContainerWidget(
+              colors: AppColors.blueSession,
+              onTap: () {
+                Get.to(() => RequestAndSessionPage(
+                  userType: "user",
+                ));
+              },
+              title: "درخواست ها و جلسات",
             ),
-            Expanded(child: Container())
-          ],
-        ),
-        SizedBox(
-          height: Get.height * 0.03,
-        ),
-        mainSection(value),
-        SizedBox(
-          height: Get.height * 0.03,
-        ),
-      ],
-    ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+
+          Expanded(
+            child: MiddleContainerWidget(
+              colors: AppColors.blueSession,
+              title: "تعریف کد تخفیف",
+              onTap: () {
+                createOffer(context,
+                    title: "تعریف کد تخفیف",
+                    id: id,
+                    name: _singleUserController
+                        .resultFetchUser.value.data!.profile!.fullName,
+                    userType: 'user');
+              },
+            ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          Expanded(child: Container())
+        ],
+      ),
+      SizedBox(
+        height: Get.height * 0.03,
+      ),
+      mainSection(value),
+      SizedBox(
+        height: Get.height * 0.03,
+      ),
+    ],
   );
   mainSection(UserModel value) => Container(
 

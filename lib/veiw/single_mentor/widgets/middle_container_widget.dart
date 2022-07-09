@@ -13,7 +13,7 @@ class MiddleContainerWidget extends StatelessWidget {
   const MiddleContainerWidget(
       {Key? key,
       this.title,
-        this.iconData,
+      this.iconData,
       this.colors = Colors.yellow,
       this.onTap,
       this.isBullet = true})
@@ -22,7 +22,6 @@ class MiddleContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         height: Get.height * 0.18,
-
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -33,67 +32,86 @@ class MiddleContainerWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(flex: 3,
-                  child: Column(              crossAxisAlignment: CrossAxisAlignment.start,
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Icon(
-                          iconData,
-                          color: colors,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: Icon(
+                            iconData,
+                            color: colors,
+                          ),
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: isBullet
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
+                                child: Row(
+                                  children: [
 
-                    Expanded(
+                                    Expanded(
+                                      flex: 10,
+                                      child: CustomText(
 
-                      child:isBullet ?  Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Row(
-                          children: [
-                            CustomText(
-                              title: title,
-                              fontSize: 15,
-                              color: AppColors.lighterBlack,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Container(
-                              width: 10,
-                              height: 10,
+                                        textOverflow: TextOverflow.ellipsis,
 
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.red),
-                            ),
+                                        title: title,
+                                        fontSize: 14,
+                                        color: AppColors.lighterBlack,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
 
+                                    Expanded(
 
-                          ],
-                        ),
-                      ): Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Row(
-                          children: [
-                            CustomText(
-                              title: title,
-                              fontSize: 15,
-                              color: AppColors.lighterBlack,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ],
-                        ),
+                                      child: Center(
+                                        child: Container(
+
+                                          width: 10,
+                                          height: 10,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.red),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
+                                child: Row(
+                                  children: [
+                                    CustomText(
+                                      textOverflow: TextOverflow.ellipsis,
+                                      title: title,
+                                      fontSize: 14,
+                                      color: AppColors.lighterBlack,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ],
+                                ),
+                              ),
                       ),
-                    ),
-                  ],),
+                    ],
+                  ),
                 ),
-
-
                 Expanded(
                   child: Container(
-
-                    decoration: BoxDecoration(color: colors,borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10) )),
+                    decoration: BoxDecoration(
+                        color: colors,
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +122,11 @@ class MiddleContainerWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           title: "مشاهده",
                         ),
-                        Icon(Icons.arrow_forward,color: Colors.white,size: 22,)
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 22,
+                        )
                       ],
                     ),
                   ),

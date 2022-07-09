@@ -1,101 +1,30 @@
-import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/master_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/insert_user/insert_user_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/media/media_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/off/off_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/report/report_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/request_list/request_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/session/session_list_section.dart';
-import 'package:biztalk_panel_admin/veiw/home/widget/container_section_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/row_in_table_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/text_fiels_custom_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
-import 'package:biztalk_panel_admin/veiw/manager_page/manager_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_user/single_user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SingleData {
-  final String? title;
-  final String? number;
-  final Color bgColor;
-
-  SingleData({this.title, this.number, required this.bgColor});
-}
-
-class HomeMobilePage extends StatelessWidget {
+class HomeDesctopPage extends StatelessWidget {
   final TextEditingController _search = TextEditingController();
-  late List<SingleData> data;
 
-  HomeMobilePage(
+  HomeDesctopPage(
       {Key? key, required this.homeController, required this.offController})
-      : super(key: key) {
-    HomeInfoModel homeInfoModel = homeController.resultFetchHome.value;
-    data = [
-      SingleData(
-        title: "لیست کاربران",
-        number: homeInfoModel.data!.userCount.toString(),
-        bgColor: AppColors.blueDark,
-      ),
-      SingleData(
-        title: "حساب بانکی تایید شده",
-        number: homeInfoModel.data!.notVerifiedAccount!.toString(),
-        bgColor: AppColors.blueBgContainer,
-      ),
-      SingleData(
-        title: "درخواست تسویه حساب",
-        number: homeInfoModel.data!.checkOutCount!.toString(),
-        bgColor: AppColors.yellowBg,
-      ),
-      SingleData(
-        title: "درخواست جلسه",
-        number: homeInfoModel.data!.requestCount!.toString(),
-        bgColor: AppColors.blueDark,
-      ),
-      SingleData(
-        title: "جلسه(نیاز به بررسی)",
-        number: homeInfoModel.data!.sessionCount!.toString(),
-        bgColor: AppColors.greenBg,
-      ),
-      SingleData(
-        title: "گزارش تخلف",
-        number: homeInfoModel.data!.reportCount!.toString(),
-        bgColor: AppColors.red,
-      ),
-      SingleData(
-        title: "رسانه جدیدوارد شده",
-        number: homeInfoModel.data!.tvCount!.toString(),
-        bgColor: AppColors.yellowBg,
-      ),
-      SingleData(
-        title: " کدهای تخفیف",
-        number: "1371",
-        bgColor: AppColors.yellowBg,
-      ),
-      SingleData(
-        title: "کاربران بررسی نشده",
-        number: homeInfoModel.data!.userChecking!.toString(),
-        bgColor: AppColors.blueDark,
-      ),SingleData(
-        title: "مدیریت صفحه اصلی",
-        number: "0",
-        bgColor: AppColors.blueDark,
-
-      ),SingleData(
-        title: "افزودن کاربر جدید",
-        number: "0",
-        bgColor: AppColors.blueDark,
-
-      ),
-    ];
-  }
+      : super(key: key) ;
 
   final HomeController homeController;
 
@@ -107,48 +36,67 @@ class HomeMobilePage extends StatelessWidget {
         body: getBody(context),
       );
 
-  Widget getBody(
-    BuildContext context,
-  ) =>
-      SingleChildScrollView(
-        child: Column(children: [
-          const TopSectionPanelAdmin(title: "کاربران"),
-          SizedBox(
-            height: Get.height * 0.07,
-          ),
-          containerSection(context),
-          SizedBox(
-            height: Get.height * 0.07,
-          ),
-          Obx(() {
-            if (homeController.tab.value == 1) {
-              return BankAccountSection();
-            } else if (homeController.tab.value == 2) {
-              return CheckListSection();
-            } else if (homeController.tab.value == 3) {
-              return RequestListSection();
-            } else if (homeController.tab.value == 4) {
-              return SessionListSection();
-            } else if (homeController.tab.value == 5) {
-              return ReportListSection();
-            } else if (homeController.tab.value == 6) {
-              return MediaListSection();
-            } else if (homeController.tab.value == 7) {
-              return OffPage();
-            } else if (homeController.tab.value == 8) {
-              homeController.fetchUsers(1, status: "CHECKING");
-              return userListSection();
-            } else if (homeController.tab.value == 0){
-              homeController.fetchUsers(1);
-              return userListSection();
-            }else{
-            return const SizedBox();
-            }
-          }),
-          const SizedBox(
-            height: 30,
-          )
-        ]),
+  Widget getBody(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          children: [
+            const TopSectionPanelAdmin(title: "کاربران", showBottom: false),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 2, child: MasterPage()),
+                const SizedBox(
+                  width: 12,
+                ),
+                Expanded(
+                  flex: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: Obx(
+                      () {
+                        if (homeController.tab.value == 1) {
+                          return BankAccountSection();
+                        } else if (homeController.tab.value == 2) {
+                          return CheckListSection();
+                        } else if (homeController.tab.value == 3) {
+                          return RequestListSection();
+                        } else if (homeController.tab.value == 4) {
+                          return SessionListSection();
+                        } else if (homeController.tab.value == 5) {
+                          return ReportListSection();
+                        } else if (homeController.tab.value == 6) {
+                          return MediaListSection();
+                        } else if (homeController.tab.value == 7) {
+                          return OffPage();
+                        } else if (homeController.tab.value == 8) {
+                          homeController.fetchUsers(1, status: "CHECKING");
+                          return userListSection();
+                        } else if (homeController.tab.value == 0) {
+                          homeController.fetchUsers(1);
+                          return userListSection();
+                        } else if (homeController.tab.value == 11) {
+                          if (homeController.userType.value == "عادی") {
+
+                            return SingleUserPage(
+                                userType: homeController.userType.value,
+                                id: homeController.userId.value);
+                          } else {
+
+                            return SingleMentorPage(
+                              userType: homeController.userType.value,
+                              finalID: homeController.userId.value,
+                            );
+                          }
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       );
 
   Widget userListSection() => Container(
@@ -204,13 +152,9 @@ class HomeMobilePage extends StatelessWidget {
                               .resultHomeUsers.value.data!.users![index];
                           return TitleRowInTableWidget(
                             onTap: () {
-                              if (user.userType == "عادی") {
-                                Get.toNamed(SingleUserPage.route,
-                                    arguments: {"id": user.id.toString(),"userType":user.userType});
-                              } else {
-                                Get.toNamed(SingleMentorPage.route,
-                                    arguments: {"id": user.id.toString(),"userType":user.userType});
-                              }
+                              homeController.userType.value = user.userType!;
+                              homeController.userId.value = user.id!;
+                              homeController.tab.value = 11;
                             },
                             isTitle: false,
                             phoneNumber: user.phoneNumber ?? "",
@@ -312,41 +256,4 @@ class HomeMobilePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget containerSection(BuildContext context) => SizedBox(
-        height: Get.height * 0.3,
-        child: ListView.builder(
-            physics: const ScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: data.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Obx(
-                () => Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: Expanded(
-                    child: ContainerSectionWidget(
-                      title: data[index].title,
-                      onTap: () {
-                        homeController.tab.value = index;
-                        if(index == 9){
-                          Get.to(() => ManagerPage());
-
-                        }
-                        if(index == 10){
-                          insertUser(context,"افزودن کاربر جدید")
-                          ;
-                        }
-                      },
-                      number: int.parse(data[index].number.toString()),
-                      borderColor: homeController.tab.value == index
-                          ? Colors.red
-                          : data[index].bgColor,
-                      bgColors: data[index].bgColor,
-                    ),
-                  ),
-                ),
-              );
-            }),
-      );
 }

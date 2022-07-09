@@ -40,6 +40,8 @@ class AppColors {
   static const veryLightBlue = Color(0xffE9F6F0);
   static const blueLight = Color(0x410088ff);
   static const vBlue = Color(0x230088ff);
+  static const masterColor = Color(0xff1F1F41);
+  static const masterColorSelected = Color(0xff15152D);
 
 
 

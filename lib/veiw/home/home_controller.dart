@@ -22,6 +22,8 @@ class HomeController extends GetxController {
   RxBool showMoreRegion = false.obs;
 
   RxInt tab = 0.obs;
+  RxString userType = "".obs;
+  RxString userId = "".obs;
   RxString failureMessageChangeStatus = "".obs;
   RxBool isLoadingChangeStatus = false.obs;
   var resultChangeStatus = EditModel().obs;

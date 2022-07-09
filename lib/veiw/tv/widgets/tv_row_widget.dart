@@ -126,7 +126,7 @@ class TvRowWidget extends StatelessWidget {
                         children: [
                           status != true
                               ? ButtonText(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(left: 5),
                                   onPressed: onConfirm,
                                   width: Get.width * 0.06,
                                   height: Get.height * 0.038,
@@ -137,7 +137,7 @@ class TvRowWidget extends StatelessWidget {
                                   bgColor: AppColors.green,
                                   activeBorder: 1,
                                   margin:
-                                      EdgeInsets.only(left: Get.width * 0.02),
+                                      EdgeInsets.only(left: Get.width * 0.01),
                                 )
                               : const SizedBox(
                                   height: 0,

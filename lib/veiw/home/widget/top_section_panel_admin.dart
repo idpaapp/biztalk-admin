@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 class TopSectionPanelAdmin extends StatelessWidget {
   final String title;
   final onDashbord;
-  const TopSectionPanelAdmin({Key? key,required this.title,this.onDashbord}) : super(key: key);
+  final bool showBottom;
+  const TopSectionPanelAdmin({Key? key,required this.title,this.onDashbord,this.showBottom=true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -14,7 +15,7 @@ class TopSectionPanelAdmin extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.008),
             width: Get.width,
-            height: Get.height * 0.05,
+            height: Get.height * 0.07,
             color: Colors.indigo,
             child: Padding(
               padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
@@ -23,7 +24,7 @@ class TopSectionPanelAdmin extends StatelessWidget {
                   children: [
 
                     const CustomText(
-                        title: "پنل مدیریت بیزتاک", color: Colors.white),
+                        title: "پنل مدیریت بیزتاک", color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
                     Row(
                       children: [
                         const Icon(Icons.person, color: Colors.white),
@@ -36,7 +37,7 @@ class TopSectionPanelAdmin extends StatelessWidget {
                   ]),
             ),
           ),
-          Container(
+        !showBottom ? SizedBox(height: 0,):  Container(
             padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
             width: Get.width,
             height: Get.height * 0.04,

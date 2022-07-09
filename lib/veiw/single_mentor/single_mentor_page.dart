@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/resources/master_page.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/calender/calender_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/create_off_dialog.dart';
@@ -23,19 +24,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SingleMentorPage extends StatelessWidget {
-  static const route = "/singleMentorPage";
-
   final String? rout;
-  late String finalID;
-  late String userType;
+  final String? finalID;
+  final String? userType;
 
   SingleMentorPage({
     Key? key,
     this.rout,
+    this.finalID,
+    this.userType,
   }) : super(key: key) {
-    finalID = Get.arguments["id"];
-    userType = Get.arguments['userType'];
-    _singleMentorController.fetchMentor(finalID);
+    _singleMentorController.selectedChangeUser.value = 0;
+    _singleMentorController.fetchMentor(finalID!);
   }
 
   List data = [
@@ -50,42 +50,31 @@ class SingleMentorPage extends StatelessWidget {
       Get.put(SingleUserController());
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: AppColors.dividerLight,
-        body: Obx(() {
-          if (_singleMentorController.failureMessageFetchUser.value != "") {
-            return Center(
-              child: CustomText(
-                  title: _singleMentorController.failureMessageFetchUser.value),
-            );
-          } else if (_singleMentorController.isLoadingFetchUser.value) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            return getBody(
-                context, _singleMentorController.resultFetchUser.value);
-          }
-        }),
-      );
+  Widget build(BuildContext context) => Obx(() {
+        if (_singleMentorController.failureMessageFetchUser.value != "") {
+          return Center(
+            child: CustomText(
+                title: _singleMentorController.failureMessageFetchUser.value),
+          );
+        } else if (_singleMentorController.isLoadingFetchUser.value) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return getBody(
+              context, _singleMentorController.resultFetchUser.value);
+        }
+      });
 
   Widget getBody(BuildContext context, MentorModel value) {
+
     _singleMentorController.switchValue.value =
         value.data!.profile!.status == "ACTIVE" ? true : false;
     return SingleChildScrollView(
-      child: Column(children: [
-        TopSectionPanelAdmin(
-          title: "کاربران" " /" "rout",
-          onDashbord: () {
-            Get.back();
-          },
-        ),
-        SizedBox(
-          height: Get.height * 0.07,
-        ),
-        Obx(() => Padding(
-              padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-              child: ProfileSectionWidget(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+        child: Column(children: [
+          Obx(() => ProfileSectionWidget(
                 userType: userType,
                 showSwitch: true,
                 statustitle: value.data!.profile!.statusTitle,
@@ -106,18 +95,20 @@ class SingleMentorPage extends StatelessWidget {
                                       .selectedChangeUser.value = index;
                                 },
                                 child: Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(horizontal: 30),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 30),
                                     decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: _singleMentorController
-                                                            .selectedChangeUser
-                                                            .value ==
-                                                        index
-                                                    ? AppColors.blueSession
-                                                    : Colors.white,
-                                                width: 3))),
+                                      border: Border(
+                                        bottom: BorderSide(
+                                            color: _singleMentorController
+                                                        .selectedChangeUser
+                                                        .value ==
+                                                    index
+                                                ? AppColors.blueSession
+                                                : Colors.white,
+                                            width: 3),
+                                      ),
+                                    ),
                                     child: CustomText(
                                       title: data[index],
                                       fontSize: 14,
@@ -167,52 +158,55 @@ class SingleMentorPage extends StatelessWidget {
                 },
                 fullName: value.data!.profile!.fullName,
                 jobTitle: value.data!.profile!.jobTitle ?? "",
-              ),
-            )),
-        Obx(() {
-          if (_singleMentorController.selectedChangeUser.value == 0) {
-            return Obx(() {
-              if (_singleMentorController.failureMessageFetchUser.value != "") {
-                _singleMentorController.fetchMentor(finalID);
+              )),
+          Obx(() {
+            if (_singleMentorController.selectedChangeUser.value == 0) {
+              return Obx(() {
+                if (_singleMentorController.failureMessageFetchUser.value !=
+                    "") {
+                  _singleMentorController.fetchMentor(finalID!);
 
-                return Center(
-                  child: CustomText(
-                      title: _singleMentorController
-                          .failureMessageFetchUser.value),
-                );
-              } else if (_singleMentorController.isLoadingFetchUser.value) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return mentroSection(
-                    _singleMentorController.resultFetchUser.value, context);
-              }
-            });
-          } else {
-            _singleUserController.fetchUser(finalID);
-            return Obx(() {
-              if (_singleUserController.failureMessageFetchUser.value != "") {
-                return Center(
-                  child: CustomText(
-                      title:
-                          _singleUserController.failureMessageFetchUser.value),
-                );
-              } else if (_singleUserController.isLoadingFetchUser.value) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return UserSectionWidget(
-                  value:  _singleUserController.resultFetchUser.value,id: finalID,);
-              }
-            });
-          }
-        }),
-        SizedBox(
-          height: Get.height * 0.03,
-        ),
-      ]),
+                  return Center(
+                    child: CustomText(
+                        title: _singleMentorController
+                            .failureMessageFetchUser.value),
+                  );
+                } else if (_singleMentorController.isLoadingFetchUser.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return mentroSection(
+                      _singleMentorController.resultFetchUser.value, context);
+                }
+              });
+            } else {
+              _singleUserController.fetchUser(finalID!);
+              return Obx(() {
+                if (_singleUserController.failureMessageFetchUser.value != "") {
+                  return Center(
+                    child: CustomText(
+                        title: _singleUserController
+                            .failureMessageFetchUser.value),
+                  );
+                } else if (_singleUserController.isLoadingFetchUser.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return UserSectionWidget(
+                    value: _singleUserController.resultFetchUser.value,
+                    id: finalID,
+                  );
+                }
+              });
+            }
+          }),
+          SizedBox(
+            height: Get.height * 0.03,
+          ),
+        ]),
+      ),
     );
   }
 
@@ -256,167 +250,158 @@ class SingleMentorPage extends StatelessWidget {
 
   Widget mentroSection(MentorModel value, BuildContext context) => Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-            child: Column(
-              children: [
-                const SizedBox(height: 24,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        colors: AppColors.yellowCalandar,
-                        onTap: () {
-                          Get.toNamed(CalenderPage.route, arguments: {
-                            "date": english(),
-                            "mentorId": value.data!.profile!.id
-                          });
-                        },
-                        title: "تقویم",
-                        iconData: Icons.calendar_today_outlined,
+          Column(
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      colors: AppColors.yellowCalandar,
+                      onTap: () {
+                        Get.toNamed(CalenderPage.route, arguments: {
+                          "date": english(),
+                          "mentorId": value.data!.profile!.id
+                        });
+                      },
+                      title: "تقویم",
+                      iconData: Icons.calendar_today_outlined,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      colors: AppColors.greenBank,
+                      onTap: () {
+                        var profile = value.data!.profile!;
 
-                      ),
+                        Get.toNamed(TransactionPage.route, arguments: {
+                          "image": profile.profile ?? "",
+                          "fullName": profile.fullName,
+                          "jobTitle": profile.jobTitle ?? "",
+                          "typeUser": "mentor",
+                          "id": profile.id,
+                        });
+                      },
+                      title: "گردش حساب",
+                      isBullet:
+                          value.data!.profile!.isConfirmDocs! ? true : false,
                     ),
-                    const SizedBox(
-                      width: 16,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      colors: AppColors.pinkDucument,
+                      title: "سوابق",
+                      isBullet: true,
+                      onTap: () {
+                        Get.to(() => DocumentPage(
+                              data: value,
+                            ));
+                      },
                     ),
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        colors: AppColors.greenBank,
-                        onTap: () {
-                          var profile = value.data!.profile!;
-
-                          Get.toNamed(TransactionPage.route, arguments: {
-                            "image": profile.profile ?? "",
-                            "fullName": profile.fullName,
-                            "jobTitle": profile.jobTitle ?? "",
-                            "typeUser": "mentor",
-                            "id": profile.id,
-                          });
-                        },
-                        title: "گردش حساب",
-                        isBullet:
-                            value.data!.profile!.isConfirmDocs! ? true : false,
-                      ),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  const Expanded(
+                    child: MiddleContainerWidget(
+                      title: "نقد و نظرات کاربران",
+                      colors: AppColors.orangHome,
                     ),
-                    const SizedBox(
-                      width: 16,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      onTap: () {
+                        Get.to(
+                          () => RequestAndSessionPage(
+                            userType: "mentor",
+                          ),
+                        );
+                      },
+                      title: "درخواست ها و جلسات",
+                      colors: AppColors.blueSession,
                     ),
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        colors: AppColors.pinkDucument,
-                        title: "سوابق",
-                        isBullet: true,
-                        onTap: () {
-                          Get.to(() => DocumentPage(
-                                data: value,
-                              ));
-                        },
-                      ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      colors: AppColors.blueSession,
+                      title: "راه های ارتباطی و رسانه ها",
+                      onTap: () {
+                        var profile = value.data!.profile!;
+                        Get.toNamed(TvPage.route, arguments: {
+                          "image": profile.profile,
+                          "fullName": profile.fullName,
+                          "jobTitle": profile.jobTitle,
+                          "id": profile.id,
+                        });
+                        // contactDialog(context,value.data!.profile!.id.toString());
+                      },
                     ),
-                    const SizedBox(
-                      width: 16,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: MiddleContainerWidget(
+                      colors: AppColors.blueSession,
+                      title: "تعریف کد تخفیف",
+                      onTap: () {
+                        createOffer(context,
+                            title: "تعریف کد تخفیف",
+                            id: finalID,
+                            name: _singleMentorController
+                                .resultFetchUser.value.data!.profile!.fullName,
+                            userType: 'mentor');
+                      },
                     ),
-                    const Expanded(
-                      child: MiddleContainerWidget(
-                        title: "نقد و نظرات کاربران",
-                        colors: AppColors.orangHome,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        onTap: () {
-                          Get.to(
-                            () => RequestAndSessionPage(
-                              userType: "mentor",
-                            ),
-                          );
-                        },
-                        title: "درخواست ها و جلسات",
-                        colors: AppColors.blueSession,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        colors: AppColors.blueSession,
-                        title: "راه های ارتباطی و رسانه ها",
-                        onTap: () {
-                          var profile = value.data!.profile!;
-                          Get.toNamed(TvPage.route, arguments: {
-                            "image": profile.profile,
-                            "fullName": profile.fullName,
-                            "jobTitle": profile.jobTitle,
-                            "id": profile.id,
-                          });
-                          // contactDialog(context,value.data!.profile!.id.toString());
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: MiddleContainerWidget(
-                        colors: AppColors.blueSession,
-                        title: "تعریف کد تخفیف",
-                        onTap: () {
-                          createOffer(context,
-                              title: "تعریف کد تخفیف",
-                              id: finalID,
-                              name: _singleMentorController.resultFetchUser
-                                  .value.data!.profile!.fullName,
-                              userType: 'mentor');
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                ],
+              ),
+            ],
           ),
           SizedBox(
             height: Get.height * 0.03,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-            child: mainSectionMentor(value),
-          ),
+          mainSectionMentor(value),
           SizedBox(
             height: Get.height * 0.03,
           ),
         ],
       );
-
-
-
-
 }

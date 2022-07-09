@@ -21,9 +21,6 @@ final getPages = <GetPage>[
     name: HomePage.route,
     page: () => HomePage(),
   ), GetPage(
-    name: SingleMentorPage.route,
-    page: () => SingleMentorPage(),
-  ), GetPage(
     name: SingleUserPage.route,
     page: () => SingleUserPage(),
   ), GetPage(

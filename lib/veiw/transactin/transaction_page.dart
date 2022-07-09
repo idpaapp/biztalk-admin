@@ -1,5 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/widgets/profile_section_widget.dart';
 import 'package:biztalk_panel_admin/veiw/transactin/transaction_controller.dart';
@@ -20,13 +21,11 @@ class TransactionPage extends StatelessWidget {
       Get.put(TransactionController());
 
   TransactionPage({Key? key}) : super(key: key) {
-
-    image = Get.arguments['image'];
-    id = Get.arguments['id'];
-    fullName = Get.arguments['fullName'];
-    jobTitle = Get.arguments['jobTitle'];
-    typeUser = Get.arguments['typeUser'];
-
+    image = Get.arguments['image'] ?? "";
+    id = Get.arguments['id'] ?? "";
+    fullName = Get.arguments['fullName'] ?? "";
+    jobTitle = Get.arguments['jobTitle'] ?? "";
+    typeUser = Get.arguments['typeUser'] ?? "";
 
     _transactionController.fetchTransaction(id, 1);
   }
@@ -51,53 +50,59 @@ class TransactionPage extends StatelessWidget {
       );
 
   Widget getBody() => SingleChildScrollView(
-    child: Column(
+        child: Column(
           children: [
             const TopSectionPanelAdmin(title: "گردش حساب"),
             SizedBox(
               height: Get.height * 0.07,
             ),
-            ProfileSectionWidget(
-              isTransaction: true,
-              isUser: typeUser == "user" ? true : false,
-              image: image,
-              onEdit: () {},
-              fullName: fullName,
-              jobTitle: jobTitle,
-              widget: Row(
-                children: [
-                  ContainerTransactionProfileWidget(
-                    title: "درخواست تسویه حساب",
-                    bgColor: AppColors.orange,
-                    amount: _transactionController.resultTransaction.value.data!
-                            .checkOutInfo!.amountFormat ??
-                        "0",
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.01,
-                  ),
-                  ContainerTransactionProfileWidget(
-                      amount: _transactionController.resultTransaction.value.data!
-                              .walletInfo!.formattedBalance ??
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+              child: ProfileSectionWidget(
+                tab: SizedBox(height: 0),
+                isTransaction: true,
+                isUser: typeUser == "user" ? true : false,
+                image: image,
+                onEdit: () {},
+                fullName: fullName,
+                jobTitle: jobTitle,
+                widget: Row(
+                  children: [
+                    ContainerTransactionProfileWidget(
+                      title: "درخواست تسویه حساب",
+                      bgColor: AppColors.orange,
+                      amount: _transactionController.resultTransaction.value
+                              .data!.checkOutInfo!.amountFormat ??
                           "0",
-                      bgColor: AppColors.green,
-                      title: "موجودی کیف پول"),
-                ],
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.01,
+                    ),
+                    ContainerTransactionProfileWidget(
+                        amount: _transactionController.resultTransaction.value
+                                .data!.walletInfo!.formattedBalance ??
+                            "0",
+                        bgColor: AppColors.green,
+                        title: "موجودی کیف پول"),
+                  ],
+                ),
               ),
             ),
             SizedBox(
               height: Get.height * 0.07,
             ),
-            mainSection(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+              child: mainSection(),
+            ),
             const SizedBox(
               height: 10,
             )
           ],
         ),
-  );
+      );
 
   mainSection() => Container(
-        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
         padding: EdgeInsets.symmetric(
             horizontal: Get.width * 0.02, vertical: Get.height * 0.02),
         decoration: BoxDecoration(
