@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
@@ -13,57 +14,64 @@ class MasterPage extends StatelessWidget {
     MasterModel(
         title: "لیست کاربران",
         iconData: Icons.account_box_outlined,
-        count: "1",
+        count: _homeController.resultFetchHome.value.data!.userCount.toString(),
         key: "USERS"),
     MasterModel(
         title: "حساب های بانکی تایید شده",
         iconData: Icons.wallet,
-        count: "0",
+        count: _homeController.resultFetchHome.value.data!.notVerifiedAccount
+            .toString(),
         key: "BANK"),
     MasterModel(
         title: "درخواست تسویه حساب",
         iconData: Icons.wallet,
-        count: "0",
+        count: _homeController.resultFetchHome.value.data!.checkOutCount
+            .toString(),
         key: "WITHRAW"),
     MasterModel(
         title: "درخواست جلسه",
         iconData: Icons.list_rounded,
-        count: "0",
+        count:
+            _homeController.resultFetchHome.value.data!.requestCount.toString(),
         key: "REQUEST"),
     MasterModel(
         title: "جلسه( نیاز به بررسی)",
         iconData: Icons.list_rounded,
-        count: "0",
+        count:
+            _homeController.resultFetchHome.value.data!.sessionCount.toString(),
         key: "SESSION"),
     MasterModel(
         title: "گزارش تخلف",
         iconData: Icons.list_alt,
-        count: "2",
+        count:
+            _homeController.resultFetchHome.value.data!.reportCount.toString(),
         key: "REPORT"),
     MasterModel(
         title: "رسانه جدید وارد شده",
         iconData: Icons.perm_media_rounded,
-        count: "2",
+        count: _homeController.resultFetchHome.value.data!.tvCount.toString(),
         key: "MEDIA"),
     MasterModel(
         title: "کد های تخفیف",
         iconData: Icons.card_giftcard_sharp,
-        count: "2",
+        count:
+            _homeController.resultFetchHome.value.data!.userChecking.toString(),
         key: "OFF_COD"),
     MasterModel(
         title: "کاربران بررسی نشده",
         iconData: Icons.person_outline,
-        count: "2",
+        count:
+            _homeController.resultFetchHome.value.data!.userChecking.toString(),
         key: "USER_NOT"),
     MasterModel(
         title: "مدیریت صفحه اصلی",
         iconData: Icons.card_giftcard_outlined,
-        count: "2",
+        count: "0",
         key: "MANAGER_PAGE"),
     MasterModel(
         title: "افزودن کاربر جدید",
         iconData: Icons.person_add_alt,
-        count: "2",
+        count: "0",
         key: "INSERT_USER"),
   ];
 
@@ -74,12 +82,12 @@ class MasterPage extends StatelessWidget {
         color: AppColors.masterColor,
         child: Align(
           alignment: Alignment.topRight,
-          
           child: SingleChildScrollView(
             child: Column(
-              
               children: [
-                SizedBox(height: 32,),
+                SizedBox(
+                  height: 32,
+                ),
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: masterList.length,
@@ -132,35 +140,40 @@ class ItemMasterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: onTap,
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-          color: selected,
-          child: Row(
-            children: [
-              Expanded(child: Icon(iconData, color: Colors.white, size: 20)),
-            
-              Expanded(flex: 5,child: CustomText(
-                title: title,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              ),),
-            
-              count == null
-                  ? SizedBox(
-                      width: 0,
-                    )
-                  : Expanded(
+        child: Stack(
+          alignment: Alignment.centerLeft,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+              color: selected,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Icon(iconData, color: Colors.white, size: 20)),
+                  Expanded(
+                    flex: 7,
                     child: CustomText(
-                        title: "($count)",
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
+                      title: title,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
                   ),
-            ],
-          ),
+                ],
+              ),
+            ),
+            count == null || count == "0"
+                ? SizedBox(
+                    width: 0,
+                  )
+                : Container(margin: EdgeInsets.symmetric(horizontal: 12),height: 25,width: 25,decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white),child: Center(
+                  child: CustomText(
+                  title: count!,
+                  fontSize: 14,
+                  color: AppColors.masterColor),
+                ),)
+          ],
         ),
       );
 }
