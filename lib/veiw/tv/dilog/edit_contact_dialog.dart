@@ -17,7 +17,7 @@ Future<void> editContactDialog(BuildContext context,
     {String? title,
     String? mainId,
     String? userId,
-    bool? isCreate,
+    required bool isCreate,
     String? type,
     String? imageType,
     String? mentorImage,
@@ -80,11 +80,7 @@ Future<void> editContactDialog(BuildContext context,
                   ),),),
         ),
         actions: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: AppColors.dividerDark,
-          ),
+
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
@@ -163,7 +159,21 @@ Future<void> editContactDialog(BuildContext context,
                 const SizedBox(
                   width: 10,
                 ),
-                ButtonText(
+              isCreate?  ButtonText(
+                  borderRadios: 10,
+                  onPressed: () {
+                    Get.back();
+                  },
+                  text: "انصراف",
+                  height: 40,
+                  fontSize: 14,
+                  width: 70,
+                  fontWeight: FontWeight.w500,
+                  textColor: AppColors.blueSession,
+                  bgColor: Colors.white,
+                  borderColor: AppColors.blueSession,
+                  activeBorder: 1,
+                ): ButtonText(
                   onPressed: ()async {
                     confirmDialog(context,title: "آیا برای حذف راه ارتباطی اطمینان دارید؟",onConfirm: ()async{ Map<String, dynamic> body = {
                       "_id": mainId,

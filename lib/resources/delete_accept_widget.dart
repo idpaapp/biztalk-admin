@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 class DeleteAcceptWidget extends StatelessWidget {
   final onDelete;
   final onConfirm;
+
   const DeleteAcceptWidget({Key? key,this.onConfirm,this.onDelete}) : super(key: key);
 
   @override

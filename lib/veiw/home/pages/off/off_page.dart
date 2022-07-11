@@ -19,15 +19,16 @@ class OffPage extends StatelessWidget {
   final OffController _offController = Get.put(OffController());
 
   @override
-  Widget build(BuildContext context) => Container(
-        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), color: Colors.white),
-        child: Stack(
-          alignment: Alignment.topLeft,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50),
+  Widget build(BuildContext context) => Padding(
+    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
+    child: Stack(
+      alignment: Alignment.topLeft,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 60),
+
+          decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
               child: Column(
                 children: [
                   const OffWidget(
@@ -117,30 +118,32 @@ class OffPage extends StatelessWidget {
                 ],
               ),
             ),
-            ButtonText(
-              onPressed: () async {
-                MyAlert.loding();
-                await _offController.fetchCategory();
-                Get.back();
-                if (_offController.failureMessageCategory.value != "") {
-                  MyAlert.mySnakbarRed(
-                      text: _offController.failureMessageCategory.value);
-                } else {
-                  _offController.selectedCategoryId.value =
-                      _offController.resultCategory.value.data!.first.id!;
-                  createOffer(context, title: "تعریف کد تخفیف");
-                }
-              },
-              text: "افزودن کد تخفیف",
-              height: 45,
-              width: Get.width * 0.2,
-              fontSize: 14,
-              textColor: Colors.white,
-              bgColor: AppColors.darkerGreen,
-              fontWeight: FontWeight.w500,
-              borderRadios: 5,
-            )
-          ],
-        ),
-      );
+        ButtonText(
+          onPressed: () async {
+            MyAlert.loding();
+            await _offController.fetchCategory();
+            Get.back();
+            if (_offController.failureMessageCategory.value != "") {
+              MyAlert.mySnakbarRed(
+                  text: _offController.failureMessageCategory.value);
+            } else {
+              _offController.selectedCategoryId.value =
+              _offController.resultCategory.value.data!.first.id!;
+              createOffer(context, title: "تعریف کد تخفیف");
+            }
+          },
+          text: "افزودن کد تخفیف",
+          height: 45,
+
+          width: Get.width * 0.1,
+          fontSize: 14,
+          textColor: Colors.white,
+          bgColor: AppColors.darkerGreen,
+          fontWeight: FontWeight.w500,
+          borderRadios: 5,
+        )
+
+      ],
+    ),
+  );
 }

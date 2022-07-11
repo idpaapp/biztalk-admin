@@ -48,6 +48,7 @@ class TitleTextFieldWidget extends StatelessWidget {
               !activeDelete
                   ? const SizedBox()
                   : DeleteAcceptWidget(
+
                       onConfirm: onConfirm,
                       onDelete: onDelete,
                     ),
