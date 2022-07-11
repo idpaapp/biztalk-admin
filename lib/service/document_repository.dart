@@ -282,6 +282,7 @@ class DocumentRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
+        print(response);
 
         var encode = jsonEncode(response);
 

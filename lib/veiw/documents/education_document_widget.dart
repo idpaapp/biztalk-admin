@@ -21,55 +21,66 @@ class EducationDocumentSectionWidget extends StatelessWidget {
     this.data,
   }) : super(key: key);
   final DocumentController _documentController = Get.put(DocumentController());
+  final TextEditingController uniName = TextEditingController();
+  final TextEditingController uniDegree = TextEditingController();
+  final TextEditingController start = TextEditingController();
+  final TextEditingController end = TextEditingController();
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 30),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5), color: Colors.white),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      CustomText(
-        title: title,
-        color: AppColors.titleColor,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-      ListView.builder(
-          shrinkWrap: true,
-          physics: const ScrollPhysics(),
-          itemCount: educations!.length,
-          itemBuilder: (context, index) {
-            var education = educations![index];
-            return NewItemDocumentWidget(
-              title: education.school == null
-                  ? ""
-                  : education.school!.title ?? "",
-              subTitle: education.degree ?? "",
-              yers:   education.activityYear ?? "",
-              statusTitle: education.statusTitle,
-              onShow: () {
-                EditDocumentDialog(context, "نام دانشگاه",
-                    "مقطع تحصیلی", "رشته", "تحصیل", "edu",
-                    name: TextEditingController(
-                      text: education.schoolTitle,
-                    ),onDelete: (){
-
-                      MyAlert.deleteAlertDialog(context,text: "آیا برای حذف اطمینان دارید؟",onConfirm: ()async{
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5), color: Colors.white),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          CustomText(
+            title: title,
+            color: AppColors.titleColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          ListView.builder(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
+              itemCount: educations!.length,
+              itemBuilder: (context, index) {
+                var education = educations![index];
+                return NewItemDocumentWidget(
+                  title: education.schoolTitle == null
+                      ? ""
+                      : education.schoolTitle ?? "",
+                  subTitle: education.degree ?? "",
+                  yers: education.activityYear ?? "",
+                  statusTitle: education.statusTitle,
+                  onShow: () {
+                    uniName.text = education.schoolTitle ?? "";
+                    uniDegree.text = education.degree ?? "";
+                    end.text = education.endYear ?? "";
+                    start.text = education.startYear ?? "";
+                    _documentController.isActiveJobSwitch.value =
+                        education.currentCourse ?? false;
+                    EditDocumentDialog(
+                        context, "نام دانشگاه", "رشته", "", "تحصیل", "edu",
+                        onDelete: () {
+                      MyAlert.deleteAlertDialog(context,
+                          text: "آیا برای حذف اطمینان دارید؟",
+                          onConfirm: () async {
                         MyAlert.loding();
-                        await _documentController.deleteEducation(data!.data!.profile!.id!,education.id!);
+                        await _documentController.deleteEducation(
+                            data!.data!.profile!.id!, education.id!);
                         Get.back();
-                        if(_documentController.failureMessageDeleteEducation.value !=""){
-                          MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteEducation.value);
-                        }else{
+                        if (_documentController
+                                .failureMessageDeleteEducation.value !=
+                            "") {
+                          MyAlert.mySnakbarRed(
+                              text: _documentController
+                                  .failureMessageDeleteEducation.value);
+                        } else {
                           Get.back();
                           Get.back();
-                          _documentController.getDocument(data!.data!.profile!.id!);
-
+                          _documentController
+                              .getDocument(data!.data!.profile!.id!);
                         }
                       });
-
-
-
                     }, onConfirmtitle: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
@@ -80,8 +91,8 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                             : "DOC_CHECKING"
                       };
 
-                      onConfirmAdditional(context,
-                          body, "ایا برای تایید اطمینان دارید؟");
+                      onConfirmAdditional(
+                          context, body, "ایا برای تایید اطمینان دارید؟");
                     }, onCancelTitle: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
@@ -89,8 +100,8 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": false,
                         "docStatus": "DOC_NOT_CONFIRM"
                       };
-                      onConfirmAdditional(context,
-                          body, "ایا برای عدم تایید اطمینان دارید؟");
+                      onConfirmAdditional(
+                          context, body, "ایا برای عدم تایید اطمینان دارید؟");
                     }, onConfirm: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
@@ -98,8 +109,8 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": true,
                         "docStatus": "DOC_CONFIRM"
                       };
-                      onConfirmAdditional(context,
-                          body, "ایا برای تایید اطمینان دارید؟");
+                      onConfirmAdditional(
+                          context, body, "ایا برای تایید اطمینان دارید؟");
                     }, onCancel: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
@@ -107,44 +118,65 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "status": true,
                         "docStatus": "DOC_NOT_CONFIRM"
                       };
-                      onConfirmAdditional(context,
-                          body, "ایا برای تایید اطمینان دارید؟");
+                      onConfirmAdditional(
+                          context, body, "ایا برای تایید اطمینان دارید؟");
+                    }, onSave: () async {
+                      Map<String, dynamic> body = {
+                        "degree": uniDegree.text,
+                        "startYear": start.text,
+                        "endYear": end.text,
+                        "currentCourse":
+                            _documentController.isActiveJobSwitch.value,
+                        'schoolTitle': uniName.text
+                      };
+
+                      print(body);
+
+                      MyAlert.loding();
+                      await _documentController.editEducation(
+                          body, data!.data!.profile!.id!, education.id!);
+                      Get.back();
+                      if (_documentController
+                              .failureMessageEditEducation.value !=
+                          "") {
+                        MyAlert.mySnakbarRed(
+                            text: _documentController
+                                .failureMessageEditEducation.value);
+                      } else {
+                        _documentController
+                            .getDocument(data!.data!.profile!.id!);
+                        Get.back();
+                      }
                     },
-                    atachment: education.attachments,
-                    name2: TextEditingController(
-                        text: education.schoolTitle),
-                    name3: TextEditingController(
-                        text: education.schoolTitle),
-                    startDate: TextEditingController(
-                        text: education.startYear),
-                    endDate:
-                    TextEditingController(text: education.endYear),
-                    isActiveSwitch: education.currentCourse);
+                        atachment: education.attachments,
+                        name: uniName,
+                        name2: uniDegree,
+                        startDate: start,
+                        endDate: end,
+                        isActiveSwitch:
+                        _documentController.isActiveJobSwitch.value);
+                  },
+                );
+              })
+        ]),
+      );
 
-              },
-            );
-          })
-    ]),
-  );
-
-  onConfirmAdditional(BuildContext context,Map<String, dynamic> body, String title) {
-    MyAlert.deleteAlertDialog(context,
-        text: title,
-        onConfirm: () async {
-          MyAlert.loding();
-          await _documentController.confirmAdditional(
-              data!.data!.profile!.id!, body);
-          if (_documentController.failureMessageConfirmAdditional.value != "") {
-            Get.back();
-            MyAlert.mySnakbarRed(
-                text:
-                _documentController.failureMessageConfirmAdditional.value);
-          } else {
-            Get.back();
-            Get.back();
-            Get.back();
-            _documentController.getDocument(data!.data!.profile!.id!);
-          }
-        });
+  onConfirmAdditional(
+      BuildContext context, Map<String, dynamic> body, String title) {
+    MyAlert.deleteAlertDialog(context, text: title, onConfirm: () async {
+      MyAlert.loding();
+      await _documentController.confirmAdditional(
+          data!.data!.profile!.id!, body);
+      if (_documentController.failureMessageConfirmAdditional.value != "") {
+        Get.back();
+        MyAlert.mySnakbarRed(
+            text: _documentController.failureMessageConfirmAdditional.value);
+      } else {
+        Get.back();
+        Get.back();
+        Get.back();
+        _documentController.getDocument(data!.data!.profile!.id!);
+      }
+    });
   }
 }

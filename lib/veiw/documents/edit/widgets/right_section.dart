@@ -23,8 +23,6 @@ class RightColumnEditDocument extends StatelessWidget {
   final TextEditingController? endYear;
   final DocumentController _documentController = Get.put(DocumentController());
 
-  final TextEditingController _lastYear = TextEditingController();
-  final TextEditingController _firstYear = TextEditingController();
   RightColumnEditDocument(
       {Key? key,
       this.nameTitle2,
@@ -41,8 +39,6 @@ class RightColumnEditDocument extends StatelessWidget {
         this.isActiveSwitch,
       this.titleDialog})
       : super(key: key){
-    _lastYear.text =endYear!.text;
-    _firstYear.text =startYear!.text;
     _documentController.isActiveJobSwitch.value=isActiveSwitch??false;
   }
 
@@ -87,7 +83,7 @@ class RightColumnEditDocument extends StatelessWidget {
       const SizedBox(
         height: 20,
       ),
-     fromPage == "job" ?const SizedBox(height: 0,): TitleTextFieldWidget(
+     fromPage == "job" || fromPage == "edu" ?const SizedBox(height: 0,): TitleTextFieldWidget(
         title: nameTitle3,
         editingController: nameTitle3Controller,
       ),
@@ -113,9 +109,9 @@ class RightColumnEditDocument extends StatelessWidget {
                     onChanged: (bool value) {
                       _documentController.isActiveJobSwitch.value = value;
                       if (value == true) {
-                        _lastYear.text = currentYear();
+                        endYear!.text = currentYear();
                       } else {
-                        _lastYear.text = "";
+                        endYear!.text = "";
                       }
                     },
                     activeColor: AppColors.darkerGreen,
@@ -154,7 +150,7 @@ class RightColumnEditDocument extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white,border: Border.all(color: AppColors.borderColor)),
                 child: TextField(
-                  controller: _firstYear,
+                  controller: startYear,
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -191,7 +187,7 @@ class RightColumnEditDocument extends StatelessWidget {
                         color: _documentController.isActiveJobSwitch.value
                             ? AppColors.darkGrey
                             : AppColors.black),
-                    controller: _lastYear,
+                    controller: endYear,
                     keyboardType: TextInputType.number,
                     enabled: _documentController.isActiveJobSwitch.value
                         ? false

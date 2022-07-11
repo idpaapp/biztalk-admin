@@ -103,10 +103,13 @@ class MasterPage extends StatelessWidget {
                             onTap: () {
                               _homeController.tab.value = index;
                               if (data.key == "MANAGER_PAGE") {
+                                _homeController.tab.value = 0;
                                 Get.to(() => ManagerPage());
                                 return;
                               }
                               if (data.key == "INSERT_USER") {
+                                _homeController.tab.value = 0;
+
                                 insertUser(context, "افزودن کاربر جدید");
                                 return;
                               }

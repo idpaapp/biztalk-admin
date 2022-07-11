@@ -19,6 +19,7 @@ Future<void> EditDocumentDialog(
   final onCancel,
   final onDelete,
   final onCancelTitle,
+  final onSave,
   TextEditingController? name,
   TextEditingController? name2,
   TextEditingController? name3,
@@ -88,9 +89,7 @@ Future<void> EditDocumentDialog(
 
               children: [
                 ButtonText(
-                  onPressed: () async {
-
-                  },
+                  onPressed: onSave,
                   text: "ذخیره",
                   borderRadios: 10,
                   fontWeight: FontWeight.w500,
