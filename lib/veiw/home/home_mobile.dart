@@ -88,7 +88,20 @@ class HomeMobilePage extends StatelessWidget {
           } else if (homeController.tab.value == 8) {
             homeController.fetchUsers(1, status: "CHECKING");
             return userListSection();
-          } else if (homeController.tab.value == 0) {
+          } else if (homeController.tab.value == 11) {
+            if (homeController.userType.value == "عادی") {
+
+              return SingleUserPage(
+                  userType: homeController.userType.value,
+                  id: homeController.userId.value);
+            } else {
+
+              return SingleMentorPage(
+                userType: homeController.userType.value,
+                finalID: homeController.userId.value,
+              );
+            }
+          }else if (homeController.tab.value == 0) {
             homeController.fetchUsers(1);
             return userListSection();
           } else {
@@ -153,20 +166,9 @@ class HomeMobilePage extends StatelessWidget {
                           .resultHomeUsers.value.data!.users![index];
                       return TitleRowInTableWidget(
                         onTap: () {
-                          if (user.userType == "عادی") {
-
-
-                            Get.toNamed(SingleUserPage.route, arguments: {
-                              "id": user.id.toString(),
-                              "userType": user.userType
-                            });
-                          } else {
-
-                            // Get.toNamed(SingleMentorPage.route, arguments: {
-                            //   "id": user.id.toString(),
-                            //   "userType": user.userType
-                            // });
-                          }
+                          homeController.userType.value = user.userType!;
+                          homeController.userId.value = user.id!;
+                          homeController.tab.value = 11;
                         },
                         isTitle: false,
                         phoneNumber: user.phoneNumber ?? "",

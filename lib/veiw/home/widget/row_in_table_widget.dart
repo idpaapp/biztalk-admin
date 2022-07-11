@@ -94,19 +94,9 @@ class TitleRowInTableWidget extends StatelessWidget {
                   child: isTitle == true
                       ? Container()
                       : Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ButtonText(
-                              onPressed: onTap,
-                              width: Get.width * 0.06,
-                              height: Get.height * 0.035,
-                              fontSize: 13,
-                              text: "مشاهده",
-                              fontWeight: FontWeight.w500,
-                              textColor: AppColors.lighterBlack,
-                              activeBorder: 1,
-                              margin: EdgeInsets.only(left: Get.width * 0.02),
-                            )
+                            InkWell(onTap: onTap,child: Icon(Icons.more_horiz,color: AppColors.lighterBlack,size: 25),)
                           ],
                         )),
             ],
