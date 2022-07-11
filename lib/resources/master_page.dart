@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';

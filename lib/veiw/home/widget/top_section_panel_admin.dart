@@ -7,7 +7,9 @@ class TopSectionPanelAdmin extends StatelessWidget {
   final String title;
   final onDashbord;
   final bool showBottom;
-  const TopSectionPanelAdmin({Key? key,required this.title,this.onDashbord,this.showBottom=true}) : super(key: key);
+  final bool showLeading;
+  final Widget? drawer;
+  const TopSectionPanelAdmin({Key? key,required this.title,this.onDashbord,this.showBottom=true,this.showLeading=false,this.drawer }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -23,8 +25,13 @@ class TopSectionPanelAdmin extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
-                    const CustomText(
-                        title: "پنل مدیریت بیزتاک", color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
+                    Row(
+                      children: [
+                        showLeading ? drawer! :SizedBox(),
+                        const CustomText(
+                            title: "پنل مدیریت بیزتاک", color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
+                      ],
+                    ),
                     Row(
                       children: [
                         const Icon(Icons.person, color: Colors.white),

@@ -4,6 +4,7 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/master_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
+import 'package:biztalk_panel_admin/veiw/drawer/drawer_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
@@ -42,55 +43,58 @@ class HomeMobilePage extends StatelessWidget {
   final HomeController homeController;
 
   final OffController offController;
+  GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 
 
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: AppColors.dividerLight,
     body: getBody(context),
+    key: drawerKey,
+
+
+
+    drawer: MyDrawer(),
+
   );
 
   Widget getBody(BuildContext context) => SingleChildScrollView(
-    child: Column(children: [
-      const TopSectionPanelAdmin(title: "کاربران",showBottom: false),
 
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(flex: 2,child: MasterPage()),
-          SizedBox(width: 12,),
-          Expanded(
-            flex: 9,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
-              child: Obx(() {
-                if (homeController.tab.value == 1) {
-                  return BankAccountSection();
-                } else if (homeController.tab.value == 2) {
-                  return CheckListSection();
-                } else if (homeController.tab.value == 3) {
-                  return RequestListSection();
-                } else if (homeController.tab.value == 4) {
-                  return SessionListSection();
-                } else if (homeController.tab.value == 5) {
-                  return ReportListSection();
-                } else if (homeController.tab.value == 6) {
-                  return MediaListSection();
-                } else if (homeController.tab.value == 7) {
-                  return OffPage();
-                } else if (homeController.tab.value == 8) {
-                  homeController.fetchUsers(1, status: "CHECKING");
-                  return userListSection();
-                } else if (homeController.tab.value == 0) {
-                  homeController.fetchUsers(1);
-                  return userListSection();
-                } else {
-                  return const SizedBox();
-                }
-              }),
-            ),
-          ),
-        ],
+    child: Column(children: [
+       TopSectionPanelAdmin(title: "کاربران",showBottom: false,showLeading: true,drawer: InkWell(
+        onTap: () {
+          drawerKey.currentState!.openDrawer();
+        },
+        child: Icon(Icons.menu, size: 30,color: Colors.white),
+      )),
+
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 24),
+        child: Obx(() {
+          if (homeController.tab.value == 1) {
+            return BankAccountSection();
+          } else if (homeController.tab.value == 2) {
+            return CheckListSection();
+          } else if (homeController.tab.value == 3) {
+            return RequestListSection();
+          } else if (homeController.tab.value == 4) {
+            return SessionListSection();
+          } else if (homeController.tab.value == 5) {
+            return ReportListSection();
+          } else if (homeController.tab.value == 6) {
+            return MediaListSection();
+          } else if (homeController.tab.value == 7) {
+            return OffPage();
+          } else if (homeController.tab.value == 8) {
+            homeController.fetchUsers(1, status: "CHECKING");
+            return userListSection();
+          } else if (homeController.tab.value == 0) {
+            homeController.fetchUsers(1);
+            return userListSection();
+          } else {
+            return const SizedBox();
+          }
+        }),
       ),
 
     ]),
