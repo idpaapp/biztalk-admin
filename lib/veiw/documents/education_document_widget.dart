@@ -51,6 +51,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                   subTitle: education.degree ?? "",
                   yers: education.activityYear ?? "",
                   statusTitle: education.statusTitle,
+                  status: education.verificationStatus,
                   onShow: () {
                     uniName.text = education.schoolTitle ?? "";
                     uniDegree.text = education.degree ?? "";

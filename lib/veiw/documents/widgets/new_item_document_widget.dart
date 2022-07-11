@@ -1,3 +1,4 @@
+import 'package:biztalk_panel_admin/resources/all_methods.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
@@ -74,8 +75,8 @@ class NewItemDocumentWidget extends StatelessWidget {
                               fontWeight: FontWeight.normal,
                               height: 30,
                               fontSize: 12,
-                              textColor: Colors.white,
-                              bgColor: AppColors.blueSession,
+                              textColor: AllMethods.handelTextColor(status!),
+                              bgColor: AllMethods.handelBackColor(status!),
                             ),
                           ],
                         ),

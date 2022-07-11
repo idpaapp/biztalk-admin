@@ -52,12 +52,15 @@ class JobDocumentSectionWidget extends StatelessWidget {
                   subTitle: job.job,
                   yers: job.activityYear ?? "",
                   statusTitle: job.statusTitle,
+                  status: job.verificationStatus,
+
                   onShow: () {
-                    _documentController.isActiveJobSwitch.value = job.currentPosition??false;
-                    companyTitle.text=job.companyTitle??"";
-                    jobTitle.text=job.job??"";
-                    start.text=job.startYear??"";
-                    end.text=job.endYear??"";
+                    _documentController.isActiveJobSwitch.value =
+                        job.currentPosition ?? false;
+                    companyTitle.text = job.companyTitle ?? "";
+                    jobTitle.text = job.job ?? "";
+                    start.text = job.startYear ?? "";
+                    end.text = job.endYear ?? "";
                     EditDocumentDialog(
                       context,
                       "نام سازمان",
@@ -75,11 +78,6 @@ class JobDocumentSectionWidget extends StatelessWidget {
                         onConfirmAdditional(
                             context, body, "ایا برای عدم تایید اطمینان دارید؟");
                       },
-
-
-
-
-
                       onConfirmtitle: () {
                         Map<String, dynamic> body = {
                           "_id": job.id,
@@ -133,41 +131,38 @@ class JobDocumentSectionWidget extends StatelessWidget {
                         onConfirmAdditional(
                             context, body, "ایا برای تایید اطمینان دارید؟");
                       },
-                      onSave: ()async{
-
-  Map<String, dynamic> body = {
-                        "job": jobTitle.text,
-                        "startYear": start.text,
-                        "endYear": end.text,
-                        "currentPosition": _documentController.isActiveJobSwitch.value,
-                        "companyTitle":companyTitle.text,
-                      };
-
+                      onSave: () async {
+                        Map<String, dynamic> body = {
+                          "job": jobTitle.text,
+                          "startYear": start.text,
+                          "endYear": end.text,
+                          "currentPosition":
+                              _documentController.isActiveJobSwitch.value,
+                          "companyTitle": companyTitle.text,
+                        };
 
                         print(body);
 
                         MyAlert.loding();
-                        await _documentController.editJob(body, mentorId!,job.id!);
+                        await _documentController.editJob(
+                            body, mentorId!, job.id!);
                         Get.back();
-                        if (_documentController.failureMessageEditJob
-                            .value != "") {
-                          MyAlert.mySnakbarRed(text: _documentController
-                              .failureMessageEditJob.value);
+                        if (_documentController.failureMessageEditJob.value !=
+                            "") {
+                          MyAlert.mySnakbarRed(
+                              text: _documentController
+                                  .failureMessageEditJob.value);
                         } else {
                           _documentController.getDocument(mentorId!);
                           Get.back();
                         }
-
-
-
-
-
                       },
-                      name:companyTitle ,
+                      name: companyTitle,
                       name2: jobTitle,
                       startDate: start,
                       endDate: end,
-                      isActiveSwitch:_documentController.isActiveJobSwitch.value ,
+                      isActiveSwitch:
+                          _documentController.isActiveJobSwitch.value,
                       atachment: job.attachments,
                     );
                   },

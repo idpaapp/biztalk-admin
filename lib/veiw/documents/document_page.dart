@@ -117,7 +117,7 @@ class DocumentPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                JobDocumentSectionWidget(
+                _documentController.resultGetDocument.value.data!.works!.isEmpty ? SizedBox(height: 0,):  JobDocumentSectionWidget(
                   mentorId: data.data!.profile!.id!,
                   title: "سوابق شغلی",
                   data: data,
@@ -127,7 +127,8 @@ class DocumentPage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                EducationDocumentSectionWidget(
+                _documentController
+                    .resultGetDocument.value.data!.educations!.isEmpty? SizedBox(height: 0,):  EducationDocumentSectionWidget(
                   title: "سوابق تحصیلی",
                   data: data,
                   educations: _documentController
@@ -136,7 +137,8 @@ class DocumentPage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                AchievementDocumentSectionWidget(
+                _documentController
+                    .resultGetDocument.value.data!.achievements!.isEmpty ? SizedBox(height: 0,):   AchievementDocumentSectionWidget(
                   data: data,
                   title: "دستاوردها",
                   achievements: _documentController

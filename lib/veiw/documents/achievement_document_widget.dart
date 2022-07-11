@@ -48,6 +48,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                   subTitle: achievement.place ?? "",
                   yers: achievement.year ?? "",
                   statusTitle: achievement.statusTitle,
+                  status: achievement.verificationStatus,
                   onShow: () {
                     achieviementPlace.text=achievement.place??"";
                     achievementTitle.text=achievement.title??"";
