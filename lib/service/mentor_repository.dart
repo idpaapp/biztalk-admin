@@ -4,6 +4,7 @@ import 'package:biztalk_panel_admin/failure/app_failure.dart';
 import 'package:biztalk_panel_admin/failure/connection_faile.dart';
 import 'package:biztalk_panel_admin/failure/data_connection_checker.dart';
 import 'package:biztalk_panel_admin/failure/failure.dart';
+import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
 import 'package:biztalk_panel_admin/model/contact/mentor_contact_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/tv/mentor_tv_model.dart';
@@ -191,6 +192,29 @@ class MentorRepository {
 
         return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
       } catch (e) {
+        return Left(ApiFailure("خطای بارگذاری اطلاعات"));
+      }
+    }
+  }
+  //************************************* all session request
+  //******************* delete tv
+  Future<Either<Failure, AllRequestSessionModel>> getAllRequestSession(
+      Map<String, dynamic> body, String userId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.post, '${GlobalInfo.baseURL}sessions/getAllSessions/$userId',
+            needAuth: true, body: body);
+        print(response);
+        var encode = jsonEncode(response);
+
+        var data = allRequestSessionModelFromJson(encode);
+
+        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+      } catch (e) {
+        print(e);
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }

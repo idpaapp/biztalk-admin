@@ -13,7 +13,6 @@ class StatusFilterSectionWidget extends StatelessWidget {
   final List status = [
     "درخواست مشاوره",
     "درخواست تایید شده",
-    "زمان جلسه انتخاب نشده",
     "زمان جلسه تعیین شده",
     "جلسه برگزار شده"
   ];

@@ -1,17 +1,24 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/responsive/select_date_dialog.dart';
+import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/textfield_container_widget.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/title_filter_section.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RequestDateFilterWidget extends StatelessWidget {
   final String? title;
-  RequestDateFilterWidget({Key? key,this.title}) : super(key: key);
+  final onTapSelectStart;
+  final onTapSelectEnd;
+  final String? selectStartDatee;
+  final String? selectEndDatee;
 
+  RequestDateFilterWidget({Key? key, this.title,this.selectEndDatee,this.selectStartDatee,this.onTapSelectEnd,this.onTapSelectStart}) : super(key: key);
 
-  final TextEditingController _start = TextEditingController();
-  final TextEditingController _end = TextEditingController();
-
+  final RequestSessionController _requestSessionController = Get.find();
+String startDate="";
+String endDate="";
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
@@ -27,7 +34,7 @@ class RequestDateFilterWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(3),
           border: Border.all(color: AppColors.disabledGrey),
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           TitleFilterSection(
             title: title,
           ),
@@ -36,10 +43,18 @@ class RequestDateFilterWidget extends StatelessWidget {
             child: Row(
               children: [
                 const Expanded(
-                    child: Center(child: CustomText(title: "از", color: AppColors.darkerGrey))),
+                    child: Center(
+                        child: CustomText(
+                            title: "از", color: AppColors.darkerGrey))),
                 Expanded(
                   flex: 3,
-                  child: Align(alignment: Alignment.centerRight,child: TextfieldContainerWidget(textEditingController: _start)),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: TextfieldContainerWidget(
+                      onTap: onTapSelectStart,
+                      date: selectStartDatee,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -49,15 +64,24 @@ class RequestDateFilterWidget extends StatelessWidget {
             child: Row(
               children: [
                 const Expanded(
-                    child: Center(child: CustomText(title: "تا", color: AppColors.darkerGrey))),
+                    child: Center(
+                        child: CustomText(
+                            title: "تا", color: AppColors.darkerGrey))),
                 Expanded(
                   flex: 3,
-                  child: Align(alignment: Alignment.centerRight,child: TextfieldContainerWidget(textEditingController: _end)),
+                  child:Align(
+                      alignment: Alignment.centerRight,
+                      child: TextfieldContainerWidget(
+                        date: selectEndDatee,
+                        onTap: onTapSelectEnd,
+                      )),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 10,)
+          const SizedBox(
+            height: 10,
+          )
         ]),
       );
 }

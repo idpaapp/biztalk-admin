@@ -1,6 +1,7 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/responsive/select_date_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
@@ -14,14 +15,40 @@ import 'package:get/get.dart';
 
 class RequestAndSessionPage extends StatelessWidget {
   final String? userType;
+  final String userID;
 
-  RequestAndSessionPage({Key? key, this.userType}) : super(key: key);
+  RequestAndSessionPage({Key? key, this.userType,required this.userID})
+      : super(key: key) {
+    _requestSessionController.getAllRequestSession({
+      "page": 1,
+      "status": ["draft","confirmed","reserved"],
+      "requestFromDate": null,
+      "requestToDate": null,
+      "sessionFromDate": null,
+      "sessionToDate": null
+    }, userID);
+  }
+
   final RequestSessionController _requestSessionController =
       Get.put(RequestSessionController());
+  String startDateRequest = "";
+  String startDateSession = "";
+  String endDateRequest = "";
+  String endDateSession = "";
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: body(context),
+        body: Obx(() {
+          if (_requestSessionController.failureMessageGetAll.value != "") {
+            return Center(child: CustomText(title: _requestSessionController.failureMessageGetAll.value),);
+          } else if (_requestSessionController.isLoadingGetAll.value) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return body(context);
+          }
+        }),
       );
 
   body(BuildContext context) => SingleChildScrollView(
@@ -49,17 +76,17 @@ class RequestAndSessionPage extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.03,
             ),
-            mainSection()
+            mainSection(context)
           ],
         ),
       );
 
-  mainSection() => Padding(
+  mainSection(BuildContext context) => Padding(
         padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            filterSection(),
+            filterSection(context),
             const SizedBox(
               width: 20,
             ),
@@ -68,12 +95,12 @@ class RequestAndSessionPage extends StatelessWidget {
         ),
       );
 
-  Widget filterSection() => Expanded(
+  Widget filterSection(BuildContext context) => Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TypeFilterWidget(),
+            // TypeFilterWidget(),
             const SizedBox(
               height: 20,
             ),
@@ -81,14 +108,62 @@ class RequestAndSessionPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            RequestDateFilterWidget(
-              title: "تاریخ ایجاد درخواست",
+            Obx(
+              () => RequestDateFilterWidget(
+                title: "تاریخ ایجاد درخواست",
+                selectEndDatee:
+                    _requestSessionController.selectedEndDateRequest.value,
+                onTapSelectEnd: () {
+                  selectDateDialog(context, onChange: (val) {
+                    endDateRequest = val;
+                  }, onConfirm: () {
+                    _requestSessionController.selectedEndDateRequest.value =
+                        endDateRequest;
+                    Get.back();
+                  });
+                },
+                selectStartDatee:
+                    _requestSessionController.selectedStartDateRequest.value,
+                onTapSelectStart: () {
+                  selectDateDialog(context, onChange: (val) {
+                    startDateRequest = val;
+                  }, onConfirm: () {
+                    _requestSessionController.selectedStartDateRequest.value =
+                        startDateRequest;
+                    Get.back();
+                  });
+                },
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
-            RequestDateFilterWidget(
-              title: "تاریخ جلسه",
+            Obx(
+              () => RequestDateFilterWidget(
+                title: "تاریخ جلسه",
+                selectEndDatee:
+                    _requestSessionController.selectedEndDateSession.value,
+                onTapSelectEnd: () {
+                  selectDateDialog(context, onChange: (val) {
+                    endDateSession = val;
+                  }, onConfirm: () {
+                    _requestSessionController.selectedEndDateSession.value =
+                        endDateSession;
+                    Get.back();
+                  });
+                },
+                selectStartDatee:
+                    _requestSessionController.selectedStartDateSession.value,
+                onTapSelectStart: () {
+                  selectDateDialog(context, onChange: (val) {
+                    startDateSession = val;
+                  }, onConfirm: () {
+                    _requestSessionController.selectedStartDateSession.value =
+                        startDateSession;
+                    Get.back();
+                  });
+                },
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -118,16 +193,17 @@ class RequestAndSessionPage extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: 3,
+              itemCount: _requestSessionController.resultGetAll.value.data!.docs!.length,
               physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
+                var data=_requestSessionController.resultGetAll.value.data!.docs![index];
                 return ProfileTitleTableWidget(
                   isTitle: false,
                   userName: "سینا جمشیدی",
                   stateTitle: "جلسه تمام شده",
                   createDate: "1400/07/18,12:20",
                   sessionDate: "1400/07/18,12:20",
-                  subject: "برنامه نویسی",
+                  subject: data.subject!.title??"نا مشخص",
                   state: index == 0
                       ? "red"
                       : index == 1
