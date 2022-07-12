@@ -24,7 +24,7 @@ class HomeDesctopPage extends StatelessWidget {
 
   HomeDesctopPage(
       {Key? key, required this.homeController, required this.offController})
-      : super(key: key) ;
+      : super(key: key);
 
   final HomeController homeController;
 
@@ -43,7 +43,10 @@ class HomeDesctopPage extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 2, child: MasterPage()),
+                Expanded(
+                  flex: 2,
+                  child: MasterPage(),
+                ),
                 const SizedBox(
                   width: 12,
                 ),
@@ -75,12 +78,10 @@ class HomeDesctopPage extends StatelessWidget {
                           return userListSection();
                         } else if (homeController.tab.value == 11) {
                           if (homeController.userType.value == "عادی") {
-
                             return SingleUserPage(
                                 userType: homeController.userType.value,
                                 id: homeController.userId.value);
                           } else {
-
                             return SingleMentorPage(
                               userType: homeController.userType.value,
                               finalID: homeController.userId.value,
@@ -123,27 +124,29 @@ class HomeDesctopPage extends StatelessWidget {
               mainUserName: "نام و نام خانوادگی",
               phoneNumber: "شماره تلفن",
             ),
-            Obx(() {
-              if (homeController.failureMessage.value != "") {
-                return SizedBox(
-                  height: 100,
-                  width: Get.width,
-                  child: Center(
+            Obx(
+              () {
+                if (homeController.failureMessage.value != "") {
+                  return SizedBox(
+                    height: 100,
+                    width: Get.width,
+                    child: Center(
                       child: CustomText(
-                    title: homeController.failureMessage.value,
-                  )),
-                );
-              } else if (homeController.isLoadingHome.value) {
-                return const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              } else {
-                return Column(
-                  children: [
-                    ListView.builder(
+                        title: homeController.failureMessage.value,
+                      ),
+                    ),
+                  );
+                } else if (homeController.isLoadingHome.value) {
+                  return const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      ListView.builder(
                         shrinkWrap: true,
                         itemCount: homeController
                             .resultHomeUsers.value.data!.users!.length,
@@ -163,15 +166,17 @@ class HomeDesctopPage extends StatelessWidget {
                             userName: user.userName ?? "",
                             image: user.profileImage ?? "",
                           );
-                        }),
-                    SizedBox(
-                      height: Get.height * 0.07,
-                    ),
-                    pageSection(homeController.resultHomeUsers.value),
-                  ],
-                );
-              }
-            }),
+                        },
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.07,
+                      ),
+                      pageSection(homeController.resultHomeUsers.value),
+                    ],
+                  );
+                }
+              },
+            ),
           ],
         ),
       );
@@ -201,36 +206,37 @@ class HomeDesctopPage extends StatelessWidget {
             width: 15,
           ),
           ListView.builder(
-              itemCount: value.data!.totalPages,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Obx(
-                  () => InkWell(
-                    onTap: () {
-                      homeController.selectedPage.value = index + 1;
-                      homeController.fetchUsers(index + 1);
-                    },
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: index + 1 == homeController.selectedPage.value
-                              ? AppColors.blueIndigo
-                              : Colors.white),
-                      child: Center(
-                        child: CustomText(
-                          title: "${index + 1}",
-                          color: index + 1 == homeController.selectedPage.value
-                              ? Colors.white
-                              : AppColors.dividerDark,
-                        ),
+            itemCount: value.data!.totalPages,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Obx(
+                () => InkWell(
+                  onTap: () {
+                    homeController.selectedPage.value = index + 1;
+                    homeController.fetchUsers(index + 1);
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: index + 1 == homeController.selectedPage.value
+                            ? AppColors.blueIndigo
+                            : Colors.white),
+                    child: Center(
+                      child: CustomText(
+                        title: "${index + 1}",
+                        color: index + 1 == homeController.selectedPage.value
+                            ? Colors.white
+                            : AppColors.dividerDark,
                       ),
                     ),
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
           const SizedBox(
             width: 15,
           ),

@@ -38,157 +38,151 @@ class HomeMobilePage extends StatelessWidget {
 
   HomeMobilePage(
       {Key? key, required this.homeController, required this.offController})
-      : super(key: key) ;
+      : super(key: key);
 
   final HomeController homeController;
 
   final OffController offController;
   GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 
-
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: AppColors.dividerLight,
-    body: getBody(context),
-    key: drawerKey,
-
-
-
-    drawer: MyDrawer(),
-
-  );
+        backgroundColor: AppColors.dividerLight,
+        body: getBody(context),
+        key: drawerKey,
+        drawer: MyDrawer(),
+      );
 
   Widget getBody(BuildContext context) => SingleChildScrollView(
-
-    child: Column(children: [
-       TopSectionPanelAdmin(title: "کاربران",showBottom: false,showLeading: true,drawer: InkWell(
-        onTap: () {
-          drawerKey.currentState!.openDrawer();
-        },
-        child: Icon(Icons.menu, size: 30,color: Colors.white),
-      )),
-
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 24),
-        child: Obx(() {
-          if (homeController.tab.value == 1) {
-            return BankAccountSection();
-          } else if (homeController.tab.value == 2) {
-            return CheckListSection();
-          } else if (homeController.tab.value == 3) {
-            return RequestListSection();
-          } else if (homeController.tab.value == 4) {
-            return SessionListSection();
-          } else if (homeController.tab.value == 5) {
-            return ReportListSection();
-          } else if (homeController.tab.value == 6) {
-            return MediaListSection();
-          } else if (homeController.tab.value == 7) {
-            return OffPage();
-          } else if (homeController.tab.value == 8) {
-            homeController.fetchUsers(1, status: "CHECKING");
-            return userListSection();
-          } else if (homeController.tab.value == 11) {
-            if (homeController.userType.value == "عادی") {
-
-              return SingleUserPage(
-                  userType: homeController.userType.value,
-                  id: homeController.userId.value);
-            } else {
-
-              return SingleMentorPage(
-                userType: homeController.userType.value,
-                finalID: homeController.userId.value,
-              );
-            }
-          }else if (homeController.tab.value == 0) {
-            homeController.fetchUsers(1);
-            return userListSection();
-          } else {
-            return const SizedBox();
-          }
-        }),
-      ),
-
-    ]),
-  );
+        child: Column(children: [
+          TopSectionPanelAdmin(
+              title: "کاربران",
+              showBottom: false,
+              showLeading: true,
+              drawer: InkWell(
+                onTap: () {
+                  drawerKey.currentState!.openDrawer();
+                },
+                child: Icon(Icons.menu, size: 30, color: Colors.white),
+              )),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 24),
+            child: Obx(() {
+              if (homeController.tab.value == 1) {
+                return BankAccountSection();
+              } else if (homeController.tab.value == 2) {
+                return CheckListSection();
+              } else if (homeController.tab.value == 3) {
+                return RequestListSection();
+              } else if (homeController.tab.value == 4) {
+                return SessionListSection();
+              } else if (homeController.tab.value == 5) {
+                return ReportListSection();
+              } else if (homeController.tab.value == 6) {
+                return MediaListSection();
+              } else if (homeController.tab.value == 7) {
+                return OffPage();
+              } else if (homeController.tab.value == 8) {
+                homeController.fetchUsers(1, status: "CHECKING");
+                return userListSection();
+              } else if (homeController.tab.value == 11) {
+                if (homeController.userType.value == "عادی") {
+                  return SingleUserPage(
+                      userType: homeController.userType.value,
+                      id: homeController.userId.value);
+                } else {
+                  return SingleMentorPage(
+                    userType: homeController.userType.value,
+                    finalID: homeController.userId.value,
+                  );
+                }
+              } else if (homeController.tab.value == 0) {
+                homeController.fetchUsers(1);
+                return userListSection();
+              } else {
+                return const SizedBox();
+              }
+            }),
+          ),
+        ]),
+      );
 
   Widget userListSection() => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5), color: Colors.white),
-    child: Column(
-      children: [
-        TextFieldsCustomWidget(
-          searchController: _search,
-          onTap: () {
-            homeController.fetchUsers(1, mobile: _search.text);
-          },
-        ),
-        SizedBox(
-          height: Get.height * 0.02,
-        ),
-        const TitleRowInTableWidget(
-          isTitle: true,
-          image: "",
-          userName: "نام کاربری",
-          userType: "نوع کاربر",
-          mainUserName: "نام و نام خانوادگی",
-          phoneNumber: "شماره تلفن",
-        ),
-        Obx(() {
-          if (homeController.failureMessage.value != "") {
-            return SizedBox(
-              height: 100,
-              width: Get.width,
-              child: Center(
-                  child: CustomText(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5), color: Colors.white),
+        child: Column(
+          children: [
+            TextFieldsCustomWidget(
+              searchController: _search,
+              onTap: () {
+                homeController.fetchUsers(1, mobile: _search.text);
+              },
+            ),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            const TitleRowInTableWidget(
+              isTitle: true,
+              image: "",
+              userName: "نام کاربری",
+              userType: "نوع کاربر",
+              mainUserName: "نام و نام خانوادگی",
+              phoneNumber: "شماره تلفن",
+            ),
+            Obx(() {
+              if (homeController.failureMessage.value != "") {
+                return SizedBox(
+                  height: 100,
+                  width: Get.width,
+                  child: Center(
+                      child: CustomText(
                     title: homeController.failureMessage.value,
-                  )),
-            );
-          } else if (homeController.isLoadingHome.value) {
-            return const Padding(
-              padding: EdgeInsets.all(20),
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else {
-            return Column(
-              children: [
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: homeController
-                        .resultHomeUsers.value.data!.users!.length,
-                    itemBuilder: (context, index) {
-                      var user = homeController
-                          .resultHomeUsers.value.data!.users![index];
-                      return TitleRowInTableWidget(
-                        onTap: () {
-                          homeController.userType.value = user.userType!;
-                          homeController.userId.value = user.id!;
-                          homeController.tab.value = 11;
-                        },
-                        isTitle: false,
-                        phoneNumber: user.phoneNumber ?? "",
-                        mainUserName: user.fullName ?? "",
-                        userType: user.userType ?? "",
-                        userName: user.userName ?? "",
-                        image: user.profileImage ?? "",
-                      );
-                    }),
-                SizedBox(
-                  height: Get.height * 0.07,
-                ),
-                pageSection(homeController.resultHomeUsers.value),
-              ],
-            );
-          }
-        }),
-      ],
-    ),
-  );
+                  ),),
+                );
+              } else if (homeController.isLoadingHome.value) {
+                return const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              } else {
+                return Column(
+                  children: [
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: homeController
+                            .resultHomeUsers.value.data!.users!.length,
+                        itemBuilder: (context, index) {
+                          var user = homeController
+                              .resultHomeUsers.value.data!.users![index];
+                          return TitleRowInTableWidget(
+                            onTap: () {
+                              homeController.userType.value = user.userType!;
+                              homeController.userId.value = user.id!;
+                              homeController.tab.value = 11;
+                            },
+                            isTitle: false,
+                            phoneNumber: user.phoneNumber ?? "",
+                            mainUserName: user.fullName ?? "",
+                            userType: user.userType ?? "",
+                            userName: user.userName ?? "",
+                            image: user.profileImage ?? "",
+                          );
+                        }),
+                    SizedBox(
+                      height: Get.height * 0.07,
+                    ),
+                    pageSection(homeController.resultHomeUsers.value),
+                  ],
+                );
+              }
+            },),
+          ],
+        ),
+      );
 
   Widget pageSection(UsersHomeModel value) {
     return SizedBox(
@@ -198,11 +192,11 @@ class HomeMobilePage extends StatelessWidget {
         children: [
           value.data!.totalPages! <= 5
               ? const SizedBox(
-            height: 0,
-          )
+                  height: 0,
+                )
               : const InkWell(
-            child: Icon(Icons.double_arrow, color: AppColors.dividerDark),
-          ),
+                  child: Icon(Icons.double_arrow, color: AppColors.dividerDark),
+                ),
           const SizedBox(
             width: 15,
           ),
@@ -220,7 +214,7 @@ class HomeMobilePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Obx(
-                      () => InkWell(
+                  () => InkWell(
                     onTap: () {
                       homeController.selectedPage.value = index + 1;
                       homeController.fetchUsers(index + 1);
@@ -244,7 +238,7 @@ class HomeMobilePage extends StatelessWidget {
                     ),
                   ),
                 );
-              }),
+              },),
           const SizedBox(
             width: 15,
           ),
@@ -258,14 +252,14 @@ class HomeMobilePage extends StatelessWidget {
           ),
           value.data!.totalPages! <= 5
               ? const SizedBox(
-            height: 0,
-          )
+                  height: 0,
+                )
               : const InkWell(
-            child: Icon(
-              Icons.double_arrow,
-              color: AppColors.dividerDark,
-            ),
-          ),
+                  child: Icon(
+                    Icons.double_arrow,
+                    color: AppColors.dividerDark,
+                  ),
+                ),
         ],
       ),
     );

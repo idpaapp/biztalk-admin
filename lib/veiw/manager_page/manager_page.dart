@@ -24,52 +24,57 @@ class ManagerPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: AppColors.disabledGrey,
         body: SingleChildScrollView(
-          child: Column(children: [
-            const TopSectionPanelAdmin(
-              title: "  مدیریت صفحه اصلی",
-            ),
-            SizedBox(
-              height: Get.height * 0.07,
-            ),
-            Obx(() {
-              if (_managerPageController.failureMessageGetBanner.value != "") {
-                return Center(
-                  child: CustomText(
-                      title:
-                          _managerPageController.failureMessageGetBanner.value),
-                );
-              } else if (_managerPageController.isLoadingGetBanner.value) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return Column(
-                  children: [
-                    carouselBanner(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    IstaticBannerWidget(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    listNumber1(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    listNumber2(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    listNumber3(),
-                    const SizedBox(
-                      height: 26,
-                    ),
-                  ],
-                );
-              }
-            })
-          ]),
+          child: Column(
+            children: [
+              const TopSectionPanelAdmin(
+                title: "  مدیریت صفحه اصلی",
+              ),
+              SizedBox(
+                height: Get.height * 0.07,
+              ),
+              Obx(
+                () {
+                  if (_managerPageController.failureMessageGetBanner.value !=
+                      "") {
+                    return Center(
+                      child: CustomText(
+                          title: _managerPageController
+                              .failureMessageGetBanner.value),
+                    );
+                  } else if (_managerPageController.isLoadingGetBanner.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        carouselBanner(),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        IstaticBannerWidget(),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        listNumber1(),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        listNumber2(),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        listNumber3(),
+                        const SizedBox(
+                          height: 26,
+                        ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
         ),
       );
 
@@ -102,16 +107,19 @@ class ManagerPage extends StatelessWidget {
                           .resultGetBanner.value.data!.carousel!.length) {
                     return InsertBannerWidget(
                       onTap: () {
-                        createEditBanner(context, bannerGroup: "carousel",
-                            onChangeDropDown: (val) {
-                          _managerPageController.selectedDropDownValue.value =
-                              val;
-                          if (val == "بازکردن لیست") {
-                            _managerPageController.isLink.value = false;
-                          } else {
-                            _managerPageController.isLink.value = true;
-                          }
-                        });
+                        createEditBanner(
+                          context,
+                          bannerGroup: "carousel",
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                     );
                   } else {
@@ -119,55 +127,55 @@ class ManagerPage extends StatelessWidget {
                         .resultGetBanner.value.data!.carousel![index];
 
                     return BannerListWidget(
-                      onEdit: (){
-
-
-                        createEditBanner(context, bannerGroup: "carousel",edit: 'edit',
-                            banner: carousel,
-                            onChangeDropDown: (val) {
-                              _managerPageController.selectedDropDownValue.value =
-                                  val;
-                              if (val == "بازکردن لیست") {
-                                _managerPageController.isLink.value = false;
-                              } else {
-                                _managerPageController.isLink.value = true;
-                              }
-                            });
-
-
+                      onEdit: () {
+                        createEditBanner(
+                          context,
+                          bannerGroup: "carousel",
+                          edit: 'edit',
+                          banner: carousel,
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                       title: carousel.bannerType == 'link'
                           ? "بازکردن لینک"
                           : "بازکردن لیست",
-
                       description: carousel.bannerDescription,
                       listTitle: carousel.bannerTitle,
-
                       nameMentor: carousel.mentors!.length.toString(),
                       number: carousel.mentors!.length.toString(),
                       isLink: carousel.bannerType == 'link' ? true : false,
                       onDelete: () {
-                        confirmDialog(context,
-                            title: "آیا برای حذف اطمینان دارید؟",
-                            onConfirm: () async {
-                          MyAlert.loding();
-                          await _managerPageController
-                              .deletBanner(carousel.id!);
-                          Get.back();
-                          if (_managerPageController
-                                  .failureMessageDeleteBanner.value !=
-                              "") {
-                            MyAlert.mySnakbarRed(
-                                text: _managerPageController
-                                    .failureMessageDeleteBanner.value);
-                          } else {
-                            _managerPageController
-                                .resultGetBanner.value.data!.carousel!
-                                .removeAt(index);
-                            _managerPageController.resultGetBanner.refresh();
+                        confirmDialog(
+                          context,
+                          title: "آیا برای حذف اطمینان دارید؟",
+                          onConfirm: () async {
+                            MyAlert.loding();
+                            await _managerPageController
+                                .deletBanner(carousel.id!);
                             Get.back();
-                          }
-                        });
+                            if (_managerPageController
+                                    .failureMessageDeleteBanner.value !=
+                                "") {
+                              MyAlert.mySnakbarRed(
+                                  text: _managerPageController
+                                      .failureMessageDeleteBanner.value);
+                            } else {
+                              _managerPageController
+                                  .resultGetBanner.value.data!.carousel!
+                                  .removeAt(index);
+                              _managerPageController.resultGetBanner.refresh();
+                              Get.back();
+                            }
+                          },
+                        );
                       },
                       link: carousel.link,
                       imgAddress:
@@ -210,16 +218,19 @@ class ManagerPage extends StatelessWidget {
                           .resultGetBanner.value.data!.list1!.length) {
                     return InsertBannerWidget(
                       onTap: () {
-                        createEditBanner(context, bannerGroup: "list1",
-                            onChangeDropDown: (val) {
-                          _managerPageController.selectedDropDownValue.value =
-                              val;
-                          if (val == "بازکردن لیست") {
-                            _managerPageController.isLink.value = false;
-                          } else {
-                            _managerPageController.isLink.value = true;
-                          }
-                        });
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list1",
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                     );
                   } else {
@@ -227,22 +238,22 @@ class ManagerPage extends StatelessWidget {
                         .resultGetBanner.value.data!.list1![index];
 
                     return BannerListWidget(
-                      onEdit: (){
-
-
-                        createEditBanner(context, bannerGroup: "list1",edit: 'edit',
-                            banner: carousel,
-                            onChangeDropDown: (val) {
-                              _managerPageController.selectedDropDownValue.value =
-                                  val;
-                              if (val == "بازکردن لیست") {
-                                _managerPageController.isLink.value = false;
-                              } else {
-                                _managerPageController.isLink.value = true;
-                              }
-                            });
-
-
+                      onEdit: () {
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list1",
+                          edit: 'edit',
+                          banner: carousel,
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                       title: carousel.bannerType == 'link'
                           ? "بازکردن لینک"
@@ -253,27 +264,29 @@ class ManagerPage extends StatelessWidget {
                       number: carousel.mentors!.length.toString(),
                       isLink: carousel.bannerType == 'link' ? true : false,
                       onDelete: () {
-                        confirmDialog(context,
-                            title: "آیا برای حذف اطمینان دارید؟",
-                            onConfirm: () async {
-                          MyAlert.loding();
-                          await _managerPageController
-                              .deletBanner(carousel.id!);
-                          Get.back();
-                          if (_managerPageController
-                                  .failureMessageDeleteBanner.value !=
-                              "") {
-                            MyAlert.mySnakbarRed(
-                                text: _managerPageController
-                                    .failureMessageDeleteBanner.value);
-                          } else {
-                            _managerPageController
-                                .resultGetBanner.value.data!.list1!
-                                .removeAt(index);
-                            _managerPageController.resultGetBanner.refresh();
+                        confirmDialog(
+                          context,
+                          title: "آیا برای حذف اطمینان دارید؟",
+                          onConfirm: () async {
+                            MyAlert.loding();
+                            await _managerPageController
+                                .deletBanner(carousel.id!);
                             Get.back();
-                          }
-                        });
+                            if (_managerPageController
+                                    .failureMessageDeleteBanner.value !=
+                                "") {
+                              MyAlert.mySnakbarRed(
+                                  text: _managerPageController
+                                      .failureMessageDeleteBanner.value);
+                            } else {
+                              _managerPageController
+                                  .resultGetBanner.value.data!.list1!
+                                  .removeAt(index);
+                              _managerPageController.resultGetBanner.refresh();
+                              Get.back();
+                            }
+                          },
+                        );
                       },
                       link: carousel.link,
                       imgAddress:
@@ -282,7 +295,7 @@ class ManagerPage extends StatelessWidget {
                   }
                 },
               ),
-            )
+            ),
           ],
         ),
       );
@@ -316,16 +329,19 @@ class ManagerPage extends StatelessWidget {
                           .resultGetBanner.value.data!.list2!.length) {
                     return InsertBannerWidget(
                       onTap: () {
-                        createEditBanner(context, bannerGroup: "list2",
-                            onChangeDropDown: (val) {
-                          _managerPageController.selectedDropDownValue.value =
-                              val;
-                          if (val == "بازکردن لیست") {
-                            _managerPageController.isLink.value = false;
-                          } else {
-                            _managerPageController.isLink.value = true;
-                          }
-                        });
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list2",
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                     );
                   } else {
@@ -333,24 +349,23 @@ class ManagerPage extends StatelessWidget {
                         .resultGetBanner.value.data!.list2![index];
 
                     return BannerListWidget(
-                      onEdit: (){
-
-
-                        createEditBanner(context, bannerGroup: "list2",edit: 'edit',
-                            banner: carousel,
-                            onChangeDropDown: (val) {
-                              _managerPageController.selectedDropDownValue.value =
-                                  val;
-                              if (val == "بازکردن لیست") {
-                                _managerPageController.isLink.value = false;
-                              } else {
-                                _managerPageController.isLink.value = true;
-                              }
-                            });
-
-
+                      onEdit: () {
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list2",
+                          edit: 'edit',
+                          banner: carousel,
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
-
                       title: carousel.bannerType == 'link'
                           ? "بازکردن لینک"
                           : "بازکردن لیست",
@@ -360,27 +375,29 @@ class ManagerPage extends StatelessWidget {
                       number: carousel.mentors!.length.toString(),
                       isLink: carousel.bannerType == 'link' ? true : false,
                       onDelete: () {
-                        confirmDialog(context,
-                            title: "آیا برای حذف اطمینان دارید؟",
-                            onConfirm: () async {
-                          MyAlert.loding();
-                          await _managerPageController
-                              .deletBanner(carousel.id!);
-                          Get.back();
-                          if (_managerPageController
-                                  .failureMessageDeleteBanner.value !=
-                              "") {
-                            MyAlert.mySnakbarRed(
-                                text: _managerPageController
-                                    .failureMessageDeleteBanner.value);
-                          } else {
-                            _managerPageController
-                                .resultGetBanner.value.data!.list2!
-                                .removeAt(index);
-                            _managerPageController.resultGetBanner.refresh();
+                        confirmDialog(
+                          context,
+                          title: "آیا برای حذف اطمینان دارید؟",
+                          onConfirm: () async {
+                            MyAlert.loding();
+                            await _managerPageController
+                                .deletBanner(carousel.id!);
                             Get.back();
-                          }
-                        });
+                            if (_managerPageController
+                                    .failureMessageDeleteBanner.value !=
+                                "") {
+                              MyAlert.mySnakbarRed(
+                                  text: _managerPageController
+                                      .failureMessageDeleteBanner.value);
+                            } else {
+                              _managerPageController
+                                  .resultGetBanner.value.data!.list2!
+                                  .removeAt(index);
+                              _managerPageController.resultGetBanner.refresh();
+                              Get.back();
+                            }
+                          },
+                        );
                       },
                       link: carousel.link,
                       imgAddress:
@@ -389,7 +406,7 @@ class ManagerPage extends StatelessWidget {
                   }
                 },
               ),
-            )
+            ),
           ],
         ),
       );
@@ -423,16 +440,19 @@ class ManagerPage extends StatelessWidget {
                           .resultGetBanner.value.data!.list3!.length) {
                     return InsertBannerWidget(
                       onTap: () {
-                        createEditBanner(context, bannerGroup: "list3",
-                            onChangeDropDown: (val) {
-                          _managerPageController.selectedDropDownValue.value =
-                              val;
-                          if (val == "بازکردن لیست") {
-                            _managerPageController.isLink.value = false;
-                          } else {
-                            _managerPageController.isLink.value = true;
-                          }
-                        });
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list3",
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                     );
                   } else {
@@ -440,22 +460,22 @@ class ManagerPage extends StatelessWidget {
                         .resultGetBanner.value.data!.list3![index];
 
                     return BannerListWidget(
-                      onEdit: (){
-
-
-                        createEditBanner(context, bannerGroup: "list3",edit: 'edit',
-                            banner: carousel,
-                            onChangeDropDown: (val) {
-                              _managerPageController.selectedDropDownValue.value =
-                                  val;
-                              if (val == "بازکردن لیست") {
-                                _managerPageController.isLink.value = false;
-                              } else {
-                                _managerPageController.isLink.value = true;
-                              }
-                            });
-
-
+                      onEdit: () {
+                        createEditBanner(
+                          context,
+                          bannerGroup: "list3",
+                          edit: 'edit',
+                          banner: carousel,
+                          onChangeDropDown: (val) {
+                            _managerPageController.selectedDropDownValue.value =
+                                val;
+                            if (val == "بازکردن لیست") {
+                              _managerPageController.isLink.value = false;
+                            } else {
+                              _managerPageController.isLink.value = true;
+                            }
+                          },
+                        );
                       },
                       title: carousel.bannerType == 'link'
                           ? "بازکردن لینک"
@@ -466,27 +486,29 @@ class ManagerPage extends StatelessWidget {
                       number: carousel.mentors!.length.toString(),
                       isLink: carousel.bannerType == 'link' ? true : false,
                       onDelete: () {
-                        confirmDialog(context,
-                            title: "آیا برای حذف اطمینان دارید؟",
-                            onConfirm: () async {
-                          MyAlert.loding();
-                          await _managerPageController
-                              .deletBanner(carousel.id!);
-                          Get.back();
-                          if (_managerPageController
-                                  .failureMessageDeleteBanner.value !=
-                              "") {
-                            MyAlert.mySnakbarRed(
-                                text: _managerPageController
-                                    .failureMessageDeleteBanner.value);
-                          } else {
-                            _managerPageController
-                                .resultGetBanner.value.data!.list3!
-                                .removeAt(index);
-                            _managerPageController.resultGetBanner.refresh();
+                        confirmDialog(
+                          context,
+                          title: "آیا برای حذف اطمینان دارید؟",
+                          onConfirm: () async {
+                            MyAlert.loding();
+                            await _managerPageController
+                                .deletBanner(carousel.id!);
                             Get.back();
-                          }
-                        });
+                            if (_managerPageController
+                                    .failureMessageDeleteBanner.value !=
+                                "") {
+                              MyAlert.mySnakbarRed(
+                                  text: _managerPageController
+                                      .failureMessageDeleteBanner.value);
+                            } else {
+                              _managerPageController
+                                  .resultGetBanner.value.data!.list3!
+                                  .removeAt(index);
+                              _managerPageController.resultGetBanner.refresh();
+                              Get.back();
+                            }
+                          },
+                        );
                       },
                       link: carousel.link,
                       imgAddress:
@@ -495,7 +517,7 @@ class ManagerPage extends StatelessWidget {
                   }
                 },
               ),
-            )
+            ),
           ],
         ),
       );

@@ -18,29 +18,31 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: AppColors.dividerLight,
-        body: Obx(() {
-          if (_homeController.failureMessageFetchHome.value != "") {
-            return Center(
-              child: CustomText(
-                  title: _homeController.failureMessageFetchHome.value),
-            );
-          } else if (_homeController.isLoadingFetchHome.value) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            return ScreenTypeLayout(
-              desktop: HomeDesctopPage(
-                  homeController: _homeController,
-                  offController: _offController),
-              tablet: HomeMobilePage(
-                  homeController: _homeController,
-                  offController: _offController),
-              mobile: HomeMobilePage(
-                  homeController: _homeController,
-                  offController: _offController),
-            );
-          }
-        }),
+        body: Obx(
+          () {
+            if (_homeController.failureMessageFetchHome.value != "") {
+              return Center(
+                child: CustomText(
+                    title: _homeController.failureMessageFetchHome.value),
+              );
+            } else if (_homeController.isLoadingFetchHome.value) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return ScreenTypeLayout(
+                desktop: HomeDesctopPage(
+                    homeController: _homeController,
+                    offController: _offController),
+                tablet: HomeMobilePage(
+                    homeController: _homeController,
+                    offController: _offController),
+                mobile: HomeMobilePage(
+                    homeController: _homeController,
+                    offController: _offController),
+              );
+            }
+          },
+        ),
       );
 }

@@ -26,7 +26,7 @@ class TvRowWidget extends StatelessWidget {
       this.publishStatus,
       this.address,
       this.type,
-        this.onLink,
+      this.onLink,
       this.status,
       this.image,
       this.publishStatusTitle,
@@ -50,27 +50,30 @@ class TvRowWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                child: isTitle == true
-                    ? Container()
-                    : image == ""
-                        ? const Center(
-                            child: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                backgroundImage: AssetImage(
-                                    "assets/images/avatar_placeholder.png")),
-                          )
-                        : Center(
-                            child: Container(
-                              width: 40,
+              child: isTitle == true
+                  ? Container()
+                  : image == ""
+                      ? const Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            backgroundImage: AssetImage(
+                                "assets/images/avatar_placeholder.png"),
+                          ),
+                        )
+                      : Center(
+                          child: Container(
+                            width: 40,
                             height: 40,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        GlobalInfo.serverAddress +
-                                            "/" +
-                                            image!),fit: BoxFit.fill)),
-                          ))),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      GlobalInfo.serverAddress + "/" + image!),
+                                  fit: BoxFit.fill),
+                            ),
+                          ),
+                        ),
+            ),
             Expanded(
               flex: 2,
               child: CustomText(
@@ -80,17 +83,18 @@ class TvRowWidget extends StatelessWidget {
                   title: type),
             ),
             Expanded(
-                flex: 2,
-                child: InkWell(
-                  onTap: onLink,
-                  child: CustomText(
-                      fontSize: isTitle == true ? 16 : 14,
-                      color: isTitle == true
-                          ? AppColors.lighterBlack
-                          : AppColors.blueIndigo,
-                      fontWeight: FontWeight.w500,
-                      title: address),
-                )),
+              flex: 2,
+              child: InkWell(
+                onTap: onLink,
+                child: CustomText(
+                    fontSize: isTitle == true ? 16 : 14,
+                    color: isTitle == true
+                        ? AppColors.lighterBlack
+                        : AppColors.blueIndigo,
+                    fontWeight: FontWeight.w500,
+                    title: address),
+              ),
+            ),
             isContact == true
                 ? const SizedBox(
                     height: 0,
@@ -105,56 +109,58 @@ class TvRowWidget extends StatelessWidget {
                                 ? AppColors.green
                                 : AppColors.dividerDark,
                         fontWeight: FontWeight.w500,
-                        title: publishStatusTitle)),
+                        title: publishStatusTitle),
+                  ),
             Expanded(
-                flex: 2,
-                child: CustomText(
-                    fontSize: 16,
-                    color: isTitle == true
-                        ? AppColors.lighterBlack
-                        : status == true
-                            ? AppColors.black
-                            : AppColors.orange,
-                    fontWeight: FontWeight.w500,
-                    title: statusTitle)),
+              flex: 2,
+              child: CustomText(
+                  fontSize: 16,
+                  color: isTitle == true
+                      ? AppColors.lighterBlack
+                      : status == true
+                          ? AppColors.black
+                          : AppColors.orange,
+                  fontWeight: FontWeight.w500,
+                  title: statusTitle),
+            ),
             Expanded(
-                flex: 2,
-                child: isTitle == true
-                    ? Container()
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          status != true
-                              ? ButtonText(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  onPressed: onConfirm,
-                                  width: Get.width * 0.06,
-                                  height: Get.height * 0.038,
-                                  fontSize: 13,
-                                  text: "تایید",
-                                  fontWeight: FontWeight.w500,
-                                  textColor: Colors.white,
-                                  bgColor: AppColors.green,
-                                  activeBorder: 1,
-                                  margin:
-                                      EdgeInsets.only(left: Get.width * 0.01),
-                                )
-                              : const SizedBox(
-                                  height: 0,
-                                ),
-                          ButtonText(
-                            onPressed: onEdit,
-                            width: Get.width * 0.05,
-                            height: Get.height * 0.038,
-                            fontSize: 13,
-                            text: "ویرایش",
-                            fontWeight: FontWeight.w500,
-                            textColor: AppColors.lighterBlack,
-                            activeBorder: 1,
-                            margin: EdgeInsets.only(left: Get.width * 0.02),
-                          )
-                        ],
-                      )),
+              flex: 2,
+              child: isTitle == true
+                  ? Container()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        status != true
+                            ? ButtonText(
+                                padding: const EdgeInsets.only(left: 5),
+                                onPressed: onConfirm,
+                                width: Get.width * 0.06,
+                                height: Get.height * 0.038,
+                                fontSize: 13,
+                                text: "تایید",
+                                fontWeight: FontWeight.w500,
+                                textColor: Colors.white,
+                                bgColor: AppColors.green,
+                                activeBorder: 1,
+                                margin: EdgeInsets.only(left: Get.width * 0.01),
+                              )
+                            : const SizedBox(
+                                height: 0,
+                              ),
+                        ButtonText(
+                          onPressed: onEdit,
+                          width: Get.width * 0.05,
+                          height: Get.height * 0.038,
+                          fontSize: 13,
+                          text: "ویرایش",
+                          fontWeight: FontWeight.w500,
+                          textColor: AppColors.lighterBlack,
+                          activeBorder: 1,
+                          margin: EdgeInsets.only(left: Get.width * 0.02),
+                        )
+                      ],
+                    ),
+            ),
           ],
         ),
       );

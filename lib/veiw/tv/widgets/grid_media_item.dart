@@ -39,38 +39,40 @@ class GridMediaItem extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(3),
         ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const CustomText(
-            title: "نوع رسانه",
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: AppColors.lighterBlack,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: Get.width,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(
-                  color: AppColors.dividerDark,
-                ),
-                color: AppColors.veryLightGrey),
-            child: Row(
-              children: [
-                isContact
-                    ? Expanded(
-                        flex: 1,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          underline: const SizedBox(height: 0),
-                          value: typeMedia,
-                          items: contact!.map((value) {
-                            return DropdownMenuItem(
-                              value: value.title,
-                              child: ListTile(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomText(
+              title: "نوع رسانه",
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: AppColors.lighterBlack,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: Get.width,
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: AppColors.dividerDark,
+                  ),
+                  color: AppColors.veryLightGrey),
+              child: Row(
+                children: [
+                  isContact
+                      ? Expanded(
+                          flex: 1,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            underline: const SizedBox(height: 0),
+                            value: typeMedia,
+                            items: contact!.map((value) {
+                              return DropdownMenuItem(
+                                value: value.title,
+                                child: ListTile(
                                   title: CustomText(title: value.title),
                                   leading: Container(
                                     height: 25,
@@ -85,22 +87,23 @@ class GridMediaItem extends StatelessWidget {
                                           ),
                                           fit: BoxFit.fill),
                                     ),
-                                  )),
-                            );
-                          }).toList(),
-                          onChanged: onChangeDropDown,
-                        ),
-                      )
-                    : Expanded(
-                        flex: 1,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          underline: const SizedBox(height: 0),
-                          value: typeMedia,
-                          items: tvs!.map((value) {
-                            return DropdownMenuItem(
-                              value: value.title,
-                              child: ListTile(
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: onChangeDropDown,
+                          ),
+                        )
+                      : Expanded(
+                          flex: 1,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            underline: const SizedBox(height: 0),
+                            value: typeMedia,
+                            items: tvs!.map((value) {
+                              return DropdownMenuItem(
+                                value: value.title,
+                                child: ListTile(
                                   title: CustomText(title: value.title),
                                   leading: Container(
                                     height: 25,
@@ -114,49 +117,51 @@ class GridMediaItem extends StatelessWidget {
                                                   value.logo!,
                                             ),
                                             fit: BoxFit.fill)),
-                                  )),
-                            );
-                          }).toList(),
-                          onChanged: onChangeDropDown,
-                        ),
-                      )
-              ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: onChangeDropDown,
+                          ),
+                        )
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          TitleTextFieldWidget(
-            title: "آدرس رسانه",
-            editingController: addressMedia,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          isContact
-              ? const SizedBox(
-                  height: 0,
-                )
-              : Row(
-                  children: [
-                    const CustomText(
-                      title: "رسانه در قسمت مطالب آموزشی باز نشر داده شود",
-                      color: AppColors.black,
-                      fontSize: 12,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Switch(
-                        value: switchBtn == false ? false : true,
-                        onChanged: onChangeSwitch,
-                        activeColor: AppColors.darkerGreen,
+            const SizedBox(
+              height: 20,
+            ),
+            TitleTextFieldWidget(
+              title: "آدرس رسانه",
+              editingController: addressMedia,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            isContact
+                ? const SizedBox(
+                    height: 0,
+                  )
+                : Row(
+                    children: [
+                      const CustomText(
+                        title: "رسانه در قسمت مطالب آموزشی باز نشر داده شود",
+                        color: AppColors.black,
+                        fontSize: 12,
                       ),
-                    ),
-                  ],
-                ),
-        ]),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Switch(
+                          value: switchBtn == false ? false : true,
+                          onChanged: onChangeSwitch,
+                          activeColor: AppColors.darkerGreen,
+                        ),
+                      ),
+                    ],
+                  ),
+          ],
+        ),
       );
 }

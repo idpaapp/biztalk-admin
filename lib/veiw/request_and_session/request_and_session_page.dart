@@ -25,13 +25,14 @@ class RequestAndSessionPage extends StatelessWidget {
       );
 
   body(BuildContext context) => SingleChildScrollView(
-    child: Column(
+        child: Column(
           children: [
             const TopSectionPanelAdmin(title: "کاربران" " /" "مشاور"),
-            SizedBox(height: 12,),
-
+            const SizedBox(
+              height: 12,
+            ),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+              padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
                 paddingBottom: 20,
                 tab: const SizedBox(height: 0),
@@ -51,89 +52,96 @@ class RequestAndSessionPage extends StatelessWidget {
             mainSection()
           ],
         ),
-  );
+      );
 
   mainSection() => Padding(
-    padding:  EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-
-    child: Row(
+        padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             filterSection(),
-            const SizedBox(width: 20,),
+            const SizedBox(
+              width: 20,
+            ),
             leftSectin(),
           ],
         ),
       );
 
-  Widget filterSection() =>Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          TypeFilterWidget(),
-          const SizedBox(height: 20,),
-          StatusFilterSectionWidget(),
-          const SizedBox(height: 20,),
+  Widget filterSection() => Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TypeFilterWidget(),
+            const SizedBox(
+              height: 20,
+            ),
+            StatusFilterSectionWidget(),
+            const SizedBox(
+              height: 20,
+            ),
+            RequestDateFilterWidget(
+              title: "تاریخ ایجاد درخواست",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            RequestDateFilterWidget(
+              title: "تاریخ جلسه",
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      );
 
-          RequestDateFilterWidget(title: "تاریخ ایجاد درخواست",),
-          const SizedBox(height: 20,),
-
-          RequestDateFilterWidget(title: "تاریخ جلسه",),
-          const SizedBox(height: 20,),
-
-
-
-        ],
-      ));
-
-  Widget leftSectin() =>Expanded(
+  Widget leftSectin() => Expanded(
       flex: 4,
       child: Container(
-
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.dividerLight),
+            border: Border.all(color: AppColors.dividerLight),
             borderRadius: BorderRadius.circular(5),
             color: Colors.white),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              ProfileTitleTableWidget(
-                isTitle: true,
-                userName: userType == "user"
-                    ? "نام مشاور"
-                    : "درخواست دهنده",
-                stateTitle: "وضعیت",
-                createDate: "تاریخ ایجاد درخواست",
-                sessionDate: "زمان جلسه",
-                subject: "موضوع",
-                state: null,
-              ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 3,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return ProfileTitleTableWidget(
-                      isTitle: false,
-                      userName: "سینا جمشیدی",
-                      stateTitle: "جلسه تمام شده",
-                      createDate: "1400/07/18,12:20",
-                      sessionDate: "1400/07/18,12:20",
-                      subject: "برنامه نویسی",
-                      state: index == 0
-                          ? "red"
-                          : index == 1
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProfileTitleTableWidget(
+              isTitle: true,
+              userName: userType == "user" ? "نام مشاور" : "درخواست دهنده",
+              stateTitle: "وضعیت",
+              createDate: "تاریخ ایجاد درخواست",
+              sessionDate: "زمان جلسه",
+              subject: "موضوع",
+              state: null,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: 3,
+              physics: const ScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ProfileTitleTableWidget(
+                  isTitle: false,
+                  userName: "سینا جمشیدی",
+                  stateTitle: "جلسه تمام شده",
+                  createDate: "1400/07/18,12:20",
+                  sessionDate: "1400/07/18,12:20",
+                  subject: "برنامه نویسی",
+                  state: index == 0
+                      ? "red"
+                      : index == 1
                           ? "pink"
                           : "blue",
-                    );
-                  }),
-              const SizedBox(
-                height: 20,
-              ),
-              pageSection()
-            ]),
+                );
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            pageSection()
+          ],
+        ),
       ));
 
   Widget pageSection() {
@@ -157,37 +165,38 @@ class RequestAndSessionPage extends StatelessWidget {
             width: 15,
           ),
           ListView.builder(
-              itemCount: 5,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Obx(
-                  () => InkWell(
-                    onTap: () {
-                      _requestSessionController.selectedPage.value = index + 1;
-                    },
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: index + 1 ==
-                                  _requestSessionController.selectedPage.value
-                              ? AppColors.blueIndigo
-                              : Colors.white),
-                      child: Center(
-                        child: CustomText(
-                          title: "${index + 1}",
-                          color: index + 1 ==
-                                  _requestSessionController.selectedPage.value
-                              ? Colors.white
-                              : AppColors.dividerDark,
-                        ),
+            itemCount: 5,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Obx(
+                () => InkWell(
+                  onTap: () {
+                    _requestSessionController.selectedPage.value = index + 1;
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: index + 1 ==
+                                _requestSessionController.selectedPage.value
+                            ? AppColors.blueIndigo
+                            : Colors.white),
+                    child: Center(
+                      child: CustomText(
+                        title: "${index + 1}",
+                        color: index + 1 ==
+                                _requestSessionController.selectedPage.value
+                            ? Colors.white
+                            : AppColors.dividerDark,
                       ),
                     ),
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
           const SizedBox(
             width: 15,
           ),

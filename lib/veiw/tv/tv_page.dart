@@ -24,22 +24,18 @@ class TvPage extends StatelessWidget {
   late String jobTitle;
   final TvController _controller = Get.put(TvController());
 
-
   TvPage({Key? key}) : super(key: key) {
-    image = Get.arguments['image']??"";
+    image = Get.arguments['image'] ?? "";
     id = Get.arguments['id'];
     fullName = Get.arguments['fullName'];
-    jobTitle = Get.arguments['jobTitle']??"";
+    jobTitle = Get.arguments['jobTitle'] ?? "";
   }
 
-
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
-          backgroundColor: AppColors.veryLightGrey, body: getBody(context));
+  Widget build(BuildContext context) => Scaffold(
+      backgroundColor: AppColors.veryLightGrey, body: getBody(context));
 
-  Widget getBody(BuildContext context) =>
-      SingleChildScrollView(
+  Widget getBody(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: [
             const TopSectionPanelAdmin(title: "رسانه ها"),
@@ -49,7 +45,7 @@ class TvPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
-                tab: SizedBox(height: 0),
+                tab: const SizedBox(height: 0),
                 isTransaction: false,
                 isUser: false,
                 image: image,
@@ -69,12 +65,10 @@ class TvPage extends StatelessWidget {
               builder: (context, snapshot) => snapshot.data!,
               stream: _controller.fetchMentorTv(
                   id: id,
-                  onLoading: () =>
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  onFailure: (message) =>
-                      Center(
+                  onLoading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                  onFailure: (message) => Center(
                         child: Text(message),
                       ),
                   onSuccess: (value) => tvSection(value!, context)),
@@ -89,12 +83,10 @@ class TvPage extends StatelessWidget {
               builder: (context, snapshot) => snapshot.data!,
               stream: _controller.fetchMentorContact(
                   id: id,
-                  onLoading: () =>
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  onFailure: (message) =>
-                      Center(
+                  onLoading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                  onFailure: (message) => Center(
                         child: Text(message),
                       ),
                   onSuccess: (value) => contactSection(value!, context)),
@@ -106,8 +98,7 @@ class TvPage extends StatelessWidget {
         ),
       );
 
-  tvSection(MentorTvsModel value, BuildContext context) =>
-      Container(
+  tvSection(MentorTvsModel value, BuildContext context) => Container(
         margin: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
         padding: EdgeInsets.symmetric(
             horizontal: Get.width * 0.02, vertical: Get.height * 0.01),
@@ -135,19 +126,24 @@ class TvPage extends StatelessWidget {
                 statusTitle: "وضعیت",
               ),
               value.data!.isEmpty
-                  ? const Padding(padding: EdgeInsets.only(top: 20),
-                child: Center(child: CustomText(title:"اطلاعاتی یافت نشد",)),)
+                  ? const Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Center(
+                          child: CustomText(
+                        title: "اطلاعاتی یافت نشد",
+                      )),
+                    )
                   : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: value.data!.length,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    var tv = value.data![index];
-                    return TvRowWidget(
-                      onConfirm: () {
-                        confirmDialog(context,
-                            title: "آیا برای تایید رسانه اطمینان دارید؟",
-                            onConfirm: () async {
+                      shrinkWrap: true,
+                      itemCount: value.data!.length,
+                      physics: const ScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        var tv = value.data![index];
+                        return TvRowWidget(
+                          onConfirm: () {
+                            confirmDialog(context,
+                                title: "آیا برای تایید رسانه اطمینان دارید؟",
+                                onConfirm: () async {
                               Map<String, dynamic> body = {
                                 "_id": tv.id,
                                 "type": "tv"
@@ -155,7 +151,7 @@ class TvPage extends StatelessWidget {
                               MyAlert.loding();
                               await _controller.confirmTvOrContact(body, id);
                               if (_controller.failureMessageConfirm.value ==
-                                  "" &&
+                                      "" &&
                                   _controller.resultConfirm.value.ok == true) {
                                 Get.back();
                                 Get.back();
@@ -172,37 +168,36 @@ class TvPage extends StatelessWidget {
                                         .failureMessageConfirm.value);
                               }
                             });
-                      },
-                      isTitle: false,
-                      type: tv.tvTitle,
-                      image: tv.tvLogo,
-                      address: tv.tvLink! + tv.userName!,
-                      status: tv.status,
-                      onLink: ()async{
-                        await launch(tv.tvLink! + tv.userName!);
-
-                      },
-                      statusTitle: tv.statusTitle,
-                      publishStatus: tv.rePublish,
-                      publishStatusTitle: tv.rePublishTitle,
-                      onEdit: () {
-                        editTvDialog(context,
-                            mentorFullName: fullName,
-                            isCreate: false,
-                            mentorImage: image,
-                            mentorJobTitle: jobTitle,
-                            userId: id,
-                            mainId: tv.id,
-                            type: tv.tvTitle,
-                            switchBtn: tv.rePublish,
-                            title: "رسانه",
-                            onConfirm: () {},
-                            onDelete: () {},
-                            imageType: tv.tvLogo,
-                            link: tv.userName);
-                      },
-                    );
-                  }),
+                          },
+                          isTitle: false,
+                          type: tv.tvTitle,
+                          image: tv.tvLogo,
+                          address: tv.tvLink! + tv.userName!,
+                          status: tv.status,
+                          onLink: () async {
+                            await launch(tv.tvLink! + tv.userName!);
+                          },
+                          statusTitle: tv.statusTitle,
+                          publishStatus: tv.rePublish,
+                          publishStatusTitle: tv.rePublishTitle,
+                          onEdit: () {
+                            editTvDialog(context,
+                                mentorFullName: fullName,
+                                isCreate: false,
+                                mentorImage: image,
+                                mentorJobTitle: jobTitle,
+                                userId: id,
+                                mainId: tv.id,
+                                type: tv.tvTitle,
+                                switchBtn: tv.rePublish,
+                                title: "رسانه",
+                                onConfirm: () {},
+                                onDelete: () {},
+                                imageType: tv.tvLogo,
+                                link: tv.userName);
+                          },
+                        );
+                      }),
               const SizedBox(
                 height: 20,
               ),
@@ -233,10 +228,8 @@ class TvPage extends StatelessWidget {
         ),
       );
 
-  contactSection(MentorContactModel value, BuildContext context) =>
-      Container(
+  contactSection(MentorContactModel value, BuildContext context) => Container(
         margin: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
-
         padding: EdgeInsets.symmetric(
             horizontal: Get.width * 0.02, vertical: Get.height * 0.01),
         decoration: BoxDecoration(
@@ -244,94 +237,110 @@ class TvPage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topLeft,
           children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const CustomText(
-                title: "راه های ارتباطی",
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: AppColors.lighterBlack,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const TvRowWidget(
-                isTitle: true,
-                type: "نوع کانال",
-                image: "",
-                isContact: true,
-                address: "آدرس",
-                publishStatusTitle: "وضعیت انتشار",
-                statusTitle: "وضعیت",
-              ),
-              value.data!.isEmpty?const Padding(padding: EdgeInsets.only(top: 20),
-                child: Center(child: CustomText(title:"اطلاعاتی یافت نشد",)),):ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: value.data!.length,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    var contact = value.data![index];
-                    return TvRowWidget(
-                      onConfirm: () {
-                        confirmDialog(context,
-                            title: "آیا برای تایید راه ارتباطی اطمینان دارید؟",
-                            onConfirm: () async {
-                              Map<String, dynamic> body = {
-                                "_id": contact.id,
-                                "type": "contact"
-                              };
-                              MyAlert.loding();
-                              await _controller.confirmTvOrContact(body, id);
-                              if (_controller.failureMessageConfirm.value ==
-                                  "" &&
-                                  _controller.resultConfirm.value.ok == true) {
-                                Get.back();
-                                Get.back();
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CustomText(
+                  title: "راه های ارتباطی",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.lighterBlack,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const TvRowWidget(
+                  isTitle: true,
+                  type: "نوع کانال",
+                  image: "",
+                  isContact: true,
+                  address: "آدرس",
+                  publishStatusTitle: "وضعیت انتشار",
+                  statusTitle: "وضعیت",
+                ),
+                value.data!.isEmpty
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Center(
+                            child: CustomText(
+                          title: "اطلاعاتی یافت نشد",
+                        )),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: value.data!.length,
+                        physics: const ScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          var contact = value.data![index];
+                          return TvRowWidget(
+                            onConfirm: () {
+                              confirmDialog(
+                                context,
+                                title:
+                                    "آیا برای تایید راه ارتباطی اطمینان دارید؟",
+                                onConfirm: () async {
+                                  Map<String, dynamic> body = {
+                                    "_id": contact.id,
+                                    "type": "contact"
+                                  };
+                                  MyAlert.loding();
+                                  await _controller.confirmTvOrContact(
+                                      body, id);
+                                  if (_controller.failureMessageConfirm.value ==
+                                          "" &&
+                                      _controller.resultConfirm.value.ok ==
+                                          true) {
+                                    Get.back();
+                                    Get.back();
 
-                                Get.offAndToNamed(TvPage.route, arguments: {
-                                  "image": image,
-                                  "fullName": fullName,
-                                  "jobTitle": jobTitle,
-                                  "id": id,
-                                });
-                              } else {
-                                Get.back();
-                                MyAlert.mySnakbarRed(
-                                    text: _controller.failureMessageConfirm
-                                        .value);
-                              }
-                            });
-                      },
-                      onLink: ()async{
-                        await launch( contact.contactLink! + contact.userName!);
-
-                      },
-                      isContact: true,
-                      isTitle: false,
-                      type: contact.contactTitle,
-                      image: contact.contactLogo,
-                      address: contact.contactLink! + contact.userName!,
-                      status: contact.status,
-                      statusTitle: contact.statusTitle,
-                      publishStatus: false,
-                      publishStatusTitle: "",
-                      onEdit: () {
-                        editContactDialog(context,
-                            mentorFullName: fullName,
-                            mentorImage: image,
-                            mentorJobTitle: jobTitle,
-                            userId: id,
-                            isCreate: false,
-                            mainId: contact.id,
+                                    Get.offAndToNamed(TvPage.route, arguments: {
+                                      "image": image,
+                                      "fullName": fullName,
+                                      "jobTitle": jobTitle,
+                                      "id": id,
+                                    });
+                                  } else {
+                                    Get.back();
+                                    MyAlert.mySnakbarRed(
+                                        text: _controller
+                                            .failureMessageConfirm.value);
+                                  }
+                                },
+                              );
+                            },
+                            onLink: () async {
+                              await launch(
+                                  contact.contactLink! + contact.userName!);
+                            },
+                            isContact: true,
+                            isTitle: false,
                             type: contact.contactTitle,
-                            title: "راه های ارتباطی",
-                            imageType: contact.contactLogo,
-                            link: contact.userName);
-                      },
-                    );
-                  }),
+                            image: contact.contactLogo,
+                            address: contact.contactLink! + contact.userName!,
+                            status: contact.status,
+                            statusTitle: contact.statusTitle,
+                            publishStatus: false,
+                            publishStatusTitle: "",
+                            onEdit: () {
+                              editContactDialog(context,
+                                  mentorFullName: fullName,
+                                  mentorImage: image,
+                                  mentorJobTitle: jobTitle,
+                                  userId: id,
+                                  isCreate: false,
+                                  mainId: contact.id,
+                                  type: contact.contactTitle,
+                                  title: "راه های ارتباطی",
+                                  imageType: contact.contactLogo,
+                                  link: contact.userName);
+                            },
+                          );
+                        },
+                      ),
 
-              //  pageSection()
-            ]),
+                //  pageSection()
+              ],
+            ),
             ButtonText(
               onPressed: () {
                 editContactDialog(
