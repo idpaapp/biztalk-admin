@@ -67,86 +67,79 @@ class Data {
 class Doc {
   Doc({
     this.id,
+    this.person,
+    this.jobTitle,
     this.subject,
-    this.description,
-    this.times,
-    this.user,
-    this.mentor,
     this.status,
-    this.hasChanged,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-    this.activeChatRoom,
-    this.sessionLink,
-    this.isCheckout,
+    this.statusTitle,
+    this.meUser,
+    this.createDate,
+    this.type,
+    this.description,
+    this.date,
     this.time,
+    this.profileImageUrl,
     this.request,
   });
 
   String? id;
+  Person? person;
+  String? jobTitle;
   Subject? subject;
-  String? description;
-  List<dynamic>? times;
-  Mentor? user;
-  Mentor? mentor;
   String? status;
-  bool? hasChanged;
-  String? createdAt;
-  String? updatedAt;
-  int? v;
-  dynamic activeChatRoom;
-  dynamic sessionLink;
-  bool? isCheckout;
-  TimeTime ? time;
+  String? statusTitle;
+  bool? meUser;
+  String? createDate;
+  String? type;
+  String? description;
+  String? date;
+  Time? time;
+  String? profileImageUrl;
   String? request;
 
   factory Doc.fromJson(Map<String, dynamic> json) => Doc(
     id: json["_id"] == null ? null : json["_id"],
+    person: json["person"] == null ? null : Person.fromJson(json["person"]),
+    jobTitle: json["jobTitle"] == null ? null : json["jobTitle"],
     subject: json["subject"] == null ? null : Subject.fromJson(json["subject"]),
-    description: json["description"] == null ? null : json["description"],
-    times: json["times"] == null ? null : List<dynamic>.from(json["times"].map((x) => x)),
-    user: json["user"] == null ? null : Mentor.fromJson(json["user"]),
-    mentor: json["mentor"] == null ? null : Mentor.fromJson(json["mentor"]),
     status: json["status"] == null ? null : json["status"],
-    hasChanged: json["hasChanged"] == null ? null : json["hasChanged"],
-    createdAt: json["createdAt"] == null ? null : json["createdAt"],
-    updatedAt: json["updatedAt"] == null ? null : json["updatedAt"],
-    v: json["__v"] == null ? null : json["__v"],
-    activeChatRoom: json["activeChatRoom"],
-    sessionLink: json["sessionLink"],
-    isCheckout: json["isCheckout"] == null ? null : json["isCheckout"],
-    time: json["time"] == null ? null : TimeTime.fromJson(json["subject"]),
+    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
+    meUser: json["meUser"] == null ? null : json["meUser"],
+    createDate: json["createDate"] == null ? null : json["createDate"],
+    type: json["type"] == null ? null : json["type"],
+    description: json["description"] == null ? null : json["description"],
+    date: json["date"] == null ? null : json["date"],
+    time: json["time"] == null ? null : Time.fromJson(json["time"]),
+    profileImageUrl: json["profileImageUrl"] == null ? null : json["profileImageUrl"],
     request: json["request"] == null ? null : json["request"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id == null ? null : id,
+    "person": person == null ? null : person!.toJson(),
+    "jobTitle": jobTitle == null ? null : jobTitle,
     "subject": subject == null ? null : subject!.toJson(),
-    "description": description == null ? null : description,
-    "times": times == null ? null : List<dynamic>.from(times!.map((x) => x)),
-    "user": user == null ? null : user!.toJson(),
-    "mentor": mentor == null ? null : mentor!.toJson(),
     "status": status == null ? null : status,
-    "hasChanged": hasChanged == null ? null : hasChanged,
-    "createdAt": createdAt == null ? null : createdAt!,
-    "updatedAt": updatedAt == null ? null : updatedAt!,
-    "__v": v == null ? null : v,
-    "activeChatRoom": activeChatRoom,
-    "sessionLink": sessionLink,
-    "isCheckout": isCheckout == null ? null : isCheckout,
-    "time": time == null ? null : time!,
+    "statusTitle": statusTitle == null ? null : statusTitle,
+    "meUser": meUser == null ? null : meUser,
+    "createDate": createDate == null ? null : createDate,
+    "type": type == null ? null : type,
+    "description": description == null ? null : description,
+    "date": date == null ? null : date,
+    "time": time == null ? null : time!.toJson(),
+    "profileImageUrl": profileImageUrl == null ? null : profileImageUrl,
     "request": request == null ? null : request,
   };
 }
 
-class Mentor {
-  Mentor({
+class Person {
+  Person({
     this.id,
     this.fullName,
     this.profileImageUrl,
     this.jobTitle,
     this.grade,
+    this.gradeTitle,
     this.userType,
   });
 
@@ -155,14 +148,16 @@ class Mentor {
   String? profileImageUrl;
   String? jobTitle;
   String? grade;
+  String? gradeTitle;
   String? userType;
 
-  factory Mentor.fromJson(Map<String, dynamic> json) => Mentor(
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
     id: json["_id"] == null ? null : json["_id"],
     fullName: json["fullName"] == null ? null : json["fullName"],
     profileImageUrl: json["profileImageUrl"] == null ? null : json["profileImageUrl"],
     jobTitle: json["jobTitle"] == null ? null : json["jobTitle"],
     grade: json["grade"] == null ? null : json["grade"],
+    gradeTitle: json["gradeTitle"] == null ? null : json["gradeTitle"],
     userType: json["userType"] == null ? null : json["userType"],
   );
 
@@ -172,6 +167,7 @@ class Mentor {
     "profileImageUrl": profileImageUrl == null ? null : profileImageUrl,
     "jobTitle": jobTitle == null ? null : jobTitle,
     "grade": grade == null ? null : grade,
+    "gradeTitle": gradeTitle == null ? null : gradeTitle,
     "userType": userType == null ? null : userType,
   };
 }
@@ -196,82 +192,46 @@ class Subject {
   };
 }
 
-class DocTime {
-  DocTime({
-    this.time,
+class Time {
+  Time({
     this.id,
-    this.date,
-    this.mentor,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-    this.request,
-  });
-
-  TimeTime? time;
-  String? id;
-  String? date;
-  String? mentor;
-  String? createdAt;
-  String? updatedAt;
-  int? v;
-  String? request;
-
-  factory DocTime.fromJson(Map<String, dynamic> json) => DocTime(
-    time: json["time"] == null ? null : TimeTime.fromJson(json["time"]),
-    id: json["_id"] == null ? null : json["_id"],
-    date: json["date"] == null ? null : json["date"],
-    mentor: json["mentor"] == null ? null : json["mentor"],
-    createdAt: json["createdAt"] == null ? null : json["createdAt"],
-    updatedAt: json["updatedAt"] == null ? null : json["updatedAt"],
-    v: json["__v"] == null ? null : json["__v"],
-    request: json["request"] == null ? null : json["request"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "time": time == null ? null : time!.toJson(),
-    "_id": id == null ? null : id,
-    "date": date == null ? null : date,
-    "mentor": mentor == null ? null : mentor,
-    "createdAt": createdAt == null ? null : createdAt,
-    "updatedAt": updatedAt == null ? null : updatedAt,
-    "__v": v == null ? null : v,
-    "request": request == null ? null : request,
-  };
-}
-
-class TimeTime {
-  TimeTime({
     this.start,
     this.end,
-    this.price,
-    this.inReservation,
     this.formattedPrice,
+    this.price,
     this.status,
+    this.sessionTime,
+    this.statusTitle,
   });
 
+  String? id;
   String? start;
   String? end;
-  int? price;
-  String? inReservation;
   String? formattedPrice;
+  int? price;
   String? status;
+  String? sessionTime;
+  String? statusTitle;
 
-  factory TimeTime.fromJson(Map<String, dynamic> json) => TimeTime(
+  factory Time.fromJson(Map<String, dynamic> json) => Time(
+    id: json["_id"] == null ? null : json["_id"],
     start: json["start"] == null ? null : json["start"],
     end: json["end"] == null ? null : json["end"],
-    price: json["price"] == null ? null : json["price"],
-    inReservation: json["inReservation"] == null ? null : json["inReservation"],
     formattedPrice: json["formattedPrice"] == null ? null : json["formattedPrice"],
+    price: json["price"] == null ? null : json["price"],
     status: json["status"] == null ? null : json["status"],
+    sessionTime: json["sessionTime"] == null ? null : json["sessionTime"],
+    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
   );
 
   Map<String, dynamic> toJson() => {
+    "_id": id == null ? null : id,
     "start": start == null ? null : start,
     "end": end == null ? null : end,
-    "price": price == null ? null : price,
-    "inReservation": inReservation == null ? null : inReservation,
     "formattedPrice": formattedPrice == null ? null : formattedPrice,
+    "price": price == null ? null : price,
     "status": status == null ? null : status,
+    "sessionTime": sessionTime == null ? null : sessionTime,
+    "statusTitle": statusTitle == null ? null : statusTitle,
   };
 }
