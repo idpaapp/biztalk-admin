@@ -174,7 +174,7 @@ class HomeController extends GetxController {
   var resultVerifyAccount = EditModel().obs;
   RxBool isLoadingVerifyAccount = false.obs;
 
-  VerifyAccount(String userId, bool confirm) async {
+  verifyAccount(String userId, bool confirm) async {
     failureMessageVerifyAccount.value = "";
     isLoadingVerifyAccount.value = true;
     final result = await _homeRepo.verifyAccount(userId, confirm);

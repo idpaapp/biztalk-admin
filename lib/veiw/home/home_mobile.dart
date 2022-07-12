@@ -1,24 +1,19 @@
-import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/master_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/drawer/drawer_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/insert_user/insert_user_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/media/media_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/off/off_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/report/report_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/request_list/request_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/session/session_list_section.dart';
-import 'package:biztalk_panel_admin/veiw/home/widget/container_section_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/row_in_table_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/text_fiels_custom_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
-import 'package:biztalk_panel_admin/veiw/manager_page/manager_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_user/single_user_page.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +61,7 @@ class HomeMobilePage extends StatelessWidget {
                 child: Icon(Icons.menu, size: 30, color: Colors.white),
               )),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 24),
+            padding: const EdgeInsets.symmetric(vertical: 24),
             child: Obx(() {
               if (homeController.tab.value == 1) {
                 return BankAccountSection();

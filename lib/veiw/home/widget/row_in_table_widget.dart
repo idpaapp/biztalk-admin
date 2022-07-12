@@ -1,9 +1,7 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TitleRowInTableWidget extends StatelessWidget {
   final String? mainUserName;

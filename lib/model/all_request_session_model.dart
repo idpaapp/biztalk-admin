@@ -59,7 +59,7 @@ class Data {
     "docs": docs == null ? null : List<dynamic>.from(docs!.map((x) => x.toJson())),
     "totalDocs": totalDocs == null ? null : totalDocs,
     "limit": limit == null ? null : limit,
-    "totalPages": totalPages == null ? null : totalPages,
+    "totalPages": totalPages ?? null,
     "page": page == null ? null : page,
   };
 }

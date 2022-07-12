@@ -71,7 +71,7 @@ class BankAccountSection extends StatelessWidget {
                             singleTransactionDialog(context,"تایید حساب بانکی",user,(){
                               confirmDialog(context,title: "آیا برای تایید اطمینان دارید؟",onConfirm: ()async{
                                 MyAlert.loding();
-                                await _homeController.VerifyAccount(user.userId!, true);
+                                await _homeController.verifyAccount(user.userId!, true);
                                 if(_homeController.resultVerifyAccount.value.ok ==true){
                                   Get.back();
                                   Get.back();
