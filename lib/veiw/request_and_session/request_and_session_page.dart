@@ -65,7 +65,7 @@ class RequestAndSessionPage extends StatelessWidget {
                   showMyDialog(context);
                 },
                 fullName: profile.fullName??"",
-                jobTitle: profile.jobTitle??"",
+                jobTitle:userType == "user" ? "": profile == null ?"" :profile.jobTitle??"",
               ),
             ),
             SizedBox(
