@@ -10,12 +10,13 @@ class StatusFilterSectionWidget extends StatelessWidget {
 
   final RequestSessionController _requestSessionController =
       Get.put(RequestSessionController());
-  final List status = [
-    "درخواست مشاوره",
-    "درخواست تایید شده",
-    "زمان جلسه تعیین شده",
-    "جلسه برگزار شده"
+  late List<FilterModel> listFilter = [
+    FilterModel(title: "درخواست مشاوره", key: "draft"),
+    FilterModel(title: "درخواست تایید شده", key: "confirmed"),
+    FilterModel(title: "زمان جلسه تعیین شده", key: "reserved"),
+    FilterModel(title: "جلسه برگزار شده", key: "completed"),
   ];
+
 
   @override
   Widget build(BuildContext context) => Container(
@@ -37,29 +38,30 @@ class StatusFilterSectionWidget extends StatelessWidget {
             title: "وضعیت",
           ),
           ListView.builder(
-              itemCount: status.length,
+              itemCount: listFilter.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Obx(
                   () => InkWell(
                     onTap: () {
-                      if(_requestSessionController.selectedStatus.contains(index)){
-                        _requestSessionController.selectedStatus.remove(index);
-                      }else{
-                        _requestSessionController.selectedStatus.add(index);
+                      if (_requestSessionController.selectedStatus
+                          .contains(listFilter[index].key)) {
+                        _requestSessionController.selectedStatus.remove(listFilter[index].key);
+                      } else {
+                        _requestSessionController.selectedStatus.add(listFilter[index].key);
                       }
                     },
                     child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       child: Row(
                         children: [
                           Container(
                             width: 15,
                             height: 15,
                             decoration: BoxDecoration(
-                              color: _requestSessionController
-                                          .selectedStatus.contains(index)
+                              color: _requestSessionController.selectedStatus
+                                      .contains(listFilter[index].key)
                                   ? AppColors.blueIndigo
                                   : Colors.white,
                               shape: BoxShape.rectangle,
@@ -70,8 +72,7 @@ class StatusFilterSectionWidget extends StatelessWidget {
                             width: 15,
                           ),
                           CustomText(
-                            title:
-                                status[index],
+                            title: listFilter[index].title,
                             color: AppColors.darkerGrey,
                             fontSize: 14,
                           )
@@ -83,4 +84,11 @@ class StatusFilterSectionWidget extends StatelessWidget {
               })
         ]),
       );
+}
+
+class FilterModel {
+  final String? title;
+  final String? key;
+
+  FilterModel({this.title, this.key});
 }

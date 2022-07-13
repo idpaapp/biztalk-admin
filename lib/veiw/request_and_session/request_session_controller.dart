@@ -1,16 +1,26 @@
 import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
 import 'package:biztalk_panel_admin/service/mentor_repository.dart';
+import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/status_filter_section_widget.dart';
 import 'package:get/get.dart';
 class RequestSessionController extends GetxController{
   final MentorRepository _mentorRepository =Get.find<MentorRepository>();
   RxInt selectedPage=1.obs;
   RxInt typeSelectedFilter =0.obs;
   RxList selectedStatus=[].obs;
-  RxString selectedStartDateRequest="".obs;
-  RxString selectedEndDateRequest="".obs;
-  RxString selectedEndDateSession="".obs;
-  RxString selectedStartDateSession="".obs;
+  RxString selectedStartDateRequest="انتخاب کنید".obs;
+  RxString selectedEndDateRequest="انتخاب کنید".obs;
+  RxString selectedEndDateSession="انتخاب کنید".obs;
+  RxString selectedStartDateSession="انتخاب کنید".obs;
+deleteData(){
+  selectedStatus.clear();
+  selectedPage.value=1;
+  selectedStartDateRequest.value="انتخاب کنید";
+  selectedEndDateRequest.value="انتخاب کنید";
+  selectedEndDateSession.value="انتخاب کنید";
+  selectedStartDateSession.value="انتخاب کنید";
 
+
+}
 
   RxString failureMessageGetAll = "".obs;
   RxBool isLoadingGetAll = false.obs;

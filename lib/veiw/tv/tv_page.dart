@@ -45,7 +45,9 @@ class TvPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
-                tab: const SizedBox(height: 0),
+                tab: const SizedBox(height: 20),
+                activeEdit: false,
+
                 isTransaction: false,
                 isUser: false,
                 image: image,

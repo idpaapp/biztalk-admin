@@ -124,7 +124,7 @@ class TvRowWidget extends StatelessWidget {
                   title: statusTitle),
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: isTitle == true
                   ? Container()
                   : Row(

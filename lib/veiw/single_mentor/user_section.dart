@@ -60,6 +60,7 @@ class UserSectionWidget extends StatelessWidget {
                     Get.to(() => RequestAndSessionPage(
                           userType: "user",
                           userID: id!,
+                      profile: value.data!.profile,
                         ));
                   },
                   title: "درخواست ها و جلسات",

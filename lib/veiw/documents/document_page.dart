@@ -17,8 +17,9 @@ import 'package:get/get.dart';
 
 class DocumentPage extends StatelessWidget {
   final MentorModel data;
+  final Profile profile;
 
-  DocumentPage({Key? key, required this.data}) : super(key: key) {
+  DocumentPage({Key? key, required this.data,required this.profile}) : super(key: key) {
     _documentController.getDocument(data.data!.profile!.id!);
   }
 
@@ -59,10 +60,12 @@ class DocumentPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
                 tab: const SizedBox(height: 20),
+                activeEdit: false,
+
 
                 isTransaction: true,
                 isUser: false,
-                image: "ss",
+                image: profile.profile??"",
                 onEdit: () {},
                 fullName: data.data!.profile!.fullName,
                 jobTitle: data.data!.profile!.jobTitle,

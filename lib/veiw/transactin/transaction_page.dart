@@ -59,7 +59,10 @@ class TransactionPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
               child: ProfileSectionWidget(
-                tab: SizedBox(height: 0),
+                tab: const SizedBox(height: 20),
+                activeEdit: false,
+
+
                 isTransaction: true,
                 isUser: typeUser == "user" ? true : false,
                 image: image,

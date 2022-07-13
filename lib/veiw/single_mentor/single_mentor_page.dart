@@ -304,6 +304,7 @@ class SingleMentorPage extends StatelessWidget {
                       onTap: () {
                         Get.to(() => DocumentPage(
                               data: value,
+                          profile: value.data!.profile!,
                             ));
                       },
                     ),
@@ -327,6 +328,8 @@ class SingleMentorPage extends StatelessWidget {
                           () => RequestAndSessionPage(
                             userType: "mentor",
                             userID: finalID!,
+                            profile: value.data!.profile,
+
                           ),
                         );
                       },
