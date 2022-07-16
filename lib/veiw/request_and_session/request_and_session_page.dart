@@ -1,11 +1,15 @@
 import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
+import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/responsive/select_date_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
+import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/session_dialog.dart';
+import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/request_date_filter_widget.dart';
@@ -20,18 +24,20 @@ class RequestAndSessionPage extends StatelessWidget {
   final String userID;
   final dynamic profile;
 
-  RequestAndSessionPage({Key? key, this.userType, required this.userID,required this.profile})
+  RequestAndSessionPage(
+      {Key? key, this.userType, required this.userID, required this.profile})
       : super(key: key) {
     _requestSessionController.getAllRequestSession({
       "page": _requestSessionController.selectedPage.value,
       "type": userType,
-      "status": ["draft", "confirmed", "reserved"],
+      "status": ["draft", "confirmed", "reserved", "completed"],
       "requestFromDate": null,
       "requestToDate": null,
       "sessionFromDate": null,
       "sessionToDate": null
     }, userID);
   }
+  final HomeController _homeController =Get.find();
 
   final RequestSessionController _requestSessionController =
       Get.put(RequestSessionController());
@@ -58,14 +64,17 @@ class RequestAndSessionPage extends StatelessWidget {
                 paddingBottom: 20,
                 tab: const SizedBox(height: 0),
                 activeEdit: false,
-
                 isUser: userType == "user" ? true : false,
-                image:profile.profile??"",
+                image: profile.profile ?? "",
                 onEdit: () {
                   showMyDialog(context);
                 },
-                fullName: profile.fullName??"",
-                jobTitle:userType == "user" ? "": profile == null ?"" :profile.jobTitle??"",
+                fullName: profile.fullName ?? "",
+                jobTitle: userType == "user"
+                    ? ""
+                    : profile == null
+                        ? ""
+                        : profile.jobTitle ?? "",
               ),
             ),
             SizedBox(
@@ -198,7 +207,8 @@ class RequestAndSessionPage extends StatelessWidget {
                         "sessionToDate": _requestSessionController
                             .selectedEndDateSession.value
                       };
-                      print(body);
+
+
                       _requestSessionController.getAllRequestSession(
                           body, userID);
                     },
@@ -275,8 +285,8 @@ class RequestAndSessionPage extends StatelessWidget {
                     child: const Center(
                         child: CustomText(
                       title: "جلسه یا درخواستی برای نمایش وجود ندارد",
-                          fontSize: 14,
-                          color: AppColors.blueSession,
+                      fontSize: 14,
+                      color: AppColors.blueSession,
                     )),
                   )
                 : ListView.builder(
@@ -289,6 +299,29 @@ class RequestAndSessionPage extends StatelessWidget {
                           .resultGetAll.value.data!.docs![index];
                       return ProfileTitleTableWidget(
                         isTitle: false,
+                        onTap: () async{
+                          if(data.type == "session"){
+                            MyAlert.loding();
+                            await _homeController.singleSession(data.id!);
+                            if (_homeController
+                                .failureMessageSingleSession.value !=
+                                "") {
+                              Get.back();
+                              MyAlert.mySnakbarRed(
+                                  text: _homeController
+                                      .failureMessageSingleSession.value);
+                              return;
+                            } else {
+                              Get.back();
+                              // var sesion=_homeController.resultSingleSession.value.data;
+                              // Session(id: ,date: data.date,description: data.description,formattedPrice:"");
+                              // sessionDialog(context, "جلسه", data,
+                              //     _homeController.resultSingleSession.value);
+                            }
+                          }else{
+
+                          }
+                        },
                         userName: data.person!.fullName ?? "نا مشخص",
                         stateTitle: data.statusTitle ?? "نا مشخص",
                         createDate: data.date ?? "نا مشخص",
@@ -314,7 +347,6 @@ class RequestAndSessionPage extends StatelessWidget {
                     width: 0,
                   )
                 : pageSection(_requestSessionController.resultGetAll.value),
-
             const SizedBox(
               height: 40,
             ),
