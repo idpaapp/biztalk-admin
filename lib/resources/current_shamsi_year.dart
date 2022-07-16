@@ -16,6 +16,12 @@ english(){
   return englishDate;
 
 }
+miladiCurrent() {
+  var now = DateTime.now();
+  String dateCurrent = now.toString();
+  String english = (dateCurrent.substring(0, 10).toEnglishDigit());
+  return english;
+}
 currentYear() {
   var now = DateTime.now();
   String dateCurrent = now.toString();
