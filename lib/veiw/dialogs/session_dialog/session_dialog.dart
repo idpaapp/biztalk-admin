@@ -25,9 +25,9 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
-            size: 3,
-            title: title,
-            ),
+          size: 3,
+          title: title,
+        ),
         content: SizedBox(
           height: Get.height * 0.7,
           width: Get.width * 0.6,
@@ -36,7 +36,7 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                   horizontal: Get.width * 0.02, vertical: Get.height * 0.005),
               child: Row(
                 children: [
-                  right(session,context),
+                  right(session, context),
                   const SizedBox(
                     width: 10,
                   ),
@@ -44,6 +44,7 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                     //dlgfgjr
                       const CustomText(
                         title: "تاریخچه گفتوگوها",
                         fontWeight: FontWeight.bold,
@@ -62,7 +63,7 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                           borderRadius: BorderRadius.circular(3),
                           border: Border.all(color: AppColors.dividerLight),
                         ),
-                        child: listOfMessage( value),
+                        child: listOfMessage(value),
                       )
                     ],
                   ))
@@ -70,7 +71,6 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
               )),
         ),
         actions: <Widget>[
-
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
@@ -89,7 +89,6 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                   textColor: Colors.white,
                   bgColor: AppColors.red,
                 ),
-
                 const SizedBox(
                   width: 10,
                 ),
@@ -113,13 +112,9 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
       );
     },
   );
-
-
 }
 
-
-
-Widget right(Session session,BuildContext context) => Expanded(
+Widget right(Session session, BuildContext context) => Expanded(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -194,11 +189,14 @@ Widget right(Session session,BuildContext context) => Expanded(
             RowTextWidget(
               bgColor: Colors.white,
               title: "تاریخ و زمان :",
-              subTitle: session.date! + " "+session.startTime! ,
+              subTitle: session.date! + " " + session.startTime!,
             ),
-            InkWell(onTap:(){
-              ChangeDate.setTime(context);
-            } ,child: Icon(Icons.date_range,size: 30),)
+            InkWell(
+              onTap: () {
+                ChangeDate.setTime(context);
+              },
+              child: Icon(Icons.date_range, size: 30),
+            )
           ],
         ),
         const SizedBox(
@@ -235,15 +233,13 @@ Widget listOfMessage(SingleReportModel value) => ListView.builder(
         if (message.senderType == "mentor") {
           return UserChat(
             message: message.msg,
-            image:
-                message.sender!.profileImageUrl!,
+            image: message.sender!.profileImageUrl!,
             date: message.date,
           );
         } else {
           return MentorChat(
             message: message.msg,
-            image:
-                message.sender!.profileImageUrl!,
+            image: message.sender!.profileImageUrl!,
             date: message.date,
           );
         }
