@@ -12,6 +12,7 @@ import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/change_date.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 Future<void> sessionDialog(BuildContext context, String title, Session session,
     SingleReportModel value) async {
   return showDialog<void>(
@@ -44,7 +45,6 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     //dlgfgjr
                       const CustomText(
                         title: "تاریخچه گفتوگوها",
                         fontWeight: FontWeight.bold,
@@ -193,7 +193,7 @@ Widget right(Session session, BuildContext context) => Expanded(
             ),
             InkWell(
               onTap: () {
-                ChangeDate.setTime(context);
+                ChangeDate.setTime(context,session.timeId!);
               },
               child: Icon(Icons.date_range, size: 30),
             )

@@ -85,6 +85,7 @@ class Session {
       this.description,
       this.fromNow,
       this.status,
+      this.timeId,
       this.statusTitle});
 
   String? id;
@@ -99,9 +100,11 @@ class Session {
   String? fromNow;
   String? status;
   String? statusTitle;
+  String? timeId;
 
   factory Session.fromJson(Map<String, dynamic> json) => Session(
         id: json["_id"],
+        timeId: json["timeId"],
         subject: Subject.fromJson(json["subject"]),
         user: Mentor.fromJson(json["user"]),
         mentor: Mentor.fromJson(json["mentor"]),
@@ -117,6 +120,7 @@ class Session {
 
   Map<String, dynamic> toJson() => {
         "_id": id,
+        "timeId": timeId,
         "subject": subject!.toJson(),
         "user": user!.toJson(),
         "mentor": mentor!.toJson(),
@@ -150,7 +154,7 @@ class Mentor {
         "_id": id,
         "fullName": fullName,
         "phoneNumber": phoneNumber,
-    "profileImageUrl":profileImageUrl
+        "profileImageUrl": profileImageUrl
       };
 }
 

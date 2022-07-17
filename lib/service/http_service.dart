@@ -18,8 +18,7 @@ class HttpServices {
         bool defaultHeaders = true,
         bool needAuth = true,
       }) async {
-    print( _authController.fetchToken());
-    print( "******************* token ***************");
+
     try {
       Map<String, String> headers = {};
       if (needAuth) {

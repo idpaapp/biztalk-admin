@@ -12,6 +12,7 @@ import 'package:biztalk_panel_admin/model/home/tv_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/model/transaction/not_verify_account_model.dart';
 import 'package:biztalk_panel_admin/model/tv/all_tvs_model.dart';
+import 'package:biztalk_panel_admin/service/document_repository.dart';
 import 'package:biztalk_panel_admin/service/home_repository.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,7 @@ class HomeController extends GetxController {
   RxInt selectedHomeTab = 0.obs;
   RxInt selectedPage = 1.obs;
   final HomeRepository _homeRepo = Get.find<HomeRepository>();
+
   RxBool showMoreRegion = false.obs;
 
   RxInt tab = 0.obs;
@@ -387,6 +389,32 @@ class HomeController extends GetxController {
   }
 
   Timer? timer;
+  RxString selectedDate = "".obs;
+  RxString selectedDateGorge = "".obs;
+  RxBool freeSession = false.obs;
+
+
+
+  RxString failureMessageChangeDate = "".obs;
+  var resultChangeDate = EditModel().obs;
+  RxBool isLoadingChangeDate = false.obs;
+
+  changeDate(String id, Map<String, String>body) async {
+    failureMessageChangeDate.value = "";
+    isLoadingChangeDate.value = true;
+    print("sssssssssssssssssssssss");
+    final result = await _homeRepo.changeDateANdTime(id, body);
+    result.fold(
+          (left) {
+        failureMessageChangeDate.value = left.message;
+      },
+          (right) {
+        resultChangeDate.value = right;
+        isLoadingChangeDate.value = false;
+      },
+    );
+  }
+
 
   @override
   void onInit() {

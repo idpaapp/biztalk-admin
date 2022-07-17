@@ -1,11 +1,11 @@
 import 'package:biztalk_panel_admin/components/time_picker/date_time_picker.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
-import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text_field.dart';
+import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/session/session_controller.dart';
+import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linear_datepicker/flutter_datepicker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,24 +16,34 @@ import 'package:shamsi_date/shamsi_date.dart';
 class ChangeDate{
   var maskFormatter =
   MaskTextInputFormatter(mask: '##:##', filter: {"#": RegExp(r'[0-9]')});
- static  setTime(BuildContext context) {
-   final SessionController _sessionController = Get.put(SessionController());
+ static  setTime(BuildContext context,String dateId) {
+   final HomeController _homeController = Get.find();
    var maskFormatter =
    MaskTextInputFormatter(mask: '##:##', filter: {"#": RegExp(r'[0-9]')});
    TextEditingController _startTime=TextEditingController();
     TextEditingController _endTime=TextEditingController();
-    _sessionController.selectedDate.value = iranCurrentDate();
-    _sessionController.selectedDateGorge.value = miladiCurrent();
+   _homeController.selectedDate.value = iranCurrentDate();
+   _homeController.selectedDateGorge.value = miladiCurrent();
 
 
 
-    documentDialog(context,title: "افزودن زمانبندی",size: 4,onSave: (){
+    documentDialog(context,title: "افزودن زمانبندی",size: 4,onSave: ()async{
       Map<String,String> body={
-        "date": _sessionController.selectedDateGorge.value,
+        "date": _homeController.selectedDateGorge.value,
         "start": _startTime.text,
         "end": _endTime.text
       };
-      print(body);
+      MyAlert.loding();
+      await _homeController.changeDate(dateId, body);
+      Get.back();
+      if(_homeController.failureMessageChangeDate.value !=""){
+        MyAlert.mySnakbarRed(text: _homeController.failureMessageChangeDate.value);
+      }else{
+        _homeController.sessionList(1);
+        Get.back();
+        Get.back();
+        MyAlert.mySnakbar(text: "عملیات با موفقیت انجام شد");
+      }
     },content: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
       child: Column(
@@ -65,7 +75,7 @@ class ChangeDate{
                       ),
                       child: CustomTextField(
                         controller: TextEditingController(
-                            text: _sessionController
+                            text: _homeController
                                 .selectedDate.value),
                         isEnabled: false,
                         isSuffix: 1,
@@ -189,13 +199,13 @@ class ChangeDate{
     ));
   }
  static datePikcer(BuildContext context) {
-   final SessionController _sessionController = Get.put(SessionController());
+   final HomeController _homeController = Get.find();
 
    String date = "";
     String dateGorg = "";
    documentDialog(context,title: "انتخاب تاریخ",size: 4,onSave: (){
-     _sessionController.selectedDate.value = date;
-     _sessionController.selectedDateGorge.value =
+     _homeController.selectedDate.value = date;
+     _homeController.selectedDateGorge.value =
          dateGorg;
      Get.back();
    },content:Column(
