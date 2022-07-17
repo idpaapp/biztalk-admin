@@ -84,7 +84,7 @@ class SessionListSection extends StatelessWidget {
                               } else {
                                 Get.back();
                                 sessionDialog(context, "جلسه", session,
-                                    _homeController.resultSingleSession.value,);
+                                    _homeController.resultSingleSession.value);
                               }
 
 

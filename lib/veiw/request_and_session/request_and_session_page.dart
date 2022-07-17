@@ -312,10 +312,9 @@ class RequestAndSessionPage extends StatelessWidget {
                                       .failureMessageSingleSession.value);
                               return;
                             } else {
-                              Get.back();
-                              // var sesion=_homeController.resultSingleSession.value.data;
-                              // Session(id: ,date: data.date,description: data.description,formattedPrice:"");
-                              // sessionDialog(context, "جلسه", data,
+                              // Get.back();
+                              // Session my=  Session(id:data.id ,date: data.date,description: data.description,formattedPrice:"");
+                              // sessionDialog(context, "جلسه", my,
                               //     _homeController.resultSingleSession.value);
                             }
                           }else{
