@@ -338,6 +338,7 @@ class HomeRepository {
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
+        print(response);
 
         var data = sessionListModelFromJson(encode);
 

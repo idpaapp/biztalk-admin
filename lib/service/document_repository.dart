@@ -322,6 +322,31 @@ class DocumentRepository {
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
+  } //********************************************* delete education
+  Future<Either<Failure, EditModel>>changeDateANdTime(String id,Map<String,String >body) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.put, '${GlobalInfo.baseURL}sessions/changeSessionTime/$id',
+            needAuth: true,body: body);
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
   }
 
 }

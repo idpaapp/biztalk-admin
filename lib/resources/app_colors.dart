@@ -24,6 +24,7 @@ class AppColors {
   static const titleColorTran = Color(0x74444444);
   static const greyBg = Color(0xffD9D9D9);
   static const greyBtBorder = Color(0xffDCDCDC);
+  static const bgText = Color(0xffF2F2F2);
 
 
 

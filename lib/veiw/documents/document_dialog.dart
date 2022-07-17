@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Future<void> documentDialog(BuildContext context,
-    {Widget? content, onSave, String? title,bool activeBTN=false}) async {
+    {Widget? content, onSave, String? title,bool activeBTN=false,int size=2}) async {
   return showDialog<void>(
     context: context,
 
@@ -19,11 +19,11 @@ Future<void> documentDialog(BuildContext context,
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
           title: title!,
-          size:2 ,
+          size:size ,
         ),
         content: SizedBox(
-            height: Get.height * 0.45,
-            width: Get.width * 0.4,
+            height: Get.height * 0.3,
+            width:size == 4 ?Get.width*0.3 : Get.width * 0.4,
         child: content),
         actions: <Widget>[
           Padding(
