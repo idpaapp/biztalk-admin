@@ -20,14 +20,14 @@ class AllRequestSessionModel {
   Data? data;
 
   factory AllRequestSessionModel.fromJson(Map<String, dynamic> json) => AllRequestSessionModel(
-    ok: json["ok"] == null ? null : json["ok"],
-    message: json["message"] == null ? null : json["message"],
+    ok: json["ok"],
+    message: json["message"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "ok": ok == null ? null : ok,
-    "message": message == null ? null : message,
+    "ok": ok,
+    "message": message,
     "data": data == null ? null : data!.toJson(),
   };
 }
@@ -49,18 +49,18 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     docs: json["docs"] == null ? null : List<Doc>.from(json["docs"].map((x) => Doc.fromJson(x))),
-    totalDocs: json["totalDocs"] == null ? null : json["totalDocs"],
-    limit: json["limit"] == null ? null : json["limit"],
-    totalPages: json["totalPages"] == null ? null : json["totalPages"],
-    page: json["page"] == null ? null : json["page"],
+    totalDocs: json["totalDocs"],
+    limit: json["limit"],
+    totalPages: json["totalPages"],
+    page: json["page"],
   );
 
   Map<String, dynamic> toJson() => {
     "docs": docs == null ? null : List<dynamic>.from(docs!.map((x) => x.toJson())),
-    "totalDocs": totalDocs == null ? null : totalDocs,
-    "limit": limit == null ? null : limit,
-    "totalPages": totalPages ?? null,
-    "page": page == null ? null : page,
+    "totalDocs": totalDocs,
+    "limit": limit,
+    "totalPages": totalPages,
+    "page": page,
   };
 }
 
@@ -98,37 +98,37 @@ class Doc {
   String? request;
 
   factory Doc.fromJson(Map<String, dynamic> json) => Doc(
-    id: json["_id"] == null ? null : json["_id"],
+    id: json["_id"],
     person: json["person"] == null ? null : Person.fromJson(json["person"]),
-    jobTitle: json["jobTitle"] == null ? null : json["jobTitle"],
+    jobTitle: json["jobTitle"],
     subject: json["subject"] == null ? null : Subject.fromJson(json["subject"]),
-    status: json["status"] == null ? null : json["status"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
-    meUser: json["meUser"] == null ? null : json["meUser"],
-    createDate: json["createDate"] == null ? null : json["createDate"],
-    type: json["type"] == null ? null : json["type"],
-    description: json["description"] == null ? null : json["description"],
-    date: json["date"] == null ? null : json["date"],
+    status: json["status"],
+    statusTitle: json["statusTitle"],
+    meUser: json["meUser"],
+    createDate: json["createDate"],
+    type: json["type"],
+    description: json["description"],
+    date: json["date"],
     time: json["time"] == null ? null : Time.fromJson(json["time"]),
-    profileImageUrl: json["profileImageUrl"] == null ? null : json["profileImageUrl"],
-    request: json["request"] == null ? null : json["request"],
+    profileImageUrl: json["profileImageUrl"],
+    request: json["request"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
+    "_id": id,
     "person": person == null ? null : person!.toJson(),
-    "jobTitle": jobTitle == null ? null : jobTitle,
+    "jobTitle": jobTitle,
     "subject": subject == null ? null : subject!.toJson(),
-    "status": status == null ? null : status,
-    "statusTitle": statusTitle == null ? null : statusTitle,
-    "meUser": meUser == null ? null : meUser,
-    "createDate": createDate == null ? null : createDate,
-    "type": type == null ? null : type,
-    "description": description == null ? null : description,
-    "date": date == null ? null : date,
+    "status": status,
+    "statusTitle": statusTitle,
+    "meUser": meUser,
+    "createDate": createDate,
+    "type": type,
+    "description": description,
+    "date": date,
     "time": time == null ? null : time!.toJson(),
-    "profileImageUrl": profileImageUrl == null ? null : profileImageUrl,
-    "request": request == null ? null : request,
+    "profileImageUrl": profileImageUrl,
+    "request": request,
   };
 }
 
@@ -152,23 +152,23 @@ class Person {
   String? userType;
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
-    id: json["_id"] == null ? null : json["_id"],
-    fullName: json["fullName"] == null ? null : json["fullName"],
-    profileImageUrl: json["profileImageUrl"] == null ? null : json["profileImageUrl"],
-    jobTitle: json["jobTitle"] == null ? null : json["jobTitle"],
-    grade: json["grade"] == null ? null : json["grade"],
-    gradeTitle: json["gradeTitle"] == null ? null : json["gradeTitle"],
-    userType: json["userType"] == null ? null : json["userType"],
+    id: json["_id"],
+    fullName: json["fullName"],
+    profileImageUrl: json["profileImageUrl"],
+    jobTitle: json["jobTitle"],
+    grade: json["grade"],
+    gradeTitle: json["gradeTitle"],
+    userType: json["userType"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "fullName": fullName == null ? null : fullName,
-    "profileImageUrl": profileImageUrl == null ? null : profileImageUrl,
-    "jobTitle": jobTitle == null ? null : jobTitle,
-    "grade": grade == null ? null : grade,
-    "gradeTitle": gradeTitle == null ? null : gradeTitle,
-    "userType": userType == null ? null : userType,
+    "_id": id,
+    "fullName": fullName,
+    "profileImageUrl": profileImageUrl,
+    "jobTitle": jobTitle,
+    "grade": grade,
+    "gradeTitle": gradeTitle,
+    "userType": userType,
   };
 }
 
@@ -182,13 +182,13 @@ class Subject {
   String? title;
 
   factory Subject.fromJson(Map<String, dynamic> json) => Subject(
-    id: json["_id"] == null ? null : json["_id"],
-    title: json["title"] == null ? null : json["title"],
+    id: json["_id"],
+    title: json["title"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "title": title == null ? null : title,
+    "_id": id,
+    "title": title,
   };
 }
 
@@ -214,24 +214,24 @@ class Time {
   String? statusTitle;
 
   factory Time.fromJson(Map<String, dynamic> json) => Time(
-    id: json["_id"] == null ? null : json["_id"],
-    start: json["start"] == null ? null : json["start"],
-    end: json["end"] == null ? null : json["end"],
-    formattedPrice: json["formattedPrice"] == null ? null : json["formattedPrice"],
-    price: json["price"] == null ? null : json["price"],
-    status: json["status"] == null ? null : json["status"],
-    sessionTime: json["sessionTime"] == null ? null : json["sessionTime"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
+    id: json["_id"],
+    start: json["start"],
+    end: json["end"],
+    formattedPrice: json["formattedPrice"],
+    price: json["price"],
+    status: json["status"],
+    sessionTime: json["sessionTime"],
+    statusTitle: json["statusTitle"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "start": start == null ? null : start,
-    "end": end == null ? null : end,
-    "formattedPrice": formattedPrice == null ? null : formattedPrice,
-    "price": price == null ? null : price,
-    "status": status == null ? null : status,
-    "sessionTime": sessionTime == null ? null : sessionTime,
-    "statusTitle": statusTitle == null ? null : statusTitle,
+    "_id": id,
+    "start": start,
+    "end": end,
+    "formattedPrice": formattedPrice,
+    "price": price,
+    "status": status,
+    "sessionTime": sessionTime,
+    "statusTitle": statusTitle,
   };
 }

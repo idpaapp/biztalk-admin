@@ -18,11 +18,11 @@ class CheckTokenController extends GetxController{
 
   void checkToken() async{
     await GetStorage.init();
-    await _authController.fetchToken();
+    _authController.fetchToken();
     print("*******************************");
     print(_authController.token.value);
     if(_authController.token.value == ""){
-      Get.to(()=>LoginPage());
+      Get.to(()=>const LoginPage());
     }else{
       Get.toNamed(HomePage.route);
     }

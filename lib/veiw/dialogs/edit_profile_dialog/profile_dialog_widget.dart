@@ -8,7 +8,6 @@ import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/left_column
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/right_column_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widget.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_controller.dart';
-import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,7 +66,7 @@ Future<void> showMyDialog(BuildContext context,
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
           title: "ویرایش اطلاعات",
         ),
         content: SizedBox(

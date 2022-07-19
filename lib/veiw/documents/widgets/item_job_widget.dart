@@ -3,10 +3,11 @@ import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class ItemJobWidget extends StatelessWidget {
-  final onTap;
-  final onEdit;
+  final Callback? onTap;
+  final Callback? onEdit;
   final String? image;
   final String? companyTitle;
   final String? job;

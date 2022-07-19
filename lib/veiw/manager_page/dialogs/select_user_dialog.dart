@@ -167,7 +167,7 @@ Widget userListSection() => Container(
                     return Obx(()=>SingleMentorRow(
                       onTap: () {
 
-                        if(_homeController.selectedMentor.where((item) => item.id == user.id).toList().length >= 1) {
+                        if(_homeController.selectedMentor.where((item) => item.id == user.id).toList().isNotEmpty) {
                           _homeController.selectedMentor.removeAt(_homeController.selectedMentor.indexWhere((item) => item.id == user.id));
                         }else{
                           _homeController.selectedMentor.add(user);
@@ -176,8 +176,8 @@ Widget userListSection() => Container(
 
 
                       },
-                      btnColor: _homeController.selectedMentor.where((item) => item.id == user.id).toList().length >= 1 ? AppColors.red:AppColors.green,
-                      titleBtn: _homeController.selectedMentor.where((item) => item.id == user.id).toList().length >= 1 ? "حذف":"افزودن",
+                      btnColor: _homeController.selectedMentor.where((item) => item.id == user.id).toList().isNotEmpty ? AppColors.red:AppColors.green,
+                      titleBtn: _homeController.selectedMentor.where((item) => item.id == user.id).toList().isNotEmpty ? "حذف":"افزودن",
                       isTitle: false,
                       phoneNumber: user.phoneNumber ?? "",
                       fullName: user.fullName ?? "",

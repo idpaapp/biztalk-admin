@@ -58,7 +58,7 @@ class HomeMobilePage extends StatelessWidget {
                 onTap: () {
                   drawerKey.currentState!.openDrawer();
                 },
-                child: Icon(Icons.menu, size: 30, color: Colors.white),
+                child: const Icon(Icons.menu, size: 30, color: Colors.white),
               )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24),

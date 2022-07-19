@@ -90,7 +90,7 @@ class User {
     fullName: json["fullName"],
     phoneNumber: json["phoneNumber"],
     userName: json["userName"],
-    profileImage: json["profileImage"] == null ? null : json["profileImage"],
+    profileImage: json["profileImage"],
     userType: json["userType"],
   );
 
@@ -99,7 +99,7 @@ class User {
     "fullName": fullName,
     "phoneNumber": phoneNumber,
     "userName": userName,
-    "profileImage": profileImage == null ? null : profileImage,
+    "profileImage": profileImage,
     "userType": userType,
   };
 }

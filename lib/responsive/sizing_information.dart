@@ -17,9 +17,6 @@ class SizingInformation {
 
   @override
   String toString() {
-    return 'Orientation: $orientation\n' +
-        'DeviceScreenType: $deviceScreenType\n' +
-        'ScreenSize: $screenSize\n' +
-        'LocalWidgetSize: $localWidgetSize\n';
+    return 'Orientation: $orientation\n' 'DeviceScreenType: $deviceScreenType\n' 'ScreenSize: $screenSize\n' 'LocalWidgetSize: $localWidgetSize\n';
   }
 }

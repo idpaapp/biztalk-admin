@@ -1,6 +1,5 @@
 import 'package:biztalk_panel_admin/model/mentro/user_model.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_user_profile/edit_user_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
@@ -55,7 +54,7 @@ class SingleUserPage extends StatelessWidget {
 
           Obx(
             () => ProfileSectionWidget(
-              tab: SizedBox(height: 0),
+              tab: const SizedBox(height: 0),
               userType: userType,
               showSwitch: true,
               onSwitchBtn: () {

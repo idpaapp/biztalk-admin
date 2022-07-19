@@ -25,7 +25,7 @@ class ProfileSectionWidget extends StatelessWidget {
   final bool? switchValue;
   final bool activeEdit;
 
-  ProfileSectionWidget(
+  const ProfileSectionWidget(
       {Key? key,
       this.image,
         this.paddingBottom=0.0,
@@ -115,7 +115,7 @@ class ProfileSectionWidget extends StatelessWidget {
                     showSwitch ? statuseSection() : const SizedBox()
                   ],
                 ),
-               !activeEdit? SizedBox(height: 0,): endSection(),
+               !activeEdit? const SizedBox(height: 0,): endSection(),
               ]),
               tab!,
             ],

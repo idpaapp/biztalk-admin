@@ -21,7 +21,7 @@ Future<void> selectDateDialog(BuildContext context,
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
           size: 4,
           title: "انتخاب تاریخ",
         ),

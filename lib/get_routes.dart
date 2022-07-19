@@ -1,7 +1,6 @@
 import 'package:biztalk_panel_admin/veiw/calender/calender_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_page.dart';
 import 'package:biztalk_panel_admin/veiw/login/login_page.dart';
-import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_user/single_user_page.dart';
 import 'package:biztalk_panel_admin/veiw/splash.dart';
 import 'package:biztalk_panel_admin/veiw/transactin/transaction_page.dart';
@@ -14,7 +13,7 @@ final getPages = <GetPage>[
     page: () => SplashPage(),
   ), GetPage(
     name: LoginPage.route,
-    page: () => LoginPage(),
+    page: () => const LoginPage(),
   ),
 
   GetPage(

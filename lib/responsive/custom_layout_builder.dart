@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomLayoutBuilder extends StatelessWidget {
-  CustomLayoutBuilder({
+  const CustomLayoutBuilder({
     required this.child,
     required this.maxWidth,
     required this.maxHeight,

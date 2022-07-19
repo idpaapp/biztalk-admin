@@ -10,7 +10,7 @@ class MentorChat extends StatelessWidget {
   final onLongTap;
   final String? date;
 
-  MentorChat({Key? key, this.message, this.onLongTap, this.date, this.image})
+  const MentorChat({Key? key, this.message, this.onLongTap, this.date, this.image})
       : super(key: key);
 
   @override

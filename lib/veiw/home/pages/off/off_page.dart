@@ -25,7 +25,7 @@ class OffPage extends StatelessWidget {
       alignment: Alignment.topLeft,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(vertical: 60),
+          margin: const EdgeInsets.symmetric(vertical: 60),
 
           decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: Colors.white),

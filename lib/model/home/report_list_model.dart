@@ -20,14 +20,14 @@ class ReportListModel {
   Data? data;
 
   factory ReportListModel.fromJson(Map<String, dynamic> json) => ReportListModel(
-    ok: json["ok"] == null ? null : json["ok"],
-    message: json["message"] == null ? null : json["message"],
+    ok: json["ok"],
+    message: json["message"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "ok": ok == null ? null : ok,
-    "message": message == null ? null : message,
+    "ok": ok,
+    "message": message,
     "data": data == null ? null : data!.toJson(),
   };
 }
@@ -51,20 +51,20 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     report: json["report"] == null ? null : List<Report>.from(json["report"].map((x) => Report.fromJson(x))),
-    totalDocs: json["totalDocs"] == null ? null : json["totalDocs"],
-    totalPages: json["totalPages"] == null ? null : json["totalPages"],
-    page: json["page"] == null ? null : json["page"],
-    hasNextPage: json["hasNextPage"] == null ? null : json["hasNextPage"],
-    hasPrevPage: json["hasPrevPage"] == null ? null : json["hasPrevPage"],
+    totalDocs: json["totalDocs"],
+    totalPages: json["totalPages"],
+    page: json["page"],
+    hasNextPage: json["hasNextPage"],
+    hasPrevPage: json["hasPrevPage"],
   );
 
   Map<String, dynamic> toJson() => {
     "report": report == null ? null : List<dynamic>.from(report!.map((x) => x.toJson())),
-    "totalDocs": totalDocs == null ? null : totalDocs,
-    "totalPages": totalPages == null ? null : totalPages,
-    "page": page == null ? null : page,
-    "hasNextPage": hasNextPage == null ? null : hasNextPage,
-    "hasPrevPage": hasPrevPage == null ? null : hasPrevPage,
+    "totalDocs": totalDocs,
+    "totalPages": totalPages,
+    "page": page,
+    "hasNextPage": hasNextPage,
+    "hasPrevPage": hasPrevPage,
   };
 }
 
@@ -90,25 +90,25 @@ class Report {
   String? statusTitle;
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
-    id: json["_id"] == null ? null : json["_id"],
+    id: json["_id"],
     plaintiff: json["plaintiff"] == null ? null : Accused.fromJson(json["plaintiff"]),
     accused: json["accused"] == null ? null : Accused.fromJson(json["accused"]),
-    createdAt: json["createdAt"] == null ? null : json["createdAt"],
+    createdAt: json["createdAt"],
     subject: json["subject"] == null ? null : Subject.fromJson(json["subject"]),
-    text: json["text"] == null ? null : json["text"],
-    status: json["status"] == null ? null : json["status"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
+    text: json["text"],
+    status: json["status"],
+    statusTitle: json["statusTitle"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
+    "_id": id,
     "plaintiff": plaintiff == null ? null : plaintiff!.toJson(),
     "accused": accused == null ? null : accused!.toJson(),
-    "createdAt": createdAt == null ? null : createdAt,
+    "createdAt": createdAt,
     "subject": subject == null ? null : subject!.toJson(),
-    "text": text == null ? null : text,
-    "status": status == null ? null : status,
-    "statusTitle": statusTitle == null ? null : statusTitle,
+    "text": text,
+    "status": status,
+    "statusTitle": statusTitle,
   };
 }
 
@@ -130,21 +130,21 @@ class Accused {
   String? profileImageUrl;
 
   factory Accused.fromJson(Map<String, dynamic> json) => Accused(
-    id: json["_id"] == null ? null : json["_id"],
-    fullName: json["fullName"] == null ? null : json["fullName"],
-    userName: json["userName"] == null ? null : json["userName"],
-    userType: json["userType"] == null ? null : json["userType"],
-    phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
-    profileImageUrl: json["profileImageUrl"] == null ? null : json["profileImageUrl"],
+    id: json["_id"],
+    fullName: json["fullName"],
+    userName: json["userName"],
+    userType: json["userType"],
+    phoneNumber: json["phoneNumber"],
+    profileImageUrl: json["profileImageUrl"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "fullName": fullName == null ? null : fullName,
-    "userName": userName == null ? null : userName,
-    "userType": userType == null ? null : userType,
-    "phoneNumber": phoneNumber == null ? null : phoneNumber,
-    "profileImageUrl": profileImageUrl == null ? null : profileImageUrl,
+    "_id": id,
+    "fullName": fullName,
+    "userName": userName,
+    "userType": userType,
+    "phoneNumber": phoneNumber,
+    "profileImageUrl": profileImageUrl,
   };
 }
 
@@ -158,12 +158,12 @@ class Subject {
   String? title;
 
   factory Subject.fromJson(Map<String, dynamic> json) => Subject(
-    id: json["_id"] == null ? null : json["_id"],
-    title: json["title"] == null ? null : json["title"],
+    id: json["_id"],
+    title: json["title"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "title": title == null ? null : title,
+    "_id": id,
+    "title": title,
   };
 }

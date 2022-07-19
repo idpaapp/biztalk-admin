@@ -35,39 +35,45 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
           child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Get.width * 0.02, vertical: Get.height * 0.005),
-              child: Row(
-                children: [
-                  right(session, context),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CustomText(
-                        title: "تاریخچه گفتوگوها",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        color: AppColors.lighterBlack,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3, vertical: 5),
-                        height: Get.height * 0.6,
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          border: Border.all(color: AppColors.dividerLight),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        right(session, context),
+                        const SizedBox(
+                          width: 10,
                         ),
-                        child: listOfMessage(value),
-                      )
-                    ],
-                  ))
-                ],
+                        Expanded(
+                            child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomText(
+                              title: "تاریخچه گفتوگوها",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: AppColors.lighterBlack,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 3, vertical: 5),
+                              height: Get.height * 0.6,
+                              width: Get.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                border: Border.all(color: AppColors.dividerLight),
+                              ),
+                              child: listOfMessage(value),
+                            )
+                          ],
+                        ))
+                      ],
+                    ),
+                  ],
+                ),
               )),
         ),
         actions: <Widget>[
@@ -195,7 +201,7 @@ Widget right(Session session, BuildContext context) => Expanded(
               onTap: () {
                 ChangeDate.setTime(context,session.timeId!);
               },
-              child: Icon(Icons.date_range, size: 30),
+              child: const Icon(Icons.date_range, size: 30),
             )
           ],
         ),

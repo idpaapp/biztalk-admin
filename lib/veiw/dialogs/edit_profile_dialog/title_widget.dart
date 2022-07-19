@@ -12,7 +12,7 @@ class TitleWidget extends StatelessWidget {
     height: Get.height * 0.09,
     width:size == 4 ? Get.width * 0.3: size==2? Get.width * 0.4 :size == 1 ? Get.width * 0.5:size == 3 ? Get.width*0.6: size == 5 ? Get.width*0.2:Get.width * 0.7,
     child: Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
           right: 24,top: 32,),
       child: CustomText(
        title: title,

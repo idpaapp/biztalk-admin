@@ -23,7 +23,7 @@ class TitleTextFieldWidget extends StatelessWidget {
       this.title,
       this.hint,
       this.editingController,
-      this.maxLines = null,
+      this.maxLines,
       this.pre,
       this.textInputType,
       this.format = false,
@@ -68,7 +68,7 @@ class TitleTextFieldWidget extends StatelessWidget {
             child: Center(
               child: TextField(
                 keyboardType: textInputType,
-                maxLines: maxLines != null ? maxLines : null,
+                maxLines: maxLines,
                 inputFormatters: format
                     ? [
                         FilteringTextInputFormatter.digitsOnly,

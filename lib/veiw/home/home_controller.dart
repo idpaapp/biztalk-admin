@@ -12,7 +12,6 @@ import 'package:biztalk_panel_admin/model/home/tv_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/model/transaction/not_verify_account_model.dart';
 import 'package:biztalk_panel_admin/model/tv/all_tvs_model.dart';
-import 'package:biztalk_panel_admin/service/document_repository.dart';
 import 'package:biztalk_panel_admin/service/home_repository.dart';
 import 'package:get/get.dart';
 

@@ -41,16 +41,16 @@ class UserSectionWidget extends StatelessWidget {
                   isBullet: value.data!.profile!.isConfirmDocs! ? true : false,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
-              Expanded(
-                child: const MiddleContainerWidget(
+              const Expanded(
+                child: MiddleContainerWidget(
                   title: "نقد و نظرات کاربران",
                   colors: AppColors.orangHome,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
               Expanded(

@@ -84,13 +84,13 @@ class MasterPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 32,
                 ),
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: masterList.length,
-                    physics: ScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       var data = masterList[index];
                       return Obx(() => ItemMasterPage(
@@ -146,8 +146,8 @@ class ItemMasterPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
               color: selected,
               child: Row(
                 children: [
@@ -166,10 +166,10 @@ class ItemMasterPage extends StatelessWidget {
               ),
             ),
             count == null || count == "0"
-                ? SizedBox(
+                ? const SizedBox(
                     width: 0,
                   )
-                : Container(margin: EdgeInsets.symmetric(horizontal: 12),height: 25,width: 25,decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white),child: Center(
+                : Container(margin: const EdgeInsets.symmetric(horizontal: 12),height: 25,width: 25,decoration: const BoxDecoration(shape: BoxShape.circle,color: Colors.white),child: Center(
                   child: CustomText(
                   title: count!,
                   fontSize: 14,

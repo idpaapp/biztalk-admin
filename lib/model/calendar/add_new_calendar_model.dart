@@ -83,7 +83,7 @@ class Time {
   });
 
   int? price;
-  dynamic? inReservation;
+  dynamic inReservation;
   String? formattedPrice;
   String? status;
   String? start;

@@ -20,14 +20,14 @@ class TvListModel {
   Data? data;
 
   factory TvListModel.fromJson(Map<String, dynamic> json) => TvListModel(
-    ok: json["ok"] == null ? null : json["ok"],
-    message: json["message"] == null ? null : json["message"],
+    ok: json["ok"],
+    message: json["message"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "ok": ok == null ? null : ok,
-    "message": message == null ? null : message,
+    "ok": ok,
+    "message": message,
     "data": data == null ? null : data!.toJson(),
   };
 }
@@ -51,20 +51,20 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     tvs: json["tvs"] == null ? null : List<Tv>.from(json["tvs"].map((x) => Tv.fromJson(x))),
-    totalDocs: json["totalDocs"] == null ? null : json["totalDocs"],
-    totalPages: json["totalPages"] == null ? null : json["totalPages"],
-    page: json["page"] == null ? null : json["page"],
-    hasNextPage: json["hasNextPage"] == null ? null : json["hasNextPage"],
-    hasPrevPage: json["hasPrevPage"] == null ? null : json["hasPrevPage"],
+    totalDocs: json["totalDocs"],
+    totalPages: json["totalPages"],
+    page: json["page"],
+    hasNextPage: json["hasNextPage"],
+    hasPrevPage: json["hasPrevPage"],
   );
 
   Map<String, dynamic> toJson() => {
     "tvs": tvs == null ? null : List<dynamic>.from(tvs!.map((x) => x.toJson())),
-    "totalDocs": totalDocs == null ? null : totalDocs,
-    "totalPages": totalPages == null ? null : totalPages,
-    "page": page == null ? null : page,
-    "hasNextPage": hasNextPage == null ? null : hasNextPage,
-    "hasPrevPage": hasPrevPage == null ? null : hasPrevPage,
+    "totalDocs": totalDocs,
+    "totalPages": totalPages,
+    "page": page,
+    "hasNextPage": hasNextPage,
+    "hasPrevPage": hasPrevPage,
   };
 }
 
@@ -90,24 +90,24 @@ class Tv {
   String? tvUserName;
 
   factory Tv.fromJson(Map<String, dynamic> json) => Tv(
-    userId: json["userId"] == null ? null : json["userId"],
-    fullName: json["fullName"] == null ? null : json["fullName"],
-    userName: json["userName"] == null ? null : json["userName"],
-    tvId: json["tvId"] == null ? null : json["tvId"],
-    tvTitle: json["tvTitle"] == null ? null : json["tvTitle"],
-    tvLogo: json["tvLogo"] == null ? null : json["tvLogo"],
-    tvLink: json["tvLink"] == null ? null : json["tvLink"],
-    tvUserName: json["tvUserName"] == null ? null : json["tvUserName"],
+    userId: json["userId"],
+    fullName: json["fullName"],
+    userName: json["userName"],
+    tvId: json["tvId"],
+    tvTitle: json["tvTitle"],
+    tvLogo: json["tvLogo"],
+    tvLink: json["tvLink"],
+    tvUserName: json["tvUserName"],
   );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId == null ? null : userId,
-    "fullName": fullName == null ? null : fullName,
-    "userName": userName == null ? null : userName,
-    "tvId": tvId == null ? null : tvId,
-    "tvTitle": tvTitle == null ? null : tvTitle,
-    "tvLogo": tvLogo == null ? null : tvLogo,
-    "tvLink": tvLink == null ? null : tvLink,
-    "tvUserName": tvUserName == null ? null : tvUserName,
+    "userId": userId,
+    "fullName": fullName,
+    "userName": userName,
+    "tvId": tvId,
+    "tvTitle": tvTitle,
+    "tvLogo": tvLogo,
+    "tvLink": tvLink,
+    "tvUserName": tvUserName,
   };
 }

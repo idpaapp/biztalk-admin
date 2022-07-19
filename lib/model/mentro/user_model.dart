@@ -71,7 +71,7 @@ class Profile {
   String? fullName;
   String? userName;
   String? phone;
-  dynamic? profile;
+  dynamic profile;
   String? cashOutPending;
   String? status;
   String? statusTitle;
@@ -126,9 +126,9 @@ class Request {
   String? status;
   String? statusTitle;
   String? createdAt;
-  dynamic? date;
-  dynamic? startTime;
-  dynamic? endTime;
+  dynamic date;
+  dynamic startTime;
+  dynamic endTime;
 
   factory Request.fromJson(Map<String, dynamic> json) => Request(
         id: json["_id"],

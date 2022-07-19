@@ -101,7 +101,9 @@ Future<void> singleScheduleDialog(
                             ),
                             timeHintText: "انتخاب زمان",
                             onChanged: (val) {},
-                            validator: (val) {},
+                            validator: (val) {
+                              return null;
+                            },
                             onSaved: (val) {},
                           ),
                         ),
@@ -145,7 +147,9 @@ Future<void> singleScheduleDialog(
                             ),
                             timeHintText: "انتخاب زمان",
                             onChanged: (val) {},
-                            validator: (val) {},
+                            validator: (val) {
+                              return null;
+                            },
                             onSaved: (val) {},
                           ),
                         ),

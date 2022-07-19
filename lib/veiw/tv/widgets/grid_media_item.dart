@@ -19,7 +19,7 @@ class GridMediaItem extends StatelessWidget {
   final bool isContact;
   final List<Contact>? contact;
 
-  GridMediaItem(
+  const GridMediaItem(
       {Key? key,
       this.isContact = false,
       this.onChangeSwitch,

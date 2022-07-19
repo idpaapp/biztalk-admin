@@ -9,7 +9,7 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
-    Future.delayed(Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 1), () async {
       await GetStorage.init();
        _authController.fetchToken();
 

@@ -65,7 +65,7 @@ class RightColumnWidget extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            CustomText(
+            const CustomText(
               color: AppColors.greyMiddle,
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -147,7 +147,7 @@ class RightColumnWidget extends StatelessWidget {
             Obx(() => Container(
                   height: Get.height * 0.1,
                   width: Get.width,
-                  padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
                   decoration: BoxDecoration(border: Border.all(color: AppColors.borderColor,),borderRadius: BorderRadius.circular(5)),
                   child: SingleChildScrollView(
                     child: Wrap(
@@ -193,7 +193,7 @@ class RightColumnWidget extends StatelessWidget {
                           GlobalInfo.serverAddress + "/" + image!))),
             ),
           ),
-          SizedBox(width: 12,),
+          const SizedBox(width: 12,),
           DeleteAcceptWidget(onConfirm: onConfirmImage,onDelete:onDeleteImage ,)
         ],
       );

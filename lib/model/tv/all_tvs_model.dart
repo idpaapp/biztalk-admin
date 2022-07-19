@@ -61,7 +61,7 @@ class Tvs {
     link: json["link"],
     createdAt:json["createdAt"],
     updatedAt: json["updatedAt"],
-    v: json["__v"] == null ? null : json["__v"],
+    v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -72,6 +72,6 @@ class Tvs {
     "link": link,
     "createdAt": createdAt,
     "updatedAt": updatedAt,
-    "__v": v == null ? null : v,
+    "__v": v,
   };
 }

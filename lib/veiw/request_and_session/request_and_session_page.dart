@@ -1,5 +1,4 @@
 import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
-import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
@@ -8,7 +7,6 @@ import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/responsive/select_date_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/session_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
@@ -219,7 +217,7 @@ class RequestAndSessionPage extends StatelessWidget {
                     bgColor: AppColors.blueSession,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Expanded(
@@ -342,7 +340,7 @@ class RequestAndSessionPage extends StatelessWidget {
               height: 20,
             ),
             _requestSessionController.resultGetAll.value.data!.docs!.isEmpty
-                ? SizedBox(
+                ? const SizedBox(
                     width: 0,
                   )
                 : pageSection(_requestSessionController.resultGetAll.value),

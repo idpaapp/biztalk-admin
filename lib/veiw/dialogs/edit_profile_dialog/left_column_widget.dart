@@ -38,7 +38,7 @@ class LeftColumnWidget extends StatelessWidget {
                         ),
                   ),
 
-                SizedBox(width: 12,),
+                const SizedBox(width: 12,),
               ],
             ),
             const SizedBox(
@@ -85,7 +85,7 @@ class LeftColumnWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomText(
+                const CustomText(
                   color: AppColors.greyMiddle,
                   fontSize: 14,
                   fontWeight: FontWeight.w600,

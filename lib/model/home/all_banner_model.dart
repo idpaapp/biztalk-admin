@@ -20,14 +20,14 @@ class AllBannerModel {
   Data? data;
 
   factory AllBannerModel.fromJson(Map<String, dynamic> json) => AllBannerModel(
-    ok: json["ok"] == null ? null : json["ok"],
-    message: json["message"] == null ? null : json["message"],
+    ok: json["ok"],
+    message: json["message"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "ok": ok == null ? null : ok,
-    "message": message == null ? null : message,
+    "ok": ok,
+    "message": message,
     "data": data == null ? null : data!.toJson(),
   };
 }
@@ -102,33 +102,33 @@ class Middle1 {
   int? v;
 
   factory Middle1.fromJson(Map<String, dynamic> json) => Middle1(
-    id: json["_id"] == null ? null : json["_id"],
-    bannerGroup: json["bannerGroup"] == null ? null : json["bannerGroup"],
-    bannerType: json["bannerType"] == null ? null : json["bannerType"],
-    logo: json["logo"] == null ? null : json["logo"],
-    bannerTitle: json["bannerTitle"] == null ? null : json["bannerTitle"],
-    bannerDescription: json["bannerDescription"] == null ? null : json["bannerDescription"],
-    link: json["link"] == null ? null : json["link"],
+    id: json["_id"],
+    bannerGroup: json["bannerGroup"],
+    bannerType: json["bannerType"],
+    logo: json["logo"],
+    bannerTitle: json["bannerTitle"],
+    bannerDescription: json["bannerDescription"],
+    link: json["link"],
     mentors: json["mentors"] == null ? null : List<Mentor>.from(json["mentors"].map((x) => Mentor.fromJson(x))),
-    status: json["status"] == null ? null : json["status"],
+    status: json["status"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    v: json["__v"] == null ? null : json["__v"],
+    v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "bannerGroup": bannerGroup == null ? null : bannerGroup,
-    "bannerType": bannerType == null ? null : bannerType,
-    "logo": logo == null ? null : logo,
-    "bannerTitle": bannerTitle == null ? null : bannerTitle,
-    "bannerDescription": bannerDescription == null ? null : bannerDescription,
-    "link": link == null ? null : link,
+    "_id": id,
+    "bannerGroup": bannerGroup,
+    "bannerType": bannerType,
+    "logo": logo,
+    "bannerTitle": bannerTitle,
+    "bannerDescription": bannerDescription,
+    "link": link,
     "mentors": mentors == null ? null : List<dynamic>.from(mentors!.map((x) => x.toJson())),
-    "status": status == null ? null : status,
+    "status": status,
     "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
     "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-    "__v": v == null ? null : v,
+    "__v": v,
   };
 }
 
@@ -146,16 +146,16 @@ class Mentor {
   String? phoneNumber;
 
   factory Mentor.fromJson(Map<String, dynamic> json) => Mentor(
-    id: json["_id"] == null ? null : json["_id"],
-    fullName: json["fullName"] == null ? null : json["fullName"],
-    userName: json["userName"] == null ? null : json["userName"],
-    phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
+    id: json["_id"],
+    fullName: json["fullName"],
+    userName: json["userName"],
+    phoneNumber: json["phoneNumber"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "fullName": fullName == null ? null : fullName,
-    "userName": userName == null ? null : userName,
-    "phoneNumber": phoneNumber == null ? null : phoneNumber,
+    "_id": id,
+    "fullName": fullName,
+    "userName": userName,
+    "phoneNumber": phoneNumber,
   };
 }

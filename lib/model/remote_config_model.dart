@@ -49,7 +49,7 @@ class Result {
   String? baseUrl;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-        objectId: json["objectId"] == null ? null : json["objectId"],
+        objectId: json["objectId"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -57,20 +57,18 @@ class Result {
             ? null
             : DateTime.parse(json["updatedAt"]),
         maintenanceBreak:
-            json["maintenanceBreak"] == null ? null : json["maintenanceBreak"],
-        maintenanceBreakMessage: json["maintenanceBreakMessage"] == null
-            ? null
-            : json["maintenanceBreakMessage"],
-        baseUrl: json["baseUrl"] == null ? null : json["baseUrl"],
+            json["maintenanceBreak"],
+        maintenanceBreakMessage: json["maintenanceBreakMessage"],
+        baseUrl: json["baseUrl"],
       );
 
   Map<String, dynamic> toJson() => {
-        "objectId": objectId == null ? null : objectId,
+        "objectId": objectId,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "maintenanceBreak": maintenanceBreak == null ? null : maintenanceBreak,
+        "maintenanceBreak": maintenanceBreak,
         "maintenanceBreakMessage":
-            maintenanceBreakMessage == null ? null : maintenanceBreakMessage,
-        "baseUrl": baseUrl == null ? null : baseUrl,
+            maintenanceBreakMessage,
+        "baseUrl": baseUrl,
       };
 }

@@ -86,8 +86,8 @@ class Profile {
   String? status;
   String? statusTitle;
   List<Skill>? skills;
-  dynamic? description;
-  dynamic? videoUrl;
+  dynamic description;
+  dynamic videoUrl;
 
   factory Profile.fromJson(Map<String, dynamic> json) => Profile(
     id: json["_id"],
@@ -169,9 +169,9 @@ class Request {
   String? status;
   String? statusTitle;
   String? createdAt;
-  dynamic? date;
-  dynamic? startTime;
-  dynamic? endTime;
+  dynamic date;
+  dynamic startTime;
+  dynamic endTime;
 
   factory Request.fromJson(Map<String, dynamic> json) => Request(
     id: json["_id"],

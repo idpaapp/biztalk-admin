@@ -63,7 +63,7 @@ class AuthController extends GetxController {
 
     token.value = "";
 
-    Get.offAll(LoginPage());
+    Get.offAll(const LoginPage());
   }
 
   bool hasToken() {

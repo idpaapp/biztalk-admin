@@ -20,14 +20,14 @@ class DocumentsModel {
   Data? data;
 
   factory DocumentsModel.fromJson(Map<String, dynamic> json) => DocumentsModel(
-    ok: json["ok"] == null ? null : json["ok"],
-    message: json["message"] == null ? null : json["message"],
+    ok: json["ok"],
+    message: json["message"],
     data: json["data"] == null ? null : Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "ok": ok == null ? null : ok,
-    "message": message == null ? null : message,
+    "ok": ok,
+    "message": message,
     "data": data == null ? null : data!.toJson(),
   };
 }
@@ -80,26 +80,26 @@ class Achievement {
   List<Attachment>? attachments;
 
   factory Achievement.fromJson(Map<String, dynamic> json) => Achievement(
-    id: json["id"] == null ? null : json["id"],
-    title: json["title"] == null ? null : json["title"],
-    place: json["place"] == null ? null : json["place"],
-    year: json["year"] == null ? null : json["year"],
-    status: json["status"] == null ? null : json["status"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
-    verificationStatus: json["verificationStatus"] == null ? null : json["verificationStatus"],
-    verificationStatusTitle: json["verificationStatusTitle"] == null ? null : json["verificationStatusTitle"],
+    id: json["id"],
+    title: json["title"],
+    place: json["place"],
+    year: json["year"],
+    status: json["status"],
+    statusTitle: json["statusTitle"],
+    verificationStatus: json["verificationStatus"],
+    verificationStatusTitle: json["verificationStatusTitle"],
     attachments: json["attachments"] == null ? null : List<Attachment>.from(json["attachments"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id == null ? null : id,
-    "title": title == null ? null : title,
-    "place": place == null ? null : place,
-    "year": year == null ? null : year,
-    "status": status == null ? null : status,
-    "statusTitle": statusTitle == null ? null : statusTitle,
-    "verificationStatus": verificationStatus == null ? null : verificationStatus,
-    "verificationStatusTitle": verificationStatusTitle == null ? null : verificationStatusTitle,
+    "id": id,
+    "title": title,
+    "place": place,
+    "year": year,
+    "status": status,
+    "statusTitle": statusTitle,
+    "verificationStatus": verificationStatus,
+    "verificationStatusTitle": verificationStatusTitle,
     "attachments": attachments == null ? null : List<Attachment>.from(attachments!.map((x) => x)),
   };
 }
@@ -136,35 +136,35 @@ class Education {
   bool? currentCourse;
 
   factory Education.fromJson(Map<String, dynamic> json) => Education(
-    id: json["id"] == null ? null : json["id"],
+    id: json["id"],
     school: json["school"] == null ? null : School.fromJson(json["school"]),
-    schoolTitle: json["schoolTitle"] == null ? null : json["schoolTitle"],
-    degree: json["degree"] == null ? null : json["degree"],
-    startYear: json["startYear"] == null ? null : json["startYear"],
-    endYear: json["endYear"] == null ? null : json["endYear"],
-    activityYear: json["activityYear"] == null ? null : json["activityYear"],
-    status: json["status"] == null ? null : json["status"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
-    verificationStatus: json["verificationStatus"] == null ? null : json["verificationStatus"],
-    verificationStatusTitle: json["verificationStatusTitle"] == null ? null : json["verificationStatusTitle"],
+    schoolTitle: json["schoolTitle"],
+    degree: json["degree"],
+    startYear: json["startYear"],
+    endYear: json["endYear"],
+    activityYear: json["activityYear"],
+    status: json["status"],
+    statusTitle: json["statusTitle"],
+    verificationStatus: json["verificationStatus"],
+    verificationStatusTitle: json["verificationStatusTitle"],
     attachments: json["attachments"] == null ? null : List<Attachment>.from(json["attachments"].map((x) => x)),
-    currentCourse: json["currentCourse"] == null ? null : json["currentCourse"],
+    currentCourse: json["currentCourse"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id == null ? null : id,
+    "id": id,
     "school": school == null ? null : school!.toJson(),
-    "schoolTitle": schoolTitle == null ? null : schoolTitle,
-    "degree": degree == null ? null : degree,
-    "startYear": startYear == null ? null : startYear,
-    "endYear": endYear == null ? null : endYear,
-    "activityYear": activityYear == null ? null : activityYear,
-    "status": status == null ? null : status,
-    "statusTitle": statusTitle == null ? null : statusTitle,
-    "verificationStatus": verificationStatus == null ? null : verificationStatus,
-    "verificationStatusTitle": verificationStatusTitle == null ? null : verificationStatusTitle,
+    "schoolTitle": schoolTitle,
+    "degree": degree,
+    "startYear": startYear,
+    "endYear": endYear,
+    "activityYear": activityYear,
+    "status": status,
+    "statusTitle": statusTitle,
+    "verificationStatus": verificationStatus,
+    "verificationStatusTitle": verificationStatusTitle,
     "attachments": attachments == null ? null : List<dynamic>.from(attachments!.map((x) => x)),
-    "currentCourse": currentCourse == null ? null : currentCourse,
+    "currentCourse": currentCourse,
   };
 }
 
@@ -190,25 +190,25 @@ class School {
   int? v;
 
   factory School.fromJson(Map<String, dynamic> json) => School(
-    id: json["_id"] == null ? null : json["_id"],
-    title: json["title"] == null ? null : json["title"],
-    slug: json["slug"] == null ? null : json["slug"],
-    imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
-    type: json["type"] == null ? null : json["type"],
+    id: json["_id"],
+    title: json["title"],
+    slug: json["slug"],
+    imageUrl: json["imageUrl"],
+    type: json["type"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    v: json["__v"] == null ? null : json["__v"],
+    v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
-    "_id": id == null ? null : id,
-    "title": title == null ? null : title,
-    "slug": slug == null ? null : slug,
-    "imageUrl": imageUrl == null ? null : imageUrl,
-    "type": type == null ? null : type,
+    "_id": id,
+    "title": title,
+    "slug": slug,
+    "imageUrl": imageUrl,
+    "type": type,
     "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
     "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-    "__v": v == null ? null : v,
+    "__v": v,
   };
 }
 
@@ -244,35 +244,35 @@ class Work {
   bool? currentPosition;
 
   factory Work.fromJson(Map<String, dynamic> json) => Work(
-    id: json["id"] == null ? null : json["id"],
-    job: json["job"] == null ? null : json["job"],
+    id: json["id"],
+    job: json["job"],
     company: json["company"] == null ? null : School.fromJson(json["company"]),
-    companyTitle: json["companyTitle"] == null ? null : json["companyTitle"],
-    startYear: json["startYear"] == null ? null : json["startYear"],
-    endYear: json["endYear"] == null ? null : json["endYear"],
-    activityYear: json["activityYear"] == null ? null : json["activityYear"],
-    status: json["status"] == null ? null : json["status"],
-    statusTitle: json["statusTitle"] == null ? null : json["statusTitle"],
-    verificationStatus: json["verificationStatus"] == null ? null : json["verificationStatus"],
-    verificationStatusTitle: json["verificationStatusTitle"] == null ? null : json["verificationStatusTitle"],
+    companyTitle: json["companyTitle"],
+    startYear: json["startYear"],
+    endYear: json["endYear"],
+    activityYear: json["activityYear"],
+    status: json["status"],
+    statusTitle: json["statusTitle"],
+    verificationStatus: json["verificationStatus"],
+    verificationStatusTitle: json["verificationStatusTitle"],
     attachments: json["attachments"] == null ? null : List<Attachment>.from(json["attachments"].map((x) => x)),
-    currentPosition: json["currentPosition"] == null ? null : json["currentPosition"],
+    currentPosition: json["currentPosition"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id == null ? null : id,
-    "job": job == null ? null : job,
+    "id": id,
+    "job": job,
     "company": company == null ? null : company!.toJson(),
-    "companyTitle": companyTitle == null ? null : companyTitle,
-    "startYear": startYear == null ? null : startYear,
-    "endYear": endYear == null ? null : endYear,
-    "activityYear": activityYear == null ? null : activityYear,
-    "status": status == null ? null : status,
-    "statusTitle": statusTitle == null ? null : statusTitle,
-    "verificationStatus": verificationStatus == null ? null : verificationStatus,
-    "verificationStatusTitle": verificationStatusTitle == null ? null : verificationStatusTitle,
+    "companyTitle": companyTitle,
+    "startYear": startYear,
+    "endYear": endYear,
+    "activityYear": activityYear,
+    "status": status,
+    "statusTitle": statusTitle,
+    "verificationStatus": verificationStatus,
+    "verificationStatusTitle": verificationStatusTitle,
     "attachments": attachments == null ? null : List<dynamic>.from(attachments!.map((x) => x)),
-    "currentPosition": currentPosition == null ? null : currentPosition,
+    "currentPosition": currentPosition,
   };
 }
 class Attachment {

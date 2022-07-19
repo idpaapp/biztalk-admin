@@ -70,12 +70,12 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                       "discountPrice": _offController.selectedType.value == 0
                           ? null
                           : _offController.amount.value.text.replaceAll(",", ""),
-                      "useForType":userType!= null ? userType: _offController.selectedCategory.value == 0
+                      "useForType":userType ?? (_offController.selectedCategory.value == 0
                           ? "public"
-                          : "category",
-                      "useForId":id !=null ? id: _offController.selectedCategory.value == 0
+                          : "category"),
+                      "useForId":id ?? (_offController.selectedCategory.value == 0
                           ? null
-                          : _offController.selectedCategoryId.value,
+                          : _offController.selectedCategoryId.value),
                       "expireDate": _offController.endDate.value,
                       "startDate": _offController.startDate.value,
                       "code":_offController.code.value.text

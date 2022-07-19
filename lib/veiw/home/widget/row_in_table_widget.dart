@@ -94,7 +94,7 @@ class TitleRowInTableWidget extends StatelessWidget {
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(onTap: onTap,child: Icon(Icons.more_horiz,color: AppColors.lighterBlack,size: 25),)
+                            InkWell(onTap: onTap,child: const Icon(Icons.more_horiz,color: AppColors.lighterBlack,size: 25),)
                           ],
                         )),
             ],

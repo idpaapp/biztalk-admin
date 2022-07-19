@@ -29,7 +29,7 @@ class RowTextWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: bgColor,

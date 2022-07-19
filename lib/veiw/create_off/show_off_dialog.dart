@@ -22,14 +22,14 @@ Future<void> showOffer(BuildContext context, {SingleOff? singleOff}) async {
         buttonPadding: EdgeInsets.zero,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        title: TitleWidget(
+        title: const TitleWidget(
             size: 4,
             title: "کد تخفیف",
             ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
             children: [
               rightColumn(singleOff),
@@ -74,7 +74,7 @@ Widget rightColumn(SingleOff? singleOff) {
         const SizedBox(
           height: 20,
         ),
-        Container(
+        SizedBox(
           width: Get.width * 0.2,
           child: TitleTextWidget(
             title: "عنوان تخفیف",
@@ -84,7 +84,7 @@ Widget rightColumn(SingleOff? singleOff) {
         const SizedBox(
           height: 20,
         ),
-        Container(
+        SizedBox(
           width: Get.width * 0.2,
           child: TitleTextWidget(
             title: "دسته بندی",
@@ -94,7 +94,7 @@ Widget rightColumn(SingleOff? singleOff) {
         const SizedBox(
           height: 20,
         ),
-        Container(
+        SizedBox(
           width: Get.width * 0.2,
           child: TitleTextWidget(
             title: "تاریخ شروع",
@@ -104,7 +104,7 @@ Widget rightColumn(SingleOff? singleOff) {
         const SizedBox(
           height: 20,
         ),
-        Container(
+        SizedBox(
           width: Get.width * 0.2,
           child: TitleTextWidget(
             title: "تاریخ پایان",
@@ -124,7 +124,7 @@ Widget leftColumn(SingleOff? singleOff) {
       const SizedBox(
         height: 20,
       ),
-      Container(
+      SizedBox(
         width: Get.width * 0.2,
         child: TitleTextWidget(
           title: singleOff!.discountPercent == null? "مبلغ تخفیف": "درصد تخفیف",
@@ -134,7 +134,7 @@ Widget leftColumn(SingleOff? singleOff) {
       const SizedBox(
         height: 20,
       ),
-      singleOff.discountPercent == null?SizedBox(): Container(
+      singleOff.discountPercent == null?const SizedBox(height: 0,): SizedBox(
         width: Get.width * 0.2,
         child: TitleTextWidget(
           title: "سقف تخفیف",
@@ -143,7 +143,7 @@ Widget leftColumn(SingleOff? singleOff) {
       ),const SizedBox(
         height: 20,
       ),
-      Container(
+      SizedBox(
         width: Get.width * 0.2,
         child: TitleTextWidget(
           title: "کد تخفیف",

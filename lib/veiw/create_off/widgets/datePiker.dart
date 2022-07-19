@@ -33,7 +33,7 @@ class DatePikerWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              DatePiker(context, from!);
+              datePiker(context, from!);
             },
             child: Container(
               height: 45,
@@ -51,7 +51,7 @@ class DatePikerWidget extends StatelessWidget {
         ],
       );
 
-  DatePiker(BuildContext context, int from) async {
+  datePiker(BuildContext context, int from) async {
     String date;
     date = "";
 
@@ -65,7 +65,7 @@ class DatePikerWidget extends StatelessWidget {
           buttonPadding: EdgeInsets.zero,
           insetPadding: EdgeInsets.zero,
           contentPadding: EdgeInsets.zero,
-          title: TitleWidget(
+          title: const TitleWidget(
               size: 4,
               title: "انتخاب تاریخ",
              ),

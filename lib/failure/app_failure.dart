@@ -6,5 +6,5 @@ class ApiFailure implements Failure {
   final String _message;
 
   @override
-  String get message => this._message;
+  String get message => _message;
 }

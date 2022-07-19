@@ -32,7 +32,7 @@ class DateUtil {
 
   static String formatDate(Jalali jalali, String format) {
     var result = format;
-    if (result == null || result == "") {
+    if (result == "") {
       result = "yyyy/mm/dd";
     }
 
@@ -55,7 +55,7 @@ class DateUtil {
 
   static String formatGregorianDate(Gregorian gregorian, String format) {
     var result = format;
-    if (result == null || result == "") {
+    if (result == "") {
       result = "yyyy/mm/dd";
     }
 
@@ -192,18 +192,16 @@ class DateUtil {
     bool useFullWeekName,
     TextStyle weekTextStyle,
   ) {
-    final _header = (useFullWeekName != null && useFullWeekName)
+    final _header = (useFullWeekName)
         ? _fullWeekNames
         : _shortWeekName;
     final _headerWidget = _header.map((x) {
-      if (weekTextStyle != null) {
-        return Center(
-          child: Text(
-            x,
-            style: weekTextStyle,
-          ),
-        );
-      }
+      return Center(
+        child: Text(
+          x,
+          style: weekTextStyle,
+        ),
+      );
 
       return Center(
         child: Text(
