@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:biztalk_panel_admin/model/ask_me/get_mentor_for_ask_model.dart';
+import 'package:biztalk_panel_admin/model/ask_me/get_qustion_model.dart';
 import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
@@ -21,23 +23,25 @@ class HomeController extends GetxController {
   final HomeRepository _homeRepo = Get.find<HomeRepository>();
 
   RxBool showMoreRegion = false.obs;
-
+  RxString askMeFilter = "All".obs;
   RxInt tab = 0.obs;
   RxString userType = "".obs;
   RxString userId = "".obs;
   RxString failureMessageChangeStatus = "".obs;
   RxBool isLoadingChangeStatus = false.obs;
   var resultChangeStatus = EditModel().obs;
+  RxString mentorTitle="".obs;
+  RxString mentorId="".obs;
 
-  changeStatus(String id,String status) async {
+  changeStatus(String id, String status) async {
     failureMessageChangeStatus.value = "";
     isLoadingChangeStatus.value = true;
     final result = await _homeRepo.changeUserStatus(id, status);
     result.fold(
-          (left) {
+      (left) {
         failureMessageChangeStatus.value = left.message;
       },
-          (right) {
+      (right) {
         resultChangeStatus.value = right;
         isLoadingChangeStatus.value = false;
       },
@@ -66,17 +70,18 @@ class HomeController extends GetxController {
   }
 
 //************************ fetch user
-  RxList <User>selectedMentor=<User>[].obs;
-  RxList<User> selectedMentorFinaly=<User>[].obs;
+  RxList<User> selectedMentor = <User>[].obs;
+  RxList<User> selectedMentorFinaly = <User>[].obs;
 
   RxString failureMessage = "".obs;
   var resultHomeUsers = UsersHomeModel().obs;
   RxBool isLoadingHome = false.obs;
 
- fetchUsers(int page, {String? mobile,String? status,String ? type}) async {
+  fetchUsers(int page, {String? mobile, String? status, String? type}) async {
     failureMessage.value = "";
     isLoadingHome.value = true;
-    final result = await _homeRepo.getUserHome(page: page, mobile: mobile,status: status,type: type);
+    final result = await _homeRepo.getUserHome(
+        page: page, mobile: mobile, status: status, type: type);
     result.fold(
       (left) {
         failureMessage.value = left.message;
@@ -306,7 +311,8 @@ class HomeController extends GetxController {
         isLoadingSingleSession.value = false;
       },
     );
-  }  //*************************** get single request
+  } //*************************** get single request
+
   RxString failureMessageSingleRequest = "".obs;
   var resultSingleRequest = SingleReportModel().obs;
   RxBool isLoadingSingleRequest = false.obs;
@@ -366,13 +372,12 @@ class HomeController extends GetxController {
     );
   }
 
-
   //*********************************** confirm tv or contact
   RxString failureMessageAddUser = "".obs;
   var resultAddUser = EditModel().obs;
   RxBool isLoadingAddUser = false.obs;
 
-  addUser(Map<String,dynamic> body) async {
+  addUser(Map<String, dynamic> body) async {
     failureMessageAddUser.value = "";
     isLoadingAddUser.value = true;
     final result = await _homeRepo.addUser(body);
@@ -392,28 +397,101 @@ class HomeController extends GetxController {
   RxString selectedDateGorge = "".obs;
   RxBool freeSession = false.obs;
 
-
-
   RxString failureMessageChangeDate = "".obs;
   var resultChangeDate = EditModel().obs;
   RxBool isLoadingChangeDate = false.obs;
 
-  changeDate(String id, Map<String, String>body) async {
+  changeDate(String id, Map<String, String> body) async {
     failureMessageChangeDate.value = "";
     isLoadingChangeDate.value = true;
     print("sssssssssssssssssssssss");
     final result = await _homeRepo.changeDateANdTime(id, body);
     result.fold(
-          (left) {
+      (left) {
         failureMessageChangeDate.value = left.message;
       },
-          (right) {
+      (right) {
         resultChangeDate.value = right;
         isLoadingChangeDate.value = false;
       },
     );
   }
 
+//********************** get questions
+  RxString failureMessageGetQuestions = "".obs;
+  var resultGetQuestions = GetQuestionModel().obs;
+  RxBool isLoadingGetQuestions = false.obs;
+
+  getQuestions({String? status}) async {
+    failureMessageGetQuestions.value = "";
+    isLoadingGetQuestions.value = true;
+    final result = await _homeRepo.getQuestions(status: status);
+    result.fold(
+      (left) {
+        failureMessageGetQuestions.value = left.message;
+      },
+      (right) {
+        resultGetQuestions.value = right;
+        isLoadingGetQuestions.value = false;
+      },
+    );
+  }
+  //********************** get questions
+  RxString failureMessageGetMentor = "".obs;
+  var resultGetMentor = GetMentorForAskModel().obs;
+  RxBool isLoadingGetMentor = false.obs;
+
+  getMentorForAsk() async {
+    failureMessageGetMentor.value = "";
+    isLoadingGetMentor.value = true;
+    final result = await _homeRepo.getMentorsForAsk();
+    result.fold(
+      (left) {
+        failureMessageGetMentor.value = left.message;
+      },
+      (right) {
+        resultGetMentor.value = right;
+        isLoadingGetMentor.value = false;
+      },
+    );
+  }
+  //********************** send Answer
+  RxString failureMessageSendAnswer = "".obs;
+  var resultSendAnswer = EditModel().obs;
+  RxBool isLoadingSendAnswer = false.obs;
+
+  sendAnswer(String id, Map<String, String> body) async {
+    failureMessageSendAnswer.value = "";
+    isLoadingSendAnswer.value = true;
+    final result = await _homeRepo.sendAnswer(id, body);
+    result.fold(
+          (left) {
+            failureMessageSendAnswer.value = left.message;
+      },
+          (right) {
+            resultSendAnswer.value = right;
+            isLoadingSendAnswer.value = false;
+      },
+    );
+  }  //********************** reject question
+  RxString failureMessageRejectQuestion = "".obs;
+  var resultRejectQuestion = EditModel().obs;
+  RxBool isLoadingRejectQuestion = false.obs;
+
+  rejectQuestion(String id,) async {
+    failureMessageRejectQuestion.value = "";
+    isLoadingRejectQuestion.value = true;
+    final result = await _homeRepo.rejectQuestion(id);
+    result.fold(
+          (left) {
+            failureMessageRejectQuestion.value = left.message;
+      },
+          (right) {
+            resultRejectQuestion.value = right;
+            isLoadingRejectQuestion.value = false;
+      },
+    );
+  }
 
   @override
   void onInit() {

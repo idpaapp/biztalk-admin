@@ -42,6 +42,7 @@ class Data {
     this.tvCount,
     this.userCount,
     this.userChecking,
+    this.questionCount,
   });
 
   int? notVerifiedAccount;
@@ -52,10 +53,12 @@ class Data {
   int? tvCount;
   int? userCount;
   int? userChecking;
+  int? questionCount;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     notVerifiedAccount: json["notVerifiedAccount"],
     checkOutCount: json["checkOutCount"],
+    questionCount: json["questionCount"],
     reportCount: json["reportCount"],
     requestCount: json["requestCount"],
     sessionCount: json["sessionCount"],
@@ -68,6 +71,7 @@ class Data {
   Map<String, dynamic> toJson() => {
     "notVerifiedAccount": notVerifiedAccount,
     "checkOutCount": checkOutCount,
+    "questionCount": questionCount,
     "reportCount": reportCount,
     "requestCount": requestCount,
     "sessionCount": sessionCount,

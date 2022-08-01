@@ -63,6 +63,12 @@ class MasterPage extends StatelessWidget {
             _homeController.resultFetchHome.value.data!.userChecking.toString(),
         key: "USER_NOT"),
     MasterModel(
+        title: "از من بپرس",
+        iconData: Icons.question_answer_outlined,
+        count:
+            _homeController.resultFetchHome.value.data!.questionCount.toString(),
+        key: "ASK_ME"),
+    MasterModel(
         title: "مدیریت صفحه اصلی",
         iconData: Icons.card_giftcard_outlined,
         count: "0",
@@ -88,34 +94,39 @@ class MasterPage extends StatelessWidget {
                   height: 32,
                 ),
                 ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: masterList.length,
-                    physics: const ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      var data = masterList[index];
-                      return Obx(() => ItemMasterPage(
-                            title: data.title,
-                            iconData: data.iconData,
-                            count: data.count,
-                            selected: _homeController.tab.value == index
-                                ? AppColors.masterColorSelected
-                                : AppColors.masterColor,
-                            onTap: () {
-                              _homeController.tab.value = index;
-                              if (data.key == "MANAGER_PAGE") {
-                                _homeController.tab.value = 0;
-                                Get.to(() => ManagerPage());
-                                return;
-                              }
-                              if (data.key == "INSERT_USER") {
-                                _homeController.tab.value = 0;
-
-                                insertUser(context, "افزودن کاربر جدید");
-                                return;
-                              }
-                            },
-                          ));
-                    }),
+                  shrinkWrap: true,
+                  itemCount: masterList.length,
+                  physics: const ScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    var data = masterList[index];
+                    return Obx(
+                      () => ItemMasterPage(
+                        title: data.title,
+                        iconData: data.iconData,
+                        count: data.count,
+                        selected: _homeController.tab.value == index
+                            ? AppColors.masterColorSelected
+                            : AppColors.masterColor,
+                        onTap: () {
+                          _homeController.tab.value = index;
+                          if (data.key == "MANAGER_PAGE") {
+                            _homeController.tab.value = 0;
+                            Get.to(() => ManagerPage());
+                            return;
+                          } if (data.key == "ASK_ME") {
+                            _homeController.tab.value = 88;
+                            return;
+                          }
+                          if (data.key == "INSERT_USER") {
+                            _homeController.tab.value = 0;
+                            insertUser(context, "افزودن کاربر جدید");
+                            return;
+                          }
+                        },
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -169,12 +180,19 @@ class ItemMasterPage extends StatelessWidget {
                 ? const SizedBox(
                     width: 0,
                   )
-                : Container(margin: const EdgeInsets.symmetric(horizontal: 12),height: 25,width: 25,decoration: const BoxDecoration(shape: BoxShape.circle,color: Colors.white),child: Center(
-                  child: CustomText(
-                  title: count!,
-                  fontSize: 14,
-                  color: AppColors.masterColor),
-                ),)
+                : Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    height: 25,
+                    width: 25,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.white),
+                    child: Center(
+                      child: CustomText(
+                          title: count!,
+                          fontSize: 14,
+                          color: AppColors.masterColor),
+                    ),
+                  )
           ],
         ),
       );

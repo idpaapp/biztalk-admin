@@ -3,6 +3,8 @@ import 'package:biztalk_panel_admin/failure/app_failure.dart';
 import 'package:biztalk_panel_admin/failure/connection_faile.dart';
 import 'package:biztalk_panel_admin/failure/data_connection_checker.dart';
 import 'package:biztalk_panel_admin/failure/failure.dart';
+import 'package:biztalk_panel_admin/model/ask_me/get_mentor_for_ask_model.dart';
+import 'package:biztalk_panel_admin/model/ask_me/get_qustion_model.dart';
 import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
@@ -49,17 +51,17 @@ class HomeRepository {
 
   //***************************************************
   Future<Either<Failure, UsersHomeModel>> getUserHome(
-      {int? page, String? mobile,String? status,String ? type}) async {
+      {int? page, String? mobile, String? status, String? type}) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
         var url = '${GlobalInfo.baseURL}home/users?page=$page';
-        if(type !=null){
-          url+="&type=$type";
+        if (type != null) {
+          url += "&type=$type";
         }
-        if(status != null){
-          url+="&status=$status";
+        if (status != null) {
+          url += "&status=$status";
         }
         if (mobile != null) {
           url += "&search=$mobile";
@@ -408,7 +410,8 @@ class HomeRepository {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
-  }  //**************************** single request
+  } //**************************** single request
+
   Future<Either<Failure, SingleReportModel>> singleRequest(String id) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
@@ -506,8 +509,8 @@ class HomeRepository {
     } else {
       try {
         var url = '${GlobalInfo.baseURL}discount';
-        var response =
-            await HttpServices.request(RequestType.post, url, needAuth: true,body: body);
+        var response = await HttpServices.request(RequestType.post, url,
+            needAuth: true, body: body);
         var encode = jsonEncode(response);
 
         var data = createOffCodeModelFromJson(encode);
@@ -518,9 +521,9 @@ class HomeRepository {
       }
     }
   }
+
   //************************************** get all off
-  Future<Either<Failure, GetOffModel>> allOffCode(
-     ) async {
+  Future<Either<Failure, GetOffModel>> allOffCode() async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -538,15 +541,15 @@ class HomeRepository {
       }
     }
   } //************************************** get all off
-  Future<Either<Failure, EditModel>> deleteOff(String id
-     ) async {
+
+  Future<Either<Failure, EditModel>> deleteOff(String id) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
         var url = '${GlobalInfo.baseURL}discount/$id';
-        var response =
-            await HttpServices.request(RequestType.delete, url, needAuth: true,body: {});
+        var response = await HttpServices.request(RequestType.delete, url,
+            needAuth: true, body: {});
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
@@ -557,16 +560,17 @@ class HomeRepository {
       }
     }
   }
+
   //*************************************** switch mentor
-  Future<Either<Failure, EditModel>> changeUserStatus(String id,String? status
-      ) async {
+  Future<Either<Failure, EditModel>> changeUserStatus(
+      String id, String? status) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
         var url = '${GlobalInfo.baseURL}profile/changeUserStatus?userId=$id';
-        var response =
-        await HttpServices.request(RequestType.patch, url, needAuth: true,body: {"status":status});
+        var response = await HttpServices.request(RequestType.patch, url,
+            needAuth: true, body: {"status": status});
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
@@ -576,16 +580,16 @@ class HomeRepository {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
-  }  //*************************************** switch mentor
-  Future<Either<Failure, EditModel>> addUser(Map<String,dynamic> body
-      ) async {
+  } //*************************************** switch mentor
+
+  Future<Either<Failure, EditModel>> addUser(Map<String, dynamic> body) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
         var url = '${GlobalInfo.baseURL}profile/addUser';
-        var response =
-        await HttpServices.request(RequestType.post, url, needAuth: true,body:body);
+        var response = await HttpServices.request(RequestType.post, url,
+            needAuth: true, body: body);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
@@ -597,8 +601,8 @@ class HomeRepository {
     }
   }
 
-
-  Future<Either<Failure, EditModel>>changeDateANdTime(String id,Map<String,String >body) async {
+  Future<Either<Failure, EditModel>> changeDateANdTime(
+      String id, Map<String, String> body) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -607,9 +611,9 @@ class HomeRepository {
         print(id);
         print(body);
 
-        var response = await HttpServices.request(
-            RequestType.put, '${GlobalInfo.baseURL}sessions/changeSessionTime/$id',
-            needAuth: true,body: body);
+        var response = await HttpServices.request(RequestType.put,
+            '${GlobalInfo.baseURL}sessions/changeSessionTime/$id',
+            needAuth: true, body: body);
 
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
@@ -624,6 +628,135 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+  //******************************** get questions
+  Future<Either<Failure, GetQuestionModel>> getQuestions(
+      {String? status}) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}askMe';
+        if (status != null && status != "All") {
+          url += "?status=$status";
+        }
+        var response = await HttpServices.request(
+          RequestType.get,
+          url,
+          needAuth: true,
+        );
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = getQuestionModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+  //******************** get mentor ask
+  Future<Either<Failure, GetMentorForAskModel>> getMentorsForAsk() async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}askMe/responder';
+
+        var response = await HttpServices.request(
+          RequestType.get,
+          url,
+          needAuth: true,
+        );
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = getMentorForAskModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
+  //******************** send answer of question
+  Future<Either<Failure, EditModel>> sendAnswer(
+      String id, Map<String, String> body) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}askMe/$id';
+
+        var response = await HttpServices.request(RequestType.post, url,
+            needAuth: true, body: body);
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }  //******************** reject question
+  Future<Either<Failure, EditModel>> rejectQuestion(
+      String id, ) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}askMe/reject/$id';
+
+        var response = await HttpServices.request(RequestType.patch, url,
+            needAuth: true, body: {});
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }

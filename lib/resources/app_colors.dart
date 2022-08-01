@@ -62,6 +62,7 @@ class AppColors {
   static const redLight = Color(0x1de60000);
   static const red25 = Color(0xffF3CBCB);
   static const bloodyRed = Color(0xff390404);
+  static const bloodyReject = Color(0xffDB0000);
 
   /// orange
   static const orange = Color(0xffF19024);

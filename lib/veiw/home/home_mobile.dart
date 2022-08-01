@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/drawer/drawer_page.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/ask_me/ask_me_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
@@ -73,7 +74,9 @@ class HomeMobilePage extends StatelessWidget {
                 return SessionListSection();
               } else if (homeController.tab.value == 5) {
                 return ReportListSection();
-              } else if (homeController.tab.value == 6) {
+              }else if (homeController.tab.value == 88) {
+                return AskMeSection();
+              }  else if (homeController.tab.value == 6) {
                 return MediaListSection();
               } else if (homeController.tab.value == 7) {
                 return OffPage();

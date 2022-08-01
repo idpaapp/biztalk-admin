@@ -19,6 +19,8 @@ class RowBankWidget extends StatelessWidget {
   final bool isRequestList;
   final bool isSessionList;
   final bool isReportList;
+  final bool isChips;
+  final String? statusForColor;
 
   const RowBankWidget(
       {Key? key,
@@ -27,7 +29,9 @@ class RowBankWidget extends StatelessWidget {
       this.isReportList = false,
       this.fourColumn,
       this.sixColumn,
+      this.statusForColor,
       this.status,
+      this.isChips = false,
       this.twoColumn,
       this.oneColumn,
       this.isRequestList = false,
@@ -44,8 +48,8 @@ class RowBankWidget extends StatelessWidget {
             const EdgeInsets.only(bottom: 20, top: 15, left: 20, right: 40),
         decoration: BoxDecoration(
           color: isTitle == true ? AppColors.blueSession : Colors.white,
-          borderRadius: const BorderRadius.only(topRight: Radius.circular(10),topLeft: Radius.circular(10)),
-
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(10), topLeft: Radius.circular(10)),
         ),
         child: InkWell(
           onTap: onTap,
@@ -104,12 +108,31 @@ class RowBankWidget extends StatelessWidget {
                                       title: shebaNumber ?? "")),
               Expanded(
                   flex: 2,
-                  child: CustomText(
-                      fontSize: 16,
-                      color:
-                          isTitle == true ? Colors.white : AppColors.columnText,
-                      fontWeight: FontWeight.w500,
-                      title: fourColumn)),
+                  child: isChips == false
+                      ? CustomText(
+                          fontSize: 16,
+                          color: isTitle == true
+                              ? Colors.white
+                              : AppColors.columnText,
+                          fontWeight: FontWeight.w500,
+                          title: fourColumn)
+                      : Align(
+                          alignment: Alignment.centerRight,
+                          child: Row(
+                            children: [
+                              ButtonText(
+                                onPressed: null,
+                                text: fourColumn,
+                                height: 30,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                bgColor: _backColor(statusForColor!),
+                                borderRadios: 10,
+                                textColor: Colors.white,
+                              ),
+                            ],
+                          ),
+                        )),
               isReportList == true
                   ? const SizedBox(
                       height: 0,
@@ -172,4 +195,14 @@ class RowBankWidget extends StatelessWidget {
           ),
         ),
       );
+
+  Color _backColor(String status) {
+    if (status == "answered") {
+      return AppColors.greenAdd;
+    } else if (status == "reject") {
+      return AppColors.bloodyReject;
+    } else {
+      return AppColors.orange;
+    }
+  }
 }
