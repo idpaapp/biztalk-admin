@@ -63,6 +63,12 @@ class MyDrawer extends StatelessWidget {
         _homeController.resultFetchHome.value.data!.userChecking.toString(),
         key: "USER_NOT"),
     MasterModel(
+        title: "از من بپرس",
+        iconData: Icons.question_answer_outlined,
+        count:
+        _homeController.resultFetchHome.value.data!.questionCount.toString(),
+        key: "ASK_ME"),
+    MasterModel(
         title: "مدیریت صفحه اصلی",
         iconData: Icons.card_giftcard_outlined,
         count: "0",
@@ -97,6 +103,11 @@ class MyDrawer extends StatelessWidget {
                       : AppColors.masterColor,
                   onTap: () {
                     _homeController.tab.value = index;
+                    if (data.key == "ASK_ME") {
+                      _homeController.tab.value = 88;
+                      Get.back();
+                      return;
+                    }
                     if (data.key == "MANAGER_PAGE") {
                       Get.to(() => ManagerPage());
                       return;
