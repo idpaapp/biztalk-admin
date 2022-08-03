@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   RxString failureMessageChangeStatus = "".obs;
   RxBool isLoadingChangeStatus = false.obs;
   var resultChangeStatus = EditModel().obs;
-  RxString mentorTitle="".obs;
+ // RxString mentorTitle="".obs;
   RxString mentorId="".obs;
 
   changeStatus(String id, String status) async {
