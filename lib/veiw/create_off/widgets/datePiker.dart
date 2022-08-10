@@ -1,3 +1,4 @@
+import 'package:biztalk_panel_admin/resources/all_methods.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
@@ -77,7 +78,8 @@ class DatePikerWidget extends StatelessWidget {
                 endDate: "1420/01/01",
                 initialDate: iranCurrentDate(),
                 dateChangeListener: (val) {
-                  date = val;
+
+                  date =  AllMethods.datePiker(val);
                 },
                 showDay: true,
                 //false -> only select year & month
@@ -103,6 +105,7 @@ class DatePikerWidget extends StatelessWidget {
                 showLabels: true,
                 // to show column captions, eg. year, month, etc.
                 columnWidth: 100,
+
                 showMonthName: true,
                 isJalaali: true // false -> Gregorian
                 ),

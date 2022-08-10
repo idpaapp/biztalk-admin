@@ -11,7 +11,8 @@ import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widge
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<void> createOffer(BuildContext context, {String? title,String ? id,String ? name,String? userType}) async {
+Future<void> createOffer(BuildContext context,
+    {String? title, String? id, String? name, String? userType}) async {
   final TextEditingController _title = TextEditingController();
   final OffController _offController = Get.put(OffController());
 
@@ -31,9 +32,9 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
-            size: 4,
-            title: title!,
-            ),
+          size: 4,
+          title: title!,
+        ),
         content: Container(
           height: Get.height * 0.6,
           width: Get.width * 0.5,
@@ -43,7 +44,7 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
               children: [
                 Row(
                   children: [
-                    rightColumn(_title, option, _offController,name:name ),
+                    rightColumn(_title, option, _offController, name: name),
                     leftColumn(type, _offController),
                   ],
                 ),
@@ -53,12 +54,53 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
         ),
         actions: <Widget>[
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10, horizontal:Get.width * 0.02),
+            padding: EdgeInsets.symmetric(
+                vertical: 10, horizontal: Get.width * 0.02),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ButtonText(
                   onPressed: () async {
+                    if (_title.text.trim() == "") {
+                      MyAlert.mySnakbarRed(text: "لطفا عنوان را مشخص کنید");
+                      return;
+                    }
+
+                    if (_offController.endDate.value == "انتخاب کنید" ||
+                        _offController.startDate.value == "انتخاب کنید") {
+                      MyAlert.mySnakbarRed(
+                          text: "وارد کردن تاریخ شروع و پایان اجباری است");
+                      return;
+                    }
+                    if (_offController.code.value.text == "") {
+                      MyAlert.mySnakbarRed(text: "لطفا کد تخفیف را وارد کنید");
+                      return;
+                    }
+                    if( _offController.selectedType.value == 0){
+                      if(_offController.precent.value.text == ""){
+                        MyAlert.mySnakbarRed(text: "وارد کردن درصد اجباری است");
+                        return;
+
+                      }
+
+                    }
+                    if( _offController.selectedType.value == 0){
+                      if(_offController.top.value.text.replaceAll(",", "") == ""){
+                        MyAlert.mySnakbarRed(text: "وارد کردن سقف تخفیف اجباری است");
+                        return;
+
+                      }
+
+                    }
+                    if( _offController.selectedType.value != 0){
+                      if(_offController.amount.value.text
+                          .replaceAll(",", "") == ""){
+                        MyAlert.mySnakbarRed(text: "وارد کردن مبلغ تخفیف اجباری است");
+                        return;
+
+                      }
+
+                    }
                     Map<String, dynamic> body = {
                       "title": _title.text,
                       "discountPercent": _offController.selectedType.value == 0
@@ -69,26 +111,30 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                           : null,
                       "discountPrice": _offController.selectedType.value == 0
                           ? null
-                          : _offController.amount.value.text.replaceAll(",", ""),
-                      "useForType":userType ?? (_offController.selectedCategory.value == 0
-                          ? "public"
-                          : "category"),
-                      "useForId":id ?? (_offController.selectedCategory.value == 0
-                          ? null
-                          : _offController.selectedCategoryId.value),
+                          : _offController.amount.value.text
+                              .replaceAll(",", ""),
+                      "useForType": userType ??
+                          (_offController.selectedCategory.value == 0
+                              ? "public"
+                              : "category"),
+                      "useForId": id ??
+                          (_offController.selectedCategory.value == 0
+                              ? null
+                              : _offController.selectedCategoryId.value),
                       "expireDate": _offController.endDate.value,
                       "startDate": _offController.startDate.value,
-                      "code":_offController.code.value.text
+                      "code": _offController.code.value.text
                     };
                     MyAlert.loding();
                     await _offController.createOff(body);
                     Get.back();
-                    if(_offController.failureMessageCreateOff.value !=""){
-                      MyAlert.mySnakbarRed(text: _offController.failureMessageCreateOff.value);
-                    }else{
+                    if (_offController.failureMessageCreateOff.value != "") {
+                      MyAlert.mySnakbarRed(
+                          text: _offController.failureMessageCreateOff.value);
+                    } else {
                       Get.back();
                       MyAlert.mySnakbar(text: "کد تخفیف با موفقیت ایجاد شد");
-                      if(userType == null){
+                      if (userType == null) {
                         _offController.allOffCode();
                       }
                     }
@@ -97,9 +143,8 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                   borderRadios: 10,
                   fontWeight: FontWeight.w500,
                   height: 40,
-                  width: Get.width*0.1,
+                  width: Get.width * 0.1,
                   fontSize: 14,
-
                   textColor: Colors.white,
                   bgColor: AppColors.blueSession,
                 ),
@@ -123,8 +168,7 @@ Future<void> createOffer(BuildContext context, {String? title,String ? id,String
                 ),
               ],
             ),
-          )
-,
+          ),
         ],
       );
     },
@@ -140,9 +184,9 @@ Widget leftColumn(List<dynamic> type, OffController _offController) {
 }
 
 Widget rightColumn(TextEditingController _title, List<dynamic> option,
-    OffController _offController,{String? name}) {
+    OffController _offController,
+    {String? name}) {
   return Expanded(
-
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(
         height: 20,
@@ -154,55 +198,67 @@ Widget rightColumn(TextEditingController _title, List<dynamic> option,
           editingController: _title,
         ),
       ),
-      name !=null ?  SizedBox(
-        width: Get.width * 0.2,
-        child: TitleTextWidget(
-          title: "نام و نام خانوادگی",
-          hint: name,
-        ),
-      ):selectedCategory(option, _offController),
-      name !=null ?  const SizedBox(height: 0,): Obx(
-        () => _offController.selectedCategory.value == 0
-            ? const SizedBox(
-                height: 10,
-              )
-            : Container(
-                width: Get.width * 0.2,
-                decoration: BoxDecoration(
-                    color: AppColors.greyBorder,
-                    borderRadius: BorderRadius.circular(5)),
-                child: DropdownButton(
-                  dropdownColor: AppColors.greyBorder,
-                  isExpanded: true,
-                  underline: const SizedBox(height: 0),
-                  value: _offController.selectedCategoryId.value,
-                  items: _offController.resultCategory.value.data!.map((value) {
-                    return DropdownMenuItem(
-                      value: value.id,
-                      child: ListTile(
-                        title: CustomText(title: value.title),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    _offController.selectedCategoryId.value = val.toString();
-                  },
-                ),
+      name != null
+          ? SizedBox(
+              width: Get.width * 0.2,
+              child: TitleTextWidget(
+                title: "نام و نام خانوادگی",
+                hint: name,
               ),
+            )
+          : selectedCategory(option, _offController),
+      name != null
+          ? const SizedBox(
+              height: 0,
+            )
+          : Obx(
+              () => _offController.selectedCategory.value == 0
+                  ? const SizedBox(
+                      height: 10,
+                    )
+                  : Container(
+                      width: Get.width * 0.2,
+                      decoration: BoxDecoration(
+                          color: AppColors.greyBorder,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: DropdownButton(
+                        dropdownColor: AppColors.greyBorder,
+                        isExpanded: true,
+                        underline: const SizedBox(height: 0),
+                        value: _offController.selectedCategoryId.value,
+                        items: _offController.resultCategory.value.data!
+                            .map((value) {
+                          return DropdownMenuItem(
+                            value: value.id,
+                            child: ListTile(
+                              title: CustomText(title: value.title),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          _offController.selectedCategoryId.value =
+                              val.toString();
+                        },
+                      ),
+                    ),
+            ),
+      Obx(
+        () => DatePikerWidget(
+          title: "تاریخ شروع",
+          from: 1,
+          date: _offController.startDate.value,
+        ),
       ),
-      Obx(() => DatePikerWidget(
-            title: "تاریخ شروع",
-            from: 1,
-            date: _offController.startDate.value,
-          ),),
       const SizedBox(
         height: 10,
       ),
-      Obx(() => DatePikerWidget(
-            title: "تاریخ پایان",
-            from: 20,
-            date: _offController.endDate.value,
-          ),),
+      Obx(
+        () => DatePikerWidget(
+          title: "تاریخ پایان",
+          from: 20,
+          date: _offController.endDate.value,
+        ),
+      ),
       const SizedBox(
         width: 10,
       ),
@@ -211,7 +267,6 @@ Widget rightColumn(TextEditingController _title, List<dynamic> option,
 }
 
 Widget selectedCategory(List<dynamic> option, OffController _offController) {
- 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -348,7 +403,6 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
                 ),
               ],
             )),
-
       SizedBox(
         width: Get.width * 0.2,
         child: TitleTextFieldWidget(
@@ -358,13 +412,12 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
       ),
       const SizedBox(height: 10),
       ButtonText(
-        onPressed: (){
-
-            var r = Random();
-            const _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-            _offController.code.value.text= List.generate(10, (index) => _chars[r.nextInt(_chars.length)]).join();
-
-
+        onPressed: () {
+          var r = Random();
+          const _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+          _offController.code.value.text =
+              List.generate(10, (index) => _chars[r.nextInt(_chars.length)])
+                  .join();
         },
         text: "تولید کد تخفیف",
         height: 30,
@@ -376,8 +429,6 @@ Widget selectedTypeOff(List<dynamic> list, OffController _offController) {
       const SizedBox(
         width: 10,
       ),
-
-
     ],
   );
 }
