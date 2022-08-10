@@ -21,6 +21,7 @@ class RowBankWidget extends StatelessWidget {
   final bool isReportList;
   final bool isChips;
   final String? statusForColor;
+  final onConfirm;
 
   const RowBankWidget(
       {Key? key,
@@ -38,6 +39,7 @@ class RowBankWidget extends StatelessWidget {
       this.threeColumn,
       this.onTap,
       this.shebaNumber,
+        this.onConfirm,
       this.isSessionList = false,
       this.isTitle})
       : super(key: key);
@@ -165,7 +167,7 @@ class RowBankWidget extends StatelessWidget {
                                   : Align(
                                       alignment: Alignment.centerRight,
                                       child: ButtonText(
-                                        onPressed: () {},
+                                        onPressed: onConfirm,
                                         text: "تایید",
                                         height: 30,
                                         fontSize: 14,

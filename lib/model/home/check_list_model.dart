@@ -78,6 +78,7 @@ class CheckOut {
     this.status,
     this.statusTitle,
     this.createdAt,
+    this.userId,
   });
 
   String? id;
@@ -88,9 +89,11 @@ class CheckOut {
   String? status;
   String? statusTitle;
   String? createdAt;
+  String? userId;
 
   factory CheckOut.fromJson(Map<String, dynamic> json) => CheckOut(
     id: json["_id"],
+    userId: json["userId"],
     fullName: json["fullName"],
     walletBalance: json["walletBalance"],
     checkOutPrice: json["checkOutPrice"],
@@ -102,6 +105,7 @@ class CheckOut {
 
   Map<String, dynamic> toJson() => {
     "_id": id,
+    "userId": userId,
     "fullName": fullName,
     "walletBalance": walletBalance,
     "checkOutPrice": checkOutPrice,

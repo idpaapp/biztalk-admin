@@ -761,4 +761,36 @@ class HomeRepository {
       }
     }
   }
+
+  //******************** verify account
+  Future<Either<Failure, EditModel>> verifyDiposit(
+      String transactionId,String status ,String userId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}transaction/checkout?id=$transactionId&status=$status&userId=$userId';
+
+        var response = await HttpServices.request(RequestType.patch, url,
+            needAuth: true, body: {});
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+
 }

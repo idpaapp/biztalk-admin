@@ -1,5 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/row_bank_widget.dart';
@@ -64,20 +65,24 @@ class CheckListSection extends StatelessWidget {
                             fiveColumn: check.statusTitle ?? "",
                             isCheckList: true,
                             fourColumn: check.walletBalance ?? "",
-                            onTap: () {
+                            onConfirm: (){
                               confirmDialog(context,
-                                  title: "آیا برای تایید اطمینان دارید؟",
+                                  title: "آیا برای تایید در خواست تسویه اطمینان دارید؟",
                                   onConfirm: () async {
-                                // MyAlert.loding();
-                                // await _homeController.VerifyAccount(user.userId!, true);
-                                // if(_homeController.resultVerifyAccount.value.ok ==true){
-                                //   Get.back();
-                                //   Get.back();
-                                //   Get.back();
-                                //   await _homeController.notVerify(1);
-                                //   MyAlert.mySnakbar(title: "عملیات موفق",text: "حساب با موفقیت تایید شد");
-                                // }
-                              });
+                                    print(check.id);
+                                    MyAlert.loding();
+                                    await _homeController.verifyDeposit(check.id!,"success" ,check.userId!,);
+                                   Get.back();
+                                   if(_homeController.failureMessageVerifyDeposit.value !=""){
+                                     MyAlert.mySnakbarRed(text:_homeController.failureMessageVerifyDeposit.value );
+                                   }else{
+                                     Get.back();
+                                     _homeController.checkList(1);                                   }
+                                  });
+                            },
+
+                            onTap: () {
+
                             },
                           );
                         }),

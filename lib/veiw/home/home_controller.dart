@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   RxString failureMessageChangeStatus = "".obs;
   RxBool isLoadingChangeStatus = false.obs;
   var resultChangeStatus = EditModel().obs;
- // RxString mentorTitle="".obs;
+  RxString mentorTitle="".obs;
   RxString mentorId="".obs;
 
   changeStatus(String id, String status) async {
@@ -492,7 +492,26 @@ class HomeController extends GetxController {
       },
     );
   }
+//********************** reject question
+  RxString failureMessageVerifyDeposit = "".obs;
+  var resultVerifyDeposit = EditModel().obs;
+  RxBool isLoadingVerifyDeposit = false.obs;
 
+  verifyDeposit(
+      String transactionId,String status ,String userId) async {
+    failureMessageVerifyDeposit.value = "";
+    isLoadingVerifyDeposit.value = true;
+    final result = await _homeRepo.verifyDiposit(transactionId, status, userId);
+    result.fold(
+          (left) {
+            failureMessageVerifyDeposit.value = left.message;
+      },
+          (right) {
+            resultVerifyDeposit.value = right;
+            isLoadingVerifyDeposit.value = false;
+      },
+    );
+  }
   @override
   void onInit() {
     fetchInfoHome();
