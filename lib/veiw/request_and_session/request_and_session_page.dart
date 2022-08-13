@@ -1,4 +1,5 @@
 import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
+import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
@@ -7,6 +8,7 @@ import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/responsive/select_date_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
+import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/session_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
@@ -35,7 +37,8 @@ class RequestAndSessionPage extends StatelessWidget {
       "sessionToDate": null
     }, userID);
   }
-  final HomeController _homeController =Get.find();
+
+  final HomeController _homeController = Get.find();
 
   final RequestSessionController _requestSessionController =
       Get.put(RequestSessionController());
@@ -206,7 +209,6 @@ class RequestAndSessionPage extends StatelessWidget {
                             .selectedEndDateSession.value
                       };
 
-
                       _requestSessionController.getAllRequestSession(
                           body, userID);
                     },
@@ -297,12 +299,12 @@ class RequestAndSessionPage extends StatelessWidget {
                           .resultGetAll.value.data!.docs![index];
                       return ProfileTitleTableWidget(
                         isTitle: false,
-                        onTap: () async{
-                          if(data.type == "session"){
+                        onTap: () async {
+                          if (data.type == "session") {
                             MyAlert.loding();
                             await _homeController.singleSession(data.id!);
                             if (_homeController
-                                .failureMessageSingleSession.value !=
+                                    .failureMessageSingleSession.value !=
                                 "") {
                               Get.back();
                               MyAlert.mySnakbarRed(
@@ -310,14 +312,30 @@ class RequestAndSessionPage extends StatelessWidget {
                                       .failureMessageSingleSession.value);
                               return;
                             } else {
-                              // Get.back();
-                              // Session my=  Session(id:data.id ,date: data.date,description: data.description,formattedPrice:"");
-                              // sessionDialog(context, "جلسه", my,
-                              //     _homeController.resultSingleSession.value);
+                              Get.back();
+                              Session my = Session(
+                                  id: data.id,
+                                  date: data.date,
+                                  description: data.description,
+                                  formattedPrice:
+                                      data.time!.formattedPrice ?? "",
+                                  status: data.status,
+                                  fromNow: "",
+                                  price: data.time!.price,
+                                  startTime: data.time!.start!,
+                                  statusTitle: data.statusTitle,
+                                  user: Mentor(profileImageUrl: data.profileImageUrl,id: data.id,phoneNumber: "0919",fullName: "sdkd"),
+                                  timeId: data.time!.id,
+                                  mentor: Mentor(
+                                    fullName: profile.fullName ?? "",
+                                    phoneNumber: profile.phone,
+                                    id: profile.id,
+                                    profileImageUrl: profile.profile,
+                                  ));
+                              sessionDialog(context, "جلسه", my,
+                                  _homeController.resultSingleSession.value);
                             }
-                          }else{
-
-                          }
+                          } else {}
                         },
                         userName: data.person!.fullName ?? "نا مشخص",
                         stateTitle: data.statusTitle ?? "نا مشخص",
