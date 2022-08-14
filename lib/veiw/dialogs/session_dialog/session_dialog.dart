@@ -8,6 +8,7 @@ import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widge
 import 'package:biztalk_panel_admin/veiw/dialogs/other_dialog/widget/row_text_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/mentor_chat_item.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/user_chat_item.dart';
+import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/cancell_session_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/change_date.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,7 +86,8 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () {
-                    Get.back();
+                    cancellDialog(context, "لغو جلسه",session.id!);
+
                   },
                   text: "لغو جلسه",
                   height: 40,

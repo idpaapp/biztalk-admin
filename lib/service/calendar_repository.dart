@@ -25,7 +25,7 @@ class CalendarRepository{
 
         var data = mentorCalendarModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -45,7 +45,7 @@ class CalendarRepository{
 
         var data = addNewCalendarModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -65,7 +65,7 @@ class CalendarRepository{
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -86,7 +86,7 @@ class CalendarRepository{
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }

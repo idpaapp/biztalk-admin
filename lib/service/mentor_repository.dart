@@ -26,7 +26,7 @@ class MentorRepository {
 
         var data = mentorContactModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -46,7 +46,7 @@ class MentorRepository {
 
         var data = mentorTvsModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -67,7 +67,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -88,7 +88,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -109,7 +109,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -129,7 +129,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -149,7 +149,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -170,7 +170,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -190,7 +190,7 @@ class MentorRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -212,11 +212,52 @@ class MentorRepository {
 
         var data = allRequestSessionModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         print(e);
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
   }
+  //************************** cancel session ***********************
+  Future<Either<Failure, EditModel>> cancelSession(
+      Map<String, dynamic> body, String sessionId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.patch, '${GlobalInfo.baseURL}sessions/cancel/$sessionId',
+            needAuth: true, body: body);
+        print(response);
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        return Left(ApiFailure("خطای بارگذاری اطلاعات"));
+      }
+    }
+  }  //************************** cancel request ***********************
+  Future<Either<Failure, EditModel>> cancelRequest(String sessionId) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.patch, '${GlobalInfo.baseURL}sessions/cancelRequest/$sessionId',
+            needAuth: true, body: {});
+        print(response);
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        return Left(ApiFailure("خطای بارگذاری اطلاعات"));
+      }
+    }
+  }
+
 }

@@ -89,7 +89,7 @@ class Session {
       this.statusTitle});
 
   String? id;
-  Subject? subject;
+  SubjectSingle? subject;
   Mentor? user;
   Mentor? mentor;
   String? date;
@@ -105,7 +105,7 @@ class Session {
   factory Session.fromJson(Map<String, dynamic> json) => Session(
         id: json["_id"],
         timeId: json["timeId"],
-        subject: Subject.fromJson(json["subject"]),
+        subject: SubjectSingle.fromJson(json["subject"]),
         user: Mentor.fromJson(json["user"]),
         mentor: Mentor.fromJson(json["mentor"]),
         date: json["date"],
@@ -158,8 +158,8 @@ class Mentor {
       };
 }
 
-class Subject {
-  Subject({
+class SubjectSingle {
+  SubjectSingle({
     this.id,
     this.title,
   });
@@ -167,7 +167,7 @@ class Subject {
   String? id;
   String? title;
 
-  factory Subject.fromJson(Map<String, dynamic> json) => Subject(
+  factory SubjectSingle.fromJson(Map<String, dynamic> json) => SubjectSingle(
         id: json["_id"],
         title: json["title"],
       );

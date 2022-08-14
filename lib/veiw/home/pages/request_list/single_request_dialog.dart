@@ -4,13 +4,19 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/resources/my_alert.dart';
+import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/other_dialog/widget/row_text_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/mentor_chat_item.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/user_chat_item.dart';
+import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
+import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+final RequestSessionController _requestSessionController =Get.put(RequestSessionController());
+final HomeController _homeController =Get.find();
 Future<void> requestDialog(BuildContext context, String title, Request request,
     SingleReportModel value) async {
   return showDialog<void>(
@@ -78,9 +84,22 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () {
-                    Get.back();
+                    confirmDialog(context,title: "آیا برای لغو درخواست اطمینان دارید؟",onConfirm:()async{
+                      MyAlert.loding();
+                      await _requestSessionController.cancelRequest(request.id!);
+                      Get.back();
+
+                      if(_requestSessionController.failureMessageCancelRequest.value !=""){
+                        MyAlert.mySnakbarRed(text:_requestSessionController.failureMessageCancelRequest.value );
+                      }else{
+                        Get.back();
+                        Get.back();
+                        _homeController.requestList(1);
+
+                      }
+                    } );
                   },
-                  text: "لغو جلسه",
+                  text: "لغو درخواست",
                   height: 40,
                   width: Get.width * 0.1,
                   fontSize: 14,

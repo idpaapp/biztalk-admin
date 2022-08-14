@@ -25,7 +25,7 @@ class ManagerRepository{
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -43,7 +43,7 @@ class ManagerRepository{
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -62,7 +62,7 @@ class ManagerRepository{
 
         var data = allBannerModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -80,7 +80,7 @@ class ManagerRepository{
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }

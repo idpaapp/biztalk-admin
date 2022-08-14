@@ -42,7 +42,7 @@ class HomeRepository {
 
         var data = homeInfoModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -73,7 +73,7 @@ class HomeRepository {
 
         var data = usersHomeModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -92,7 +92,7 @@ class HomeRepository {
 
         var data = mentorModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -111,7 +111,7 @@ class HomeRepository {
 
         var data = userModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -131,7 +131,7 @@ class HomeRepository {
 
         var data = categoryModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -152,7 +152,7 @@ class HomeRepository {
 
         var data = allTvsModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -171,7 +171,7 @@ class HomeRepository {
 
         var data = allContactModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -192,7 +192,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -213,7 +213,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -236,7 +236,7 @@ class HomeRepository {
 
         var data = transactionModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -258,7 +258,7 @@ class HomeRepository {
 
         var data = notVerifyAccountModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -280,7 +280,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -301,7 +301,7 @@ class HomeRepository {
 
         var data = checkListModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -322,7 +322,7 @@ class HomeRepository {
 
         var data = requestListModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -344,7 +344,7 @@ class HomeRepository {
 
         var data = sessionListModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -364,7 +364,7 @@ class HomeRepository {
 
         var data = reportListModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -385,7 +385,7 @@ class HomeRepository {
 
         var data = singleReportModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -405,7 +405,7 @@ class HomeRepository {
 
         var data = singleReportModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -424,7 +424,7 @@ class HomeRepository {
 
         var data = singleReportModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -444,7 +444,7 @@ class HomeRepository {
 
         var data = tvListModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -465,7 +465,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -515,7 +515,7 @@ class HomeRepository {
 
         var data = createOffCodeModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -535,7 +535,7 @@ class HomeRepository {
 
         var data = getOffModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -554,7 +554,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -575,7 +575,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -594,7 +594,7 @@ class HomeRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }

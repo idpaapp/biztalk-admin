@@ -23,7 +23,7 @@ class DocumentRepository {
 
         var data = documentsModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
@@ -42,7 +42,7 @@ class DocumentRepository {
 
         var data = editModelFromJson(encode);
 
-        return data.ok == true ? Right(data) : Left(ApiFailure("نشد"));
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }

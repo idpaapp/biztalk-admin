@@ -314,28 +314,43 @@ class RequestAndSessionPage extends StatelessWidget {
                             } else {
                               Get.back();
                               Session my = Session(
-                                  id: data.id,
-                                  date: data.date,
-                                  description: data.description,
-                                  formattedPrice:
-                                      data.time!.formattedPrice ?? "",
-                                  status: data.status,
-                                  fromNow: "",
-                                  price: data.time!.price,
-                                  startTime: data.time!.start!,
-                                  statusTitle: data.statusTitle,
-                                  user: Mentor(profileImageUrl: data.profileImageUrl,id: data.id,phoneNumber: "0919",fullName: "sdkd"),
-                                  timeId: data.time!.id,
-                                  mentor: Mentor(
-                                    fullName: profile.fullName ?? "",
-                                    phoneNumber: profile.phone,
-                                    id: profile.id,
-                                    profileImageUrl: profile.profile,
-                                  ));
+                                id: data.id,
+                                date: data.date,
+                                description: data.description,
+                                formattedPrice: data.time!.formattedPrice ?? "",
+                                status: data.status,
+                                fromNow: "",
+                                price: data.time!.price,
+                                startTime: data.time!.start!,
+                                statusTitle: data.statusTitle,
+                                subject: SubjectSingle(
+                                    id: data.subject == null
+                                        ? ""
+                                        : data.subject!.id,
+                                    title: data.subject == null
+                                        ? ""
+                                        : data.subject!.title),
+                                user: Mentor(
+                                    profileImageUrl: data.profileImageUrl,
+                                    id: data.id,
+                                    phoneNumber: "0919",
+                                    fullName: "sdkd"),
+                                timeId: data.time!.id,
+                                mentor: Mentor(
+                                  fullName: profile.fullName ?? "",
+                                  phoneNumber: profile.phone,
+                                  id: profile.id,
+                                  profileImageUrl: profile.profile,
+                                ),
+                              );
                               sessionDialog(context, "جلسه", my,
                                   _homeController.resultSingleSession.value);
                             }
-                          } else {}
+                          } else {
+
+
+
+                          }
                         },
                         userName: data.person!.fullName ?? "نا مشخص",
                         stateTitle: data.statusTitle ?? "نا مشخص",
