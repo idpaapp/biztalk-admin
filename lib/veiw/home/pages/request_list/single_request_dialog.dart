@@ -15,8 +15,10 @@ import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_con
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-final RequestSessionController _requestSessionController =Get.put(RequestSessionController());
-final HomeController _homeController =Get.find();
+final RequestSessionController _requestSessionController =
+    Get.put(RequestSessionController());
+final HomeController _homeController = Get.find();
+
 Future<void> requestDialog(BuildContext context, String title, Request request,
     SingleReportModel value) async {
   return showDialog<void>(
@@ -30,9 +32,9 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         title: TitleWidget(
-            size: 3,
-            title: title,
-            ),
+          size: 3,
+          title: title,
+        ),
         content: SizedBox(
           height: Get.height * 0.7,
           width: Get.width * 0.6,
@@ -47,35 +49,34 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
                   ),
                   Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CustomText(
-                            title: "تاریخچه گفتوگوها",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: AppColors.lighterBlack,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 3, vertical: 5),
-                            height: Get.height * 0.6,
-                            width: Get.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(color: AppColors.dividerLight),
-                            ),
-                            child: listOfMessage( value),
-                          )
-                        ],
-                      ))
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomText(
+                        title: "تاریخچه گفتوگوها",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: AppColors.lighterBlack,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 3, vertical: 5),
+                        height: Get.height * 0.6,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(color: AppColors.dividerLight),
+                        ),
+                        child: listOfMessage(value),
+                      )
+                    ],
+                  ))
                 ],
               )),
         ),
         actions: <Widget>[
-
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
@@ -84,20 +85,26 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () {
-                    confirmDialog(context,title: "آیا برای لغو درخواست اطمینان دارید؟",onConfirm:()async{
+                    confirmDialog(context,
+                        title: "آیا برای لغو درخواست اطمینان دارید؟",
+                        onConfirm: () async {
                       MyAlert.loding();
-                      await _requestSessionController.cancelRequest(request.id!);
+                      await _requestSessionController
+                          .cancelRequest(request.id!);
                       Get.back();
 
-                      if(_requestSessionController.failureMessageCancelRequest.value !=""){
-                        MyAlert.mySnakbarRed(text:_requestSessionController.failureMessageCancelRequest.value );
-                      }else{
+                      if (_requestSessionController
+                              .failureMessageCancelRequest.value !=
+                          "") {
+                        MyAlert.mySnakbarRed(
+                            text: _requestSessionController
+                                .failureMessageCancelRequest.value);
+                      } else {
                         Get.back();
                         Get.back();
                         _homeController.requestList(1);
-
                       }
-                    } );
+                    });
                   },
                   text: "لغو درخواست",
                   height: 40,
@@ -107,7 +114,6 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
                   textColor: Colors.white,
                   bgColor: AppColors.red,
                 ),
-
                 const SizedBox(
                   width: 10,
                 ),
@@ -134,40 +140,40 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
 }
 
 Widget right(Request request) => Expanded(
-    child: Column(
+        child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Stack(
           children: [
             request.mentor!.profileImageUrl == null
                 ? const CircleAvatar(
-              backgroundColor: Colors.orange,
-              radius: 50,
-              backgroundImage:
-              AssetImage("assets/images/avatar_placeholder.png"),
-            )
+                    backgroundColor: Colors.orange,
+                    radius: 50,
+                    backgroundImage:
+                        AssetImage("assets/images/avatar_placeholder.png"),
+                  )
                 : CircleAvatar(
-              backgroundColor: Colors.orange,
-              radius: 50,
-              backgroundImage: NetworkImage(GlobalInfo.serverAddress +
-                  "/" +
-                  request.mentor!.profileImageUrl!),
-            ),
+                    backgroundColor: Colors.orange,
+                    radius: 50,
+                    backgroundImage: NetworkImage(GlobalInfo.serverAddress +
+                        "/" +
+                        request.mentor!.profileImageUrl!),
+                  ),
             Padding(
               padding: const EdgeInsets.only(right: 80),
               child: request.user!.profileImageUrl == null
                   ? const CircleAvatar(
-                backgroundColor: Colors.orange,
-                radius: 50,
-                backgroundImage:
-                AssetImage("assets/images/avatar_placeholder.png"),
-              )
+                      backgroundColor: Colors.orange,
+                      radius: 50,
+                      backgroundImage:
+                          AssetImage("assets/images/avatar_placeholder.png"),
+                    )
                   : CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(GlobalInfo.serverAddress +
-                    "/" +
-                    request.user!.profileImageUrl!),
-              ),
+                      radius: 50,
+                      backgroundImage: NetworkImage(GlobalInfo.serverAddress +
+                          "/" +
+                          request.user!.profileImageUrl!),
+                    ),
             ),
           ],
         ),
@@ -209,7 +215,6 @@ Widget right(Request request) => Expanded(
         const SizedBox(
           height: 10,
         ),
-
         const SizedBox(
           height: 10,
         ),
@@ -228,25 +233,23 @@ Widget right(Request request) => Expanded(
     ));
 
 Widget listOfMessage(SingleReportModel value) => ListView.builder(
-  physics: const ScrollPhysics(),
-  itemCount: value.data!.length,
-  reverse: true,
-  itemBuilder: (context, index) {
-    var message = value.data![index];
-    if (message.senderType == "mentor") {
-      return UserChat(
-        message: message.msg,
-        image:
-        message.sender!.profileImageUrl!,
-        date: message.date,
-      );
-    } else {
-      return MentorChat(
-        message: message.msg,
-        image:
-        message.sender!.profileImageUrl!,
-        date: message.date,
-      );
-    }
-  },
-);
+      physics: const ScrollPhysics(),
+      itemCount: value.data!.length,
+      reverse: true,
+      itemBuilder: (context, index) {
+        var message = value.data![index];
+        if (message.senderType == "mentor") {
+          return UserChat(
+            message: message.msg,
+            image: message.sender!.profileImageUrl!,
+            date: message.date,
+          );
+        } else {
+          return MentorChat(
+            message: message.msg,
+            image: message.sender!.profileImageUrl!,
+            date: message.date,
+          );
+        }
+      },
+    );
