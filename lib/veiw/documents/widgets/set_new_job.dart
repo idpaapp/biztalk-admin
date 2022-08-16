@@ -102,168 +102,170 @@ class SetNewJob{
       constraints: const BoxConstraints(maxWidth: 1000.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 7),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomText(
-              title: "نام سازمان",
-              color: AppColors.black,
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Obx(() => RowContainerClickWidgets(
-              title: _documentController.companyName.value,
-              imgPath: _documentController.companyIcon.value == ""
-                  ? ""
-                  : _documentController.companyIcon.value,
-              onTap: () async {
-                MyAlert.loding();
-                await _documentController.getOption("company");
-                if (_documentController.failureMessageGetOption.value != "") {
-                  Get.back();
-                  MyAlert.mySnakbarRed(
-                      text: _documentController.failureMessageGetOption.value);
-                  return;
-                } else  {
-                  Get.back();
-                  setNewJob(context);
-                }
-              },
-            )),
-            Obx(() => _documentController.activeSetNameOrgan.value
-                ? Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: TextfieldTitleWidgets(
-                textEditingController: _manualTitleOfOrgan,
-                title: "عنوان سازمان",
-                hint: _documentController.activeSetNameOrgan.value == true
-                    ? "سایر شرکت ها یا سازمان ها"
-                    : _documentController.companyName.value,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomText(
+                title: "نام سازمان",
+                color: AppColors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
-            )
-                : const SizedBox(
-              height: 0,
-            )),
-            const SizedBox(
-              height: 12,
-            ),
-            TextfieldTitleWidgets(
-              textEditingController: _positionTitle,
-              title: "سمت و موقعیت شغلی",
-              hint: "سمت شغلی",
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText(
-                  title: "سال شروع و پایان فعالیت",
-                  color: AppColors.black,
-                  fontWeight:
-                  Get.height < 700 ? FontWeight.w400 : FontWeight.bold,
-                  fontSize: Get.height < 700 ? 10 : 12,
+              const SizedBox(
+                height: 12,
+              ),
+              Obx(() => RowContainerClickWidgets(
+                title: _documentController.companyName.value,
+                imgPath: _documentController.companyIcon.value == ""
+                    ? ""
+                    : _documentController.companyIcon.value,
+                onTap: () async {
+                  MyAlert.loding();
+                  await _documentController.getOption("company");
+                  if (_documentController.failureMessageGetOption.value != "") {
+                    Get.back();
+                    MyAlert.mySnakbarRed(
+                        text: _documentController.failureMessageGetOption.value);
+                    return;
+                  } else  {
+                    Get.back();
+                    setNewJob(context);
+                  }
+                },
+              )),
+              Obx(() => _documentController.activeSetNameOrgan.value
+                  ? Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: TextfieldTitleWidgets(
+                  textEditingController: _manualTitleOfOrgan,
+                  title: "عنوان سازمان",
+                  hint: _documentController.activeSetNameOrgan.value == true
+                      ? "سایر شرکت ها یا سازمان ها"
+                      : _documentController.companyName.value,
                 ),
-                Row(
-                  children: [
-                    Obx(
-                          () => Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Switch(
-                          value: _documentController.isActiveJobSwitch.value,
-                          onChanged: (bool value) {
-                            _documentController.isActiveJobSwitch.value = value;
-                            if (value == true) {
-                              _lastYear.text = currentYear();
-                            } else {
-                              _lastYear.text = "";
-                            }
-                          },
-                          activeColor: AppColors.darkerGreen,
+              )
+                  : const SizedBox(
+                height: 0,
+              )),
+              const SizedBox(
+                height: 12,
+              ),
+              TextfieldTitleWidgets(
+                textEditingController: _positionTitle,
+                title: "سمت و موقعیت شغلی",
+                hint: "سمت شغلی",
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    title: "سال شروع و پایان فعالیت",
+                    color: AppColors.black,
+                    fontWeight:
+                    Get.height < 700 ? FontWeight.w400 : FontWeight.bold,
+                    fontSize: Get.height < 700 ? 10 : 12,
+                  ),
+                  Row(
+                    children: [
+                      Obx(
+                            () => Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Switch(
+                            value: _documentController.isActiveJobSwitch.value,
+                            onChanged: (bool value) {
+                              _documentController.isActiveJobSwitch.value = value;
+                              if (value == true) {
+                                _lastYear.text = currentYear();
+                              } else {
+                                _lastYear.text = "";
+                              }
+                            },
+                            activeColor: AppColors.darkerGreen,
+                          ),
+                        ),
+                      ),
+                      CustomText(
+                        title: "هم اکنون مشغول به کارهستم",
+                        color: AppColors.black,
+                        fontSize: Get.height < 700 ? 10 : 12,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: AppColors.veryLightGrey),
+                      child: TextField(
+                        controller: _firstYear,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "سال شروع",
+                          contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                          hintStyle:
+                          TextStyle(color: AppColors.black, fontSize: 12),
                         ),
                       ),
                     ),
-                    CustomText(
-                      title: "هم اکنون مشغول به کارهستم",
-                      color: AppColors.black,
-                      fontSize: Get.height < 700 ? 10 : 12,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.veryLightGrey),
-                    child: TextField(
-                      controller: _firstYear,
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "سال شروع",
-                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                        hintStyle:
-                        TextStyle(color: AppColors.black, fontSize: 12),
-                      ),
-                    ),
                   ),
-                ),
-                const SizedBox(width: 20,),
-                const CustomText(
-                  title: "تا",
-                ),
+                  const SizedBox(width: 20,),
+                  const CustomText(
+                    title: "تا",
+                  ),
 
-                const SizedBox(width: 20,),
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.veryLightGrey),
-                    child: Obx(
-                          () => TextField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: _documentController.isActiveJobSwitch.value
-                                ? AppColors.darkGrey
-                                : AppColors.black),
-                        controller: _lastYear,
-                        keyboardType: TextInputType.number,
-                        enabled:
-                        _documentController.isActiveJobSwitch.value ? false : true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "سال پایان",
-                          contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 5),
-                          hintStyle: TextStyle(
+                  const SizedBox(width: 20,),
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: AppColors.veryLightGrey),
+                      child: Obx(
+                            () => TextField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                               color: _documentController.isActiveJobSwitch.value
                                   ? AppColors.darkGrey
-                                  : AppColors.black,
-                              fontSize: 12),
+                                  : AppColors.black),
+                          controller: _lastYear,
+                          keyboardType: TextInputType.number,
+                          enabled:
+                          _documentController.isActiveJobSwitch.value ? false : true,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "سال پایان",
+                            contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 5),
+                            hintStyle: TextStyle(
+                                color: _documentController.isActiveJobSwitch.value
+                                    ? AppColors.darkGrey
+                                    : AppColors.black,
+                                fontSize: 12),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 12,
-            ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
 

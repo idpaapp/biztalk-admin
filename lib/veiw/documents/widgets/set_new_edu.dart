@@ -55,225 +55,227 @@ class SetNewEdu{
 
     documentDialog(context,title: "سوابق تحصیلی و مدارک علمی",content:Padding(
       padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 7),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomText(
-            title: " دانشگاه یا موسسه آموزشی",
-            color: AppColors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 12,
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Obx(() => RowContainerClickWidgets(
-            title: _documentController.isManualTitleUniverCity.value
-                ? "سایر دانشگاه و موسسه آموزشی"
-                : _documentController.selectedEducationTitle.value,
-            imgPath: _documentController.isManualTitleUniverCity.value
-                ? ""
-                : _documentController.selectedEducationImage.value,
-            onTap: () async {
-              MyAlert.loding();
-              await _documentController.getOption("school");
-              if (_documentController.failureMessageGetOption.value !=
-                  "") {
-                Get.back();
-                MyAlert.mySnakbarRed(
-                    text: _documentController
-                        .failureMessageGetOption.value);
-                return;
-              } else {
-                Get.back();
-                onStudyFieldClick(context);
-              }
-            },
-          )),
-          const SizedBox(
-            height: 12,
-          ),
-          Obx(() => _documentController.isManualTitleUniverCity.value
-              ? TextfieldTitleWidgets(
-            textEditingController: _manualUniController,
-            title: "نام دانشگاه یا موسسه",
-            hint: "دانشگاه مورد نظر",
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomText(
+              title: " دانشگاه یا موسسه آموزشی",
+              color: AppColors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Obx(() => RowContainerClickWidgets(
+              title: _documentController.isManualTitleUniverCity.value
+                  ? "سایر دانشگاه و موسسه آموزشی"
+                  : _documentController.selectedEducationTitle.value,
+              imgPath: _documentController.isManualTitleUniverCity.value
+                  ? ""
+                  : _documentController.selectedEducationImage.value,
+              onTap: () async {
+                MyAlert.loding();
+                await _documentController.getOption("school");
+                if (_documentController.failureMessageGetOption.value !=
+                    "") {
+                  Get.back();
+                  MyAlert.mySnakbarRed(
+                      text: _documentController
+                          .failureMessageGetOption.value);
+                  return;
+                } else {
+                  Get.back();
+                  onStudyFieldClick(context);
+                }
+              },
+            )),
+            const SizedBox(
+              height: 12,
+            ),
+            Obx(() => _documentController.isManualTitleUniverCity.value
+                ? TextfieldTitleWidgets(
+              textEditingController: _manualUniController,
+              title: "نام دانشگاه یا موسسه",
+              hint: "دانشگاه مورد نظر",
 
-          )
-              : const SizedBox(
-            height: 0,
-          )),
-          const SizedBox(
-            height: 12,
-          ),
-          TextfieldTitleWidgets(
-            textEditingController: _fieldOfStudy,
-            title: "رشته یا عنوان دوره آموزشی",
-            hint: "رشته یا عنوان دوره آموزشی",
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const CustomText(
-                title: "سال شروع و پایان فعاللیت",
-                color: AppColors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              ),
-              Row(
-                children: [
-                  Obx(
-                        () => Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Switch(
-                        value: _documentController
-                            .isActiveEducationSwitch.value,
-                        onChanged: (bool value) {
-                          _documentController.isActiveEducationSwitch.value =
-                              value;
-                          if (value == true) {
-                            _lastYear.text = currentYear();
-                          } else {
-                            _lastYear.text = "";
-                          }
-                        },
-                        activeColor: AppColors.darkerGreen,
+            )
+                : const SizedBox(
+              height: 0,
+            )),
+            const SizedBox(
+              height: 12,
+            ),
+            TextfieldTitleWidgets(
+              textEditingController: _fieldOfStudy,
+              title: "رشته یا عنوان دوره آموزشی",
+              hint: "رشته یا عنوان دوره آموزشی",
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const CustomText(
+                  title: "سال شروع و پایان فعاللیت",
+                  color: AppColors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+                Row(
+                  children: [
+                    Obx(
+                          () => Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Switch(
+                          value: _documentController
+                              .isActiveEducationSwitch.value,
+                          onChanged: (bool value) {
+                            _documentController.isActiveEducationSwitch.value =
+                                value;
+                            if (value == true) {
+                              _lastYear.text = currentYear();
+                            } else {
+                              _lastYear.text = "";
+                            }
+                          },
+                          activeColor: AppColors.darkerGreen,
+                        ),
+                      ),
+                    ),
+                    const CustomText(
+                      title: "هم اکنون مشغول به تحصیل هستم",
+                      color: AppColors.black,
+                      fontSize: 12,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.veryLightGrey),
+                    child: TextField(
+                      controller: _firstYear,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "سال شروع",
+                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                        hintStyle:
+                        TextStyle(color: AppColors.black, fontSize: 12),
                       ),
                     ),
                   ),
-                  const CustomText(
-                    title: "هم اکنون مشغول به تحصیل هستم",
-                    color: AppColors.black,
-                    fontSize: 12,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.veryLightGrey),
-                  child: TextField(
-                    controller: _firstYear,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "سال شروع",
-                      contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                      hintStyle:
-                      TextStyle(color: AppColors.black, fontSize: 12),
-                    ),
+                ),
+                const SizedBox(width: 20,),
+                const CustomText(
+                  title: "تا",
+                ),
+
+                const SizedBox(width: 20,),
+
+                Expanded(
+                  child: Container(
+
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.veryLightGrey),
+                    child: Obx(() => TextField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      enabled:
+                      _documentController.isActiveEducationSwitch.value
+                          ? false
+                          : true,
+                      controller: _lastYear,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "سال پایان",
+                        contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 5),
+                        hintStyle: TextStyle(
+                            color: _documentController
+                                .isActiveEducationSwitch.value
+                                ? AppColors.darkGrey
+                                : AppColors.black,
+                            fontSize: 12),
+                      ),
+                    )),
                   ),
                 ),
-              ),
-              const SizedBox(width: 20,),
-              const CustomText(
-                title: "تا",
-              ),
+              ],
+            ),
 
-              const SizedBox(width: 20,),
+            const SizedBox(
+              height: 6,
+            ),
 
-              Expanded(
-                child: Container(
-
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.veryLightGrey),
-                  child: Obx(() => TextField(
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    enabled:
-                    _documentController.isActiveEducationSwitch.value
-                        ? false
-                        : true,
-                    controller: _lastYear,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "سال پایان",
-                      contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 5),
-                      hintStyle: TextStyle(
-                          color: _documentController
-                              .isActiveEducationSwitch.value
-                              ? AppColors.darkGrey
-                              : AppColors.black,
-                          fontSize: 12),
-                    ),
-                  )),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(
-            height: 6,
-          ),
-
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 14),
-          //   child: Row(
-          //     children: [
-          //       ButtonText(
-          //         onPressed: ()async {
-          //
-          //
-          //         },
-          //         text: "افزودن",
-          //         height: 35,
-          //         fontSize: 14,
-          //         width: 110,
-          //         textColor: Colors.white,
-          //         bgColor: AppColors.darkerGreen,
-          //       ),
-          //       SizedBox(width: 15,),
-          //       edit =="edit"?  ButtonText(
-          //         onPressed: ()async {
-          //           MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
-          //             Get.back();
-          //           },title: "توجه",onConfirm: ()async{
-          //             MyAlert.loding();
-          //             await _documentController.deleteEducation(mentorID,education!.id!);
-          //             Get.back();
-          //             if(_documentController.failureMessageDeleteEducation.value !=""){
-          //               MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteEducation.value);
-          //             }else{
-          //               Get.back();
-          //               Get.back();
-          //               _documentController.getDocument(mentorID);
-          //
-          //             }
-          //           });
-          //
-          //
-          //
-          //         },
-          //         text:"حذف",
-          //         height: 35,
-          //         fontSize: 14,
-          //         width: 110,
-          //         textColor: Colors.white,
-          //         bgColor: AppColors.red,
-          //       )
-          //           :SizedBox(height: 0,)
-          //
-          //     ],
-          //   ),
-          // )
-        ],
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 14),
+            //   child: Row(
+            //     children: [
+            //       ButtonText(
+            //         onPressed: ()async {
+            //
+            //
+            //         },
+            //         text: "افزودن",
+            //         height: 35,
+            //         fontSize: 14,
+            //         width: 110,
+            //         textColor: Colors.white,
+            //         bgColor: AppColors.darkerGreen,
+            //       ),
+            //       SizedBox(width: 15,),
+            //       edit =="edit"?  ButtonText(
+            //         onPressed: ()async {
+            //           MyAlert.deleteBottomSheet(text: "آیا برای حذف اطمینان دارید؟",onCancel: (){
+            //             Get.back();
+            //           },title: "توجه",onConfirm: ()async{
+            //             MyAlert.loding();
+            //             await _documentController.deleteEducation(mentorID,education!.id!);
+            //             Get.back();
+            //             if(_documentController.failureMessageDeleteEducation.value !=""){
+            //               MyAlert.mySnakbarRed(text: _documentController.failureMessageDeleteEducation.value);
+            //             }else{
+            //               Get.back();
+            //               Get.back();
+            //               _documentController.getDocument(mentorID);
+            //
+            //             }
+            //           });
+            //
+            //
+            //
+            //         },
+            //         text:"حذف",
+            //         height: 35,
+            //         fontSize: 14,
+            //         width: 110,
+            //         textColor: Colors.white,
+            //         bgColor: AppColors.red,
+            //       )
+            //           :SizedBox(height: 0,)
+            //
+            //     ],
+            //   ),
+            // )
+          ],
+        ),
       ),
     ),onSave: ()async{
       Map<String, dynamic> body = {

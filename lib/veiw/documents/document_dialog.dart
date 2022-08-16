@@ -22,7 +22,7 @@ Future<void> documentDialog(BuildContext context,
           size:size ,
         ),
         content: SizedBox(
-            height: Get.height * 0.3,
+            height: Get.height * 0.4,
             width:size == 4 ?Get.width*0.3 : Get.width * 0.4,
         child: content),
         actions: <Widget>[
