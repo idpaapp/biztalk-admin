@@ -8,13 +8,14 @@ class AllMethods{
     } else if (data == "DOC_CONFIRM") {
       return AppColors.darkerGreen;
     } else if (data == "DOC_CHECKING") {
-      return AppColors.blueSession;
+      return Colors.white;
     } else {
       return AppColors.redText;
     }
   }
 
  static Color handelBackColor(String data) {
+   print(data);
     if (data == "DOC_NOT_SEND") {
       return AppColors.disabledGrey;
     } else if (data == "DOC_CONFIRM") {
