@@ -50,7 +50,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                       ? ""
                       : education.schoolTitle ?? "",
                   subTitle: education.degree ?? "",
-                  yers: education.activityYear ?? "",
+                  years: education.activityYear ?? "",
                   statusTitle: education.statusTitle,
                   status: education.verificationStatus,
                   onShow: () {

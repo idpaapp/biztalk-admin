@@ -51,7 +51,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                   statusVeryFy: job.status!,
                   title: job.company == null ? "" : job.companyTitle,
                   subTitle: job.job,
-                  yers: job.activityYear ?? "",
+                  years: job.activityYear ?? "",
                   statusTitle: job.statusTitle,
                   status: job.verificationStatus,
 
