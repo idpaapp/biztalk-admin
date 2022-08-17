@@ -88,9 +88,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "_id": education.id,
                         "type": "education",
                         "status": true,
-                        "docStatus": education.attachments!.isEmpty
-                            ? "CONFIRM"
-                            : "DOC_CHECKING"
+                        "docStatus": education.verificationStatus
                       };
 
                       onConfirmAdditional(
@@ -100,7 +98,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         "_id": education.id,
                         "type": "education",
                         "status": false,
-                        "docStatus": "DOC_NOT_CONFIRM"
+                        "docStatus": education.verificationStatus
                       };
                       onConfirmAdditional(
                           context, body, "ایا برای عدم تایید اطمینان دارید؟");

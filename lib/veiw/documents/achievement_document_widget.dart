@@ -66,7 +66,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                         "_id": achievement.id,
                         "type": "achievement",
                         "status": false,
-                        "docStatus": "DOC_NOT_CONFIRM"
+                        "docStatus": achievement.verificationStatus
                       };
                       onConfirmAdditional(
                           context, body, "ایا برای عدم تایید اطمینان دارید؟");
@@ -96,9 +96,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                         "_id": achievement.id,
                         "type": "achievement",
                         "status": true,
-                        "docStatus": achievement.attachments!.isEmpty
-                            ? "CONFIRM"
-                            : "DOC_CHECKING"
+                        "docStatus": achievement.verificationStatus
                       };
                       onConfirmAdditional(
                           context, body, "ایا برای  تایید اطمینان دارید؟");

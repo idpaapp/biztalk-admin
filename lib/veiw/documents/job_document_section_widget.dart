@@ -74,7 +74,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "_id": job.id,
                           "type": "work",
                           "status": false,
-                          "docStatus": "DOC_NOT_CONFIRM"
+                          "docStatus": job.verificationStatus
                         };
                         onConfirmAdditional(
                             context, body, "ایا برای عدم تایید اطمینان دارید؟");
@@ -84,9 +84,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "_id": job.id,
                           "type": "work",
                           "status": true,
-                          "docStatus": job.attachments!.isEmpty
-                              ? "CONFIRM"
-                              : "DOC_CHECKING"
+                          "docStatus": job.verificationStatus
                         };
                         onConfirmAdditional(
                             context, body, "ایا برای تایید اطمینان دارید؟");
