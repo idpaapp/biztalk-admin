@@ -13,12 +13,11 @@ class NewItemDocumentWidget extends StatelessWidget {
   final String? status;
   final bool statusVeryFy;
 
-
   const NewItemDocumentWidget(
       {Key? key,
       this.onShow,
       this.title,
-        required this.statusVeryFy,
+      required this.statusVeryFy,
       this.status,
       this.statusTitle,
       this.subTitle,
@@ -27,8 +26,8 @@ class NewItemDocumentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 40),
-    child: Row(
+        padding: const EdgeInsets.only(top: 40),
+        child: Row(
           children: [
             Expanded(
                 child: Column(
@@ -66,11 +65,13 @@ class NewItemDocumentWidget extends StatelessWidget {
                                 title: title,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
-                            const SizedBox(width: 15,),
-
+                            const SizedBox(
+                              width: 15,
+                            ),
                             ButtonText(
                               onPressed: null,
-                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
                               margin: const EdgeInsets.symmetric(horizontal: 4),
                               text: statusTitle,
                               borderRadios: 10,
@@ -78,7 +79,8 @@ class NewItemDocumentWidget extends StatelessWidget {
                               height: 30,
                               fontSize: 12,
                               textColor: AllMethods.handelTextColor(status!),
-                              bgColor: AllMethods.handelBackColor(status!,statusVeryFy),
+                              bgColor: AllMethods.handelBackColor(
+                                  status!, statusVeryFy),
                             ),
                           ],
                         ),
@@ -93,17 +95,19 @@ class NewItemDocumentWidget extends StatelessWidget {
                           textColor: Colors.white,
                           bgColor: AppColors.blueSession,
                         ),
-
                       ],
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     CustomText(
                         color: AppColors.titleColor,
                         title: subTitle,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
-
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     CustomText(
                         color: AppColors.titleColorTran,
                         title: yers,
@@ -113,5 +117,5 @@ class NewItemDocumentWidget extends StatelessWidget {
                 )),
           ],
         ),
-  );
+      );
 }
