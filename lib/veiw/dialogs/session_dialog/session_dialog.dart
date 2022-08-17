@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 
 
 Future<void> sessionDialog(BuildContext context, String title, Session session,
-    SingleReportModel value) async {
+    SingleReportModel value,{String? fromPage,String? userType,String? userID,}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -86,7 +86,7 @@ Future<void> sessionDialog(BuildContext context, String title, Session session,
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () {
-                    cancellDialog(context, "لغو جلسه",session.id!);
+                    cancellDialog(context, "لغو جلسه",session.id!,userType: userType,userID: userID,fromPage: fromPage);
 
                   },
                   text: "لغو جلسه",

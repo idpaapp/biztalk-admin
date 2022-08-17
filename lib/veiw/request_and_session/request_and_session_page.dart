@@ -353,7 +353,7 @@ class RequestAndSessionPage extends StatelessWidget {
                                         profileImageUrl:
                                         data.user!.profileImageUrl));
                                 sessionDialog(context, "جلسه", my,
-                                    _homeController.resultSingleSession.value);
+                                    _homeController.resultSingleSession.value,fromPage: "1",userID: userID,userType: userType);
                               }
                             } else {
                               MyAlert.loding();
@@ -380,7 +380,7 @@ class RequestAndSessionPage extends StatelessWidget {
                                     data.mentor!.profileImageUrl,
                                     phoneNumber: data.mentor!.phoneNumber,
                                     fullName: data.mentor!.fullName),createdAt: data.createDate );
-                                requestDialog(context,"درخواست",single,_homeController.resultSingleRequest.value);
+                                requestDialog(context,"درخواست",single,_homeController.resultSingleRequest.value,fromPage: "1",userID: userID,userType: userType);
                               }
 
                           }

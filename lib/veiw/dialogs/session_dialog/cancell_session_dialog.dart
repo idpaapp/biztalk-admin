@@ -24,7 +24,7 @@ final HomeController _homeController =Get.find();
 Future<void> cancellDialog(
   BuildContext context,
   String title,
-  String sessionId,
+  String sessionId,{String? fromPage,String? userType,String? userID,}
 ) async {
   final TextEditingController penalty = TextEditingController();
 
@@ -105,28 +105,57 @@ Future<void> cancellDialog(
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () async {
-                    Map<String, dynamic> body = {
-                      "penalty":
-                          penalty.text.replaceAll(",", "").replaceAll("،", ""),
-                      "isUserCancel":
-                          _requestSessionController.selectedTypeUser.value ==
-                                  "کاربر"
-                              ? true
-                              : false
-                    };
-                    print(body);
-                    MyAlert.loding();
-                    await _requestSessionController.cancelSession(
-                        body, sessionId);
-                    Get.back();
-                    if(_requestSessionController.failureMessageCancelSession.value !=""){
-                      MyAlert.mySnakbarRed(text: _requestSessionController.failureMessageCancelSession.value);
-                    }else{
-                      Get.back();
-                      Get.back();
-                      _homeController.sessionList(1);
 
-                    }
+                      Map<String, dynamic> body = {
+                        "penalty":
+                        penalty.text.replaceAll(",", "").replaceAll("،", ""),
+                        "isUserCancel":
+                        _requestSessionController.selectedTypeUser.value ==
+                            "کاربر"
+                            ? true
+                            : false
+                      };
+                      print(body);
+                      MyAlert.loding();
+                      await _requestSessionController.cancelSession(
+                          body, sessionId);
+                      Get.back();
+                      if (_requestSessionController.failureMessageCancelSession
+                          .value != "") {
+                        MyAlert.mySnakbarRed(text: _requestSessionController
+                            .failureMessageCancelSession.value);
+                      } else {
+  if(fromPage != "1") {
+    Get.back();
+    Get.back();
+    _homeController.sessionList(1);
+  }else{
+    Get.back();
+    Get.back();
+      _requestSessionController.getAllRequestSession({
+      "page": _requestSessionController.selectedPage.value,
+      "type": userType,
+      "status":_requestSessionController.selectedStatus,
+      "requestFromDate": _requestSessionController
+          .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateRequest.value,
+      "requestToDate": _requestSessionController
+          .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateRequest.value,
+      "sessionFromDate": _requestSessionController
+          .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateSession.value,
+      "sessionToDate": _requestSessionController
+          .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateSession.value
+      }, userID!);
+
+  }
+
+
+
+                      }
+
                   },
                   text: "لغو جلسه",
                   height: 40,

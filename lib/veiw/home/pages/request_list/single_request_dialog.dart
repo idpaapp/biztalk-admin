@@ -20,7 +20,7 @@ final RequestSessionController _requestSessionController =
 final HomeController _homeController = Get.find();
 
 Future<void> requestDialog(BuildContext context, String title, SingleRequest request,
-    SingleReportModel value) async {
+    SingleReportModel value,{String? fromPage,String? userType,String? userID,}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -100,11 +100,36 @@ Future<void> requestDialog(BuildContext context, String title, SingleRequest req
                             text: _requestSessionController
                                 .failureMessageCancelRequest.value);
                       } else {
-                        Get.back();
-                        Get.back();
-                        _homeController.requestList(1);
+                        if(fromPage !="1") {
+                          Get.back();
+                          Get.back();
+                          _homeController.requestList(1);
+                        }else{
+      Get.back();
+      Get.back();
+      _requestSessionController.getAllRequestSession({
+      "page": _requestSessionController.selectedPage.value,
+      "type": userType,
+      "status":_requestSessionController.selectedStatus,
+      "requestFromDate": _requestSessionController
+          .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateRequest.value,
+      "requestToDate": _requestSessionController
+          .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateRequest.value,
+      "sessionFromDate": _requestSessionController
+          .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateSession.value,
+      "sessionToDate": _requestSessionController
+          .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateSession.value
+      }, userID!);
+
+
+                        }
                       }
                     });
+
                   },
                   text: "لغو درخواست",
                   height: 40,
