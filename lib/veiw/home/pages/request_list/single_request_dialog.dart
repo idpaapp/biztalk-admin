@@ -19,7 +19,7 @@ final RequestSessionController _requestSessionController =
     Get.put(RequestSessionController());
 final HomeController _homeController = Get.find();
 
-Future<void> requestDialog(BuildContext context, String title, Request request,
+Future<void> requestDialog(BuildContext context, String title, SingleRequest request,
     SingleReportModel value) async {
   return showDialog<void>(
     context: context,
@@ -139,7 +139,7 @@ Future<void> requestDialog(BuildContext context, String title, Request request,
   );
 }
 
-Widget right(Request request) => Expanded(
+Widget right(SingleRequest request) => Expanded(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

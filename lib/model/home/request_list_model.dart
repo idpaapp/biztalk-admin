@@ -42,7 +42,7 @@ class Data {
     this.hasPrevPage,
   });
 
-  List<Request>? request;
+  List<SingleRequest>? request;
   int? totalDocs;
   int? totalPages;
   int? page;
@@ -50,7 +50,7 @@ class Data {
   bool? hasPrevPage;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    request: List<Request>.from(json["request"].map((x) => Request.fromJson(x))),
+    request: List<SingleRequest>.from(json["request"].map((x) => SingleRequest.fromJson(x))),
     totalDocs: json["totalDocs"],
     totalPages: json["totalPages"],
     page: json["page"],
@@ -68,8 +68,8 @@ class Data {
   };
 }
 
-class Request {
-  Request({
+class SingleRequest {
+  SingleRequest({
     this.id,
     this.user,
     this.mentor,
@@ -81,21 +81,21 @@ class Request {
   });
 
   String? id;
-  Mentor? user;
-  Mentor? mentor;
+  MentorInRequest? user;
+  MentorInRequest? mentor;
   String? createdAt;
-  Subject? subject;
+  SubjectInRequest? subject;
   String? status;
   String? statusTitle;
   String? description;
 
-  factory Request.fromJson(Map<String, dynamic> json) => Request(
+  factory SingleRequest.fromJson(Map<String, dynamic> json) => SingleRequest(
     id: json["_id"],
     description: json["description"],
-    user: Mentor.fromJson(json["user"]),
-    mentor: Mentor.fromJson(json["mentor"]),
+    user: MentorInRequest.fromJson(json["user"]),
+    mentor: MentorInRequest.fromJson(json["mentor"]),
     createdAt: json["createdAt"],
-    subject: Subject.fromJson(json["subject"]),
+    subject: SubjectInRequest.fromJson(json["subject"]),
     status: json["status"],
     statusTitle: json["statusTitle"],
   );
@@ -112,8 +112,8 @@ class Request {
   };
 }
 
-class Mentor {
-  Mentor({
+class MentorInRequest {
+  MentorInRequest({
     this.id,
     this.fullName,
     this.phoneNumber,
@@ -125,7 +125,7 @@ class Mentor {
   String? phoneNumber;
   String? profileImageUrl;
 
-  factory Mentor.fromJson(Map<String, dynamic> json) => Mentor(
+  factory MentorInRequest.fromJson(Map<String, dynamic> json) => MentorInRequest(
     id: json["_id"],
     fullName: json["fullName"],
     phoneNumber: json["phoneNumber"],
@@ -140,8 +140,8 @@ class Mentor {
   };
 }
 
-class Subject {
-  Subject({
+class SubjectInRequest {
+  SubjectInRequest({
     this.id,
     this.title,
   });
@@ -149,7 +149,7 @@ class Subject {
   String? id;
   String? title;
 
-  factory Subject.fromJson(Map<String, dynamic> json) => Subject(
+  factory SubjectInRequest.fromJson(Map<String, dynamic> json) => SubjectInRequest(
     id: json["_id"],
     title: json["title"],
   );

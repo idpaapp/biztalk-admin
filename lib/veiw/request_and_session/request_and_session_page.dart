@@ -1,4 +1,5 @@
 import 'package:biztalk_panel_admin/model/all_request_session_model.dart';
+import 'package:biztalk_panel_admin/model/home/request_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
@@ -10,6 +11,7 @@ import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.d
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/session_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/request_list/single_request_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/request_date_filter_widget.dart';
@@ -30,11 +32,19 @@ class RequestAndSessionPage extends StatelessWidget {
     _requestSessionController.getAllRequestSession({
       "page": _requestSessionController.selectedPage.value,
       "type": userType,
-      "status": ["draft", "confirmed", "reserved", "completed"],
-      "requestFromDate": null,
-      "requestToDate": null,
-      "sessionFromDate": null,
-      "sessionToDate": null
+      "status":_requestSessionController.selectedStatus,
+      "requestFromDate": _requestSessionController
+          .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateRequest.value,
+      "requestToDate": _requestSessionController
+          .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateRequest.value,
+      "sessionFromDate": _requestSessionController
+          .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedStartDateSession.value,
+      "sessionToDate": _requestSessionController
+          .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+          .selectedEndDateSession.value
     }, userID);
   }
 
@@ -233,16 +243,19 @@ class RequestAndSessionPage extends StatelessWidget {
                         _requestSessionController.getAllRequestSession({
                           "page": _requestSessionController.selectedPage.value,
                           "type": userType,
-                          "status": [
-                            "draft",
-                            "confirmed",
-                            "reserved",
-                            "completed"
-                          ],
-                          "requestFromDate": null,
-                          "requestToDate": null,
-                          "sessionFromDate": null,
-                          "sessionToDate": null
+                          "status":_requestSessionController.selectedStatus,
+                          "requestFromDate": _requestSessionController
+                              .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
+                              .selectedStartDateRequest.value,
+                          "requestToDate": _requestSessionController
+                              .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
+                              .selectedEndDateRequest.value,
+                          "sessionFromDate": _requestSessionController
+                              .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+                              .selectedStartDateSession.value,
+                          "sessionToDate": _requestSessionController
+                              .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+                              .selectedEndDateSession.value
                         }, userID);
                         Get.back();
                       });
@@ -300,59 +313,79 @@ class RequestAndSessionPage extends StatelessWidget {
                       return ProfileTitleTableWidget(
                         isTitle: false,
                         onTap: () async {
-                          if (data.type == "session") {
-                            MyAlert.loding();
-                            await _homeController.singleSession(data.id!);
-                            if (_homeController
-                                    .failureMessageSingleSession.value !=
-                                "") {
+
+                            if (data.type == "session") {
+                              MyAlert.loding();
+                              await _homeController.singleSession(data.id!);
                               Get.back();
-                              MyAlert.mySnakbarRed(
-                                  text: _homeController
-                                      .failureMessageSingleSession.value);
-                              return;
-                            } else {
-                              Get.back();
-                              Session my = Session(
-                                id: data.id,
-                                date: data.date,
-                                description: data.description,
-                                formattedPrice: data.time!.formattedPrice ?? "",
-                                status: data.status,
-                                fromNow: "",
-                                price: data.time!.price,
-                                startTime: data.time!.start!,
-                                statusTitle: data.statusTitle,
-                                subject: SubjectSingle(
-                                    id: data.subject == null
-                                        ? ""
-                                        : data.subject!.id,
-                                    title: data.subject == null
-                                        ? ""
-                                        : data.subject!.title),
-                                user: Mentor(
-                                    profileImageUrl: data.profileImageUrl,
+                              if (_homeController
+                                  .failureMessageSingleSession.value !=
+                                  "") {
+                                MyAlert.mySnakbarRed(
+                                    text: _homeController
+                                        .failureMessageSingleSession.value);
+                                return;}else {
+                                Session my = Session(
                                     id: data.id,
-                                    phoneNumber: "0919",
-                                    fullName: "sdkd"),
-                                timeId: data.time!.id,
-                                mentor: Mentor(
-                                  fullName: profile.fullName ?? "",
-                                  phoneNumber: profile.phone,
-                                  id: profile.id,
-                                  profileImageUrl: profile.profile,
-                                ),
-                              );
-                              sessionDialog(context, "جلسه", my,
-                                  _homeController.resultSingleSession.value);
-                            }
-                          } else {
-
-
+                                    mentor: SingleMentor(
+                                        id: data.mentor!.id,
+                                        fullName: data.mentor!.fullName,
+                                        phoneNumber: data.mentor!.phoneNumber,
+                                        profileImageUrl:
+                                        data.mentor!.profileImageUrl),
+                                    fromNow: data.fromNow,
+                                    status: data.status,
+                                    date: data.date,
+                                    description: data.description,
+                                    formattedPrice: data.time!.formattedPrice,
+                                    price: data.time!.price,
+                                    startTime: data.time!.start,
+                                    statusTitle: data.statusTitle,
+                                    subject: SubjectSingle(
+                                      id: data.subject!.id,
+                                      title: data.subject!.title,
+                                    ),
+                                    timeId: data.time!.id,
+                                    user: SingleMentor(
+                                        id: data.user!.id,
+                                        fullName: data.user!.fullName,
+                                        phoneNumber: data.user!.phoneNumber,
+                                        profileImageUrl:
+                                        data.user!.profileImageUrl));
+                                sessionDialog(context, "جلسه", my,
+                                    _homeController.resultSingleSession.value);
+                              }
+                            } else {
+                              MyAlert.loding();
+                              await _homeController.singleRequest(data.id!);
+                              Get.back();
+                              if(_homeController.failureMessageSingleRequest.value!=""){
+                                MyAlert.mySnakbarRed(
+                                    text: _homeController
+                                        .failureMessageSingleRequest.value);
+                              }else{
+                                SingleRequest single = SingleRequest(
+                                    user: MentorInRequest(
+                                        id: data.user!.id,
+                                        profileImageUrl:
+                                        data.user!.profileImageUrl,
+                                        phoneNumber: data.user!.phoneNumber,
+                                        fullName: data.user!.fullName),
+                                    id: data.id,
+                                    subject: SubjectInRequest(
+                                        id: data.subject!.id,
+                                        title: data.subject!.title),statusTitle: data.statusTitle,description: data.description,status: data.status,mentor:MentorInRequest(
+                                    id: data.mentor!.id,
+                                    profileImageUrl:
+                                    data.mentor!.profileImageUrl,
+                                    phoneNumber: data.mentor!.phoneNumber,
+                                    fullName: data.mentor!.fullName),createdAt: data.createDate );
+                                requestDialog(context,"درخواست",single,_homeController.resultSingleRequest.value);
+                              }
 
                           }
                         },
-                        userName: data.person!.fullName ?? "نا مشخص",
+                        userName: data.user!.fullName ?? "نا مشخص",
                         stateTitle: data.statusTitle ?? "نا مشخص",
                         createDate: data.date ?? "نا مشخص",
                         sessionDate: data.time == null
@@ -385,6 +418,7 @@ class RequestAndSessionPage extends StatelessWidget {
       );
 
   Widget pageSection(AllRequestSessionModel value) {
+    print(value.data!.totalPages);
     return SizedBox(
       height: 40,
       child: Row(
@@ -416,16 +450,26 @@ class RequestAndSessionPage extends StatelessWidget {
               return Obx(
                 () => InkWell(
                   onTap: () {
-                    _requestSessionController.getAllRequestSession({
-                      "page": index + 1,
-                      "type": userType,
-                      "status": ["draft", "confirmed", "reserved"],
-                      "requestFromDate": null,
-                      "requestToDate": null,
-                      "sessionFromDate": null,
-                      "sessionToDate": null
-                    }, userID);
+
                     _requestSessionController.selectedPage.value = index + 1;
+                    _requestSessionController.getAllRequestSession({
+                      "page": _requestSessionController.selectedPage.value,
+                      "type": userType,
+                      "status":_requestSessionController.selectedStatus,
+                      "requestFromDate": _requestSessionController
+                          .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
+                          .selectedStartDateRequest.value,
+                      "requestToDate": _requestSessionController
+                          .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
+                          .selectedEndDateRequest.value,
+                      "sessionFromDate": _requestSessionController
+                          .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+                          .selectedStartDateSession.value,
+                      "sessionToDate": _requestSessionController
+                          .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
+                          .selectedEndDateSession.value
+                    }, userID);
+                    print( _requestSessionController.selectedPage.value);
                   },
                   child: Container(
                     width: 40,

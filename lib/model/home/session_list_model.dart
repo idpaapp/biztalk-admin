@@ -90,8 +90,8 @@ class Session {
 
   String? id;
   SubjectSingle? subject;
-  Mentor? user;
-  Mentor? mentor;
+  SingleMentor? user;
+  SingleMentor? mentor;
   String? date;
   String? startTime;
   int? price;
@@ -106,8 +106,8 @@ class Session {
         id: json["_id"],
         timeId: json["timeId"],
         subject: SubjectSingle.fromJson(json["subject"]),
-        user: Mentor.fromJson(json["user"]),
-        mentor: Mentor.fromJson(json["mentor"]),
+        user: SingleMentor.fromJson(json["user"]),
+        mentor: SingleMentor.fromJson(json["mentor"]),
         date: json["date"],
         startTime: json["startTime"],
         price: json["price"],
@@ -135,15 +135,15 @@ class Session {
       };
 }
 
-class Mentor {
-  Mentor({this.id, this.fullName, this.phoneNumber, this.profileImageUrl});
+class SingleMentor {
+  SingleMentor({this.id, this.fullName, this.phoneNumber, this.profileImageUrl});
 
   String? id;
   String? fullName;
   String? phoneNumber;
   String? profileImageUrl;
 
-  factory Mentor.fromJson(Map<String, dynamic> json) => Mentor(
+  factory SingleMentor.fromJson(Map<String, dynamic> json) => SingleMentor(
         id: json["_id"],
         fullName: json["fullName"],
         phoneNumber: json["phoneNumber"],

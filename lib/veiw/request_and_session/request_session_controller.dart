@@ -6,19 +6,23 @@ class RequestSessionController extends GetxController{
   final MentorRepository _mentorRepository =Get.find<MentorRepository>();
   RxInt selectedPage=1.obs;
   RxInt typeSelectedFilter =0.obs;
-  RxList selectedStatus=[].obs;
+  RxList selectedStatus= ["draft", "confirmed", "reserved", "completed"].obs;
   RxString selectedStartDateRequest="انتخاب کنید".obs;
   RxString selectedEndDateRequest="انتخاب کنید".obs;
   RxString selectedEndDateSession="انتخاب کنید".obs;
   RxString selectedStartDateSession="انتخاب کنید".obs;
   RxString selectedTypeUser="کاربر".obs;
 deleteData(){
-  selectedStatus.clear();
   selectedPage.value=1;
   selectedStartDateRequest.value="انتخاب کنید";
   selectedEndDateRequest.value="انتخاب کنید";
   selectedEndDateSession.value="انتخاب کنید";
   selectedStartDateSession.value="انتخاب کنید";
+  selectedStatus.clear();
+  selectedStatus.add("draft");
+  selectedStatus.add("confirmed");
+  selectedStatus.add("reserved");
+  selectedStatus.add("completed");
 
 
 }
