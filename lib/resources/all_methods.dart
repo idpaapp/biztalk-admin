@@ -20,6 +20,8 @@ class AllMethods{
       return AppColors.pink;
     } else if (data == "DOC_CONFIRM" && status) {
       return AppColors.veryLightGreen;
+    } else if (data == "CONFIRM" && status) {
+      return AppColors.pink;
     } else if (data == "DOC_CHECKING" && status) {
       return AppColors.blueSession;
     } else if (data == "CHECKING" && status) {
