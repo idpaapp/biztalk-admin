@@ -14,16 +14,20 @@ class AllMethods{
     }
   }
 
- static Color handelBackColor(String data) {
+ static Color handelBackColor(String data,bool status) {
    print(data);
-    if (data == "DOC_NOT_SEND") {
-      return AppColors.disabledGrey;
-    } else if (data == "DOC_CONFIRM") {
+    if (data == "DOC_NOT_SEND" && status) {
+      return AppColors.pink;
+    } else if (data == "DOC_CONFIRM" && status) {
       return AppColors.veryLightGreen;
-    } else if (data == "DOC_CHECKING") {
+    } else if (data == "DOC_CHECKING" && status) {
       return AppColors.blueSession;
-    } else {
+    } else if (data == "CHECKING" && status) {
+      return AppColors.orange;
+    } else if (data == "DOC_NOT_CONFIRM" && !status) {
       return AppColors.redBg;
+    }  else {
+      return AppColors.disabledGrey;
     }
   }
   static String datePiker(String date ){

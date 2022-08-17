@@ -11,12 +11,14 @@ class NewItemDocumentWidget extends StatelessWidget {
   final String? yers;
   final String? statusTitle;
   final String? status;
+  final bool statusVeryFy;
 
 
   const NewItemDocumentWidget(
       {Key? key,
       this.onShow,
       this.title,
+        required this.statusVeryFy,
       this.status,
       this.statusTitle,
       this.subTitle,
@@ -76,7 +78,7 @@ class NewItemDocumentWidget extends StatelessWidget {
                               height: 30,
                               fontSize: 12,
                               textColor: AllMethods.handelTextColor(status!),
-                              bgColor: AllMethods.handelBackColor(status!),
+                              bgColor: AllMethods.handelBackColor(status!,statusVeryFy),
                             ),
                           ],
                         ),

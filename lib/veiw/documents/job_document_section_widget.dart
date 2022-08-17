@@ -48,6 +48,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 var job = works![index];
                 return NewItemDocumentWidget(
+                  statusVeryFy: job.status!,
                   title: job.company == null ? "" : job.companyTitle,
                   subTitle: job.job,
                   yers: job.activityYear ?? "",

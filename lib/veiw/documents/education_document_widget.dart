@@ -45,6 +45,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 var education = educations![index];
                 return NewItemDocumentWidget(
+                  statusVeryFy: education.status!,
                   title: education.schoolTitle == null
                       ? ""
                       : education.schoolTitle ?? "",

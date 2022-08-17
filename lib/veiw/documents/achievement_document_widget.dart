@@ -44,6 +44,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 var achievement = achievements![index];
                 return NewItemDocumentWidget(
+                  statusVeryFy: achievement.status!,
                   title: achievement.title ?? "",
                   subTitle: achievement.place ?? "",
                   yers: achievement.year ?? "",
