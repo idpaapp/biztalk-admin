@@ -180,10 +180,10 @@ class HomeController extends GetxController {
   var resultVerifyAccount = EditModel().obs;
   RxBool isLoadingVerifyAccount = false.obs;
 
-  verifyAccount(String userId, bool confirm) async {
+  verifyAccount(String userId, bool confirm,String bankName,String userName) async {
     failureMessageVerifyAccount.value = "";
     isLoadingVerifyAccount.value = true;
-    final result = await _homeRepo.verifyAccount(userId, confirm);
+    final result = await _homeRepo.verifyAccount(userId, confirm,bankName,userName);
     result.fold(
       (left) {
         failureMessageVerifyAccount.value = left.message;

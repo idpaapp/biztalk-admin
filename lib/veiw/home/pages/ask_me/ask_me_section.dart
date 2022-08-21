@@ -4,7 +4,7 @@ import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/ask_me/dialog/response_dialog.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/row_bank_widget.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/bank_section/row_bank_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

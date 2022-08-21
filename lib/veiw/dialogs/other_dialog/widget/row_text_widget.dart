@@ -7,11 +7,13 @@ class RowTextWidget extends StatelessWidget {
   final String? subTitle;
   final Color bgColor;
   final Color borderColor;
+  final bool isSubtitle;
 
   const RowTextWidget(
       {Key? key,
       this.title,
       this.subTitle,
+        this.isSubtitle=false,
       this.bgColor = AppColors.bgText,
       this.borderColor = AppColors.bgText})
       : super(key: key);
@@ -29,15 +31,15 @@ class RowTextWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+              padding:  EdgeInsets.symmetric(vertical:isSubtitle?4: 12, horizontal: 12),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: bgColor,
-                  border: Border.all(color: borderColor)),
+                  color: isSubtitle ? Colors.white:bgColor,
+                  border: Border.all(color:isSubtitle ? Colors.white: borderColor)),
               child: CustomText(
                 title: subTitle,
                 fontSize: 14,
-                color: AppColors.lighterBlack,
+                color:isSubtitle ? AppColors.orange: AppColors.lighterBlack,
                 fontWeight: FontWeight.bold,
               ),
             ),

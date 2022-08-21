@@ -4,7 +4,7 @@ import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/master_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/off_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/ask_me/ask_me_section.dart';
-import 'package:biztalk_panel_admin/veiw/home/pages/bank_account_section.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/bank_section/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/media/media_list_section.dart';

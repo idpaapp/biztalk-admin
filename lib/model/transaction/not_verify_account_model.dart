@@ -128,18 +128,22 @@ class Bank {
   Bank({
     this.name,
     this.logo,
+    this.id,
   });
 
   String? name;
   String? logo;
+  String? id;
 
   factory Bank.fromJson(Map<String, dynamic> json) => Bank(
     name: json["name"],
     logo: json["logo"],
+    id: json["_id"],
   );
 
   Map<String, dynamic> toJson() => {
     "name": name,
     "logo": logo,
+    "id": id,
   };
 }

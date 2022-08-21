@@ -255,6 +255,7 @@ class HomeRepository {
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
+        print(response);
 
         var data = notVerifyAccountModelFromJson(encode);
 
@@ -267,7 +268,7 @@ class HomeRepository {
 
   //********************************** verify account
   Future<Either<Failure, EditModel>> verifyAccount(
-      String userId, bool confirm) async {
+      String userId, bool confirm,String bankName,String userName) async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -275,7 +276,7 @@ class HomeRepository {
         var url = '${GlobalInfo.baseURL}profile/verifyAccount/$userId';
 
         var response = await HttpServices.request(RequestType.patch, url,
-            needAuth: true, body: {"confirm": confirm});
+            needAuth: true, body: {"confirm": confirm,"nameInBank":bankName,"bankNameInBank":userName});
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
