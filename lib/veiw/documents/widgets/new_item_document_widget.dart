@@ -78,7 +78,7 @@ class NewItemDocumentWidget extends StatelessWidget {
                             fontWeight: FontWeight.normal,
                             height: 30,
                             fontSize: 12,
-                            textColor: AllMethods.handelTextColor(status!),
+                            textColor: AllMethods.handelTextColor(status!,statusVeryFy),
                             bgColor: AllMethods.handelBackColor(
                                 status!, statusVeryFy),
                           ),

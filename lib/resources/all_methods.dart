@@ -2,34 +2,41 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AllMethods{
- static Color handelTextColor(String data) {
-    if (data == "DOC_NOT_SEND") {
-      return AppColors.darkGrey;
-    } else if (data == "DOC_CONFIRM") {
-      return AppColors.darkerGreen;
-    } else if (data == "DOC_CHECKING") {
-      return Colors.white;
-    } else {
-      return AppColors.redText;
-    }
+ static Color handelTextColor(String data,bool status) {
+   print(data);
+   if (data == "DOC_NOT_SEND" && status) {
+     return AppColors.pink;
+   } else if (data == "DOC_CONFIRM" && status) {
+     return AppColors.greenBg;
+   } else if (data == "CONFIRM" && status) {
+     return AppColors.pink;
+   } else if (data == "DOC_CHECKING" && status) {
+     return AppColors.blueSession;
+   } else if (data == "DOC_NOT_CONFIRM" && status) {
+     return AppColors.orange;
+   } else if (data == "DOC_NOT_CONFIRM" && !status) {
+     return AppColors.redBg;
+   }  else {
+     return AppColors.lighterBlack;
+   }
   }
 
  static Color handelBackColor(String data,bool status) {
    print(data);
     if (data == "DOC_NOT_SEND" && status) {
-      return AppColors.pink;
+      return AppColors.pink.withOpacity(0.15);
     } else if (data == "DOC_CONFIRM" && status) {
-      return AppColors.veryLightGreen;
+      return AppColors.greenBg.withOpacity(0.15);
     } else if (data == "CONFIRM" && status) {
-      return AppColors.pink;
+      return AppColors.pink.withOpacity(0.15);
     } else if (data == "DOC_CHECKING" && status) {
-      return AppColors.blueSession;
-    } else if (data == "CHECKING" && status) {
-      return AppColors.orange;
+      return AppColors.blueSession.withOpacity(0.15);
     } else if (data == "DOC_NOT_CONFIRM" && !status) {
-      return AppColors.redBg;
+      return AppColors.redBg.withOpacity(0.15);
+    } else if (data == "DOC_NOT_CONFIRM" && status) {
+      return AppColors.orange.withOpacity(0.15);
     }  else {
-      return AppColors.disabledGrey;
+      return AppColors.lighterBlack.withOpacity(0.15);
     }
   }
   static String datePiker(String date ){

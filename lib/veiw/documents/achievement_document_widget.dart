@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/model/mentro/mentor_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
+import 'package:biztalk_panel_admin/veiw/dialogs/dialog_confirm/confirm_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_controller.dart';
 import 'package:biztalk_panel_admin/veiw/documents/edit/edit_document_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/documents/widgets/new_item_document_widget.dart';
@@ -156,7 +157,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
 
   onConfirmAdditional(
       BuildContext context, Map<String, dynamic> body, String title) {
-    MyAlert.deleteAlertDialog(context, text: title, onConfirm: () async {
+    confirmDialog(context, title: title, onConfirm: () async {
       MyAlert.loding();
       await _documentController.confirmAdditional(
           data!.data!.profile!.id!, body);
