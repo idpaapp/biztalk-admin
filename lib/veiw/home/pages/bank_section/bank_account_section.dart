@@ -86,48 +86,78 @@ class BankAccountSection extends StatelessWidget {
                                     user.bank!.id ?? "";
                                 singleTransactionDialog(
                                     context, "تایید حساب بانکی", user, () {
-                                  confirmDialog(context,
-                                      title: "آیا برای تایید اطمینان دارید؟",
-                                      onConfirm: () async {
-                                    if (_bankAccountController
-                                                .accountName.value !=
-                                            "" &&
-                                        _bankAccountController
-                                                .resultCheckIban.value.result ==
-                                            1) {
-                                      print("ok");
-                                      MyAlert.loding();
+                                  confirmDialog(
+                                    context,
+                                    title: "آیا برای تایید اطمینان دارید؟",
+                                    onConfirm: () async {
+                                      if (_bankAccountController
+                                                  .accountName.value !=
+                                              "" &&
+                                          _bankAccountController.resultCheckIban
+                                                  .value.result ==
+                                              1) {
+                                        MyAlert.loding();
 
-                                      await _homeController.verifyAccount(
-                                          user.userId!,
-                                          true,
-                                          _bankAccountController.resultCheckIban
-                                              .value.data!.bankName!,
-                                          _bankAccountController.resultCheckIban
-                                              .value.data!.name!);
-                                      if (_homeController
-                                              .failureMessageVerifyAccount
-                                              .value ==
-                                          "") {
-                                        Get.back();
-                                        Get.back();
-                                        Get.back();
-                                        await _homeController.notVerify(1);
-                                        MyAlert.mySnakbar(
-                                            title: "عملیات موفق",
-                                            text: "حساب با موفقیت تایید شد");
+                                        await _homeController.verifyAccount(
+                                            user.userId!,
+                                            true,
+                                            _bankAccountController
+                                                .resultCheckIban
+                                                .value
+                                                .data!
+                                                .bankName!,
+                                            _bankAccountController
+                                                .resultCheckIban
+                                                .value
+                                                .data!
+                                                .name!);
+                                        if (_homeController
+                                                .failureMessageVerifyAccount
+                                                .value ==
+                                            "") {
+                                          Get.back();
+                                          Get.back();
+                                          Get.back();
+                                          await _homeController.notVerify(1);
+                                          MyAlert.mySnakbar(
+                                              title: "عملیات موفق",
+                                              text: "حساب با موفقیت تایید شد");
+                                        } else {
+
+                                        }
                                       } else {
                                         MyAlert.mySnakbarRed(
-                                            text: _homeController
-                                                .failureMessageVerifyAccount
-                                                .value);
+                                            text:
+                                                "نام بانک و شماره شبا معتبر نمی باشد.");
                                       }
-                                    } else {
-                                      MyAlert.mySnakbarRed(
-                                          text:
-                                              "نام بانک و شماره شبا معتبر نمی باشد.");
-                                    }
-                                  });
+                                    },
+                                  );
+                                }, () async {
+                                      print("sdsdsd");
+                                  MyAlert.loding();
+                                  await _homeController.verifyAccount(
+                                      user.userId!, false, "", "");
+                                  Get.back();
+                                  if(_homeController
+                                      .failureMessageVerifyAccount
+                                      .value ==
+                                      ""){
+                                    MyAlert.mySnakbarRed(
+                                        text: _homeController
+                                            .failureMessageVerifyAccount
+                                            .value);
+
+                                  }else{
+                                    Get.back();
+                                    Get.back();
+
+                                    await _homeController.notVerify(1);
+                                    MyAlert.mySnakbar(
+                                        title: "عملیات موفق",
+                                        text: "حساب با موفقیت کنسل شد");
+                                  }
+
+
                                 });
                               }
                             },

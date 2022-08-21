@@ -15,7 +15,7 @@ final BankAccountController _bankAccountController =
     Get.put(BankAccountController());
 
 Future<void> singleTransactionDialog(
-    BuildContext context, String title, AccountDatum single, onConfirm) async {
+    BuildContext context, String title, AccountDatum single, onConfirm,onNotConfirm) async {
   _bankAccountController.accountName.value="";
   return showDialog<void>(
     context: context,
@@ -189,9 +189,7 @@ Future<void> singleTransactionDialog(
                 ),
                 ButtonText(
                   borderRadios: 3,
-                  onPressed: () {
-                    Get.back();
-                  },
+                  onPressed: onNotConfirm,
                   text: "عدم تایید",
                   height: 40,
                   width: Get.width * 0.1,
