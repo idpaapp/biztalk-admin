@@ -40,6 +40,18 @@ class MyDrawer extends StatelessWidget {
         _homeController.resultFetchHome.value.data!.sessionCount.toString(),
         key: "SESSION"),
     MasterModel(
+        title: "سوابق و دستاوردهای جدید",
+        iconData: Icons.newspaper_outlined,
+        count:"2"
+        ,
+        key: "DOCUMENT"),
+    MasterModel(
+        title: "تغییر اطلاعات پروفایل جدید",
+        iconData: Icons.person_add_alt_1_sharp,
+        count:"2"
+        ,
+        key: "CHANGE_PROFILE"),
+    MasterModel(
         title: "گزارش تخلف",
         iconData: Icons.list_alt,
         count:
@@ -103,8 +115,17 @@ class MyDrawer extends StatelessWidget {
                       : AppColors.masterColor,
                   onTap: () {
                     _homeController.tab.value = index;
+                    if (data.key == "CHANGE_PROFILE") {
+                      _homeController.tab.value = 55;
+                      Get.back();
+                      return;
+                    }
                     if (data.key == "ASK_ME") {
                       _homeController.tab.value = 88;
+                      Get.back();
+                      return;
+                    }if (data.key == "DOCUMENT") {
+                      _homeController.tab.value = 33;
                       Get.back();
                       return;
                     }

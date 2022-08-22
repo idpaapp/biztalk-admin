@@ -6,8 +6,10 @@ import 'package:biztalk_panel_admin/veiw/drawer/drawer_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/ask_me/ask_me_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/bank_section/bank_account_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/change_profile/change_profile_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/media/media_list_section.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/new_document/document_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/off/off_page.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/report/report_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/request_list/request_list_section.dart';
@@ -76,6 +78,10 @@ class HomeMobilePage extends StatelessWidget {
                 return ReportListSection();
               }else if (homeController.tab.value == 88) {
                 return AskMeSection();
+              } else if (homeController.tab.value == 33) {
+                return NewDocumentSection();
+              }  else if (homeController.tab.value == 55) {
+                return ChangeProfileSection();
               }  else if (homeController.tab.value == 6) {
                 return MediaListSection();
               } else if (homeController.tab.value == 7) {
