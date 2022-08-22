@@ -1,5 +1,6 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AllMethods{
  static Color handelTextColor(String data,bool status) {
@@ -56,4 +57,24 @@ class AllMethods{
    print(finallyDate);
    return finallyDate;
   }
+
+ static openWhatsApp(String phone)async{
+   var whatsapp = "0098$phone";
+   // var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
+   var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp");
+
+   if (await canLaunchUrl(whatsappAndroid)) {
+     await launchUrl(whatsappAndroid);
+   } else {
+     launchUrl(Uri.parse('https://wa.me/0098$phone'),
+         mode: LaunchMode.externalApplication);
+
+
+   }
+
+
+
+ }
+
+
 }

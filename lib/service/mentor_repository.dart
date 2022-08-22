@@ -35,6 +35,7 @@ class MentorRepository {
 
   //********************************* get mentor tvs
   Future<Either<Failure, MentorTvsModel>> getMentorTvs(String id) async {
+    print(id);
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {

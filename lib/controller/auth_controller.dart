@@ -54,7 +54,9 @@ class AuthController extends GetxController {
   }
 
   String fetchToken() {
+    print(getStorage.read(_tokenKEY));
     return getStorage.read(_tokenKEY) ?? "";
+
 
 
   }

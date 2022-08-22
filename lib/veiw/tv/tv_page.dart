@@ -47,7 +47,6 @@ class TvPage extends StatelessWidget {
               child: ProfileSectionWidget(
                 tab: const SizedBox(height: 20),
                 activeEdit: false,
-
                 isTransaction: false,
                 isUser: false,
                 image: image,
@@ -177,7 +176,17 @@ class TvPage extends StatelessWidget {
                           address: tv.tvLink! + tv.userName!,
                           status: tv.status,
                           onLink: () async {
-                            await launch(tv.tvLink! + tv.userName!);
+
+
+                            if (tv.tvLink! == null || tv.tvLink! == "") {
+                              final Uri _url =
+                                  Uri.parse(tv.userName!);
+                              await launchUrl(_url);
+                            } else {
+                              print(tv.tvLink! + tv.userName!);
+                              await launch(tv.tvLink! + tv.userName!);
+                            }
+                            //
                           },
                           statusTitle: tv.statusTitle,
                           publishStatus: tv.rePublish,
