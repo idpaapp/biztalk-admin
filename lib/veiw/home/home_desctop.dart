@@ -8,6 +8,7 @@ import 'package:biztalk_panel_admin/veiw/home/pages/bank_section/bank_account_se
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/change_profile/change_profile_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/check_list_section/check_list_section.dart';
+import 'package:biztalk_panel_admin/veiw/home/pages/insert_user/insert_user_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/media/media_list_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/new_document/document_section.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/off/off_page.dart';
@@ -17,6 +18,7 @@ import 'package:biztalk_panel_admin/veiw/home/pages/session/session_list_section
 import 'package:biztalk_panel_admin/veiw/home/widget/row_in_table_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/text_fiels_custom_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
+import 'package:biztalk_panel_admin/veiw/manager_page/manager_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_page.dart';
 import 'package:biztalk_panel_admin/veiw/single_user/single_user_page.dart';
 import 'package:flutter/material.dart';
@@ -82,23 +84,34 @@ class HomeDesctopPage extends StatelessWidget {
                         } else if (homeController.tabKey.value == "USER_NOT") {
                           homeController.fetchUsers(1, status: "CHECKING");
                           return userListSection();
+                        } else if (homeController.tabKey.value == "MANAGER_PAGE") {
+                           Get.to(()=>ManagerPage());
+                           return SizedBox();
+                        } else if (homeController.tabKey.value == "INSERT_USER") {
+                           insertUser(context, "افزودن کاربر جدید");
+                           return SizedBox();
+
+
+
                         } else if (homeController.tabKey.value =="USERS") {
                           homeController.fetchUsers(1);
                           return userListSection();
-                        } else if (homeController.tabKey.value == "INSERT_USER") {
-                          if (homeController.userType.value == "عادی") {
-                            return SingleUserPage(
-                                userType: homeController.userType.value,
-                                id: homeController.userId.value);
-                          } else {
-                            return SingleMentorPage(
-                              userType: homeController.userType.value,
-                              finalID: homeController.userId.value,
-                            );
-                          }
-                        } else {
+                        }  else {
                           return const SizedBox();
                         }
+
+                        // else if (homeController.tabKey.value == "INSERT_USER") {
+                        // if (homeController.userType.value == "عادی") {
+                        // return SingleUserPage(
+                        // userType: homeController.userType.value,
+                        // id: homeController.userId.value);
+                        // } else {
+                        // return SingleMentorPage(
+                        // userType: homeController.userType.value,
+                        // finalID: homeController.userId.value,
+                        // );
+                        // }
+                        // }
                       },
                     ),
                   ),
