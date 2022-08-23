@@ -42,13 +42,13 @@ class MyDrawer extends StatelessWidget {
     MasterModel(
         title: "سوابق و دستاوردهای جدید",
         iconData: Icons.newspaper_outlined,
-        count:"2"
+        count: _homeController.resultFetchHome.value.data!.documentCount.toString()
         ,
         key: "DOCUMENT"),
     MasterModel(
         title: "تغییر اطلاعات پروفایل جدید",
         iconData: Icons.person_add_alt_1_sharp,
-        count:"2"
+        count: _homeController.resultFetchHome.value.data!.editedProfileCount.toString()
         ,
         key: "CHANGE_PROFILE"),
     MasterModel(
@@ -110,34 +110,34 @@ class MyDrawer extends StatelessWidget {
                   title: data.title,
                   iconData: data.iconData,
                   count: data.count,
-                  selected: _homeController.tab.value == index
+                  selected: _homeController.tabKey.value == index
                       ? AppColors.masterColorSelected
                       : AppColors.masterColor,
                   onTap: () {
-                    _homeController.tab.value = index;
-                    if (data.key == "CHANGE_PROFILE") {
-                      _homeController.tab.value = 55;
-                      Get.back();
-                      return;
-                    }
-                    if (data.key == "ASK_ME") {
-                      _homeController.tab.value = 88;
-                      Get.back();
-                      return;
-                    }if (data.key == "DOCUMENT") {
-                      _homeController.tab.value = 33;
-                      Get.back();
-                      return;
-                    }
-                    if (data.key == "MANAGER_PAGE") {
-                      Get.to(() => ManagerPage());
-                      return;
-                    }
-                    if (data.key == "INSERT_USER") {
-                      insertUser(context, "افزودن کاربر جدید");
-                      return;
-                    }
-                    Get.back();
+                    // _homeController.tabKey.value = index;
+                    // if (data.key == "CHANGE_PROFILE") {
+                    //   _homeController.tabKey.value = 55;
+                    //   Get.back();
+                    //   return;
+                    // }
+                    // if (data.key == "ASK_ME") {
+                    //   _homeController.tabKey.value = 88;
+                    //   Get.back();
+                    //   return;
+                    // }if (data.key == "DOCUMENT") {
+                    //   _homeController.tabKey.value = 33;
+                    //   Get.back();
+                    //   return;
+                    // }
+                    // if (data.key == "MANAGER_PAGE") {
+                    //   Get.to(() => ManagerPage());
+                    //   return;
+                    // }
+                    // if (data.key == "INSERT_USER") {
+                    //   insertUser(context, "افزودن کاربر جدید");
+                    //   return;
+                    // }
+                    // Get.back();
                   },
                 ));
               }),

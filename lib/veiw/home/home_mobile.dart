@@ -66,30 +66,30 @@ class HomeMobilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: Obx(() {
-              if (homeController.tab.value == 1) {
+              if (homeController.tabKey.value == 1) {
                 return BankAccountSection();
-              } else if (homeController.tab.value == 2) {
+              } else if (homeController.tabKey.value == 2) {
                 return CheckListSection();
-              } else if (homeController.tab.value == 3) {
+              } else if (homeController.tabKey.value == 3) {
                 return RequestListSection();
-              } else if (homeController.tab.value == 4) {
+              } else if (homeController.tabKey.value == 4) {
                 return SessionListSection();
-              } else if (homeController.tab.value == 5) {
+              } else if (homeController.tabKey.value == 5) {
                 return ReportListSection();
-              }else if (homeController.tab.value == 88) {
+              }else if (homeController.tabKey.value == 88) {
                 return AskMeSection();
-              } else if (homeController.tab.value == 33) {
+              } else if (homeController.tabKey.value == 33) {
                 return NewDocumentSection();
-              }  else if (homeController.tab.value == 55) {
+              }  else if (homeController.tabKey.value == 55) {
                 return ChangeProfileSection();
-              }  else if (homeController.tab.value == 6) {
+              }  else if (homeController.tabKey.value == 6) {
                 return MediaListSection();
-              } else if (homeController.tab.value == 7) {
+              } else if (homeController.tabKey.value == 7) {
                 return OffPage();
-              } else if (homeController.tab.value == 8) {
+              } else if (homeController.tabKey.value == 8) {
                 homeController.fetchUsers(1, status: "CHECKING");
                 return userListSection();
-              } else if (homeController.tab.value == 11) {
+              } else if (homeController.tabKey.value == 11) {
                 if (homeController.userType.value == "عادی") {
                   return SingleUserPage(
                       userType: homeController.userType.value,
@@ -100,7 +100,7 @@ class HomeMobilePage extends StatelessWidget {
                     finalID: homeController.userId.value,
                   );
                 }
-              } else if (homeController.tab.value == 0) {
+              } else if (homeController.tabKey.value == 0) {
                 homeController.fetchUsers(1);
                 return userListSection();
               } else {
@@ -166,7 +166,7 @@ class HomeMobilePage extends StatelessWidget {
                             onTap: () {
                               homeController.userType.value = user.userType!;
                               homeController.userId.value = user.id!;
-                              homeController.tab.value = 11;
+                              homeController.tabKey.value = "11";
                             },
                             isTitle: false,
                             phoneNumber: user.phoneNumber ?? "",

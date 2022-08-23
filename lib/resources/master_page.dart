@@ -42,14 +42,14 @@ class MasterPage extends StatelessWidget {
     MasterModel(
         title: "سوابق و دستاوردهای جدید",
         iconData: Icons.newspaper_outlined,
-        count:"2"
-        ,
+        count: _homeController.resultFetchHome.value.data!.documentCount
+            .toString(),
         key: "DOCUMENT"),
     MasterModel(
         title: "تغییر اطلاعات پروفایل جدید",
         iconData: Icons.person_add_alt_1_sharp,
-        count:"2"
-        ,
+        count: _homeController.resultFetchHome.value.data!.editedProfileCount
+            .toString(),
         key: "CHANGE_PROFILE"),
     MasterModel(
         title: "گزارش تخلف",
@@ -77,8 +77,8 @@ class MasterPage extends StatelessWidget {
     MasterModel(
         title: "از من بپرس",
         iconData: Icons.question_answer_outlined,
-        count:
-            _homeController.resultFetchHome.value.data!.questionCount.toString(),
+        count: _homeController.resultFetchHome.value.data!.questionCount
+            .toString(),
         key: "ASK_ME"),
     MasterModel(
         title: "مدیریت صفحه اصلی",
@@ -116,34 +116,11 @@ class MasterPage extends StatelessWidget {
                         title: data.title,
                         iconData: data.iconData,
                         count: data.count,
-                        selected: _homeController.tab.value == index
+                        selected: _homeController.tabKey.value == data.key
                             ? AppColors.masterColorSelected
                             : AppColors.masterColor,
                         onTap: () {
-                          _homeController.tab.value = index;
-
-                          if (data.key == "CHANGE_PROFILE") {
-                            _homeController.tab.value = 55;
-                            return;
-                          }
-
-                          if(data.key == "DOCUMENT" ){
-                            _homeController.tab.value = 33;
-
-                          }else
-                          if (data.key == "MANAGER_PAGE") {
-                            _homeController.tab.value = 0;
-                            Get.to(() => ManagerPage());
-                            return;
-                          } if (data.key == "ASK_ME") {
-                            _homeController.tab.value = 88;
-                            return;
-                          }
-                          if (data.key == "INSERT_USER") {
-                            _homeController.tab.value = 0;
-                            insertUser(context, "افزودن کاربر جدید");
-                            return;
-                          }
+                          _homeController.tabKey.value=data.key!;
                         },
                       ),
                     );

@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/model/ask_me/get_mentor_for_ask_model.dart';
 import 'package:biztalk_panel_admin/model/ask_me/get_qustion_model.dart';
 import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
+import 'package:biztalk_panel_admin/model/document/new_document_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/home/check_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
@@ -24,7 +25,7 @@ class HomeController extends GetxController {
 
   RxBool showMoreRegion = false.obs;
   RxString askMeFilter = "All".obs;
-  RxInt tab = 0.obs;
+  RxString tabKey = "USERS".obs;
   RxString userType = "".obs;
   RxString userId = "".obs;
   RxString failureMessageChangeStatus = "".obs;
@@ -334,13 +335,13 @@ class HomeController extends GetxController {
 
   //******************************** list tv
   RxString failureMessageListTv = "".obs;
-  var resultListTv = TvListModel().obs;
+  var resultListTv = NewDocumentModel().obs;
   RxBool isLoadingListTv = false.obs;
 
-  tvList(int page) async {
+  tvList() async {
     failureMessageListTv.value = "";
     isLoadingListTv.value = true;
-    final result = await _homeRepo.listTv(page);
+    final result = await _homeRepo.listTv();
     result.fold(
       (left) {
         failureMessageListTv.value = left.message;
@@ -512,6 +513,25 @@ class HomeController extends GetxController {
       },
     );
   }
+  //*************************************** get new document
+  RxString failureMessageNewDocument = "".obs;
+  var resultNewDocument = NewDocumentModel().obs;
+  RxBool isLoadingNewDocument = false.obs;
+
+  newDocument() async {
+    failureMessageNewDocument.value = "";
+    isLoadingNewDocument.value = true;
+    final result = await _homeRepo.newDocument();
+    result.fold(
+          (left) {
+            failureMessageNewDocument.value = left.message;
+      },
+          (right) {
+            resultNewDocument.value = right;
+            isLoadingNewDocument.value = false;
+      },
+    );
+  }
   @override
   void onInit() {
     fetchInfoHome();
@@ -519,7 +539,7 @@ class HomeController extends GetxController {
     // timer = Timer.periodic(
     //     const Duration(minutes: 5), (Timer t) => fetchInfoHome());
 
-    tab.value = 0;
+    tabKey.value = "USERS";
     fetchUsers(1);
     fetchCategory();
 

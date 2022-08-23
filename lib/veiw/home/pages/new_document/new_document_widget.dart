@@ -7,21 +7,16 @@ import 'package:get/get.dart';
 class NewDocumentWidget extends StatelessWidget {
   final String? oneColumn;
   final String? twoColumn;
-  final String? threeColumn;
-  final String? fourColumn;
-  final String? fiveColumn;
+
   final bool? isTitle;
   final onTap;
 
 
   const NewDocumentWidget(
       {Key? key,
-        this.fiveColumn,
-        this.fourColumn,
 
         this.twoColumn,
         this.oneColumn,
-        this.threeColumn,
         this.onTap,
         this.isTitle})
       : super(key: key);
@@ -55,33 +50,33 @@ class NewDocumentWidget extends StatelessWidget {
                   isTitle == true ? Colors.white : AppColors.blueIndigo,
                   fontWeight: FontWeight.w500,
                   title: twoColumn)),
-          Expanded(
-              child: CustomText(
-                  fontSize: isTitle == true ? 16 : 14,
-                  color:
-                  isTitle == true ? Colors.white : AppColors.columnText,
-                  fontWeight: FontWeight.w500,
-                  title: threeColumn ?? "")),
-
-          Expanded(
-              child:
-                   CustomText(
-                  fontSize: 16,
-                  color: isTitle == true
-                      ? Colors.white
-                      : AppColors.columnText,
-                  fontWeight: FontWeight.w500,
-                  title: fourColumn)
-                  ),
-
-               Expanded(
-              child: CustomText(
-                  fontSize: 16,
-                  color: isTitle == true
-                      ? Colors.white
-                      : AppColors.columnText,
-                  fontWeight: FontWeight.w500,
-                  title: fiveColumn ?? "")),
+          // Expanded(
+          //     child: CustomText(
+          //         fontSize: isTitle == true ? 16 : 14,
+          //         color:
+          //         isTitle == true ? Colors.white : AppColors.columnText,
+          //         fontWeight: FontWeight.w500,
+          //         title: threeColumn ?? "")),
+          //
+          // Expanded(
+          //     child:
+          //          CustomText(
+          //         fontSize: 16,
+          //         color: isTitle == true
+          //             ? Colors.white
+          //             : AppColors.columnText,
+          //         fontWeight: FontWeight.w500,
+          //         title: fourColumn)
+          //         ),
+          //
+          //      Expanded(
+          //     child: CustomText(
+          //         fontSize: 16,
+          //         color: isTitle == true
+          //             ? Colors.white
+          //             : AppColors.columnText,
+          //         fontWeight: FontWeight.w500,
+          //         title: fiveColumn ?? "")),
 
                Expanded(
               child: isTitle == true

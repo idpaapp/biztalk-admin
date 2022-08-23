@@ -43,6 +43,8 @@ class Data {
     this.userCount,
     this.userChecking,
     this.questionCount,
+    this.documentCount,
+    this.editedProfileCount
   });
 
   int? notVerifiedAccount;
@@ -54,6 +56,8 @@ class Data {
   int? userCount;
   int? userChecking;
   int? questionCount;
+  int? documentCount;
+  int? editedProfileCount;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     notVerifiedAccount: json["notVerifiedAccount"],
@@ -65,6 +69,8 @@ class Data {
     tvCount: json["tvCount"],
     userCount: json["userCount"],
     userChecking: json["userChecking"],
+    documentCount: json["documentCount"],
+    editedProfileCount: json["editedProfileCount"],
 
   );
 
@@ -77,6 +83,8 @@ class Data {
     "sessionCount": sessionCount,
     "tvCount":tvCount,
     "userCount":userCount,
-    "userChecking":userChecking
+    "userChecking":userChecking,
+    "documentCount":documentCount,
+    "editedProfileCount":editedProfileCount,
   };
 }

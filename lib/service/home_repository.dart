@@ -7,6 +7,7 @@ import 'package:biztalk_panel_admin/model/ask_me/get_mentor_for_ask_model.dart';
 import 'package:biztalk_panel_admin/model/ask_me/get_qustion_model.dart';
 import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
+import 'package:biztalk_panel_admin/model/document/new_document_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/home/check_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
@@ -433,17 +434,18 @@ class HomeRepository {
   }
 
   //********************************** list tv
-  Future<Either<Failure, TvListModel>> listTv(int page) async {
+  Future<Either<Failure, NewDocumentModel>> listTv() async {
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
       try {
-        var url = '${GlobalInfo.baseURL}home/getTvs/$page';
+        var url = '${GlobalInfo.baseURL}home/getTvs';
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
+        print(response);
 
-        var data = tvListModelFromJson(encode);
+        var data = newDocumentModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
@@ -793,5 +795,33 @@ class HomeRepository {
       }
     }
   }
+  //******************** verify account
+  Future<Either<Failure, NewDocumentModel>> newDocument( ) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}home/getNewDocuments';
 
+        var response = await HttpServices.request(RequestType.get, url,
+            needAuth: true, );
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = newDocumentModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
 }

@@ -59,33 +59,33 @@ class HomeDesctopPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 24),
                     child: Obx(
                       () {
-                        if (homeController.tab.value == 1) {
+                        if (homeController.tabKey.value == "BANK") {
                           return BankAccountSection();
-                        } else if (homeController.tab.value == 2) {
+                        } else if (homeController.tabKey.value == "WITHRAW") {
                           return CheckListSection();
-                        } else if (homeController.tab.value == 3) {
+                        } else if (homeController.tabKey.value == "REQUEST") {
                           return RequestListSection();
-                        } else if (homeController.tab.value == 33) {
+                        } else if (homeController.tabKey.value == "DOCUMENT") {
                           return  NewDocumentSection();
-                        }else if (homeController.tab.value == 4) {
+                        }else if (homeController.tabKey.value == "SESSION") {
                           return SessionListSection();
-                        } else if (homeController.tab.value == 5) {
+                        } else if (homeController.tabKey.value == "REPORT") {
                           return ReportListSection();
-                        } else if (homeController.tab.value == 6) {
+                        } else if (homeController.tabKey.value == "MEDIA") {
                           return MediaListSection();
-                        }  else if (homeController.tab.value == 55) {
+                        }  else if (homeController.tabKey.value == "CHANGE_PROFILE") {
                           return ChangeProfileSection();
-                        } else if (homeController.tab.value == 88) {
+                        } else if (homeController.tabKey.value =="ASK_ME") {
                           return AskMeSection();
-                        } else if (homeController.tab.value == 7) {
+                        } else if (homeController.tabKey.value =="OFF_COD") {
                           return OffPage();
-                        } else if (homeController.tab.value == 8) {
+                        } else if (homeController.tabKey.value == "USER_NOT") {
                           homeController.fetchUsers(1, status: "CHECKING");
                           return userListSection();
-                        } else if (homeController.tab.value == 0) {
+                        } else if (homeController.tabKey.value =="USERS") {
                           homeController.fetchUsers(1);
                           return userListSection();
-                        } else if (homeController.tab.value == 11) {
+                        } else if (homeController.tabKey.value == "INSERT_USER") {
                           if (homeController.userType.value == "عادی") {
                             return SingleUserPage(
                                 userType: homeController.userType.value,
@@ -166,7 +166,7 @@ class HomeDesctopPage extends StatelessWidget {
                             onTap: () {
                               homeController.userType.value = user.userType!;
                               homeController.userId.value = user.id!;
-                              homeController.tab.value = 11;
+                              homeController.tabKey.value = "11";
                             },
                             isTitle: false,
                             phoneNumber: user.phoneNumber ?? "",
