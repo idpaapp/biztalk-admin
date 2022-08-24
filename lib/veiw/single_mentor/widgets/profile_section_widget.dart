@@ -28,7 +28,7 @@ class ProfileSectionWidget extends StatelessWidget {
   const ProfileSectionWidget(
       {Key? key,
       this.image,
-        this.paddingBottom=0.0,
+      this.paddingBottom = 0.0,
       this.onChangeTab,
       this.onSwitchBtn,
       this.fullName,
@@ -42,14 +42,18 @@ class ProfileSectionWidget extends StatelessWidget {
       this.statustitle,
       this.onSwitchChange,
       this.switchValue,
-        this.activeEdit =true,
+      this.activeEdit = true,
       this.isUser = false,
       this.isTransaction = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.only(top: 20,right:  Get.width * 0.02,left:  Get.width * 0.02,bottom:paddingBottom ),
+        padding: EdgeInsets.only(
+            top: 20,
+            right: Get.width * 0.02,
+            left: Get.width * 0.02,
+            bottom: paddingBottom),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
@@ -115,7 +119,11 @@ class ProfileSectionWidget extends StatelessWidget {
                     showSwitch ? statuseSection() : const SizedBox()
                   ],
                 ),
-               !activeEdit? const SizedBox(height: 0,): endSection(),
+                !activeEdit
+                    ? const SizedBox(
+                        height: 0,
+                      )
+                    : endSection(),
               ]),
               tab!,
             ],
@@ -187,31 +195,31 @@ class ProfileSectionWidget extends StatelessWidget {
                       height: 20,
                     ),
                     // isUser
-  //                      ?
-  const Icon(
-                            Icons.call,
-                            color: Colors.black,
-                          )
-                        // : Row(
-                        //     children: const [
-                        //       Icon(
-                        //         Icons.image,
-                        //         color: Colors.black,
-                        //       ),
-                        //       Icon(
-                        //         Icons.image,
-                        //         color: Colors.black,
-                        //       ),
-                        //       Icon(
-                        //         Icons.image,
-                        //         color: Colors.black,
-                        //       ),
-                        //       Icon(
-                        //         Icons.image,
-                        //         color: Colors.black,
-                        //       ),
-                        //     ],
-                        //   )
+                    //                      ?
+                    const Icon(
+                      Icons.call,
+                      color: Colors.black,
+                    )
+                    // : Row(
+                    //     children: const [
+                    //       Icon(
+                    //         Icons.image,
+                    //         color: Colors.black,
+                    //       ),
+                    //       Icon(
+                    //         Icons.image,
+                    //         color: Colors.black,
+                    //       ),
+                    //       Icon(
+                    //         Icons.image,
+                    //         color: Colors.black,
+                    //       ),
+                    //       Icon(
+                    //         Icons.image,
+                    //         color: Colors.black,
+                    //       ),
+                    //     ],
+                    //   )
                   ],
                 )
         ],
