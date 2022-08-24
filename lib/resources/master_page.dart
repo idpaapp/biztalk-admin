@@ -120,7 +120,14 @@ class MasterPage extends StatelessWidget {
                             ? AppColors.masterColorSelected
                             : AppColors.masterColor,
                         onTap: () {
-                          _homeController.tabKey.value=data.key!;
+                          if (data.key == "MANAGER_PAGE") {
+                            Get.to(() => ManagerPage());
+                          } else if (data.key ==
+                              "INSERT_USER") {
+                            insertUser(context, "افزودن کاربر جدید");
+                          } else {
+                            _homeController.tabKey.value = data.key!;
+                          }
                         },
                       ),
                     );

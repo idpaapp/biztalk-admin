@@ -84,34 +84,26 @@ class HomeDesctopPage extends StatelessWidget {
                         } else if (homeController.tabKey.value == "USER_NOT") {
                           homeController.fetchUsers(1, status: "CHECKING");
                           return userListSection();
-                        } else if (homeController.tabKey.value == "MANAGER_PAGE") {
-                           Get.to(()=>ManagerPage());
-                           return SizedBox();
-                        } else if (homeController.tabKey.value == "INSERT_USER") {
-                           insertUser(context, "افزودن کاربر جدید");
-                           return SizedBox();
-
-
-
                         } else if (homeController.tabKey.value =="USERS") {
                           homeController.fetchUsers(1);
                           return userListSection();
+                        }else if(homeController.tabKey.value =="SINGLE"){
+
+                          if (homeController.userType.value == "عادی") {
+                            return SingleUserPage(
+                                userType: homeController.userType.value,
+                                id: homeController.userId.value);
+                          } else {
+                            return SingleMentorPage(
+                              userType: homeController.userType.value,
+                              finalID: homeController.userId.value,
+                            );
+                          }
+
                         }  else {
                           return const SizedBox();
                         }
 
-                        // else if (homeController.tabKey.value == "INSERT_USER") {
-                        // if (homeController.userType.value == "عادی") {
-                        // return SingleUserPage(
-                        // userType: homeController.userType.value,
-                        // id: homeController.userId.value);
-                        // } else {
-                        // return SingleMentorPage(
-                        // userType: homeController.userType.value,
-                        // finalID: homeController.userId.value,
-                        // );
-                        // }
-                        // }
                       },
                     ),
                   ),
@@ -179,7 +171,7 @@ class HomeDesctopPage extends StatelessWidget {
                             onTap: () {
                               homeController.userType.value = user.userType!;
                               homeController.userId.value = user.id!;
-                              homeController.tabKey.value = "11";
+                              homeController.tabKey.value = "SINGLE";
                             },
                             isTitle: false,
                             phoneNumber: user.phoneNumber ?? "",

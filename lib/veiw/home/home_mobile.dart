@@ -66,30 +66,34 @@ class HomeMobilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: Obx(() {
-              if (homeController.tabKey.value == 1) {
+              if (homeController.tabKey.value == "BANK") {
                 return BankAccountSection();
-              } else if (homeController.tabKey.value == 2) {
+              } else if (homeController.tabKey.value == "WITHRAW") {
                 return CheckListSection();
-              } else if (homeController.tabKey.value == 3) {
+              } else if (homeController.tabKey.value == "REQUEST") {
                 return RequestListSection();
-              } else if (homeController.tabKey.value == 4) {
+              } else if (homeController.tabKey.value == "DOCUMENT") {
+                return  NewDocumentSection();
+              }else if (homeController.tabKey.value == "SESSION") {
                 return SessionListSection();
-              } else if (homeController.tabKey.value == 5) {
+              } else if (homeController.tabKey.value == "REPORT") {
                 return ReportListSection();
-              }else if (homeController.tabKey.value == 88) {
-                return AskMeSection();
-              } else if (homeController.tabKey.value == 33) {
-                return NewDocumentSection();
-              }  else if (homeController.tabKey.value == 55) {
-                return ChangeProfileSection();
-              }  else if (homeController.tabKey.value == 6) {
+              } else if (homeController.tabKey.value == "MEDIA") {
                 return MediaListSection();
-              } else if (homeController.tabKey.value == 7) {
+              }  else if (homeController.tabKey.value == "CHANGE_PROFILE") {
+                return ChangeProfileSection();
+              } else if (homeController.tabKey.value =="ASK_ME") {
+                return AskMeSection();
+              } else if (homeController.tabKey.value =="OFF_COD") {
                 return OffPage();
-              } else if (homeController.tabKey.value == 8) {
+              } else if (homeController.tabKey.value == "USER_NOT") {
                 homeController.fetchUsers(1, status: "CHECKING");
                 return userListSection();
-              } else if (homeController.tabKey.value == 11) {
+              } else if (homeController.tabKey.value =="USERS") {
+                homeController.fetchUsers(1);
+                return userListSection();
+              }else if(homeController.tabKey.value =="SINGLE"){
+
                 if (homeController.userType.value == "عادی") {
                   return SingleUserPage(
                       userType: homeController.userType.value,
@@ -100,12 +104,15 @@ class HomeMobilePage extends StatelessWidget {
                     finalID: homeController.userId.value,
                   );
                 }
-              } else if (homeController.tabKey.value == 0) {
-                homeController.fetchUsers(1);
-                return userListSection();
-              } else {
+
+              }   else {
                 return const SizedBox();
               }
+
+
+
+
+
             }),
           ),
         ]),
@@ -166,7 +173,8 @@ class HomeMobilePage extends StatelessWidget {
                             onTap: () {
                               homeController.userType.value = user.userType!;
                               homeController.userId.value = user.id!;
-                              homeController.tabKey.value = "11";
+                              homeController.tabKey.value = "SINGLE";
+
                             },
                             isTitle: false,
                             phoneNumber: user.phoneNumber ?? "",

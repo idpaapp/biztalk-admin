@@ -114,30 +114,15 @@ class MyDrawer extends StatelessWidget {
                       ? AppColors.masterColorSelected
                       : AppColors.masterColor,
                   onTap: () {
-                    // _homeController.tabKey.value = index;
-                    // if (data.key == "CHANGE_PROFILE") {
-                    //   _homeController.tabKey.value = 55;
-                    //   Get.back();
-                    //   return;
-                    // }
-                    // if (data.key == "ASK_ME") {
-                    //   _homeController.tabKey.value = 88;
-                    //   Get.back();
-                    //   return;
-                    // }if (data.key == "DOCUMENT") {
-                    //   _homeController.tabKey.value = 33;
-                    //   Get.back();
-                    //   return;
-                    // }
-                    // if (data.key == "MANAGER_PAGE") {
-                    //   Get.to(() => ManagerPage());
-                    //   return;
-                    // }
-                    // if (data.key == "INSERT_USER") {
-                    //   insertUser(context, "افزودن کاربر جدید");
-                    //   return;
-                    // }
-                    // Get.back();
+                    if (data.key == "MANAGER_PAGE") {
+                      Get.to(() => ManagerPage());
+                    } else if (data.key ==
+                        "INSERT_USER") {
+                      insertUser(context, "افزودن کاربر جدید");
+                    } else {
+                      _homeController.tabKey.value = data.key!;
+                    }
+                    Get.back();
                   },
                 ));
               }),
