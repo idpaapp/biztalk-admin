@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
         _homeController.resultFetchHome.value.data!.reportCount.toString(),
         key: "REPORT"),
     MasterModel(
-        title: "رسانه جدید وارد شده",
+        title: "رسانه و راه های جدید وارد شده",
         iconData: Icons.perm_media_rounded,
         count: _homeController.resultFetchHome.value.data!.tvCount.toString(),
         key: "MEDIA"),

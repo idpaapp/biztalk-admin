@@ -1,6 +1,9 @@
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
+import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/home/pages/new_document/new_document_widget.dart';
+import 'package:biztalk_panel_admin/veiw/single_mentor/single_mentor_controller.dart';
+import 'package:biztalk_panel_admin/veiw/tv/tv_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +14,7 @@ class MediaListSection extends StatelessWidget {
   }
 
   final HomeController _homeController = Get.find();
+  final SingleMentorController _singleMentorController=Get.put(SingleMentorController());
 
   @override
   Widget build(BuildContext context) => Container(
@@ -57,7 +61,21 @@ class MediaListSection extends StatelessWidget {
 
                             oneColumn: tv.fullName,
                             twoColumn: tv.userName,
-                            onTap: (){
+                            onTap: ()async{
+                              MyAlert.loding();
+                              await _singleMentorController.fetchMentor(tv.id!);
+                              Get.back();
+                              if(_singleMentorController.failureMessageFetchUser.value !=""){
+                                MyAlert.mySnakbarRed(text: _singleMentorController.failureMessageFetchUser.value);
+                              }else{
+                                var profile = _singleMentorController.resultFetchUser.value.data!.profile!;
+                                Get.toNamed(TvPage.route, arguments: {
+                                  "image": profile.profile,
+                                  "fullName": profile.fullName,
+                                  "jobTitle": profile.jobTitle,
+                                  "id": profile.id,
+                                });
+                              }
 
                             },
                             // threeColumn: tv.tvTitle,

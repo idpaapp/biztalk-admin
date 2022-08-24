@@ -9,6 +9,7 @@ import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
 import 'package:biztalk_panel_admin/model/document/new_document_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
+import 'package:biztalk_panel_admin/model/home/change_profile_model.dart';
 import 'package:biztalk_panel_admin/model/home/check_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
 import 'package:biztalk_panel_admin/model/home/report_list_model.dart';
@@ -814,6 +815,35 @@ class HomeRepository {
         var encode = jsonEncode(response);
 
         var data = newDocumentModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
+  //******************** changeProfile
+  Future<Either<Failure, ChangeProfileModel>> changeProfile( ) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}home/getUpdatedAboutMe';
+
+        var response = await HttpServices.request(RequestType.get, url,
+          needAuth: true, );
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+        print(response);
+
+        var encode = jsonEncode(response);
+
+        var data = changeProfileModelFromJson(encode);
 
         return data.ok == true
             ? Right(data)

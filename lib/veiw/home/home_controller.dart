@@ -5,6 +5,7 @@ import 'package:biztalk_panel_admin/model/category/category_model.dart';
 import 'package:biztalk_panel_admin/model/contact/all_contact_model.dart';
 import 'package:biztalk_panel_admin/model/document/new_document_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
+import 'package:biztalk_panel_admin/model/home/change_profile_model.dart';
 import 'package:biztalk_panel_admin/model/home/check_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/info_home_model.dart';
 import 'package:biztalk_panel_admin/model/home/report_list_model.dart';
@@ -529,6 +530,24 @@ class HomeController extends GetxController {
           (right) {
             resultNewDocument.value = right;
             isLoadingNewDocument.value = false;
+      },
+    );
+  } //*************************************** change profile
+  RxString failureMessageChangeProfile = "".obs;
+  var resultChangeProfile = ChangeProfileModel().obs;
+  RxBool isLoadingChangeProfile = false.obs;
+
+  changeProfile() async {
+    failureMessageChangeProfile.value = "";
+    isLoadingChangeProfile.value = true;
+    final result = await _homeRepo.changeProfile();
+    result.fold(
+          (left) {
+            failureMessageChangeProfile.value = left.message;
+      },
+          (right) {
+            resultChangeProfile.value = right;
+            isLoadingChangeProfile.value = false;
       },
     );
   }

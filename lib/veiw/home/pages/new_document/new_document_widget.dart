@@ -7,8 +7,10 @@ import 'package:get/get.dart';
 class NewDocumentWidget extends StatelessWidget {
   final String? oneColumn;
   final String? twoColumn;
+  final String? threeColumn;
 
   final bool? isTitle;
+  final bool isThree;
   final onTap;
 
 
@@ -16,6 +18,8 @@ class NewDocumentWidget extends StatelessWidget {
       {Key? key,
 
         this.twoColumn,
+        this.isThree=false,
+        this.threeColumn,
         this.oneColumn,
         this.onTap,
         this.isTitle})
@@ -50,13 +54,13 @@ class NewDocumentWidget extends StatelessWidget {
                   isTitle == true ? Colors.white : AppColors.blueIndigo,
                   fontWeight: FontWeight.w500,
                   title: twoColumn)),
-          // Expanded(
-          //     child: CustomText(
-          //         fontSize: isTitle == true ? 16 : 14,
-          //         color:
-          //         isTitle == true ? Colors.white : AppColors.columnText,
-          //         fontWeight: FontWeight.w500,
-          //         title: threeColumn ?? "")),
+          !isThree? const SizedBox(height: 0,): Expanded(
+              child: CustomText(
+                  fontSize: isTitle == true ? 16 : 14,
+                  color:
+                  isTitle == true ? Colors.white : AppColors.columnText,
+                  fontWeight: FontWeight.w500,
+                  title: threeColumn ?? "")),
           //
           // Expanded(
           //     child:
