@@ -2,28 +2,28 @@ import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AllMethods{
- static Color handelTextColor(String data,bool status) {
-   print(data);
-   if (data == "DOC_NOT_SEND" && status) {
-     return AppColors.pink;
-   } else if (data == "DOC_CONFIRM" && status) {
-     return AppColors.greenBg;
-   } else if (data == "CONFIRM" && status) {
-     return AppColors.pink;
-   } else if (data == "DOC_CHECKING" && status) {
-     return AppColors.blueSession;
-   } else if (data == "DOC_NOT_CONFIRM" && status) {
-     return AppColors.orange;
-   } else if (data == "DOC_NOT_CONFIRM" && !status) {
-     return AppColors.redBg;
-   }  else {
-     return AppColors.lighterBlack;
-   }
+class AllMethods {
+  static Color handelTextColor(String data, bool status) {
+    print(data);
+    if (data == "DOC_NOT_SEND" && status) {
+      return AppColors.pink;
+    } else if (data == "DOC_CONFIRM" && status) {
+      return AppColors.greenBg;
+    } else if (data == "CONFIRM" && status) {
+      return AppColors.pink;
+    } else if (data == "DOC_CHECKING" && status) {
+      return AppColors.blueSession;
+    } else if (data == "DOC_NOT_CONFIRM" && status) {
+      return AppColors.orange;
+    } else if (data == "DOC_NOT_CONFIRM" && !status) {
+      return AppColors.redBg;
+    } else {
+      return AppColors.lighterBlack;
+    }
   }
 
- static Color handelBackColor(String data,bool status) {
-   print(data);
+  static Color handelBackColor(String data, bool status) {
+    print(data);
     if (data == "DOC_NOT_SEND" && status) {
       return AppColors.pink.withOpacity(0.15);
     } else if (data == "DOC_CONFIRM" && status) {
@@ -36,45 +36,40 @@ class AllMethods{
       return AppColors.redBg.withOpacity(0.15);
     } else if (data == "DOC_NOT_CONFIRM" && status) {
       return AppColors.orange.withOpacity(0.15);
-    }  else {
+    } else {
       return AppColors.lighterBlack.withOpacity(0.15);
     }
   }
-  static String datePiker(String date ){
-   var current=date.split("/");
-   String year =current[0];
-   String mounth =current[1];
-   String dey =current[2];
 
-   if(int.parse(current[1]) < 10){
-     mounth="0"+mounth;
+  static String datePiker(String date) {
+    var current = date.split("/");
+    String year = current[0];
+    String mounth = current[1];
+    String dey = current[2];
 
-   }
-   if(int.parse(current[2]) <10){
-     dey ="0" +dey;
-   }
-   String finallyDate=year +"/"+mounth+"/"+dey;
-   print(finallyDate);
-   return finallyDate;
+    if (int.parse(current[1]) < 10) {
+      mounth = "0" + mounth;
+    }
+    if (int.parse(current[2]) < 10) {
+      dey = "0" + dey;
+    }
+    String finallyDate = year + "/" + mounth + "/" + dey;
+    print(finallyDate);
+    return finallyDate;
   }
 
- static openWhatsApp(String phone)async{
-   var whatsapp = "0098$phone";
-   // var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
-   var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp");
-
-   if (await canLaunchUrl(whatsappAndroid)) {
-     await launchUrl(whatsappAndroid);
-   } else {
-     launchUrl(Uri.parse('https://wa.me/0098$phone'),
-         mode: LaunchMode.externalApplication);
-
-
-   }
-
-
-
- }
-
-
+  static Color commentColor(double rate) {
+    print(rate);
+    if (rate >= 4.0) {
+      return AppColors.greenBg;
+    } else if (rate >= 3 && rate < 4) {
+      return AppColors.orange;
+    } else if (rate >= 2 && rate < 3) {
+      return AppColors.yellowCalandar;
+    } else if (rate >= 1 && rate < 2) {
+      return AppColors.dividerDark;
+    } else {
+      return AppColors.red;
+    }
+  }
 }

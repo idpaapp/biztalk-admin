@@ -75,7 +75,7 @@ _homeController.selectedPage.value =1;
                         onTap: (){
 
 
-                             reportDialog(context, "گزارش تخلف",report);
+                             reportDialog(context, "گزارش تخلف",report,report.plaintiff!.id.toString());
 
 
                         },

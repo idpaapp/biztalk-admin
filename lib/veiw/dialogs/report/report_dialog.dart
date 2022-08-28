@@ -17,7 +17,7 @@ import '../dialog_confirm/confirm_dialog.dart';
 final HomeController _homeController = Get.find();
 
 Future<void> reportDialog(
-    BuildContext context, String title, Report data) async {
+    BuildContext context, String title, Report data,String userId) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -85,13 +85,15 @@ Future<void> reportDialog(
                   onPressed: () async {
                     confirmDialog(context, onConfirm: () async {
                       MyAlert.loding();
-                      await _homeController.changeStatus(data.id!, "DE_ACTIVE");
+                      await _homeController.changeStatus(userId, "DE_ACTIVE");
                       Get.back();
                       if(_homeController.failureMessageChangeStatus.value !=""){
                         MyAlert.mySnakbarRed(text: _homeController.failureMessageChangeStatus.value);
                       }else{
                         Get.back();
+                        Get.back();
                         MyAlert.mySnakbar(title: "موفق",text: "کاربر با موفقیت مسدود شد!");
+                        _homeController.reportList(1);
                       }
                     }, title: "ایا برای مسدود سازی کاربر اطمینان دارید");
                   },

@@ -4,6 +4,7 @@ import 'package:biztalk_panel_admin/resources/current_shamsi_year.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/calender/calender_page.dart';
+import 'package:biztalk_panel_admin/veiw/comment/comment_page.dart';
 import 'package:biztalk_panel_admin/veiw/create_off/create_off_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/profile_dialog_widget.dart';
 import 'package:biztalk_panel_admin/veiw/documents/document_page.dart';
@@ -308,11 +309,13 @@ class SingleMentorPage extends StatelessWidget {
                   ),
                   const SizedBox(
                     width: 16,
-                  ),
-                  const Expanded(
+                  ), Expanded(
                     child: MiddleContainerWidget(
                       title: "نقد و نظرات کاربران",
                       colors: AppColors.orangHome,
+                      onTap: (){
+                    Get.to(()=>CommentPage());
+                      },
                     ),
                   ),
                   const SizedBox(
