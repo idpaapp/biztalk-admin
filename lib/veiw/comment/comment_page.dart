@@ -1,5 +1,8 @@
+import 'package:biztalk_panel_admin/resources/all_methods.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
+import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/veiw/comment/single_comment_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/comment/widgets/comment_list_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +22,38 @@ class CommentPage extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: GlobalInfo.pagePadding),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Center(child: CustomText(title: "میانگین امتیاز",color: AppColors.black,fontSize: 14,fontWeight: FontWeight.bold)),
+              SizedBox(width: 12,),
+              Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color:AllMethods.commentColor(4.3)
+                  ),
 
-        mainSection(context)
+                  child: CustomText(
+                      fontSize:  12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      title: "4.3")
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+
+        mainSection(context),
+
+
+
       ],
     ),
   );
@@ -65,6 +98,7 @@ class CommentPage extends StatelessWidget {
             return CommentListWidget(
               isTitle: false,
               onTap: () async {
+                singleCommentDialog(context,);
               },
               fullName: "سینا جمشیدی",
               createDate: "12:25 1401/02/27",

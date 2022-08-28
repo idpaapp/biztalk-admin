@@ -854,4 +854,33 @@ class HomeRepository {
       }
     }
   }
+
+  //******************** checkUserReport
+  Future<Either<Failure, EditModel>> checkUserReport(String reportId,String status ) async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var url = '${GlobalInfo.baseURL}profile/checkUserReport/$reportId';
+
+        var response = await HttpServices.request(RequestType.patch, url,
+          needAuth: true,body: {"status" :status} );
+
+        if (response['error'] != null) {
+          return Left(ApiFailure(response['error']['msg']));
+        }
+
+        var encode = jsonEncode(response);
+
+        var data = editModelFromJson(encode);
+
+        return data.ok == true
+            ? Right(data)
+            : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        print(e);
+        return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
+      }
+    }
+  }
 }

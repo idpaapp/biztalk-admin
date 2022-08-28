@@ -110,7 +110,27 @@ Future<void> reportDialog(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonText(
-                      onPressed: () {},
+                      onPressed: () {
+
+                        confirmDialog(context, onConfirm: () async {
+                          MyAlert.loding();
+                          await _homeController.checkUser(data.id!, "confirm");
+                          Get.back();
+                          if(_homeController.failureMessageCheckUser.value !=""){
+                            MyAlert.mySnakbarRed(text: _homeController.failureMessageCheckUser.value);
+                          }else{
+                            Get.back();
+                            Get.back();
+                            MyAlert.mySnakbar(title: "موفق",text: "گزارش با موفقیت تایید شد!");
+                            _homeController.reportList(1);
+                          }
+                        }, title: "ایا برای تایید اطمینان دارید");
+
+
+
+
+
+                      },
                       text: "تایید",
                       borderRadios: 3,
                       fontWeight: FontWeight.w500,
@@ -126,7 +146,21 @@ Future<void> reportDialog(
                     ButtonText(
                       borderRadios: 3,
                       onPressed: () {
-                        Get.back();
+
+                        confirmDialog(context, onConfirm: () async {
+                          MyAlert.loding();
+                          await _homeController.checkUser(data.id!, "draft");
+                          Get.back();
+                          if(_homeController.failureMessageCheckUser.value !=""){
+                            MyAlert.mySnakbarRed(text: _homeController.failureMessageCheckUser.value);
+                          }else{
+                            Get.back();
+                            Get.back();
+                            MyAlert.mySnakbar(title: "موفق",text: "عدم تایید گزارش با موفقیت ثبت شد");
+                            _homeController.reportList(1);
+                          }
+                        }, title: "ایا برای عدم تایید اطمینان دارید");
+
                       },
                       text: "عدم تایید",
                       height: 40,
@@ -207,6 +241,13 @@ Widget right(Report data) => Expanded(
         RowTextWidget(
           title: "متن گزارش :",
           subTitle: data.text ?? "",
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        RowTextWidget(
+          title: "تعداد دفعات گزارش :",
+          subTitle: data.accused!.reportCounter.toString() ,
         ),
         const SizedBox(
           height: 15,

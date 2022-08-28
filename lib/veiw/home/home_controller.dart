@@ -551,6 +551,27 @@ class HomeController extends GetxController {
       },
     );
   }
+  
+  //*/******************************** check user report
+  //*************************************** change profile
+  RxString failureMessageCheckUser = "".obs;
+  var resultCheckUser = EditModel().obs;
+  RxBool isLoadingCheckUser = false.obs;
+
+  checkUser(String reportId,String status ) async {
+    failureMessageCheckUser.value = "";
+    isLoadingCheckUser.value = true;
+    final result = await _homeRepo.checkUserReport(reportId, status);
+    result.fold(
+          (left) {
+            failureMessageCheckUser.value = left.message;
+      },
+          (right) {
+            resultCheckUser.value = right;
+            isLoadingCheckUser.value = false;
+      },
+    );
+  }
   @override
   void onInit() {
     fetchInfoHome();

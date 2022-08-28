@@ -120,6 +120,7 @@ class Accused {
     this.userType,
     this.phoneNumber,
     this.profileImageUrl,
+    this.reportCounter,
   });
 
   String? id;
@@ -128,9 +129,11 @@ class Accused {
   String? userType;
   String? phoneNumber;
   String? profileImageUrl;
+  int? reportCounter;
 
   factory Accused.fromJson(Map<String, dynamic> json) => Accused(
     id: json["_id"],
+    reportCounter: json["reportCounter"],
     fullName: json["fullName"],
     userName: json["userName"],
     userType: json["userType"],
@@ -140,6 +143,7 @@ class Accused {
 
   Map<String, dynamic> toJson() => {
     "_id": id,
+    "reportCounter": reportCounter,
     "fullName": fullName,
     "userName": userName,
     "userType": userType,
