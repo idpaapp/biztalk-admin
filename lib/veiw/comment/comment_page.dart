@@ -2,17 +2,25 @@ import 'package:biztalk_panel_admin/resources/all_methods.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
+import 'package:biztalk_panel_admin/veiw/comment/comment_controller.dart';
 import 'package:biztalk_panel_admin/veiw/comment/single_comment_dialog.dart';
 import 'package:biztalk_panel_admin/veiw/comment/widgets/comment_list_widget.dart';
 import 'package:biztalk_panel_admin/veiw/home/widget/top_section_panel_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class CommentPage extends StatelessWidget {
-  const CommentPage({Key? key}) : super(key: key);
+   CommentPage({Key? key}) : super(key: key);
+  final CommentController _commentController =Get.put(CommentController());
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: body(context),
+    body:Obx((){if(_commentController.failureMessageGetComments.value !=""){
+      return Center(child: CustomText(title: _commentController.failureMessageGetComments.value),);
+    }else if(_commentController.isLoadingageGetComments.value){
+      return Center(child: CircularProgressIndicator(),);
+    }else{
+      return  body(context);
+    }})
   );
 
   body(BuildContext context) => SingleChildScrollView(

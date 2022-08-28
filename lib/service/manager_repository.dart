@@ -3,6 +3,7 @@ import 'package:biztalk_panel_admin/failure/app_failure.dart';
 import 'package:biztalk_panel_admin/failure/connection_faile.dart';
 import 'package:biztalk_panel_admin/failure/data_connection_checker.dart';
 import 'package:biztalk_panel_admin/failure/failure.dart';
+import 'package:biztalk_panel_admin/model/comment_model.dart';
 import 'package:biztalk_panel_admin/model/edit/edit_model.dart';
 import 'package:biztalk_panel_admin/model/home/all_banner_model.dart';
 import 'package:biztalk_panel_admin/resources/global_info.dart';
@@ -86,5 +87,23 @@ class ManagerRepository{
       }
     }
   }
+//***************************************** delete banner
+  Future<Either<Failure, CommentsModel>> getComment() async {
+    if (!await DataConnectionChecker.hasConnection) {
+      return Left(ConnectionFailure());
+    } else {
+      try {
+        var response = await HttpServices.request(
+            RequestType.delete, '${GlobalInfo.baseURL}survey/reports',
+            needAuth: true ,body: {});
+        var encode = jsonEncode(response);
 
+        var data = commentsModelFromJson(encode);
+
+        return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
+      } catch (e) {
+        return Left(ApiFailure("خطای بارگذاری اطلاعات"));
+      }
+    }
+  }
 }
