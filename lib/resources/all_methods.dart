@@ -1,10 +1,8 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AllMethods {
   static Color handelTextColor(String data, bool status) {
-    print(data);
     if (data == "DOC_NOT_SEND" && status) {
       return AppColors.pink;
     } else if (data == "DOC_CONFIRM" && status) {
@@ -23,7 +21,6 @@ class AllMethods {
   }
 
   static Color handelBackColor(String data, bool status) {
-    print(data);
     if (data == "DOC_NOT_SEND" && status) {
       return AppColors.pink.withOpacity(0.15);
     } else if (data == "DOC_CONFIRM" && status) {
@@ -54,12 +51,10 @@ class AllMethods {
       dey = "0" + dey;
     }
     String finallyDate = year + "/" + mounth + "/" + dey;
-    print(finallyDate);
     return finallyDate;
   }
 
   static Color commentColor(double rate) {
-    print(rate);
     if (rate >= 4.0) {
       return AppColors.greenBg;
     } else if (rate >= 3 && rate < 4) {

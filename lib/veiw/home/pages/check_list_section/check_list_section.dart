@@ -69,7 +69,6 @@ class CheckListSection extends StatelessWidget {
                               confirmDialog(context,
                                   title: "آیا برای تایید در خواست تسویه اطمینان دارید؟",
                                   onConfirm: () async {
-                                    print(check.id);
                                     MyAlert.loding();
                                     await _homeController.verifyDeposit(check.id!,"success" ,check.userId!,);
                                    Get.back();

@@ -35,8 +35,8 @@ class ResponsiveBuilder extends StatelessWidget {
 
     deviceWidth = mediaQuery.size.width;
 
-    if (deviceWidth >= 1000.0) return DeviceScreenType.Desktop;
-    if (deviceWidth >= 600.0) return DeviceScreenType.Tablet;
-    return DeviceScreenType.Mobile;
+    if (deviceWidth >= 1000.0) return DeviceScreenType.desktop;
+    if (deviceWidth >= 600.0) return DeviceScreenType.tablet;
+    return DeviceScreenType.mobile;
   }
 }

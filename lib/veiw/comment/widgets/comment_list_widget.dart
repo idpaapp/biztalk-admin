@@ -67,7 +67,7 @@ class CommentListWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: isTitle ? CustomText(
+            child: isTitle ? const CustomText(
                 fontSize:16 ,
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -93,7 +93,7 @@ class CommentListWidget extends StatelessWidget {
           ),
           Expanded(
             flex:2,
-            child: isTitle?SizedBox() : Row(
+            child: isTitle?const SizedBox() : Row(
               children: [
                 ButtonText(
                   onPressed: onTap,

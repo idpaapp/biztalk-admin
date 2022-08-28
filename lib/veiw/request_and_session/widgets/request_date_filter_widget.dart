@@ -1,10 +1,8 @@
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/textfield_container_widget.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/widgets/title_filter_section.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RequestDateFilterWidget extends StatelessWidget {
   final String? title;
@@ -15,7 +13,6 @@ class RequestDateFilterWidget extends StatelessWidget {
 
   RequestDateFilterWidget({Key? key, this.title,this.selectEndDatee,this.selectStartDatee,this.onTapSelectEnd,this.onTapSelectStart}) : super(key: key);
 
-  final RequestSessionController _requestSessionController = Get.find();
 String startDate="";
 String endDate="";
   @override

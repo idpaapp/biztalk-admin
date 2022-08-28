@@ -418,7 +418,6 @@ class RequestAndSessionPage extends StatelessWidget {
       );
 
   Widget pageSection(AllRequestSessionModel value) {
-    print(value.data!.totalPages);
     return SizedBox(
       height: 40,
       child: Row(
@@ -469,7 +468,6 @@ class RequestAndSessionPage extends StatelessWidget {
                           .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
                           .selectedEndDateSession.value
                     }, userID);
-                    print( _requestSessionController.selectedPage.value);
                   },
                   child: Container(
                     width: 40,

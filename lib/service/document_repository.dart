@@ -12,7 +12,6 @@ import 'dart:convert';
 
 class DocumentRepository {
   Future<Either<Failure, DocumentsModel>> getDocument(String id) async {
-    print(id);
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -20,14 +19,12 @@ class DocumentRepository {
         var response = await HttpServices.request(
             RequestType.get, '${GlobalInfo.baseURL}profile/getAdditionalData/$id',
             needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = documentsModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -285,7 +282,6 @@ class DocumentRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 

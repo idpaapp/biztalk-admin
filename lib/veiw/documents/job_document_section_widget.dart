@@ -62,7 +62,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                     jobTitle.text = job.job ?? "";
                     start.text = job.startYear ?? "";
                     end.text = job.endYear ?? "";
-                    EditDocumentDialog(
+                    editDocumentDialog(
                       context,
                       "نام سازمان",
                       "سمت و موقعیت شغلی",
@@ -79,7 +79,7 @@ class JobDocumentSectionWidget extends StatelessWidget {
                         onConfirmAdditional(
                             context, body, "ایا برای عدم تایید اطمینان دارید؟");
                       },
-                      onConfirmtitle: () {
+                      onConfirmTitle: () {
                         Map<String, dynamic> body = {
                           "_id": job.id,
                           "type": "work",
@@ -140,7 +140,6 @@ class JobDocumentSectionWidget extends StatelessWidget {
                           "companyTitle": companyTitle.text,
                         };
 
-                        print(body);
 
                         MyAlert.loding();
                         await _documentController.editJob(

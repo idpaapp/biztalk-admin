@@ -35,7 +35,6 @@ class MentorRepository {
 
   //********************************* get mentor tvs
   Future<Either<Failure, MentorTvsModel>> getMentorTvs(String id) async {
-    print(id);
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -201,7 +200,6 @@ class MentorRepository {
   //******************* delete tv
   Future<Either<Failure, AllRequestSessionModel>> getAllRequestSession(
       Map<String, dynamic> body, String userId) async {
-    print(body);
     if (!await DataConnectionChecker.hasConnection) {
       return Left(ConnectionFailure());
     } else {
@@ -209,14 +207,12 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.post, '${GlobalInfo.baseURL}sessions/getAllSessions/$userId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = allRequestSessionModelFromJson(encode);
 
         return data.ok == true ? Right(data) : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("خطای بارگذاری اطلاعات"));
       }
     }
@@ -231,7 +227,6 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.patch, '${GlobalInfo.baseURL}sessions/cancel/$sessionId',
             needAuth: true, body: body);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);
@@ -250,7 +245,6 @@ class MentorRepository {
         var response = await HttpServices.request(
             RequestType.patch, '${GlobalInfo.baseURL}sessions/cancelRequest/$sessionId',
             needAuth: true, body: {});
-        print(response);
         var encode = jsonEncode(response);
 
         var data = editModelFromJson(encode);

@@ -16,7 +16,6 @@ import 'package:biztalk_panel_admin/model/home/report_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/request_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/single_report_model.dart';
-import 'package:biztalk_panel_admin/model/home/tv_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/model/mentro/mentor_model.dart';
 import 'package:biztalk_panel_admin/model/mentro/user_model.dart';
@@ -233,7 +232,6 @@ class HomeRepository {
 
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
-        print(response);
         var encode = jsonEncode(response);
 
         var data = transactionModelFromJson(encode);
@@ -257,7 +255,6 @@ class HomeRepository {
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
-        print(response);
 
         var data = notVerifyAccountModelFromJson(encode);
 
@@ -343,7 +340,6 @@ class HomeRepository {
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
-        print(response);
 
         var data = sessionListModelFromJson(encode);
 
@@ -444,7 +440,6 @@ class HomeRepository {
         var response =
             await HttpServices.request(RequestType.get, url, needAuth: true);
         var encode = jsonEncode(response);
-        print(response);
 
         var data = newDocumentModelFromJson(encode);
 
@@ -611,9 +606,7 @@ class HomeRepository {
       return Left(ConnectionFailure());
     } else {
       try {
-        print("3333333");
-        print(id);
-        print(body);
+
 
         var response = await HttpServices.request(RequestType.put,
             '${GlobalInfo.baseURL}sessions/changeSessionTime/$id',
@@ -622,7 +615,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -657,7 +649,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -667,7 +658,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -690,7 +680,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -700,7 +689,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -721,7 +709,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -731,7 +718,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -750,7 +736,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -760,7 +745,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -781,7 +765,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -791,7 +774,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -810,7 +792,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -820,7 +801,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -839,7 +819,6 @@ class HomeRepository {
         if (response['error'] != null) {
           return Left(ApiFailure(response['error']['msg']));
         }
-        print(response);
 
         var encode = jsonEncode(response);
 
@@ -849,7 +828,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }
@@ -878,7 +856,6 @@ class HomeRepository {
             ? Right(data)
             : Left(ApiFailure(data.message.toString()));
       } catch (e) {
-        print(e);
         return Left(ApiFailure("سرور قادر به پاسخگویی نمی باشد"));
       }
     }

@@ -59,7 +59,6 @@ class Repository{
         request.headers.addAll(headers);
         http.Response response =
         await http.Response.fromStream(await request.send());
-        print(response.body);
 
         var data = ibanInquiryModelFromJson(response.body);
 

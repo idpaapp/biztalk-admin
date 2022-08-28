@@ -4,7 +4,6 @@ import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
 import 'package:biztalk_panel_admin/veiw/comment/widgets/row_dialog_widget.dart';
 import 'package:biztalk_panel_admin/veiw/comment/widgets/tashrihi_answer_widget.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,17 +28,17 @@ Future<void> singleCommentDialog(BuildContext context, {onConfirm}) async {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   title(),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   listView(),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   ListView.builder(shrinkWrap: true,
                       itemCount: 2,
                       itemBuilder: (context, index) {
-                        return TashrihiAnswerWidget(
+                        return const TashrihiAnswerWidget(
                           question: "یمنتبیمنئبمنیئبوسی بئمیبئنمیبئ مینئبمنیئبم نیبمئیبئیب",
                           answer: "کمگکزووزییب نسیبن سحنبحسی مسمنی سمنبسی بسی بسیو بیئس بئسی بئسی بئ سئبئسی بئشس ب شسبئد شسئدب ئدسب شس بئدشس بس بسینب یسنب نس بندشنبسدشنسب شسبئ شسبئو شسئب شسئب شئس بئشس بنئشس بئن شسبنشسب شسئب شنئسسب نئش بنئشس بنش سبنشس بن شسبت شسبش سبئشس بئشس بئشس ب",);
                       })
@@ -110,19 +109,19 @@ Widget title() =>
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomText(
+        const CustomText(
             title: "جلسه مشاوره سینا جمشییدی طاری و فرزاد زارع",
             fontWeight: FontWeight.w700,
             fontSize: 16),
         Row(
           children: [
-            Center(
+            const Center(
                 child: CustomText(
                     title: "میانگین امتیاز",
                     color: AppColors.black,
                     fontSize: 14,
                     fontWeight: FontWeight.bold)),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Container(
@@ -131,7 +130,7 @@ Widget title() =>
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AllMethods.commentColor(4.2)),
-                child: CustomText(
+                child: const CustomText(
                     fontSize: 12,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

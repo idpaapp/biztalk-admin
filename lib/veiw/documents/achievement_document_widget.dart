@@ -56,7 +56,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                     achievementTitle.text=achievement.title??"";
                     achievementYears.text=achievement.year??"";
 
-                    EditDocumentDialog(
+                    editDocumentDialog(
                         context,
                         "محل اخذ",
                         "عنوان دست آورد یا جایزه کسب شده",
@@ -92,7 +92,7 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                               .getDocument(data!.data!.profile!.id!);
                         }
                       });
-                    }, onConfirmtitle: () {
+                    }, onConfirmTitle: () {
                       Map<String, dynamic> body = {
                         "_id": achievement.id,
                         "type": "achievement",
@@ -125,7 +125,6 @@ class AchievementDocumentSectionWidget extends StatelessWidget {
                         "place": achieviementPlace.text,
                         "year": achievementYears.text,
                       };
-                      print(body);
                         MyAlert.loding();
                         await _documentController.editAchivement(
                             body,   data!.data!.profile!.id!, achievement.id!);

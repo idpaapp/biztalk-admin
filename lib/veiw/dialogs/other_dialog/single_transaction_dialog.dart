@@ -110,7 +110,7 @@ Future<void> singleTransactionDialog(
                     isSubtitle: true,
                     title: " ",
                     subTitle: " شماره شبا متعلق به  ${_bankAccountController.resultCheckIban.value.data!.name}  بانک  ${_bankAccountController.resultCheckIban.value.data!.bankName} می باشد .",
-                  ):SizedBox(height: 0,)),
+                  ):const SizedBox(height: 0,)),
                   const SizedBox(
                     height: 15,
                   ),

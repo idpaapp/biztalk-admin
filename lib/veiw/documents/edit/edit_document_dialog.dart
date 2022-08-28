@@ -7,7 +7,7 @@ import 'package:biztalk_panel_admin/veiw/documents/edit/widgets/right_section.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<void> EditDocumentDialog(
+Future<void> editDocumentDialog(
   BuildContext context,
   String title,
   String subTitle,
@@ -15,7 +15,7 @@ Future<void> EditDocumentDialog(
   String titleDialog,
   String fromPage, {
   final onConfirm,
-  final onConfirmtitle,
+  final onConfirmTitle,
   final onCancel,
   final onDelete,
   final onCancelTitle,
@@ -65,7 +65,7 @@ Future<void> EditDocumentDialog(
                       endYear: endDate,
                       startYear: startDate,
                       isActiveSwitch: isActiveSwitch,
-                      onConfirmTitle: onConfirmtitle,
+                      onConfirmTitle: onConfirmTitle,
                       onDeleteTitle: onCancelTitle,
                     ),
                     SizedBox(

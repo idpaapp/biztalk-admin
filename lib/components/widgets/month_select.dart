@@ -9,7 +9,7 @@ class MonthSelect extends StatefulWidget {
   final Jalali jalali;
   final Function(Jalali) onMonthChange;
 
-  const MonthSelect({
+   MonthSelect({
     Key? key,
     required this.jalali,
     required this.onMonthChange,

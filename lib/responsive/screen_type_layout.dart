@@ -20,11 +20,11 @@ class ScreenTypeLayout extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         switch (sizingInformation.deviceScreenType) {
-          case DeviceScreenType.Desktop:
+          case DeviceScreenType.desktop:
             return desktop;
-          case DeviceScreenType.Tablet:
+          case DeviceScreenType.tablet:
             return tablet ?? desktop;
-          case DeviceScreenType.Mobile:
+          case DeviceScreenType.mobile:
             return mobile ?? desktop;
         }
       },

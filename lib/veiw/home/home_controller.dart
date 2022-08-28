@@ -12,7 +12,6 @@ import 'package:biztalk_panel_admin/model/home/report_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/request_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/single_report_model.dart';
-import 'package:biztalk_panel_admin/model/home/tv_list_model.dart';
 import 'package:biztalk_panel_admin/model/home/user_home_model.dart';
 import 'package:biztalk_panel_admin/model/transaction/not_verify_account_model.dart';
 import 'package:biztalk_panel_admin/model/tv/all_tvs_model.dart';
@@ -406,7 +405,6 @@ class HomeController extends GetxController {
   changeDate(String id, Map<String, String> body) async {
     failureMessageChangeDate.value = "";
     isLoadingChangeDate.value = true;
-    print("sssssssssssssssssssssss");
     final result = await _homeRepo.changeDateANdTime(id, body);
     result.fold(
       (left) {

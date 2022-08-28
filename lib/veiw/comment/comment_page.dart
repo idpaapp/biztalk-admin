@@ -17,7 +17,7 @@ class CommentPage extends StatelessWidget {
     body:Obx((){if(_commentController.failureMessageGetComments.value !=""){
       return Center(child: CustomText(title: _commentController.failureMessageGetComments.value),);
     }else if(_commentController.isLoadingageGetComments.value){
-      return Center(child: CircularProgressIndicator(),);
+      return const Center(child: CircularProgressIndicator(),);
     }else{
       return  body(context);
     }})
@@ -36,8 +36,8 @@ class CommentPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Center(child: CustomText(title: "میانگین امتیاز",color: AppColors.black,fontSize: 14,fontWeight: FontWeight.bold)),
-              SizedBox(width: 12,),
+              const Center(child: CustomText(title: "میانگین امتیاز",color: AppColors.black,fontSize: 14,fontWeight: FontWeight.bold)),
+              const SizedBox(width: 12,),
               Container(
                   padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
                   decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class CommentPage extends StatelessWidget {
                       color:AllMethods.commentColor(4.3)
                   ),
 
-                  child: CustomText(
+                  child: const CustomText(
                       fontSize:  12,
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
@@ -90,7 +90,7 @@ class CommentPage extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CommentListWidget(
+        const CommentListWidget(
           isTitle: true,
           fullName: "نام و نام خانوادگی",
           createDate: "تاریخ ارسال نظر",

@@ -133,7 +133,6 @@ class BankAccountSection extends StatelessWidget {
                                     },
                                   );
                                 }, () async {
-                                      print("sdsdsd");
                                   MyAlert.loding();
                                   await _homeController.verifyAccount(
                                       user.userId!, false, "", "");

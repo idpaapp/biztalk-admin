@@ -17,7 +17,6 @@ class SetNewEdu{
     final TextEditingController _firstYear = TextEditingController();
     final TextEditingController _lastYear = TextEditingController();
     final TextEditingController _fieldOfStudy = TextEditingController();
-    final TextEditingController _searchUni = TextEditingController();
     final TextEditingController _manualUniController = TextEditingController();
 
     if(edit == "edit"){

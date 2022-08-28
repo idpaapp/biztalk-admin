@@ -37,8 +37,8 @@ class AskMeSection extends StatelessWidget {
             itemBuilder: (context, index) {
               var data=listFilter[index];
               return Obx(()=>ButtonText(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                margin: EdgeInsets.symmetric(horizontal: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                margin: const EdgeInsets.symmetric(horizontal: 4),
                 onPressed: () {
                   _homeController.askMeFilter.value=data.key!;
                   _homeController.getQuestions(status: _homeController.askMeFilter.value);
@@ -51,7 +51,7 @@ class AskMeSection extends StatelessWidget {
               ));
             }),
       ),
-      SizedBox(height: 24,),
+      const SizedBox(height: 24,),
 
       Container(
             margin: EdgeInsets.symmetric(horizontal: Get.width * 0.06),

@@ -51,7 +51,7 @@ Future<void> responseDialogS(BuildContext context,
                     hint: title,
                     borderColor: AppColors.borderColor,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 32,
                   ),
                   TitleTextFieldWidget(
@@ -61,16 +61,16 @@ Future<void> responseDialogS(BuildContext context,
                     enabled: false,
                     hint: "",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 32,
                   ),
-                  CustomText(
+                  const CustomText(
                     color: AppColors.greyMiddle,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     title: "پاسخ دهنده",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Container(
@@ -98,7 +98,7 @@ Future<void> responseDialogS(BuildContext context,
                           },
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 32,
                   ),
                   TitleTextFieldWidget(

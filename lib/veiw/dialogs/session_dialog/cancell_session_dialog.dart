@@ -1,15 +1,8 @@
-import 'package:biztalk_panel_admin/model/home/session_list_model.dart';
-import 'package:biztalk_panel_admin/model/home/single_report_model.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
 import 'package:biztalk_panel_admin/resources/custom_text.dart';
-import 'package:biztalk_panel_admin/resources/global_info.dart';
 import 'package:biztalk_panel_admin/resources/my_alert.dart';
 import 'package:biztalk_panel_admin/veiw/dialogs/edit_profile_dialog/title_widget.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/other_dialog/widget/row_text_widget.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/mentor_chat_item.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/report/widget/chat_screen/widget/user_chat_item.dart';
-import 'package:biztalk_panel_admin/veiw/dialogs/session_dialog/change_date.dart';
 import 'package:biztalk_panel_admin/veiw/home/home_controller.dart';
 import 'package:biztalk_panel_admin/veiw/request_and_session/request_session_controller.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +12,16 @@ import '../edit_profile_dialog/title_text_field_widget.dart';
 
 final RequestSessionController _requestSessionController =
     Get.put(RequestSessionController());
-final HomeController _homeController =Get.find();
+final HomeController _homeController = Get.find();
 
 Future<void> cancellDialog(
   BuildContext context,
   String title,
-  String sessionId,{String? fromPage,String? userType,String? userID,}
-) async {
+  String sessionId, {
+  String? fromPage,
+  String? userType,
+  String? userID,
+}) async {
   final TextEditingController penalty = TextEditingController();
 
   return showDialog<void>(
@@ -105,57 +101,64 @@ Future<void> cancellDialog(
                 ButtonText(
                   borderRadios: 3,
                   onPressed: () async {
-
-                      Map<String, dynamic> body = {
-                        "penalty":
-                        penalty.text.replaceAll(",", "").replaceAll("،", ""),
-                        "isUserCancel":
-                        _requestSessionController.selectedTypeUser.value ==
-                            "کاربر"
-                            ? true
-                            : false
-                      };
-                      print(body);
-                      MyAlert.loding();
-                      await _requestSessionController.cancelSession(
-                          body, sessionId);
-                      Get.back();
-                      if (_requestSessionController.failureMessageCancelSession
-                          .value != "") {
-                        MyAlert.mySnakbarRed(text: _requestSessionController
-                            .failureMessageCancelSession.value);
+                    Map<String, dynamic> body = {
+                      "penalty":
+                          penalty.text.replaceAll(",", "").replaceAll("،", ""),
+                      "isUserCancel":
+                          _requestSessionController.selectedTypeUser.value ==
+                                  "کاربر"
+                              ? true
+                              : false
+                    };
+                    MyAlert.loding();
+                    await _requestSessionController.cancelSession(
+                        body, sessionId);
+                    Get.back();
+                    if (_requestSessionController
+                            .failureMessageCancelSession.value !=
+                        "") {
+                      MyAlert.mySnakbarRed(
+                          text: _requestSessionController
+                              .failureMessageCancelSession.value);
+                    } else {
+                      if (fromPage != "1") {
+                        Get.back();
+                        Get.back();
+                        _homeController.sessionList(1);
                       } else {
-  if(fromPage != "1") {
-    Get.back();
-    Get.back();
-    _homeController.sessionList(1);
-  }else{
-    Get.back();
-    Get.back();
-      _requestSessionController.getAllRequestSession({
-      "page": _requestSessionController.selectedPage.value,
-      "type": userType,
-      "status":_requestSessionController.selectedStatus,
-      "requestFromDate": _requestSessionController
-          .selectedStartDateRequest.value == "انتخاب کنید" ? null:_requestSessionController
-          .selectedStartDateRequest.value,
-      "requestToDate": _requestSessionController
-          .selectedEndDateRequest.value== "انتخاب کنید" ? null:_requestSessionController
-          .selectedEndDateRequest.value,
-      "sessionFromDate": _requestSessionController
-          .selectedStartDateSession.value== "انتخاب کنید" ? null:_requestSessionController
-          .selectedStartDateSession.value,
-      "sessionToDate": _requestSessionController
-          .selectedEndDateSession.value== "انتخاب کنید" ? null:_requestSessionController
-          .selectedEndDateSession.value
-      }, userID!);
-
-  }
-
-
-
+                        Get.back();
+                        Get.back();
+                        _requestSessionController.getAllRequestSession({
+                          "page": _requestSessionController.selectedPage.value,
+                          "type": userType,
+                          "status": _requestSessionController.selectedStatus,
+                          "requestFromDate": _requestSessionController
+                                      .selectedStartDateRequest.value ==
+                                  "انتخاب کنید"
+                              ? null
+                              : _requestSessionController
+                                  .selectedStartDateRequest.value,
+                          "requestToDate": _requestSessionController
+                                      .selectedEndDateRequest.value ==
+                                  "انتخاب کنید"
+                              ? null
+                              : _requestSessionController
+                                  .selectedEndDateRequest.value,
+                          "sessionFromDate": _requestSessionController
+                                      .selectedStartDateSession.value ==
+                                  "انتخاب کنید"
+                              ? null
+                              : _requestSessionController
+                                  .selectedStartDateSession.value,
+                          "sessionToDate": _requestSessionController
+                                      .selectedEndDateSession.value ==
+                                  "انتخاب کنید"
+                              ? null
+                              : _requestSessionController
+                                  .selectedEndDateSession.value
+                        }, userID!);
                       }
-
+                    }
                   },
                   text: "لغو جلسه",
                   height: 40,

@@ -183,7 +183,6 @@ class TvPage extends StatelessWidget {
                                   Uri.parse(tv.userName!);
                               await launchUrl(_url);
                             } else {
-                              print(tv.tvLink! + tv.userName!);
                               await launch(tv.tvLink! + tv.userName!);
                             }
                             //

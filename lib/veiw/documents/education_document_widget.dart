@@ -61,10 +61,9 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                     start.text = education.startYear ?? "";
                     _documentController.isActiveJobSwitch.value =
                         education.currentCourse ?? false;
-                    EditDocumentDialog(
+                    editDocumentDialog(
                         context, "نام دانشگاه", "رشته", "", "تحصیل", "edu",
                         onDelete: () {
-                          print("injaaaaaaaaaaaaaaaaaaa");
                       MyAlert.deleteAlertDialog(context,
                           text: "آیا برای حذف اطمینان دارید؟",
                           onConfirm: () async {
@@ -85,7 +84,7 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                               .getDocument(data!.data!.profile!.id!);
                         }
                       });
-                    }, onConfirmtitle: () {
+                    }, onConfirmTitle: () {
                       Map<String, dynamic> body = {
                         "_id": education.id,
                         "type": "education",
@@ -132,7 +131,6 @@ class EducationDocumentSectionWidget extends StatelessWidget {
                         'schoolTitle': uniName.text
                       };
 
-                      print(body);
 
                       MyAlert.loding();
                       await _documentController.editEducation(
