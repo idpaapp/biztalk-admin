@@ -1,3 +1,4 @@
+import 'package:biztalk_panel_admin/model/get_answers_model.dart';
 import 'package:biztalk_panel_admin/resources/all_methods.dart';
 import 'package:biztalk_panel_admin/resources/app_colors.dart';
 import 'package:biztalk_panel_admin/resources/button_text.dart';
@@ -7,7 +8,7 @@ import 'package:biztalk_panel_admin/veiw/comment/widgets/tashrihi_answer_widget.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<void> singleCommentDialog(BuildContext context, {onConfirm}) async {
+Future<void> singleCommentDialog(BuildContext context, {onConfirm,AnswersModel? answersModel}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -27,20 +28,21 @@ Future<void> singleCommentDialog(BuildContext context, {onConfirm}) async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  title(),
+                  title(answersModel!),
                   const SizedBox(
                     height: 40,
                   ),
-                  listView(),
+                  listView(answersModel),
                   const SizedBox(
                     height: 40,
                   ),
                   ListView.builder(shrinkWrap: true,
-                      itemCount: 2,
+                      itemCount:answersModel.answers!.longAnswers!.length,
                       itemBuilder: (context, index) {
-                        return const TashrihiAnswerWidget(
-                          question: "یمنتبیمنئبمنیئبوسی بئمیبئنمیبئ مینئبمنیئبم نیبمئیبئیب",
-                          answer: "کمگکزووزییب نسیبن سحنبحسی مسمنی سمنبسی بسی بسیو بیئس بئسی بئسی بئ سئبئسی بئشس ب شسبئد شسئدب ئدسب شس بئدشس بس بسینب یسنب نس بندشنبسدشنسب شسبئ شسبئو شسئب شسئب شئس بئشس بنئشس بئن شسبنشسب شسئب شنئسسب نئش بنئشس بنش سبنشس بن شسبت شسبش سبئشس بئشس بئشس ب",);
+                    var data=answersModel.answers!.longAnswers![index];
+                        return  TashrihiAnswerWidget(
+                          question: data.questionText,
+                          answer:data.description);
                       })
 
                 ],
@@ -88,29 +90,26 @@ Future<void> singleCommentDialog(BuildContext context, {onConfirm}) async {
   );
 }
 
-Widget listView() =>
+Widget listView(AnswersModel answersModel) =>
     ListView.builder(
-      itemCount: 6,
+      itemCount: answersModel.answers!.singleAnswers!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
+        var data=answersModel.answers!.singleAnswers![index];
         return RowDialogWidget(
-          rate: index == 0
-              ? 0.1
-              : index == 4
-              ? 0.5
-              : 0.7,
-          answer: "عالی",
-          question: "میزان رضایت خود از برخورد مشاور چگونه ارزیابی می کنید.",
+          rate: data.score,
+          answer: data.answerTitle,
+          question: data.questionText,
         );
       },
     );
 
-Widget title() =>
+Widget title(AnswersModel answersModel) =>
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const CustomText(
-            title: "جلسه مشاوره سینا جمشییدی طاری و فرزاد زارع",
+         CustomText(
+            title: "جلسه مشاوره ${answersModel.mentorFullName.toString()} و ${answersModel.userFullNameuserFullName}",
             fontWeight: FontWeight.w700,
             fontSize: 16),
         Row(
@@ -129,12 +128,12 @@ Widget title() =>
                 const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AllMethods.commentColor(4.2)),
-                child: const CustomText(
+                    color: AllMethods.commentColor(answersModel.average!)),
+                child:  CustomText(
                     fontSize: 12,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
-                    title: "4.2")),
+                    title: answersModel.average!.toStringAsFixed(1).toString())),
           ],
         ),
       ],

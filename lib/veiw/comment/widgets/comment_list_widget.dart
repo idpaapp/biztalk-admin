@@ -10,7 +10,6 @@ class CommentListWidget extends StatelessWidget {
   final String? comment;
   final double? rate;
   final bool isTitle;
-  final String? statusRate;
   final onTap;
 
   const CommentListWidget(
@@ -20,7 +19,6 @@ class CommentListWidget extends StatelessWidget {
         this.createDate,
         this.fullName,
         this.rate,
-        this.statusRate,
         this.isTitle = false,})
       : super(key: key);
 
@@ -85,7 +83,7 @@ class CommentListWidget extends StatelessWidget {
                         fontSize:  12,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
-                        title: rate.toString())
+                        title: rate!.toStringAsFixed(1).toString())
                 ),
               ],
             ),

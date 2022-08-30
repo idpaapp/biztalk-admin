@@ -314,7 +314,7 @@ class SingleMentorPage extends StatelessWidget {
                       title: "نقد و نظرات کاربران",
                       colors: AppColors.orangHome,
                       onTap: (){
-                    Get.to(()=>CommentPage());
+                    Get.to(()=>CommentPage( mentorID:finalID ,));
                       },
                     ),
                   ),
