@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 class GlobalInfo {
   //farzad
-  static  String serverAddress = kDebugMode ?  "http://192.168.2.248:3010":"https://bizztalk.ir:3443";
-
+//  static  String serverAddress = kDebugMode ?  "http://192.168.2.248:3010":"https://bizztalk.ir:3443";
+ static String serverAddress = "https://btapi.izicenter.ir/";
   //new
  // static const String serverAddress = 'https://bizztalk.ir:3443';
 
