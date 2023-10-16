@@ -2198,8 +2198,8 @@ class _TimePickerDialogState extends State<TimePickerDialog>
     final double textScaleFactor =
         math.min(MediaQuery.of(context).textScaleFactor, 1.1);
 
-    final double timePickerWidth;
-    final double timePickerHeight;
+    late double timePickerWidth;
+    late double timePickerHeight;
     switch (_entryMode.value) {
       case TimePickerEntryMode.dial:
         switch (orientation) {
@@ -2292,7 +2292,7 @@ class _TimePickerDialogState extends State<TimePickerDialog>
       ],
     );
 
-    final Widget picker;
+    late Widget picker;
     switch (_entryMode.value) {
       case TimePickerEntryMode.dial:
         final Widget dial = Padding(
@@ -2387,6 +2387,12 @@ class _TimePickerDialogState extends State<TimePickerDialog>
             ),
           ),
         );
+        break;
+      case TimePickerEntryMode.dialOnly:
+        // TODO: Handle this case.
+        break;
+      case TimePickerEntryMode.inputOnly:
+        // TODO: Handle this case.
         break;
     }
 

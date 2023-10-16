@@ -74,7 +74,7 @@ class OffPage extends StatelessWidget {
                                   },
 
                                   onCopy: (){
-                                    Clipboard.setData(ClipboardData(text: check.code));
+                                    Clipboard.setData(ClipboardData(text: check.code??""));
 
                                   },
                                   oneColumn: check.title,
